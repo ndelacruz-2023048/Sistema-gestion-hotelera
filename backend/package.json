@@ -1,0 +1,16 @@
+{
+  "name": "backend-sistema-gestion-hotelera",
+  "version": "1.0.0",
+  "description": "systems,people,family",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "systems",
+    "people",
+    "family"
+  ],
+  "author": "Group 2",
+  "license": "MIT"
+}
