@@ -1,4 +1,6 @@
-import {Btn1,GlobalStyles} from './index'
+import { Btn1 } from "./components/moleculas/Btn1"
+import { GlobalStyles } from "./styles/GlobalStyles"
+
 
 function App() {
 
