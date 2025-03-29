@@ -1,11 +1,14 @@
 import styled from "styled-components"
 import { Btn1 } from "../moleculas/Btn1"
+import { DashboardSearchFilters } from "../organismos/DashboardPrincipal/DashboardSearchFilters"
 
 export const DashboardPrincipalTemplate = () => {
     return(
         <Container>
             <MainContent>
-                <Area1>Hola</Area1>
+                <Area1>
+                    <DashboardSearchFilters/>
+                </Area1>
                 <Area2><Btn1/>
                     <Btn1/>
                     <Btn1/></Area2>
@@ -14,7 +17,6 @@ export const DashboardPrincipalTemplate = () => {
     )
 }
 const Container = styled.div`
-    background-color:transparent;
     display: flex;
     flex-direction: column;
 `

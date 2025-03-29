@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-export const SearchFiltersBar = () => {
-    return (
+export const DashboardSearchFilters = () => {
+    return(
         <Container>
-            Search and Filters
+            My Rent Dashboard
         </Container>       
     )
 }
 
 const Container = styled.div`
-    background-color: pink
+    
 `

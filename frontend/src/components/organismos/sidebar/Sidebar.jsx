@@ -6,11 +6,11 @@ export const Sidebar = () => {
         <Container>
             <div><NavLink to="/">Home</NavLink></div>
             <div><NavLink to="/login">Login</NavLink></div>
-            <div><NavLink>...</NavLink></div>
         </Container>       
     )
 }
 
 const Container = styled.div`
     width: 100%;
+    height: calc(100vh - 88px);
 `
