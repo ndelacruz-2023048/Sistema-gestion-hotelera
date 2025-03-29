@@ -5,6 +5,7 @@ export const LoginTemplate = () => {
     return (
         <ContainerLogin>
             <Btn1/>
+            <h1>Login</h1>            
         </ContainerLogin>
     )
 }
