@@ -11,5 +11,4 @@ export const LoginTemplate = () => {
 
 const ContainerLogin = styled.div`
     background-color: ${({theme})=>theme.bg};
-    height: 100vh;
 `
