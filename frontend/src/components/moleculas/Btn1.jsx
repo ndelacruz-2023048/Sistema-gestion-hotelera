@@ -10,7 +10,6 @@ export const Btn1 = () => {
 const Button = styled.button`
     background-color: transparent;
     color: ${({theme})=>theme.color};
-    cursor: pointer;
     font-size: 10px;
     border : none;
     padding: 10px 20px;

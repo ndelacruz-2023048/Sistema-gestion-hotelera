@@ -32,7 +32,7 @@ const MainContent = styled.div`
     background-color: gray;
     align-items: center;
     gap: 20px;
-    height: calc(100vh - 93px);
+    height: calc(100vh - 104px);
     .contentSidebar{
         background-color: ${({theme})=>theme.bgSidebar};
         border-top-right-radius: 20px;
