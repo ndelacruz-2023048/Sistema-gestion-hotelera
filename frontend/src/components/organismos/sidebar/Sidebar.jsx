@@ -1,16 +1,110 @@
 import { NavLink } from "react-router"
+import { Icon } from '@iconify/react'
 import styled from "styled-components"
+import { LinksArraySidebar } from "../../../utils/dataEstatica"
 
 export const Sidebar = () => {
     return (
         <Container>
-            <div><NavLink to="/">Home</NavLink></div>
-            <div><NavLink to="/login">Login</NavLink></div>
-        </Container>       
+            <section className="sidebarSection1">
+                {
+                    LinksArraySidebar.map(({ label, icon, to }) => (
+                        <div className="LinkContainer">
+
+                            <NavLink to={to} key={label} className={({ isActive }) => `Links${isActive ? " active" : ""}`}>
+                                <section>
+                                    <Icon icon={icon} className="LinkIcon" />
+                                </section>
+                            </NavLink>
+                        </div>
+                    ))
+                }
+            </section>
+            <Divider />
+            <section className="sidebarSection2">
+                <div className="LinkContainer">
+                    <NavLink to="/help" className={({ isActive }) => `Links${isActive ? " active" : ""}`}>
+                        <section>
+                            <Icon icon="ci:square-help" className="LinkIcon" />
+                        </section>
+                    </NavLink>
+                </div>
+                <div className="LinkContainer">
+                    <NavLink to="logout" className={({ isActive }) => `Links${isActive ? " active" : ""}`}>
+                        <section>
+                            <Icon icon="hugeicons:logout-04" className="LinkIcon" />
+                        </section>
+                    </NavLink>
+                </div>
+            </section>
+        </Container>
     )
 }
 
 const Container = styled.div`
     width: 100%;
-    height: calc(100vh - 88px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    .sidebarSection1{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 45%;
+    }
+
+    .sidebarSection2{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 15%;
+        gap: 10px;
+        padding-bottom: 20px;
+    }
+
+    .LinkContainer{
+        display: flex;
+        justify-content: center;
+        .Links{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            .LinkIcon{
+                font-size: 25px;
+                color: ${({ theme }) => theme.color};
+            }
+            &.active{
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                background-color: ${({ theme }) => theme.activeIconBorderSidebar};
+                width: 55px;
+                height: 55px;
+                border-radius: 10px;
+                section{
+                    display: flex;
+                    justify-content: center;
+                    align-items:center;
+                    background-color: ${({ theme }) => theme.activeIconSolidSidebar};
+                    width: 47px;
+                    height: 47px;
+                    border-radius: 10px;
+                }
+                .LinkIcon{
+                   font-size: 25px;
+                }  
+            }
+        }
+    }
+
 `
+
+const Divider = styled.div`
+  height: 1px;
+  width: 30%;
+  background: ${({ theme }) => theme.divider};
+  margin: 0 auto;
+`;
