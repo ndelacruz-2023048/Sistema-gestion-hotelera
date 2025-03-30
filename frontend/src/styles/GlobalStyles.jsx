@@ -5,7 +5,10 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Impact", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
         cursor: url(${pointer}) , auto;
     }
     
@@ -26,6 +29,10 @@ export const GlobalStyles = createGlobalStyle`
     }
     button, a{
         cursor: url(${pointer}) , auto;
+    }
+
+    a{
+        text-decoration: none;
     }
    
 

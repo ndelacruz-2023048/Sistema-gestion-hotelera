@@ -19,6 +19,6 @@ export const Dark = {
     divider:'#d4d1d1',
     color: 'white', 
     colorHover: '#ffcc00',
-    colorBackground: '#0f1429 ',
+    colorBackground: '#1e263b',
     colorIcon: 'white'
 }

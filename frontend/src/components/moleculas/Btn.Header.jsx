@@ -3,11 +3,8 @@ import { useThemeStore } from '../../store/ThemeStore'
 
 
 export const Btn2 = () => {
-    const {setTheme} = useThemeStore()
     return (
         <>
-        <Button>Categorias</Button>
-        <Button>become a host</Button>
         <Button>Categorias</Button>
         </>
         
