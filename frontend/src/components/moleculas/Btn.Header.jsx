@@ -1,12 +1,19 @@
 import styled from 'styled-components'
 import { useThemeStore } from '../../store/ThemeStore'
-export const Btn1 = () => {
+
+
+export const Btn2 = () => {
     const {setTheme} = useThemeStore()
     return (
-        <Button onClick={()=>setTheme()}>Cambiar color</Button>
+        <>
+        <Button>Categorias</Button>
+        <Button>become a host</Button>
+        <Button>Categorias</Button>
+        </>
+        
+        
     )
 }
-
 const Button = styled.button`
     background-color: transparent;
     color: ${({theme})=>theme.color};
@@ -18,4 +25,5 @@ const Button = styled.button`
         background-color: ${({ theme }) => theme.bgHover};
         color: ${({ theme }) => theme.colorHover};
     }
-`
+`;
+

@@ -4,14 +4,21 @@ export const Light ={
     bgSidebar:'#ebedef',
     activeIconSolidSidebar:'#cbcdd5',
     activeIconBorderSidebar:'#acafb9',
-    divider:'#494848'
+    divider:'#494848',
+    colorHover: 'blue',
+    colorBackground: '#e7ebec',
+    colorIcon: 'balck'
+
 }
 
 export const Dark = {
     bg: '#494848',
-    color: 'white',
     bgSidebar:'#1e263b',
     activeIconSolidSidebar:'#64666f',
     activeIconBorderSidebar:'#404754',
-    divider:'#d4d1d1'
+    divider:'#d4d1d1',
+    color: 'white', 
+    colorHover: '#ffcc00',
+    colorBackground: '#0f1429 ',
+    colorIcon: 'white'
 }
