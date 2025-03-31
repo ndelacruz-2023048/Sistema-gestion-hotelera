@@ -1,10 +1,4 @@
 import styled from "styled-components"
-import { Btn2 } from "../moleculas/Btn.Header"
-import { DiAptana } from "react-icons/di";
-import { CgExtensionAdd } from "react-icons/cg";
-import { BiBell } from "react-icons/bi";
-import { VscAccount } from "react-icons/vsc";
-import { Btn1 } from "../moleculas/Btn1";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import photoProfile from "../../assets/photoProfile.avif"
 import iconHotel from '../../assets/iconHotel.png'
