@@ -4,15 +4,16 @@ import { Layout } from "../hooks/Layout"
 import { Login } from "../pages/Login"
 import { DashboardHelp } from "../components/organismos/DashboardPrincipal/DashboardHelp"
 import { DashboardFavorites } from "../components/organismos/DashboardPrincipal/DashboardFavorites"
-
+import { DetailHotel } from "../pages/DetailHotel"
+/*React Router */
 export const MyRoutes = ()=>{
     return(
         <Routes>
             <Route path="/" element={<Layout>
                 <DashboardPrincipal/>
             </Layout> }/>
-            <Route path="/login" element={<Layout>
-                <Login/>
+            <Route path="/DetailHotel" element={<Layout>
+                <DetailHotel/>
             </Layout> }/>
             <Route path="/favorites" element={<Layout>
                 <DashboardFavorites/>
@@ -23,3 +24,4 @@ export const MyRoutes = ()=>{
         </Routes>
     )
 }
+

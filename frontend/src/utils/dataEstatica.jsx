@@ -9,7 +9,7 @@ export const LinksArraySidebar = [
     {
         label: "Calendar",
         icon: "heroicons-outline:calendar",
-        to: "/login",
+        to: "/DetailHotel",
     },
     {
         label: "Favorites",

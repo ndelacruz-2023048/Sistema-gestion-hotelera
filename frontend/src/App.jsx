@@ -6,6 +6,8 @@ import { Login } from "./pages/Login"
 import { DashboardPrincipal } from "./pages/DashboardPrincipal"
 import { Layout } from "./hooks/Layout"
 import { MyRoutes } from "./routers/routes"
+import { DetailHotel } from "./pages/DetailHotel"
+import { Sidebar } from "./components/organismos/sidebar/Sidebar"
 
 
 function App() {
@@ -15,7 +17,7 @@ function App() {
     <>
       <ThemeProvider theme={themeStyle}>
         <GlobalStyles />
-          <MyRoutes/>
+        <MyRoutes/>
       </ThemeProvider>
     </>
   )
