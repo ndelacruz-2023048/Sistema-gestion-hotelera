@@ -1,13 +1,11 @@
-import styled from "styled-components"
+import { DConteiner, Result, Text } from "../../../styles/DashboardStyle"
+import { SelectMenu } from "../SelectMenu"
 
-export const DashboardSearchFilters = () => {
+export const DashboardSearchFilters = ()=> {
     return(
-        <Container>
-            My Rent Dashboard
-        </Container>       
+        <DConteiner>
+            <Text>My Rent Dashboard <Result>(X Results)</Result></Text>
+            <SelectMenu/>
+        </DConteiner>
     )
 }
-
-const Container = styled.div`
-    
-`
