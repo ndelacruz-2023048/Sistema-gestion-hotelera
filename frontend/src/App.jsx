@@ -5,7 +5,7 @@ import { useThemeStore } from "./store/ThemeStore"
 import { Login } from "./pages/Login"
 import { DashboardPrincipal } from "./pages/DashboardPrincipal"
 import { Layout } from "./hooks/Layout"
-import { MyRoutes } from "./routers/routes"
+import  MyRoutes from "./routers/routes"
 import { DetailHotel } from "./pages/DetailHotel"
 import { Sidebar } from "./components/organismos/sidebar/Sidebar"
 
