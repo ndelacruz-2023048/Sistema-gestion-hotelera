@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const HContainer = styled.header`
-    background-color: ${({theme})=>theme.bg};
+    background-color: ${({theme})=>theme.colorBackground};
 `
 
 export const HContent = styled.div`

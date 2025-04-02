@@ -29,7 +29,7 @@ const Container = styled.div`
 const MainContent = styled.div`
     display: grid;
     grid-template-columns: 88px 1fr;
-    background-color: gray;
+    background-color: gray;//gray
     align-items: center;
     gap: 20px;
     height: calc(100vh - 104px);
@@ -43,7 +43,7 @@ const MainContent = styled.div`
 
 const ContainerBody = styled.section`
     width: 100%;
-    height: 95%;
+    height: 93%;
     grid-column: 2;
 `
 
