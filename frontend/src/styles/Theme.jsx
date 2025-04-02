@@ -18,8 +18,6 @@ export const Dark = {
     bgd: '#030820',
     ddw: 'rgba(44, 44, 62, 0.8)',    
     btn: '#1f2539',
-    color: 'white',
-    bg: '#494848',
     bgSidebar:'#1e263b',
     activeIconSolidSidebar:'#64666f',
     activeIconBorderSidebar:'#404754',
