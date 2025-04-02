@@ -4,7 +4,7 @@ import { RiArrowDownSLine } from "@remixicon/react"
 export const DropdownWrapper = styled.div`
     position: relative;
     display: inline-block;
-    background: #1e1e2f;
+    background: ${({theme})=>theme.btn};
     padding: 10px 15px;
     border-radius: 50px;
     cursor: pointer;
@@ -23,7 +23,7 @@ export const DropdownContent = styled.div`
     top: 55px;
     left: 0;
     width: 100%;
-    background: rgba(44, 44, 62, 0.8);
+    background: ${({theme})=>theme.ddw};
     border-radius: 8px;
     overflow: hidden;
     display: ${({ open }) => (open ? "block" : "none")};
@@ -34,7 +34,7 @@ export const DropdownItem = styled.div`
     color: white;
     cursor: pointer;
     &:hover {
-        background: #3d3d5c;
+        background: ${({theme})=>theme.bg};
     }
 `
 

@@ -8,7 +8,7 @@ export const StyledButton = styled.button`
     font-weight: 500;
     transition: background-color 0.2s;
     
-    ${props => (props.active ? `
+    ${props => (props.$active ? `
         background-color: #5c7bfc;
         color: white;
     ` : `

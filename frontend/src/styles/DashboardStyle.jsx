@@ -8,7 +8,7 @@ export const DConteiner = styled.div`
 
 export const Text = styled.h1`
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: ${({theme})=>theme.color};
 `
 
 export const Result = styled.span`

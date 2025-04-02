@@ -11,7 +11,7 @@ export const StyledInput = styled.input`
     border: none;
     background-color: transparent;
     font-size: 0.875rem;
-    color: white;
+    color: ${({theme})=>theme.color};
 
     &:focus {
         outline: none;
@@ -23,5 +23,5 @@ export const IconWrapper = styled.div`
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color:rgb(190, 196, 206);
+    color: ${({theme})=>theme.color};
 `

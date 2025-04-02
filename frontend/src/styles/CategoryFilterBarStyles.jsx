@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const HContainer = styled.header`
-    background-color: #11172b;
+    background-color: ${({theme})=>theme.bg};
 `
 
 export const HContent = styled.div`
@@ -21,7 +21,7 @@ export const Recomended = styled.div`
 `
 
 export const Text = styled.span`
-    color: white;
+    color: ${({theme})=>theme.color};
     font-family: sans-serif;
     font-size: 12px;
 `

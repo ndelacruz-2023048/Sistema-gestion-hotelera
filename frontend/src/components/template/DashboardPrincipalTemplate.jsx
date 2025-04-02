@@ -32,7 +32,7 @@ const MainContent = styled.div`
 
 const Area1 = styled.div`
     grid-area: area1;
-    background-color: #040b1f;
+    background-color: ${({theme})=>theme.bgd};
     color:white; 
     flex-direction: column;
 `

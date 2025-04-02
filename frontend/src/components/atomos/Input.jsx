@@ -6,7 +6,7 @@ export const Input = ({ placeholder, type = 'text', icon }) => {
         <InputWrapper>
         {icon && (
                 <IconWrapper>
-                <RiSearch2Line size={20} />
+                    <RiSearch2Line size={20} />
                 </IconWrapper>
             )
         }
