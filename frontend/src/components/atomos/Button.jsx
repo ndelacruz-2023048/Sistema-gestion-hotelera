@@ -16,15 +16,16 @@ const StyledButton = styled.button`
     font-size: 0.875rem;
     font-weight: 500;
     transition: background-color 0.2s;
-    
+    color: ${({ theme, $active }) => $active ? 'white' : theme.color};
     background-color: ${({theme})=>theme.bgd};
-    ${props => (props.$active ? `
-        background-color: #a88f68;
-        color: white;
-    ` : `
-        color:rgb(255, 255, 255);
-        &:hover {
-        background-color: #a88f68;
-        }
-    `)}
+    ${props => props.$active ? `
+    background-color: #a88f68;
+    color: white;
+  ` : `
+    &:hover {
+      background-color: #a88f68;
+    }
+  `}
 `
+
+
