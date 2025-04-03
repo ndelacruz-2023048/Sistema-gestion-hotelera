@@ -8,13 +8,12 @@ export const DropdownWrapper = styled.div`
     padding: 10px 15px;
     border-radius: 50px;
     cursor: pointer;
-    width: 180px;
-    height: 30px;
+    width: 200px;
+    height: 20px;
 `
 
 export const DropdownHeader = styled.div`
     display: flex;
-    align-items: center;
     justify-content: space-between;
 `
 
