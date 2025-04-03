@@ -5,6 +5,7 @@ import { Login } from "../pages/Login"
 import { DashboardHelp } from "../components/organismos/DashboardPrincipal/DashboardHelp"
 import { DashboardFavorites } from "../components/organismos/DashboardPrincipal/DashboardFavorites"
 import { DetailHotel } from "../pages/DetailHotel"
+import PageNotFound from "../components/template/404"
 /*React Router */
 // export const MyRoutes = ()=>{
 //     return(
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
                     <DashboardPrincipal/>
                 </Layout> 
         ),
-        errorElement: <div>Hi Pinguino, this page is in construction</div>
+        errorElement: <PageNotFound/>
     },
     {
         path:'/DetailHotel',
