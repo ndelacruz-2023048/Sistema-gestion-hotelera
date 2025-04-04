@@ -19,7 +19,7 @@ export const LinksArraySidebar = [
     {
         label: "Messages",
         icon: "si:mail-line",
-        to: "/messages",
+        to: "/events",
     },
     
 ]
