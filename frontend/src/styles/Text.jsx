@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
 export const TextW = styled.span`
-    color: white;
-    font-size: 18px;
+    color: ${({theme})=>theme.color};
+    font-size: 15px;
 `

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const StyledButton = styled.button`
+const StyledButton = styled.button`
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 9999px;
@@ -8,14 +8,14 @@ export const StyledButton = styled.button`
     font-weight: 500;
     transition: background-color 0.2s;
     
+    background-color: ${({theme})=>theme.bgd};
     ${props => (props.$active ? `
-        background-color: #5c7bfc;
+        background-color: #a88f68;
         color: white;
     ` : `
-        background-color: #1f2539;
         color:rgb(255, 255, 255);
         &:hover {
-        background-color: #5c7bfc;
+        background-color: #a88f68;
         }
     `)}
 `
