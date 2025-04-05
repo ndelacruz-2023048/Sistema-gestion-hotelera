@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-import { useThemeStore } from '../../store/ThemeStore'
+
 export const Btn1 = () => {
-    const {setTheme} = useThemeStore()
     return (
-        <Button onClick={()=>setTheme()}>Cambiar color</Button>
+        <Button>Click me!</Button>
     )
 }
 

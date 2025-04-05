@@ -8,7 +8,6 @@ export const Button = ({ label, active, onClick }) => {
     )
 }
 
-
 const StyledButton = styled.button`
     padding: 0.5rem 1rem;
     border: none;
@@ -16,7 +15,6 @@ const StyledButton = styled.button`
     font-size: 0.875rem;
     font-weight: 500;
     transition: background-color 0.2s;
-    
     background-color: ${({theme})=>theme.bgd};
     ${props => (props.$active ? `
         background-color: #a88f68;

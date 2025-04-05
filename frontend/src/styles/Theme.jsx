@@ -10,12 +10,15 @@ export const Light ={
     colorHover: 'blue',
     colorBackground: '#e7ebec',
     colorIcon: 'balck',
-    btn: '#c7c4c4'
+    btn: '#c7c4c4',
+    toggleIcon: '#a88f68',
+    toggleIndicator: 'white',
+    toggleContainer: 'white'
 }
 
 export const Dark = {
     bg: '#11172b',
-    bgd: '#030820',
+    bgd: '#11172b',
     ddw: 'rgba(44, 44, 62, 0.8)',    
     btn: '#1f2539',
     bgSidebar:'#1e263b',
@@ -25,5 +28,8 @@ export const Dark = {
     color: 'white', 
     colorHover: '#ffcc00',
     colorBackground: '#1e263b',
-    colorIcon: 'white'
+    colorIcon: 'white',
+    toggleIcon: 'white',
+    toggleIndicator: '#1f2539',
+    toggleContainer: '#11172b'
 }

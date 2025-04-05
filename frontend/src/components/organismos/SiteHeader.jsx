@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Icon } from "@iconify/react/dist/iconify.js";
 import photoProfile from "../../assets/photoProfile.avif"
 import iconHotel from '../../assets/Logotipo_Havenis.png'
+import { Toggle } from "../moleculas/Toggle";
 export const DashboardHeader = () => {
     return (
         <Container>
@@ -20,6 +21,9 @@ export const DashboardHeader = () => {
                 </LinksContainer>
             </Section1>
             <Section2>
+                <ToggleContainer>
+                    <Toggle/>
+                </ToggleContainer>
                 <IconsContainer>
                     <Icon icon="solar:widget-add-linear" className="iconHeader"/>
                     <Icon icon="qlementine-icons:settings-16" className="iconHeader"/>
@@ -28,6 +32,7 @@ export const DashboardHeader = () => {
                 <DividerContainer>
                     <Divider/>
                 </DividerContainer>
+                
                 <ImageContainer>
                     <Image src={photoProfile}/>
                 </ImageContainer>
@@ -87,6 +92,13 @@ const LogoContainer = styled.div`
         font-size: 17px;
         color: ${({ theme }) => theme.color};
     }   
+`
+
+const ToggleContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
 `
 
 const IconsContainer = styled.div`
