@@ -43,3 +43,4 @@ export const StyledArrow = styled(RiArrowDownSLine)`
     transition: transform 0.2s ease; /* Animación suave */
     transform: ${props => (props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
 `
+

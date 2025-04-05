@@ -1,9 +1,17 @@
 import styled from "styled-components"
+import {UserIcons} from "../../moleculas/UserIcons.jsx";
+import { CoinsIcons } from "../../moleculas/CoinsIcons"
 
 export const EventForm = () => {
+    
     return(
-        <Container>
+        <Container>           
             <Title>Details Of The Event</Title>
+            
+            <FieldGroup2>
+                <UserIcons/>
+            </FieldGroup2> 
+            
 
             <FieldGroupFull>
                 <Paragraph>Address</Paragraph>
@@ -18,13 +26,9 @@ export const EventForm = () => {
 
                 <FieldGroup>
                     <Paragraph>Currency</Paragraph>
-                    <CurrencySelect>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="GT">Q</option>
-                    </CurrencySelect>
-                </FieldGroup>
+                    <CoinsIcons />
+                </FieldGroup> 
+
             </Container2>
 
             <Container2>
@@ -50,9 +54,8 @@ export const EventForm = () => {
 
 
 const Container = styled.div`
-margin-top: -50px
+    margin-top: -50px
 `
-
 
 const Title = styled.h2`
     display: flex;
@@ -80,9 +83,9 @@ const Input = styled.input`
     font-size: 20px;
 `
 const Container2 = styled.div`
-display: flex;
-gap: 5%;
-margin-left: 25%;
+    display: flex;
+    gap: 5%;
+    margin-left: 25%;
 `
 const Input2 = styled.input`
     width: 100%;
@@ -92,6 +95,7 @@ const Input2 = styled.input`
     border: none;
     font-size: 20px;
 `
+
 const Input3 = styled.input`
     width: 50%;
     height: 100px;
@@ -107,13 +111,19 @@ const FieldGroup = styled.div`
     flex-direction: column;
     width: 30%
 `
-const CurrencySelect = styled.select`
-    width: 112%;
-    height: 50px;
+
+const FieldGroup2 = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
     padding: 10px;
     border-Radius: 10px;
     border: none;
     font-size: 20px;
+
 `
 
 const FieldGroupFull = styled.div`
