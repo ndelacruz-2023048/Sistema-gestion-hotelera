@@ -4,15 +4,10 @@ import styled from "styled-components"
 export const RoomsDetail = () => {
     return(
         <Container>
-            <Title>
-                <Span className="spanRoom">Rooms</Span> 
-                <Span>Rooms</Span> 
-                <Span>Rooms</Span> 
-                <Span>Rooms</Span> 
-            </Title>
-            <Title>Rooms</Title>
-
-            <Icon icon="hugeicons:ai-cloud-01" className="juanito" />
+            <Boton>Boton</Boton>
+            <Boton>Boton</Boton>
+            <Boton>Boton</Boton>
+            <Boton>Boton</Boton>
         </Container>
     )
 }
@@ -20,25 +15,26 @@ export const RoomsDetail = () => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 20px;
     .juanito{
         color: red;
-        font-size: 350px;
+        font-size: 20px;
     }
 `
 
-const Title = styled.h1`
-    font-size: 54px;
+const Boton = styled.button`
+    width: 100%;
+    height: 30%;
     background-color: ${({theme})=>theme.bgSidebar};
-    display: flex;
-    justify-content: space-between;
-    .spanRoom{
-        color: pink;
-    }
-`
-
-const Span = styled.span`
-    font-size: 24px;
     color: white;
-    font-weight: 500;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: #3b73c6;
+    }
 `
 
