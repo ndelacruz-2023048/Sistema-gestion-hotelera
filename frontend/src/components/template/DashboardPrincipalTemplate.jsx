@@ -9,9 +9,13 @@ export const DashboardPrincipalTemplate = () => {
                 <Area1>
                     <DashboardSearchFilters/>
                 </Area1>
-                <Area2><Btn1/>
+                <Area2>
+                    <Btn1>
+                        
+                    </Btn1>
                     <Btn1/>
-                    <Btn1/></Area2>
+                    <Btn1/>
+                </Area2>
             </MainContent>
         </Container>
     )
