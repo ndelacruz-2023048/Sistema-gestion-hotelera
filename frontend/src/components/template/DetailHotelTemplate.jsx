@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { RoomsDetail } from "../organismos/DetailHotel/RoomsDetail"
+import { DetailsAndDescriptions } from "../organismos/DetailHotel/DetailsAndDescriptions"
 
 export const DetailHotelTemplate = () => {
     return (
@@ -19,8 +20,7 @@ export const DetailHotelTemplate = () => {
                     <RoomsDetail/>
                 </Area4>
                 <Area5>
-                    <h2>Details and Descriptions</h2>
-                    <p>Contact details for the hotel.</p>
+                   <DetailsAndDescriptions/>
                 </Area5>
                 <Area6>
                     <h2>Advance Booking</h2>
