@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { RoomsDetail } from "../organismos/DetailHotel/RoomsDetail"
+import { HotelView } from "../organismos/DetailHotel/HotelView"
 
 export const DetailHotelTemplate = () => {
     return (
@@ -12,8 +13,7 @@ export const DetailHotelTemplate = () => {
                     <RoomsNumber>Rooms No: 244</RoomsNumber>
                 </Area2>
                 <Area3>
-                    <h2>Image</h2>
-                    <p>List of amenities available at the hotel.</p>
+                    <HotelView/>
                 </Area3>
                 <Area4>
                     <RoomsDetail/>
@@ -43,9 +43,9 @@ const MainContent = styled.div`
     "area1 area2"
     "area3 area4"
     "area5 area6";
-    grid-template-columns: 70% 30% ;
+    grid-template-columns: 75% 25% ;
     row-gap: 15px;
-    column-gap: 20px;
+    column-gap: 30px;
 `
 
 const Area1 = styled.div`
@@ -74,7 +74,7 @@ const RoomsNumber = styled.p`
 
 const Area3 = styled.div`
   grid-area: area3;
-  background-color: #00ff00;
+
   `
 
 const Area4 = styled.div`
