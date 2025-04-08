@@ -16,8 +16,7 @@ export const DetailHotelTemplate = () => {
                     <p>List of amenities available at the hotel.</p>
                 </Area3>
                 <Area4>
-                    <h2>Rooms</h2>
-                    <p>User reviews and ratings.</p>
+                    <RoomsDetail/>
                 </Area4>
                 <Area5>
                     <h2>Details and Descriptions</h2>
