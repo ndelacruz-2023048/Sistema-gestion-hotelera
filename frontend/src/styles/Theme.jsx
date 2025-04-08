@@ -1,6 +1,8 @@
 export const Light ={
     bg: '#d4d1d1',
     bgd: '#d4d1d1',
+    row1: '#b9b7b7',
+    row2: '#d4d1d1',
     ddw: 'rgba(157, 157, 157, 0.8)',    
     color: 'black',
     bgSidebar:'#ebedef',
@@ -19,6 +21,8 @@ export const Light ={
 export const Dark = {
     bg: '#11172b',
     bgd: '#11172b',
+    row1: '#11172b',
+    row2: '#1e284b',
     ddw: 'rgba(44, 44, 62, 0.8)',    
     btn: '#1f2539',
     bgSidebar:'#1e263b',

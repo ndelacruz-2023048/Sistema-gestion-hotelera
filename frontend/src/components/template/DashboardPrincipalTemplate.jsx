@@ -1,8 +1,17 @@
 import styled from "styled-components"
 import { Btn1 } from "../moleculas/Btn1"
 import { DashboardSearchFilters } from "../organismos/DashboardPrincipal/DashboardSearchFilters"
+import { EventSection } from "../organismos/DetailHotel/DetailsAndDescriptions"
+import { useState } from "react"
+
 
 export const DashboardPrincipalTemplate = () => {
+    const [open, setOpen] = useState(false)
+
+    const toggleEventSection = ()=> {
+        setOpen(!open)
+    }
+
     return(
         <Container>
             <MainContent>
@@ -10,10 +19,8 @@ export const DashboardPrincipalTemplate = () => {
                     <DashboardSearchFilters/>
                 </Area1>
                 <Area2>
-                    <Btn1>
-                        
-                    </Btn1>
-                    <Btn1/>
+                    <Btn1 onClick={toggleEventSection}/>
+                        {open && <EventSection/>}
                     <Btn1/>
                 </Area2>
             </MainContent>

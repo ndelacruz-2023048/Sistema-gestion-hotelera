@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-export const Btn1 = () => {
+export const Btn1 = ({onClick}) => {
     return (
-        <Button>Click me!</Button>
+        <Button onClick={onClick}>Click me!</Button>
     )
 }
 
