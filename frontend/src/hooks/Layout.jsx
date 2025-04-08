@@ -8,6 +8,7 @@ export const Layout = ({children}) => {
         <Container>
             <section className="contentHeader">
                 <DashboardHeader/>
+                <Divider/>
                 <CategoryFilterBar/>
             </section>
             <MainContent>
@@ -24,15 +25,18 @@ export const Layout = ({children}) => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
+    .contentHeader{
+        position:relative;
+    }
 `
 
 const MainContent = styled.div`
     display: grid;
     grid-template-columns: 88px 1fr;
-    background-color: gray;
+    background-color: ${({theme})=>theme.bgd};//gray
     align-items: center;
     gap: 20px;
-    height: calc(100vh - 104px);
+    height: calc(100vh - 162px);
     .contentSidebar{
         background-color: ${({theme})=>theme.bgSidebar};
         border-top-right-radius: 20px;
@@ -43,7 +47,15 @@ const MainContent = styled.div`
 
 const ContainerBody = styled.section`
     width: 100%;
-    height: 95%;
+    height: 93%;
     grid-column: 2;
 `
 
+const Divider = styled.span`
+    display:flex;
+    position:absolute;
+    width:96%;
+    height:1px;
+    left:2%;
+    background-color:${({theme})=>theme.dividerHeader};
+`
