@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { RoomsDetail } from "../organismos/DetailHotel/RoomsDetail"
 import { DetailsAndDescriptions } from "../organismos/DetailHotel/DetailsAndDescriptions"
+import { AdvanceBooking } from "../organismos/DetailHotel/AdvanceBookingInfo"
 
 export const DetailHotelTemplate = () => {
     return (
@@ -25,6 +26,7 @@ export const DetailHotelTemplate = () => {
                 <Area6>
                     <h2>Advance Booking</h2>
                     <p>Contact details for the hotel.</p>
+                    <AdvanceBooking/>
                 </Area6>
             </MainContent>
         </Container>
