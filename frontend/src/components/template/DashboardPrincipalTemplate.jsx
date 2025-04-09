@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { Btn1 } from "../moleculas/Btn1"
 import { DashboardSearchFilters } from "../organismos/DashboardPrincipal/DashboardSearchFilters"
+import { HotelCard } from "../organismos/DashboardPrincipal/HotelCard"
 
 export const DashboardPrincipalTemplate = () => {
     return(
@@ -9,9 +10,9 @@ export const DashboardPrincipalTemplate = () => {
                 <Area1>
                     <DashboardSearchFilters/>
                 </Area1>
-                <Area2><Btn1/>
-                    <Btn1/>
-                    <Btn1/></Area2>
+                <Area2>
+                    <HotelCard/>
+                </Area2>
             </MainContent>
         </Container>
     )
