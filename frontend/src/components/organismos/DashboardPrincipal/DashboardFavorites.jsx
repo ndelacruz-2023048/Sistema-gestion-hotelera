@@ -18,3 +18,11 @@ export const DashboardFavorites = () => {
 const Container = styled.div`
 
 `
+
+const Container1 = styled.div`
+
+`
+
+const Container2 = styled.div`
+
+`

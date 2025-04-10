@@ -12,6 +12,7 @@ export const DashboardPrincipalTemplate = () => {
                 </Area1>
                 <Area2>
                     <HotelCard/>
+                    <HotelCard/>
                 </Area2>
             </MainContent>
         </Container>
@@ -39,7 +40,7 @@ const Area1 = styled.div`
 `
 const Area2 = styled.div`
     grid-area: area2;
-    background-color: #b700ff;
+    background-color: grey;
     color:white;
 `
 const Area3 = styled.div`
