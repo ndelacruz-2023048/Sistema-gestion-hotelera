@@ -1,6 +1,5 @@
 import { Input } from "../atomos/Input"
-import { SearchContainer } from "../../styles/SearchBarStyle"
-
+import { styled } from 'styled-components'
 
 export const SearchBar =()=> {
     return(
@@ -12,3 +11,9 @@ export const SearchBar =()=> {
         </SearchContainer>
     )
 }
+
+const SearchContainer = styled.div`
+    max-width: 36rem;
+    width: 100%;
+    
+`

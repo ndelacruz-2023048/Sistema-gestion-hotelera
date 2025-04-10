@@ -1,4 +1,4 @@
-import { Icon } from "../../styles/IconStyle"
+import { styled } from 'styled-components'
 
 export const Icons = ({ icon })=> {
     return(
@@ -7,3 +7,8 @@ export const Icons = ({ icon })=> {
         </Icon>
     )
 }
+
+const Icon = styled.span`
+    font-size: 18px;
+    color: #5c7bfc;
+`

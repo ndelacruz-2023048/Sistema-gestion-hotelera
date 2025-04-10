@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { Icon } from "@iconify/react/dist/iconify.js";
 
+
 export const EventTable = ({events})=> {
     return(
         <TableContainer>

@@ -1,6 +1,6 @@
 import { Dropdown } from "../moleculas/DropDown"
-import { SelectContainer } from "../../styles/SelectMenuStyle"
 import { RiMapPinLine, RiCalendar2Fill, RiGroupLine } from "@remixicon/react"
+import { styled } from 'styled-components'
 
 export const SelectMenu = ()=> {
     return(
@@ -26,3 +26,9 @@ export const SelectMenu = ()=> {
         </SelectContainer>
     )
 }
+
+const SelectContainer = styled.div`
+    display: flex;
+    gap: 15px;
+    align-items: center;
+`
