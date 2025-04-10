@@ -24,8 +24,6 @@ export const DetailHotelTemplate = () => {
                    <DetailsAndDescriptions/>
                 </Area5>
                 <Area6>
-                    <h2>Advance Booking</h2>
-                    <p>Contact details for the hotel.</p>
                     <AdvanceBooking/>
                 </Area6>
             </MainContent>
@@ -91,5 +89,4 @@ const Area5 = styled.div`
 
 const Area6 = styled.div`
   grid-area: area6;
-  background-color: #ff8800;
 `

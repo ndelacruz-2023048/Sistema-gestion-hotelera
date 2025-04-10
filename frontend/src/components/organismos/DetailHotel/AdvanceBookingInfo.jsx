@@ -29,11 +29,16 @@ const Title = styled.h3`
 `
 
 const NewBooking = styled.button`
-  margin-top: auto;
-  background-color: ${({ theme }) => theme.primary};
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    color: ${({ theme, $active }) => $active ? 'white' : theme.color};
+    background-color: ${({theme})=>theme.bgd};
+
+    &:hover {
+        background-color: #3b73c6;
+    }
 `
