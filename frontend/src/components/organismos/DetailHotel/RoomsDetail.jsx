@@ -36,6 +36,7 @@ const SectionGlobal = styled.div`
 
 const Section1 = styled.div`
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0px 15px;
     .infoIcon{
