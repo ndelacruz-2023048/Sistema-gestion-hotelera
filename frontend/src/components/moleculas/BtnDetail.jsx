@@ -68,6 +68,6 @@ const InfoText = styled.div`
     }
 `
 const Title = styled.div`
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
 `

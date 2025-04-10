@@ -12,7 +12,7 @@ export const Light ={
     colorIcon: 'balck',
     btn: '#c7c4c4',
     dividerHeader:'#cbc9c6',
-    bgdgradient: 'linear-gradient(197deg, #ebedef 7%, #e5e5e4 26%, #d3ccbf 52%, #ccc2b1 92%, #a88f68 100%)'
+    bgdgradient: 'linear-gradient(181deg,rgb(196, 218, 240) 7%,rgb(197 180 151) 100%)'
 }
 
 export const Dark = {
@@ -29,5 +29,5 @@ export const Dark = {
     colorBackground: '#1e263b',
     colorIcon: 'white',
     dividerHeader:'#6e6e6e',
-    bgdgradient: 'linear-gradient(197deg, #11172b 7%, #030820 26%, #2c2c3e 52%, #202a37 100%)'
+    bgdgradient: 'linear-gradient(181deg, rgb(2 33 65) 7%, rgb(143 121 85) 100%)'
 }
