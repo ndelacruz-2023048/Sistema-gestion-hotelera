@@ -74,20 +74,28 @@ const RoomsNumber = styled.p`
 
 const Area3 = styled.div`
   grid-area: area3;
-  background-color: #00ff00;
+  background-color: ${({theme})=>theme.bgSidebar};
+  border-radius: 30px;
+  color:  ${({theme})=>theme.color}; 
   `
 
 const Area4 = styled.div`
   grid-area: area4;
-  background-color: #0000ff;
+  background: ${({theme})=>theme.bgdgradient};
+  border-radius: 30px;
+  color:  ${({theme})=>theme.color}; 
   `
 
 const Area5 = styled.div`
   grid-area: area5;
-  background-color: #00e5ff;
+  background-color: ${({theme})=>theme.bgSidebar};
+  border-radius: 30px;
+  color:  ${({theme})=>theme.color}; 
   `
 
 const Area6 = styled.div`
   grid-area: area6;
-  background-color: #ff8800;
+  background-color: ${({theme})=>theme.bgSidebar};
+  border-radius: 30px;
+  color:  ${({theme})=>theme.color}; 
 `
