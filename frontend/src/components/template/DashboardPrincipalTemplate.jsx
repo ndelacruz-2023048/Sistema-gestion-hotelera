@@ -11,8 +11,7 @@ export const DashboardPrincipalTemplate = () => {
                     <DashboardSearchFilters/>
                 </Area1>
                 <Area2>
-                    <HotelCard/>
-                    <HotelCard/>
+                    <HotelCard urlSebas='mdi:account-cowboy-hat-outline'/>
                 </Area2>
             </MainContent>
         </Container>

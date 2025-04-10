@@ -10,7 +10,7 @@ export const Light ={
     colorHover: 'blue',
     colorBackground: '#e7ebec',
     colorIcon: 'balck',
-    btn: '#a5a5a5'
+    btn: '#a5a5a5',
 }
 
 export const Dark = {
@@ -25,5 +25,5 @@ export const Dark = {
     color: 'white', 
     colorHover: '#ffcc00',
     colorBackground: '#1e263b',
-    colorIcon: 'white'
+    colorIcon: 'white',
 }

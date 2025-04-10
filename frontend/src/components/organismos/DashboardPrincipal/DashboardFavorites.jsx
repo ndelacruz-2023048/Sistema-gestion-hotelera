@@ -1,7 +1,10 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
+import { useState } from "react"
 import styled from "styled-components"
+import { useThemeStore } from "../../../store/ThemeStore"
 
 export const DashboardFavorites = () => {
+    const {setTheme}= useThemeStore()
     return (
         <Container>
             <Container1>
@@ -10,6 +13,7 @@ export const DashboardFavorites = () => {
             </Container1>
             <Container2>
                 <Icon icon="tabler:access-point" width="24" height="24" className="IconoDeLocalizacion"/>
+                <button onClick={()=>setTheme()}>cAMBIAR</button>
             </Container2>
         </Container>
     )
