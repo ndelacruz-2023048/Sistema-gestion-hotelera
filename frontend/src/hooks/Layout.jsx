@@ -5,21 +5,7 @@ import { CategoryFilterBar } from "../components/organismos/CategoryFilterBar"
 
 export const Layout = ({children}) => {
     return (
-        <Container>
-            <section className="contentHeader">
-                <DashboardHeader/>
-                <CategoryFilterBar/>
-            </section>
-            <MainContent>
-                <section className="contentSidebar">
-                    <Sidebar/>
-                </section>
-                <ContainerBody>
-                    {children}
-                </ContainerBody>
-            </MainContent>
-        </Container>
-    )
+        
 }
 const Container = styled.div`
     display: flex;
