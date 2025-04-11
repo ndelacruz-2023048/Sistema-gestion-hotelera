@@ -5,16 +5,18 @@ import { useState } from "react"
 
 export const EventDetailForm = ()=> {
     const [open, setOpen] = useState(false)
+    const [active, setActive] = useState(-1)
     const buttonName = ['Añadir', 'Applicaciones'];
 
     return(
         <EventContainer>
             <Header>
-                {buttonName.map((name)=> (
+                {buttonName.map((name, index)=> (
                     <Button
                         key={name}
                         label={name}
-                        active={name === 'Luxury'}
+                        active={index === active} // Activo si el índice coincide
+                        onClick={() => setActive(index)}
                     />
                 ))}
             </Header>

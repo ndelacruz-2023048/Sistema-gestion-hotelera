@@ -28,6 +28,7 @@ export const Dark = {
     ddw: 'rgba(44, 44, 62, 0.8)',    
     btn: '#1f2539',
     bgSidebar:'#1e263b',
+    toggleIcon: 'white',
     activeIconSolidSidebar:'#64666f',
     activeIconBorderSidebar:'#404754',
     divider:'#d4d1d1',
@@ -35,5 +36,7 @@ export const Dark = {
     colorHover: '#ffcc00',
     colorBackground: '#1e263b',
     colorIcon: 'white',
-    bgdgradient: 'linear-gradient(181deg, rgb(13 33 65) 7%, rgb(95 71 29) 100%)'
+    bgdgradient: 'linear-gradient(181deg, rgb(13 33 65) 7%, rgb(95 71 29) 100%)',
+    toggleIndicator: '#1f2539',
+    toggleContainer: '#11172b'
 }

@@ -4,12 +4,6 @@ import { Details } from "../Details"
 
 export const EventSection = () => {
 
-    /* const events = [
-        { name: 'Boda' },
-        { name: 'XV Años' },
-        { name: 'Graduación' },
-    ] */
-
     return(
         <EventContainer>
             <TitleContainer>
