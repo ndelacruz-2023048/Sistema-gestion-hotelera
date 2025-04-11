@@ -26,7 +26,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 65%;
-  gap: 10px;
 `
 
 const Row = styled.div`

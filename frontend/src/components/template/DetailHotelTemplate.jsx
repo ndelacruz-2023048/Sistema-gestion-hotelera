@@ -87,8 +87,8 @@ const Area4 = styled.div`
   `
 
 const Area5 = styled.div`
+  display: flex;
   grid-area: area5;
-  background-color: ${({theme})=>theme.bgSidebar};
   border-radius: 30px;
   color:  ${({theme})=>theme.color}; 
   `

@@ -18,10 +18,10 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.bgSidebar};
   color: white;
   border-radius: 15px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: space-between;
+  height: 100%;
 `
 
 const Title = styled.h3`

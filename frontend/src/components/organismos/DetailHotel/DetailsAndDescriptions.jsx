@@ -7,7 +7,7 @@ export const DetailsAndDescriptions = () => {
         <Wrapper>
         <TopRightBox>
             <Container>
-                <Calendar />
+                {/* <Calendar /> */}
             </Container>
         </TopRightBox>
             <Container>
@@ -18,23 +18,20 @@ export const DetailsAndDescriptions = () => {
 }
 
 const Container = styled.div`
-  flex: 2;
   background-color: ${({ theme }) => theme.bgSidebar};
   color: white;
   border-radius: 15px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 `
 
 const Wrapper = styled.div`
   position: relative;
-  width: 95%;
-  height: 100%;
+  width: 100%;
   background-color: ${({ theme }) => theme.bgSidebar};
   border-radius: 15px;
-  padding: 20px;
 `
 
 const TopRightBox = styled.div`
