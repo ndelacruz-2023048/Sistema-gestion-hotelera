@@ -42,6 +42,7 @@ export const Dark = {
     colorBackground: '#1e263b',
     colorAdvanceBooking:'#1e263b',
     colorIcon: 'white',
+    hotelcard: 'rgba(255, 255, 255, 0.5)',
     bgdgradient: 'linear-gradient(180deg, rgb(13, 33, 65) 7%, rgb(95, 71, 29) 100%)',
     circleIconRoomDetail:`#fff`,
     iconRoomDetail:`#11172b`,
