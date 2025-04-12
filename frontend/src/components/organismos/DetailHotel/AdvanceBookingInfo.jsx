@@ -14,14 +14,14 @@ export const AdvanceBooking = () => {
 }
 
 const Container = styled.div`
-  flex: 1;
-  background-color: ${({ theme }) => theme.bgSidebar};
-  color: white;
-  border-radius: 15px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  flex-direction: column;
   height: 100%;
+  width: 40%;
+  color: white;
+  background-color: ${({ theme }) => theme.bgSidebar};
+  border-radius: 15px;
 `
 
 const Title = styled.h3`
@@ -29,9 +29,8 @@ const Title = styled.h3`
 `
 
 const NewBooking = styled.button`
-    padding: 0.5rem 1rem;
     border: none;
-    border-radius: 9999px;
+    border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 500;
     transition: background-color 0.2s;

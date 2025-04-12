@@ -9,23 +9,17 @@ export const DetailHotelTemplate = () => {
         <Container>
             <MainContent>
                 <Area1>
-                  <Title>Room View & Details</Title>
+                    <Title>Room View & Details</Title>
+                    <RoomsNumber>Rooms No: 244</RoomsNumber>
                 </Area1>
                 <Area2>
-                    <RoomsNumber>Rooms No: 244</RoomsNumber>
+                    <HotelView/>
+                    <RoomsDetail/>
                 </Area2>
                 <Area3>
-                    <HotelView/>
-                </Area3>
-                <Area4>
-                    <RoomsDetail/>
-                </Area4>
-                <Area5>
                    <DetailsAndDescriptions/>
-                </Area5>
-                <Area6>
                     <AdvanceBooking/>
-                </Area6>
+                </Area3>
             </MainContent>
         </Container>
       )
@@ -33,25 +27,22 @@ export const DetailHotelTemplate = () => {
     
 const Container = styled.div`
   height: 100%;
-  width: 97%;
+  width: 98%;
 `
 
 
 const MainContent = styled.div`
-    display:  grid;
-    grid-template-areas: 
-    "area1 area2"
-    "area3 area4"
-    "area5 area6";
-    grid-template-columns: 75% 25% ;
-    row-gap: 15px;
-    column-gap: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 `
 
 const Area1 = styled.div`
-  grid-area: area1;
-  height: 30px;
-  `
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 2%;
+`
 
 const Title = styled.h1`
   margin: 0;
@@ -61,39 +52,19 @@ const Title = styled.h1`
 
 const Area2 = styled.div`
   display: flex;
-  justify-content: end;
-  grid-area: area2;
-  height: 30px;
+  justify-content: space-between;
+  align-items: center;
+  height:68%;
   `
 
 const RoomsNumber = styled.p`
   margin: 0;
   color:  ${({theme})=>theme.color}; 
   font-weight: 500;
-`
+  `
 
 const Area3 = styled.div`
-  grid-area: area3;
-  background-color: ${({theme})=>theme.bgSidebar};
-  border-radius: 30px;
-  color:  ${({theme})=>theme.color}; 
-  `
-
-const Area4 = styled.div`
-  grid-area: area4;
-  background: ${({theme})=>theme.bgdgradient};
-  border-radius: 30px;
-  color:  ${({theme})=>theme.color}; 
-  `
-
-const Area5 = styled.div`
   display: flex;
-  grid-area: area5;
-  border-radius: 30px;
-  color:  ${({theme})=>theme.color}; 
-  `
-
-const Area6 = styled.div`
-  grid-area: area6;
-  background-color: #ff8800;
+  justify-content: space-between;
+  height: 32%;
 `

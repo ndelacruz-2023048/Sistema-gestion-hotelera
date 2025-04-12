@@ -20,7 +20,6 @@ const Card = styled.div`
   align-items: center;
   gap: 10px;
   background-color: ${({ theme }) => theme.bgSidebar};
-  padding: 12px;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
 `

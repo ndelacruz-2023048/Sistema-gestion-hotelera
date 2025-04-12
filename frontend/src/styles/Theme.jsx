@@ -9,6 +9,7 @@ export const Light ={
     activeIconSolidSidebar:'#cbcdd5',
     activeIconBorderSidebar:'#acafb9',
     divider:'#494848',
+    divider2:'#bcbcbd',
     colorHover: 'blue',
     colorBackground: '#e7ebec',
     colorIcon: 'balck',
@@ -17,7 +18,9 @@ export const Light ={
     toggleIndicator: 'white',
     toggleContainer: 'white',
     dividerHeader:'#cbc9c6',
-    bgdgradient: 'linear-gradient(181deg,rgb(196, 218, 240) 7%,rgb(197 180 151) 100%)'
+    bgdgradient: 'linear-gradient(180deg,rgb(196, 218, 240) 7%,rgb(197, 180, 151) 100%)',
+    circleIconRoomDetail:`#11172b`,
+    iconRoomDetail:`#fff`
 }
 
 export const Dark = {
@@ -31,9 +34,12 @@ export const Dark = {
     activeIconSolidSidebar:'#64666f',
     activeIconBorderSidebar:'#404754',
     divider:'#d4d1d1',
+    divider2:'#d0d0d0',
     color: 'white', 
     colorHover: '#ffcc00',
     colorBackground: '#1e263b',
     colorIcon: 'white',
-    bgdgradient: 'linear-gradient(181deg, rgb(13 33 65) 7%, rgb(95 71 29) 100%)'
+    bgdgradient: 'linear-gradient(180deg, rgb(13, 33, 65) 7%, rgb(95, 71, 29) 100%)',
+    circleIconRoomDetail:`#fff`,
+    iconRoomDetail:`#11172b`
 }
