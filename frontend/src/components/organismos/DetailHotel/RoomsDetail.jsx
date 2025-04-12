@@ -13,12 +13,14 @@ export const RoomsDetail = () => {
                         
                     </Section1>
                     <Line></Line>
-                    <BtnDetail iconLeft="material-symbols-light:meeting-room" title="Habitación" text="1 Dormitorio y una Sala de estar"/>
-                    <BtnDetail iconLeft="famicons:bed" title="Muebles" text="Cama, sofa, mesa, etc."/>
-                    <BtnDetail iconLeft="mdi:tv" title="Tecnologia" text="TV, Refrigerador, Cafetera, AC"/>
-                    <BtnDetail iconLeft="solar:bath-bold" title="Baño" text="Retrete, Ducha"/>
-                    <BtnDetail iconLeft="material-symbols:wifi" title="Wifi" text="Gratis"/>
-                    <BtnDetail iconLeft="mdi:food" title="Comida" text="Servicio al Dormitorio"/>
+                    <ContainerButtonDetail>
+                        <BtnDetail iconLeft="material-symbols-light:meeting-room" title="Habitación" text="1 Dormitorio y una Sala de estar"/>
+                        <BtnDetail iconLeft="famicons:bed" title="Muebles" text="Cama, sofa, mesa, etc."/>
+                        <BtnDetail iconLeft="mdi:tv" title="Tecnologia" text="TV, Refrigerador, Cafetera, AC"/>
+                        <BtnDetail iconLeft="solar:bath-bold" title="Baño" text="Retrete, Ducha"/>
+                        <BtnDetail iconLeft="material-symbols:wifi" title="Wifi" text="Gratis"/>
+                        <BtnDetail iconLeft="mdi:food" title="Comida" text="Servicio al Dormitorio"/>
+                    </ContainerButtonDetail>
                 </Section>
             </SectionGlobal>
         </Container>
@@ -64,6 +66,12 @@ const Section1 = styled.div`
         column-gap: 16px;
         font-size: 35px;
     }
+`
+
+const ContainerButtonDetail = styled.div`
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 `
 
 const Line = styled.div`
