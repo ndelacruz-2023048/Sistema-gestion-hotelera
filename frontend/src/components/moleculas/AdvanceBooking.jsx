@@ -19,9 +19,8 @@ const Card = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: ${({ theme }) => theme.bgSidebar};
   border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+  border-top: 1px solid ${({ theme }) => theme.bgd};
 `
 
 const Avatar = styled.div`
@@ -49,6 +48,6 @@ const Info = styled.div`
   }
   small {
     font-size: 12px;
-    color: ${({ theme }) => theme.textSecondary};
+    color: ${({ theme }) => theme.color};
   }
 `

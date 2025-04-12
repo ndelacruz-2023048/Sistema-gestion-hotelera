@@ -26,7 +26,7 @@ const Boton = styled.button`
     border-radius: 30px;
     transition: 0.3s;
     align-items: center;
-    padding: 0 12px;
+    gap: 2px;
 
     .Icon{
         font-size: 25px;

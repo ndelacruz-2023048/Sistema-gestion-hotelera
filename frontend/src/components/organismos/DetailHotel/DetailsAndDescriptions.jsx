@@ -61,7 +61,7 @@ const Container = styled.div`
   }
 
   .react-calendar__tile{
-    padding: 5px 6.6667px;
+    padding: 2px 6.6667px;
     color:${({theme})=>theme.color}
   }
 
@@ -76,6 +76,10 @@ const Container = styled.div`
 
   .react-calendar__navigation button{
     color:${({theme})=>theme.color};
+  }
+
+  .react-calendar__tile--now {
+    background: ${({theme})=>theme.dateNow};
   }
 `
 

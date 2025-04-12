@@ -12,7 +12,8 @@ export const Light ={
     divider2:'#bcbcbd',
     colorHover: 'blue',
     colorBackground: '#e7ebec',
-    colorIcon: 'balck',
+    colorAdvanceBooking:'white',
+    colorIcon: 'black',
     btn: '#c7c4c4',
     toggleIcon: '#a88f68',
     toggleIndicator: 'white',
@@ -20,7 +21,8 @@ export const Light ={
     dividerHeader:'#cbc9c6',
     bgdgradient: 'linear-gradient(180deg,rgb(196, 218, 240) 7%,rgb(197, 180, 151) 100%)',
     circleIconRoomDetail:`#11172b`,
-    iconRoomDetail:`#fff`
+    iconRoomDetail:`#fff`,
+    dateNow: '#ffff76'
 }
 
 export const Dark = {
@@ -38,8 +40,10 @@ export const Dark = {
     color: 'white', 
     colorHover: '#ffcc00',
     colorBackground: '#1e263b',
+    colorAdvanceBooking:'#1e263b',
     colorIcon: 'white',
     bgdgradient: 'linear-gradient(180deg, rgb(13, 33, 65) 7%, rgb(95, 71, 29) 100%)',
     circleIconRoomDetail:`#fff`,
-    iconRoomDetail:`#11172b`
+    iconRoomDetail:`#11172b`,
+    dateNow: '#8c8c3e'
 }
