@@ -3,13 +3,14 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import photoProfile from "../../assets/photoProfile.avif"
 import iconHotel from '../../assets/Logotipo_Havenis.png'
 import { Toggle } from "../moleculas/Toggle";
+import Logotipo_Havenis from '../../assets/Logotipo_Havenis.png'
 export const DashboardHeader = () => {
     return (
         <Container>
             <Section1>
                 <LogoContainer>
                     <section className="section">
-                        <Logo src={iconHotel}/>
+                        <Logo src={Logotipo_Havenis}/>
                         <p className="title">Hotel</p>
                     </section>
                 </LogoContainer>

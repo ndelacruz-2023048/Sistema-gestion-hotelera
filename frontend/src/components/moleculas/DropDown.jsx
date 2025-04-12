@@ -4,7 +4,8 @@ import { Text } from "../atomos/Text"
 import { styled } from 'styled-components'
 import { RiArrowDownSLine } from "@remixicon/react"
 
-export const Dropdown = ({ icon, label, options, onSelect }) => {
+
+export const Dropdown = ({photoProfile, icon, label, options, onSelect }) => {
     const [open, setOpen] = useState(false)
     const [selected, setSelected] = useState(label)
 
@@ -15,18 +16,21 @@ export const Dropdown = ({ icon, label, options, onSelect }) => {
     }
     return(
         <DropdownWrapper onClick={()=> setOpen(!open)}>
-            <DropdownHeader>
-                {icon && <Icons icon={icon}/>}
+            <DropdownHeader onClick={() => setOpen(!open)}>
+                {/* {photoProfile && <ProfileImg src={photoProfile} alt="profile" />} */}
+                {icon && <Icons icon={icon} />}
                 <Text>{selected}</Text>
-                <StyledArrow $isOpen={open} size={'18px'}/>
+                <StyledArrow $isOpen={open} size={'18px'} />
             </DropdownHeader>
+
             <DropdownContent open={open}>
-                {options.map((option, index)=> (
-                    <DropdownItem key={index} onClick={()=> handleSelect(option)}>
-                        {option}
+                {options.map((option, index) => (
+                    <DropdownItem key={index} onClick={() => handleSelect(option)}>
+                    {option}
                     </DropdownItem>
                 ))}
             </DropdownContent>
+
         </DropdownWrapper>
     )
 }
