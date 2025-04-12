@@ -29,19 +29,18 @@ const WrapperCard = styled.div`
     display: flex;
     justify-content:center;
     margin:auto;
-    width: 90%;
+    width: 95%;
     height:90%;
-    `
+`
     
-    const Container = styled.div`
+ const Container = styled.div`
     border-radius: 30px;
     background-color: ${({theme})=>theme.colorBackground};
     display: flex;
     justify-content: center;
     align-items: center;
-    width:30.33%;
-    height:500px;
-    
+    width:30%;
+    height:40%;
 `
 const Card = styled.div`
     position: relative;

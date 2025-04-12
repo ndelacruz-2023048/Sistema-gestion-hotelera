@@ -15,6 +15,10 @@ export const DashboardPrincipalTemplate = () => {
                     <HotelCard/>
                     <HotelCard/>
                     <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
                 </Area2>
             </MainContent>
         </Container>
@@ -22,33 +26,31 @@ export const DashboardPrincipalTemplate = () => {
 }
 const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    width: 98%;
+    height: 100%;
 `
 
 const MainContent = styled.div`
-    display: grid;
-    grid-template-areas: 
-        "area1 area1 area1"
-        "area2 area2 area2";
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `
 
 const Area1 = styled.div`
-    grid-area: area1;
+    display: flex;
+    height: 8%;
+    width: 100%;
     background-color: ${({theme})=>theme.bgd};
-    color:white; 
-    flex-direction: column;
+    
 `
 const Area2 = styled.div`
     display:flex;
-    width:100%;
+    justify-content: space-between;
     flex-wrap:wrap;
+    height: 85%;
+    width:100%;
+    overflow-y: scroll;
     background-color: grey;
     color:white;
-`
-const Area3 = styled.div`
-    grid-area: area3;
-    background-color: #00ffa6;
-    color:white;
+    gap: 20px;
 `
