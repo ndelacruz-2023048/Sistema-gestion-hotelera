@@ -22,7 +22,8 @@ export const Light ={
     bgdgradient: 'linear-gradient(180deg,rgb(196, 218, 240) 7%,rgb(197, 180, 151) 100%)',
     circleIconRoomDetail:`#11172b`,
     iconRoomDetail:`#fff`,
-    dateNow: '#ffff76'
+    dateNow: '#ffff76',
+    hotelcard: 'rgba(8, 8, 8, 0.5)',
 }
 
 export const Dark = {

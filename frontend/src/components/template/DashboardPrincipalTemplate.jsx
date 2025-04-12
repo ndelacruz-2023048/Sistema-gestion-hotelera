@@ -19,7 +19,9 @@ export const DashboardPrincipalTemplate = () => {
                 <Area1>
                     <DashboardSearchFilters/>
                 </Area1>
-                <Area2>
+                <Area2 className="area2">
+                    <HotelCard/>
+                    <HotelCard/>
                     <HotelCard/>
                     <HotelCard/>
                     <HotelCard/>
@@ -56,16 +58,23 @@ const Area1 = styled.div`
     height: 8%;
     width: 100%;
     background-color: ${({theme})=>theme.bgd};
+    z-index: 10;
     
 `
 const Area2 = styled.div`
     display:flex;
-    justify-content: space-between;
     flex-wrap:wrap;
-    height: 85%;
+    height: 670px;
     width:100%;
     overflow-y: scroll;
-    background-color: grey;
     color:white;
     gap: 20px;
+    &::-webkit-scrollbar-track {
+        background: #f82100;        /* color of the tracking area */
+    }   
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #0dff00;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+    }
 `

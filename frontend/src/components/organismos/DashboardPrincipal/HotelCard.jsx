@@ -15,75 +15,109 @@ export const HotelCard = () => {
                         </ContainerIconeStar>
                         <Imagen src={Room}/>
                     </ContainerImage>
-                    <Title>Individual Moderno House </Title>
-                    <Description>1903 St, LaSanta Alley, 21</Description> 
-                    <Price>$ 1,099</Price>
-                    <Total>Total</Total>
+                    <ContainerSection>
+                        <Section1>
+                            <Title>Individual Moderno House </Title>
+                            <Description>1903 St, LaSanta Alley, 21</Description> 
+                        </Section1>
+                        <Section2>
+                            <Price>$ 1,099</Price>
+                            <Total>Total</Total>
+                        </Section2>
+                    </ContainerSection>
                 </Card>
             </WrapperCard>
         </Container>
     ) 
 }
 
+const Container = styled.div`
+   border-radius: 30px;
+   background-color: ${({theme})=>theme.colorBackground};
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width:32%;
+   height: 330px;
+`
 const WrapperCard = styled.div`
     display: flex;
     justify-content:center;
     margin:auto;
     width: 95%;
-    height:90%;
+    height: 95%;
 `
     
- const Container = styled.div`
-    border-radius: 30px;
-    background-color: ${({theme})=>theme.colorBackground};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:30%;
-    height:40%;
-`
 const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     position: relative;
     border-radius: 30px;
     width: 100%;
     height: 100%;
 `
+
+const ContainerSection = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+    margin: auto;
+    height: 18%;
+    `
+
+const Section1 = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+`
+
+const Section2 = styled.div`
+    display: flex;
+    align-items: end;
+    gap: 3px;
+`
 const Title= styled.h2`
     color:${({theme})=>theme.color};
-    position: absolute;
+    /* position: absolute; */
     font-size: 20px;
     top: 77%;
     left: 4%;
+    margin: 0;
 `
 
 const Description = styled.p`
     color:${({theme})=>theme.hotelcard};
-    position: absolute;
+    /* position: absolute; */
     font-size: 15px;
     top: 85%;
     left: 4%;
+    margin: 0;
 `
 
 const Price = styled.p`
     color:${({theme})=>theme.color};
-    position: absolute;
+    /* position: absolute; */
     font-size: 18.5px;
     top: 85%;
     right: 13%;
+    margin: 0;
 `
 
 const Total = styled.p`
     color:${({theme})=>theme.hotelcard};
-    position: absolute;
+    /* position: absolute; */
     font-size: 14px;
     top: 87%;
     right: 6%;
+    margin: 0;
 `
 
 const ContainerImage = styled.div`
     position: relative;
     width:100%;
-    height:75%;
+    height:73%;
 `
 
 const Imagen = styled.img`
