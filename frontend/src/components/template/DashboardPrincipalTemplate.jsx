@@ -11,7 +11,10 @@ export const DashboardPrincipalTemplate = () => {
                     <DashboardSearchFilters/>
                 </Area1>
                 <Area2>
-                    <HotelCard urlSebas='mdi:account-cowboy-hat-outline'/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
                 </Area2>
             </MainContent>
         </Container>
@@ -38,7 +41,9 @@ const Area1 = styled.div`
     flex-direction: column;
 `
 const Area2 = styled.div`
-    grid-area: area2;
+    display:flex;
+    width:100%;
+    flex-wrap:wrap;
     background-color: grey;
     color:white;
 `

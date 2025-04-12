@@ -11,6 +11,7 @@ export const Light ={
     colorBackground: '#e7ebec',
     colorIcon: 'balck',
     btn: '#a5a5a5',
+    hotelcard: 'rgba(0, 0, 0, 0.5)'
 }
 
 export const Dark = {
@@ -26,4 +27,5 @@ export const Dark = {
     colorHover: '#ffcc00',
     colorBackground: '#1e263b',
     colorIcon: 'white',
+    hotelcard: 'rgba(255, 255, 255, 0.5)'
 }
