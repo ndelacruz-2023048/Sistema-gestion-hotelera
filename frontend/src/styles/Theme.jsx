@@ -17,7 +17,10 @@ export const Light ={
     toggleIndicator: 'white',
     toggleContainer: 'white',
     dividerHeader:'#cbc9c6',
-    bgdgradient: 'linear-gradient(181deg,rgb(196, 218, 240) 7%,rgb(197 180 151) 100%)'
+    bgdgradient: 'linear-gradient(181deg,rgb(196, 218, 240) 7%,rgb(197 180 151) 100%)',
+    bgEvents: 'white',
+    eSection: 'white',
+    eSBorder: 'black'
 }
 
 export const Dark = {
@@ -38,5 +41,8 @@ export const Dark = {
     colorIcon: 'white',
     bgdgradient: 'linear-gradient(181deg, rgb(13 33 65) 7%, rgb(95 71 29) 100%)',
     toggleIndicator: '#1f2539',
-    toggleContainer: '#11172b'
+    toggleContainer: '#11172b',
+    bgEvents: '#1e2125',
+    eSection: '#2d333a',
+    eSBorder: '#3d474f'
 }

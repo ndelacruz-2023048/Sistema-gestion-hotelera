@@ -15,7 +15,7 @@ export const EventDetailForm = ()=> {
                     <Button
                         key={name}
                         label={name}
-                        active={index === active} // Activo si el índice coincide
+                        active={index === active}
                         onClick={() => setActive(index)}
                     />
                 ))}
@@ -38,21 +38,21 @@ const StyledArrow = styled(RiArrowDownSLine)`
 `
 
 const StatusButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 6px 12px;
-  background-color: #00875A;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background-color: #00875A;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
 
-  &:hover {
-    background-color: #006644;
-  }
+    &:hover {
+        background-color: #006644;
+    }
 `
 
 const EventContainer = styled.div`
@@ -65,5 +65,5 @@ const AccionHeader = styled.div`
 `
 
 const Header = styled.div`
-    
+    margin: 0 10px;
 `
