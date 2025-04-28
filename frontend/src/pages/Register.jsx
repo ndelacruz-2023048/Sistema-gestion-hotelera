@@ -1,15 +1,15 @@
 import styled from "styled-components"
-import { LoginTemplate } from "../components/template/LoginTemplate"
 import logo from '../assets/Logotipo_Havenis.png'
+import { RegisterTemplate } from "../components/template/RegisterTemplate"
 
-export const Login = ()=>{
+export const Register = ()=>{
     return(
         <Wrapper>
             <FormContainer>
                 <LogoWrapper>
                     <Img src={logo}/>
                 </LogoWrapper>
-                <LoginTemplate/>
+                <RegisterTemplate/>
             </FormContainer>
         </Wrapper>
     )

@@ -6,6 +6,7 @@ import { DashboardHelp } from "../components/organismos/DashboardPrincipal/Dashb
 import { DashboardFavorites } from "../components/organismos/DashboardPrincipal/DashboardFavorites"
 import { DetailHotel } from "../pages/DetailHotel"
 import PageNotFound from "../components/template/404"
+import { Register } from "../pages/Register"
 /*React Router */
 // export const MyRoutes = ()=>{
 //     return(
@@ -58,6 +59,19 @@ const router = createBrowserRouter([
                 <Layout>
                     <DashboardHelp/>
                 </Layout> 
+        )
+    },
+    {
+        path: '/login',
+        element:(
+            <Login/>
+        ),
+        errorElement: <PageNotFound/>
+    },
+    {
+        path: '/register',
+        element: (
+            <Register/>
         )
     }
 ])

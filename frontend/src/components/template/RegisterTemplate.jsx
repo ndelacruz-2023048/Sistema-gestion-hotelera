@@ -1,22 +1,18 @@
 import React from 'react'
-import { LoginForm } from '../organismos/LoginForm'
 import styled from 'styled-components'
-// import { useState } from "react"
 
-
-export const LoginTemplate = () => {
-
-  return (
-    <Wrapper>
-        <LoginColumn>
-            <Title>
-                Iniciar Seción
-            </Title>
-            <LoginForm/>
-        </LoginColumn>
-    </Wrapper>
-  )
+export const RegisterTemplate = () => {
+    return (
+        <Wrapper>
+            <RegisterColumn>
+                <Title>
+                    Registrarse
+                </Title>
+            </RegisterColumn>
+        </Wrapper>
+    )
 }
+
 
 const Wrapper = styled.section`
     display: flex;
@@ -28,7 +24,7 @@ const Wrapper = styled.section`
     text-align: center;
 `
 
-const LoginColumn = styled.div`
+const RegisterColumn = styled.div`
     position: relative;
     width: 100%;
     margin: 30px 0;
