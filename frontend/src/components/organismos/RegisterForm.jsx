@@ -1,18 +1,16 @@
 import React from 'react'
-import { SectionDataLogin } from '../moleculas/SectionDataLogin'
 import styled from 'styled-components'
+import { SectionDataRegister } from '../moleculas/SectionDataRegister'
 
-export const LoginForm = () => {
-  return (
-    <>
-        <LoginFormWrapper>
-            <SectionDataLogin/>
-        </LoginFormWrapper>
-    </>
-  )
+export const RegisterForm = () => {
+    return (
+        <RegisterFormWrapper>
+            <SectionDataRegister/>
+        </RegisterFormWrapper>
+    )
 }
 
-const LoginFormWrapper = styled.form`
+const RegisterFormWrapper = styled.form`
     position: absolute;
     transform:  translateX(-50%);
     display: flex;

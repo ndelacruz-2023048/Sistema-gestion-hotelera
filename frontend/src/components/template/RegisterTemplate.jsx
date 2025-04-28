@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { RegisterForm } from '../organismos/RegisterForm'
 
 export const RegisterTemplate = () => {
     return (
@@ -8,6 +9,7 @@ export const RegisterTemplate = () => {
                 <Title>
                     Registrarse
                 </Title>
+                <RegisterForm/>
             </RegisterColumn>
         </Wrapper>
     )
@@ -16,8 +18,8 @@ export const RegisterTemplate = () => {
 
 const Wrapper = styled.section`
     display: flex;
-    width: 526px;
-    height: 585px;
+    width: 768px;
+    height: 640px;
     border: none;
     border-radius: 30px;
     background: rgba(190, 190, 190, 0.219);
