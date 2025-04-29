@@ -20,24 +20,24 @@ export const BtnDetail = ({iconLeft, title, text}) => {
 
 const Boton = styled.button`
     width: 100%;
-    height: 20%;
     display: flex;
     background: none;
     color: ${({theme})=>theme.color};
     border-radius: 30px;
     transition: 0.3s;
     align-items: center;
-    padding: 0 12px;
+    gap: 2px;
 
     .Icon{
         font-size: 25px;
         padding: 5px;
+        color: ${({theme})=>theme.iconRoomDetail};
     }
 
     .circle{
         width: 40px;
         height: 40px;
-        background-color: ${({theme})=>theme.bgSidebar};
+        background-color: ${({theme})=>theme.circleIconRoomDetail};
         border-radius: 30px;
         transition: 0.3s;
     }
@@ -65,6 +65,7 @@ const InfoText = styled.div`
 
     p {
         margin-top: 0;
+        
     }
 `
 const Title = styled.div`

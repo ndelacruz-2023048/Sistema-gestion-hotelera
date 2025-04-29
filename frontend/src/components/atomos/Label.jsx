@@ -5,10 +5,8 @@ export const Label = ({ children }) => {
 }
 
 const StyledLabel = styled.span`
-    background-color: #e1d5ff;
-    color: #5e4db2;
-    padding: 2px 8px;
+    color: ${({theme})=>theme.color};
     border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 800;
 `

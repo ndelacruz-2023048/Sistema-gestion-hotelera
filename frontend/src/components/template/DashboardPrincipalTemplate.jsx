@@ -4,6 +4,7 @@ import { DashboardSearchFilters } from "../organismos/DashboardPrincipal/Dashboa
 import { EventSection } from "../organismos/EventsHotel/EventsSection"
 import { useState } from "react"
 
+import { HotelCard } from "../organismos/DashboardPrincipal/HotelCard"
 
 export const DashboardPrincipalTemplate = () => {
     const [open, setOpen] = useState(false)
@@ -18,43 +19,62 @@ export const DashboardPrincipalTemplate = () => {
                 <Area1>
                     <DashboardSearchFilters/>
                 </Area1>
-                <Area2>
+                <Area2 className="area2">
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                    <HotelCard/>
+                </Area2>
+                {/* <Area2>
                     <Btn1 onClick={toggleEventSection}/>
                         {open && <EventSection/>}
                         
                     <Btn1/>
-                </Area2>
+                </Area2> */}
             </MainContent>
         </Container>
     )
 }
 const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    width: 98%;
+    height: 100%;
 `
 
 const MainContent = styled.div`
-    display: grid;
-    grid-template-areas: 
-        "area1 area1 area1"
-        "area2 area2 area2";
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `
 
 const Area1 = styled.div`
-    grid-area: area1;
+    display: flex;
+    height: 8%;
+    width: 100%;
     background-color: ${({theme})=>theme.bgd};
-    color:white; 
-    flex-direction: column;
+    z-index: 10;
+    
 `
 const Area2 = styled.div`
-    grid-area: area2;
-    background-color: #b700ff;
+    display:flex;
+    flex-wrap:wrap;
+    height: 670px;
+    width:100%;
+    overflow-y: scroll;
     color:white;
-`
-const Area3 = styled.div`
-    grid-area: area3;
-    background-color: #00ffa6;
-    color:white;
+    gap: 20px;
+    &::-webkit-scrollbar-track {
+        background: #f82100;        /* color of the tracking area */
+    }   
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #0dff00;    /* color of the scroll thumb */
+        border-radius: 20px;       /* roundness of the scroll thumb */
+    }
 `

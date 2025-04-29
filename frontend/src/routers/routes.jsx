@@ -5,6 +5,7 @@ import { Login } from "../pages/Login"
 import { DashboardHelp } from "../components/organismos/DashboardPrincipal/DashboardHelp"
 import { DashboardFavorites } from "../components/organismos/DashboardPrincipal/DashboardFavorites"
 import { DetailHotel } from "../pages/DetailHotel"
+import { EventPlanning } from "../pages/EventPlanning"
 import PageNotFound from "../components/template/404"
 import { Register } from "../pages/Register"
 /*React Router */
@@ -54,10 +55,10 @@ const router = createBrowserRouter([
         )
     },
     {
-        path:'/help',
+        path:'/events',
         element:(
                 <Layout>
-                    <DashboardHelp/>
+                    <EventPlanning/>
                 </Layout> 
         )
     },
