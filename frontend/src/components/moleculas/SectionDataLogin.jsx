@@ -1,27 +1,34 @@
-import styled from "styled-components"
-import { Input2 } from "../atomos/Input2"
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Input2 } from "../atomos/Input2"
+import { userLoginMessage, passwordValidationMessage } from '../../hooks/validators'
+import styled from "styled-components"
 
-export const SectionDataLogin = () => {
-    
-
+export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnBlur, isSubmitButtonDisabled}) => {
     return (
         <DataWrapper>
             <DataBox>
                 <Input2
+                    field={'userLogin'}
                     type={"text"}
-                    name={"user"}
-                    id={"user"}
+                    value={formData.userLogin.value}
                     holder={"Usuario o Email"}
+                    change={handleValueChange}
+                    blur={handleValidateOnBlur}
+                    showErrMsg={formData.userLogin.showError}
+                    validateMsg={userLoginMessage}
                 />
                 <Icon icon="fa:user" className="IconLabel"/>
             </DataBox>
             <DataBox>
                 <Input2
+                    field={'password'}
                     type={"password"}
-                    name={"password"}
-                    id={"password"}
-                    holder={"Ingresa tu contraseña"}
+                    value={formData.password.value}
+                    holder={"Contraseña"}
+                    change={handleValueChange}
+                    blur={handleValidateOnBlur}
+                    showErrMsg={formData.password.showError}
+                    validateMsg={passwordValidationMessage}
                 />
                 <Icon icon="mdi:password" className="IconLabel"/>
             </DataBox>
@@ -33,7 +40,7 @@ export const SectionDataLogin = () => {
                 </CheckContent>
             </DataFPassword>
             <DataBoxButton>
-                <ButtonLogin >Iniciar Seción</ButtonLogin>
+                <ButtonLogin disabled={isSubmitButtonDisabled} type="submit">Iniciar Seción</ButtonLogin>
             </DataBoxButton>
             <Register>
                 <A href="/register">Nuevo? Registrate Acá</A>

@@ -10,7 +10,7 @@ export const SectionDataRegister = () => {
                 <InputSection>
                     <Input2
                         type={"text"}
-                        name={"name"}
+                        name={"name"}//Arreglar osea cambiar por el valor "value"
                         id={"name"}
                         holder={"Nombres"}
                     />

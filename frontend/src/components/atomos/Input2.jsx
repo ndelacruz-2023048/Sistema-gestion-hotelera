@@ -1,14 +1,51 @@
 import styled from "styled-components"
+import propTypes from 'prop-types'
 
-export const Input2  = ({holder, type, name, id}) => {
+export const Input2  = ({
+    field,
+    holder, 
+    type, 
+    value, 
+    change,
+    showErrMsg,
+    validateMsg,
+    blur,
+    textarea
+}) => {
+
+    const handleValueChange = (e)=> {
+        change(e.target.value, field)
+    }
+
+    const handleOnBlur = (e)=> {
+        blur(e.target.value, field)
+    }
+
     return (
         <InputWrapper>
-            <StyledInput 
-                type={type}
-                name={name}
-                id={id}
-                placeholder={holder}
-            />
+            {
+                textarea ? (
+                    <textarea
+                        type={type}
+                        value={value}
+                        placeholder={holder}
+                        onChange={handleValueChange}
+                        onBlur={handleOnBlur}
+                    />
+                ) : (
+                    <StyledInput 
+                        type={type}
+                        value={value}
+                        placeholder={holder}
+                        onChange={handleValueChange}
+                        onBlur={handleOnBlur}
+                    />
+                )
+            }
+
+            <ErrorMsg>
+                {showErrMsg && validateMsg}
+            </ErrorMsg>
         </InputWrapper>
     )
 }
@@ -39,3 +76,23 @@ const StyledInput = styled.input`
     }
 `
 
+const ErrorMsg = styled.span`
+    margin: 0 50px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    width: 400px;
+    color: red;
+`
+
+Input2.propTypes = {
+    field: propTypes.string.isRequired,
+    holder: propTypes.string.isRequired, 
+    type: propTypes.string.isRequired, 
+    value: propTypes.string.isRequired, 
+    change: propTypes.func.isRequired,
+    showErrMsg: propTypes.bool.isRequired,
+    validateMsg: propTypes.string,
+    blur: propTypes.func.isRequired,
+    textarea: propTypes.bool.isRequired
+}
