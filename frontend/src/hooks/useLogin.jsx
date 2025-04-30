@@ -14,6 +14,8 @@ export const useLogin = () => {
         }
 
         const response = await loginRequest(user)
+        console.log(response);
+        
         setIsLoading(false)
 
         if(response.error){

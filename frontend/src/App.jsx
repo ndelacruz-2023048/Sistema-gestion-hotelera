@@ -9,6 +9,7 @@ import  MyRoutes from "./routers/routes"
 import { DetailHotel } from "./pages/DetailHotel"
 import { Sidebar } from "./components/organismos/sidebar/Sidebar"
 import { Toaster } from "react-hot-toast"
+import { AuthContextProvider } from "./context/AuthContext"
 
 
 function App() {
@@ -17,9 +18,11 @@ function App() {
   return (
     <>
       <ThemeProvider theme={themeStyle}>
+        <AuthContextProvider>
         <GlobalStyles />
         <MyRoutes/>
         <Toaster position="bottom-right" reverseOrder={false}/>
+        </AuthContextProvider>
       </ThemeProvider>
     </>
   )
