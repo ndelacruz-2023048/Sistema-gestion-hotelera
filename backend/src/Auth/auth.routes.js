@@ -1,8 +1,9 @@
 import { Router } from 'express'
-import { login } from './auth.controller.js'
+import { login, logout } from './auth.controller.js'
 
 const api = Router()
 
 api.post('/login', login)
+api.post('/logout', logout)
 
 export default api

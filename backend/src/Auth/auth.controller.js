@@ -24,9 +24,9 @@ export const login = async(req, res)=> {
             const token = await generateJwt(loggedUser)
             return res
                 .cookie('access_token', token, {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV === 'production' ? true : false,
-                    sameSite: 'strict',
+                    httpOnly: false,
+                    secure: true,
+                    sameSite: 'None',
                     maxAge: 2000*60*60
                 })
                 .send(
@@ -56,7 +56,10 @@ export const login = async(req, res)=> {
     }
 }
 
-//Talvez sirva?
+export const register = async(req, res)=> {
+    
+}
+
 export const logout = [validateTokenJWT, (req, res) => {
     return res
         .clearCookie('access_token')

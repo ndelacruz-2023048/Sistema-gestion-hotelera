@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { loginRequest } from '../services/app'
 import toast from 'react-hot-toast'
+import { UserAuth } from '../context/AuthContext' // Importa UserAuth
+import Cookies from 'js-cookie'
 
 export const useLogin = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
+    const { setAuthUser } = UserAuth();
 
     const login = async(userLogin, password)=> {
         setIsLoading(true)
@@ -33,6 +36,8 @@ export const useLogin = () => {
             )
         }
         setError(false)
+        const token = Cookies.get('access_token')
+        setAuthUser(token)
         const userName = response.data.loggedUser.name;
         return toast.success(`Bienvenido, ${userName}`);
     }

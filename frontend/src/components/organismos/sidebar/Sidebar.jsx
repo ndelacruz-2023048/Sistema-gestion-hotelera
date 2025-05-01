@@ -1,9 +1,17 @@
 import { NavLink } from "react-router"
 import { Icon } from '@iconify/react'
-import styled from "styled-components"
+import { useLogout } from "../../../hooks/useLogout"
 import { LinksArraySidebar } from "../../../utils/dataEstatica"
+import styled from "styled-components"
 
 export const Sidebar = () => {
+
+    const { logout, isLoadingLogout} = useLogout()
+
+    const handleLogoutClick  = ()=> {
+        logout()
+    }
+
     return (
         <Container>
             <section className="sidebarSection1">
@@ -30,11 +38,12 @@ export const Sidebar = () => {
                     </NavLink>
                 </div>
                 <div className="LinkContainer">
-                    <NavLink to="logout" className={({ isActive }) => `Links${isActive ? " active" : ""}`}>
+                    <div className="Links" onClick={handleLogoutClick}>
                         <section>
                             <Icon icon="hugeicons:logout-04" className="LinkIcon" />
                         </section>
-                    </NavLink>
+                        {isLoadingLogout && <div>Cerrando sesión...</div>} {/* O un spinner */}
+                    </div>
                 </div>
             </section>
         </Container>

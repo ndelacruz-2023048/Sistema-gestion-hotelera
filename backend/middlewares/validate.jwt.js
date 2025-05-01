@@ -1,5 +1,6 @@
 'use strict'
 import jwt from 'jsonwebtoken'
+import User from '../src/User/user.model.js'
 
 export const validateTokenJWT = async(req, res, next)=> {
     try {
@@ -12,7 +13,7 @@ export const validateTokenJWT = async(req, res, next)=> {
             }
         )
         const user = jwt.verify(token, process.env.SECRET_KEY)
-        const userVerify = await findUser(user.uid)
+        const userVerify = await User.findOne({ _id: user.uid })
         if(!userVerify) return res.status(404).send(
             {
                 success: false,

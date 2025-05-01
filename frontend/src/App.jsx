@@ -19,9 +19,9 @@ function App() {
     <>
       <ThemeProvider theme={themeStyle}>
         <AuthContextProvider>
-        <GlobalStyles />
-        <MyRoutes/>
-        <Toaster position="bottom-right" reverseOrder={false}/>
+          <GlobalStyles />
+          <MyRoutes/>
+          <Toaster position="bottom-right" reverseOrder={false}/>
         </AuthContextProvider>
       </ThemeProvider>
     </>

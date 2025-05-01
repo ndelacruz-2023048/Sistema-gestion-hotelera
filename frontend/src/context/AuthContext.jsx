@@ -1,22 +1,48 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react";
+import Cookies from 'js-cookie'
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
-export const AuthContextProvider = ({children})=>{
-    const [user,setUser] = useState(null);
-    useEffect(()=>{
-        if(user === null){
+export const AuthContextProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true)
 
-        }
-        setUser("juanito")
+    const setAuthUser = (userData) => {
+        setUser(userData);
+        setIsAuthenticated(true);
+        setLoading(false)
+    };
+
+    const clearAuthUser = () => {
+        setUser(null);
+        setIsAuthenticated(false);
+        setLoading(false)
+        Cookies.remove('access_token')
+    };
+
+    useEffect(() => {
+        const token = Cookies.get('access_token');
         
-    },[]) 
+        if (token) {
+            setAuthUser(token)
+        }
+        console.log('El token es: ', token);
+        setLoading(false)
+    }, []);
 
-    return(
-        <AuthContext.Provider value={{user}}>{children}</AuthContext.Provider>
-    )
-}
+    if (loading) {
+        // Puedes mostrar un indicador de carga aquí mientras se verifica la sesión
+        return <div>Cargando...</div>; // O un componente de carga más sofisticado
+    }
 
-export const UserAuth = ()=>{
-    return useContext(AuthContext)
-}
+    return (
+        <AuthContext.Provider value={{ user, isAuthenticated, setAuthUser, clearAuthUser }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export const UserAuth = () => {
+    return useContext(AuthContext);
+};
