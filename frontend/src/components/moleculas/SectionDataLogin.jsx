@@ -2,11 +2,16 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Input2 } from "../atomos/Input2"
 import { userLoginMessage, passwordValidationMessage } from '../../hooks/validators'
 import styled from "styled-components"
+import { motion } from 'framer-motion'
 
 export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnBlur, isSubmitButtonDisabled}) => {
     return (
         <DataWrapper>
-            <DataBox>
+            <DataBox
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.2, ease: "easeOut" }}
+            >
                 <Input2
                     field={'userLogin'}
                     type={"text"}
@@ -19,7 +24,11 @@ export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnB
                 />
                 <Icon icon="fa:user" className="IconLabel"/>
             </DataBox>
-            <DataBox>
+            <DataBox
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.2, ease: "easeOut" }}
+            >
                 <Input2
                     field={'password'}
                     type={"password"}
@@ -32,17 +41,29 @@ export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnB
                 />
                 <Icon icon="mdi:password" className="IconLabel"/>
             </DataBox>
-            <DataFPassword>
+            <DataFPassword
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.2, ease: "easeOut" }}
+            >
                 <A href="/*">Contraseña olvidada</A>
                 <CheckContent>
                     <input type="checkbox" name="" id="" />
                     <TextCheck>Recordarme</TextCheck>
                 </CheckContent>
             </DataFPassword>
-            <DataBoxButton>
+            <DataBoxButton
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.3, ease: "easeOut" }}
+            >
                 <ButtonLogin disabled={isSubmitButtonDisabled} type="submit">Iniciar Seción</ButtonLogin>
             </DataBoxButton>
-            <Register>
+            <Register
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.3, ease: "easeOut" }}
+            >
                 <A href="/register">Nuevo? Registrate Acá</A>
             </Register>
             
@@ -54,7 +75,7 @@ const DataWrapper = styled.div`
     width: 100%;
 `
 
-const DataBox = styled.div`
+const DataBox = styled(motion.div)`
     position: relative;
     .IconLabel{
         position: absolute;
@@ -67,12 +88,12 @@ const DataBox = styled.div`
     }
 `
 
-const DataBoxButton = styled.div`
+const DataBoxButton = styled(motion.div)`
     margin: 15px 0;
     position: relative;
 `
 
-const DataFPassword = styled.div`
+const DataFPassword = styled(motion.div)`
     display: flex;
     justify-content: left;
     gap: 5px;
@@ -116,7 +137,7 @@ const ButtonLogin = styled.button`
     }
 `
 
-const Register = styled.div`
+const Register = styled(motion.div)`
     display: flex;
     justify-content: center;
 `
