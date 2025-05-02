@@ -27,7 +27,6 @@ export const AuthContextProvider = ({ children }) => {
         if (token) {
             setAuthUser(token)
         }
-        console.log('El token es: ', token);
         setLoading(false)
     }, []);
 

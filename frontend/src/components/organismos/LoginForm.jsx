@@ -32,7 +32,6 @@ export const LoginForm = () => {
   //Funciones/Manejadores
   const handleSubmit = (e)=> {
     e.preventDefault()
-    console.log(formData);//pruebas luego quitar
     login(
       formData.userLogin.value,
       formData.password.value
