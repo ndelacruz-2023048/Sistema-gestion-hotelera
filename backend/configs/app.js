@@ -7,6 +7,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import authRoutes from '../src/Auth/auth.routes.js'
 import userRoutes from '../src/User/user.routes.js'
+import { limiter } from '../middlewares/rate.limit.js'
 
 const configs = (app) =>{
     app.use(express.json())
@@ -20,6 +21,7 @@ const configs = (app) =>{
     app.use(helmet())
     app.use(morgan('dev'))
     app.use(cookieParser())
+    app.use(limiter)
 }
 
 const routes = (app) =>{

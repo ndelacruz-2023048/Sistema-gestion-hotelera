@@ -14,6 +14,9 @@ const userSchema = Schema(
         mobilePhone: {
             type: String
         },
+        country: {
+            type: String
+        },
         username: {
             type: String,
             unique: true
@@ -36,24 +39,20 @@ const userSchema = Schema(
         },
         birthDate: {
             type: Date,
-            required: function() { return this.role === 'CLIENT' || this.role === 'EMPLOYEE'; }
+            required: function() { this.role === 'EMPLOYEE'; }
         },
         identificationNumber: {
             type: String,
-            unique: true,
-            required: function() { return this.role === 'CLIENT' || this.role === 'EMPLOYEE'; }
+            required: function() { this.role === 'EMPLOYEE'; }
         },
         paymentInfo: {
             type: String,
-            required: function() { return this.role === 'CLIENT'; }
         },
         roomPreferences: {
             type: String,
-            required: function() { return this.role === 'CLIENT'; }
         },
         reservationHistory: {
             type: [String],
-            required: function() { return this.role === 'CLIENT'; }
         },
         jobPosition: {
             type: String,

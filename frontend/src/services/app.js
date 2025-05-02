@@ -8,6 +8,17 @@ const apiClient = axios.create(
     }
 )
 
+export const registerRequest = async(user)=> {
+    try {
+        return await apiClient.post('/register', user)
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
 export const loginRequest = async(user) => {
     try {
         return await apiClient.post('/login', user)

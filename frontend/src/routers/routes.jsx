@@ -9,25 +9,6 @@ import { EventPlanning } from "../pages/EventPlanning"
 import PageNotFound from "../components/template/404"
 import { Register } from "../pages/Register"
 import { ProtectedRoutes } from "../hooks/ProtectedRoutes"
-/*React Router */
-// export const MyRoutes = ()=>{
-//     return(
-//         <Routes>
-//             <Route path="/" element={<Layout>
-//                 <DashboardPrincipal/>
-//             </Layout> }/>
-//             <Route path="/DetailHotel" element={<Layout>
-//                 <DetailHotel/>
-//             </Layout> }/>
-//             <Route path="/favorites" element={<Layout>
-//                 <DashboardFavorites/>
-//             </Layout> }/>
-//             <Route path="/help" element={<Layout>
-//                 <DashboardHelp/>
-//             </Layout> }/>
-//         </Routes>
-//     )
-// }
 
 const router = createBrowserRouter([
     {

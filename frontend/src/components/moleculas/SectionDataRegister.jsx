@@ -1,27 +1,46 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Input2 } from '../atomos/Input2'
+import { emailValidationMessage, usernameValidationMessage, passwordValidationMessage, nameValidationMessage, surNameValidationMessage, addressValidationMessage} from '../../hooks/validators'
 import { Icon } from "@iconify/react/dist/iconify.js";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import { useNavigate } from 'react-router';
 
-export const SectionDataRegister = () => {
+export const SectionDataRegister = ({formData, handleValueChange, handleValidateOnBlur, isSubmitButtonDisabled, handleCountryCodeChange, phoneError}) => {
+    
+    const navigate = useNavigate();
+
+    const changeLogin = ()=> {
+        navigate('/login')
+    }
+
     return (
         <DataWrapper>
             <DataBox>
                 <InputSection>
                     <Input2
+                        field={'name'}
                         type={"text"}
-                        name={"name"}//Arreglar osea cambiar por el valor "value"
-                        id={"name"}
                         holder={"Nombres"}
+                        value={formData.name.value}
+                        change={handleValueChange}
+                        blur={handleValidateOnBlur}
+                        showErrMsg={formData.name.showError}
+                        validateMsg={nameValidationMessage}
                     />
                     <Icon icon="material-symbols:id-card" className="IconLabel1"/>
                 </InputSection>
                 <InputSection>
                     <Input2
+                        field={'surname'}
                         type={"text"}
-                        name={"surname"}
-                        id={"surname"}
                         holder={"Apellidos"}
+                        value={formData.surname.value}
+                        change={handleValueChange}
+                        blur={handleValidateOnBlur}
+                        showErrMsg={formData.surname.showError}
+                        validateMsg={surNameValidationMessage}
                     />
                     <Icon icon="material-symbols:id-card" className="IconLabel"/>
                 </InputSection>
@@ -29,54 +48,80 @@ export const SectionDataRegister = () => {
             <DataBox>
                 <InputSection>
                     <Input2
+                        field={'address'}
                         type={"text"}
-                        name={"address"}
-                        id={"address"}
                         holder={"Dirección"}
+                        value={formData.address.value}
+                        change={handleValueChange}
+                        blur={handleValidateOnBlur}
+                        showErrMsg={formData.address.showError}
+                        validateMsg={addressValidationMessage}
                     />
                     <Icon icon="mingcute:location-3-fill" className='IconLabel1'/>
                 </InputSection>
-                <InputSection>
-                    <Input2
-                        type={"text"}
-                        name={"phone"}
-                        id={"phone"}
-                        holder={"No. Telefono"}
+                <InputSection1>
+                    <PhoneInputStyled
+                        country={formData.countryCode}
+                        value={formData.mobilePhone.value}
+                        onChange={(value, country) => {
+                            handleValueChange(value, 'mobilePhone');
+                            handleCountryCodeChange(country);
+                            
+                        }}
+                        onBlur={(e) => handleValidateOnBlur(e.target.value, 'mobilePhone')}
+                        inputClass="phone-input"
+                        containerClass="phone-container"
+                        dropdownClass="phone-dropdown"
+                        buttonClass='phone-dbutton'
+                        enableSearch={true}
                     />
+                    {phoneError && <p style={{ color: 'red', fontSize: '0.8em', marginTop: '5px' }}>{phoneError}</p>}
                     <Icon icon="line-md:phone-filled" className='IconLabel'/>
-                </InputSection>
+                </InputSection1>
             </DataBox>
             <DataBox>
                 <InputSection>
                     <Input2
+                        field={'username'}
                         type={"text"}
-                        name={"username"}
-                        id={"username"}
                         holder={"Usuario"}
+                        value={formData.username.value}
+                        change={handleValueChange}
+                        blur={handleValidateOnBlur}
+                        showErrMsg={formData.username.showError}
+                        validateMsg={usernameValidationMessage}
                     />
                     <Icon icon="fa:user" className="IconLabel1"/>
                 </InputSection>
                 <InputSection>
                     <Input2
+                        field={'email'}
                         type={"email"}
-                        name={"email"}
-                        id={"email"}
                         holder={"Correo Electrónico"}
+                        value={formData.email.value}
+                        change={handleValueChange}
+                        blur={handleValidateOnBlur}
+                        showErrMsg={formData.email.showError}
+                        validateMsg={emailValidationMessage}
                     />
                     <Icon icon="entypo:email" className='IconLabel'/>
                 </InputSection>
             </DataBox>
             <DataBox>
                 <Input2
+                    field={'password'}
                     type={"password"}
-                    name={"password"}
-                    id={"passwrod"}
                     holder={"Contraseña"}
+                    value={formData.password.value}
+                    change={handleValueChange}
+                    blur={handleValidateOnBlur}
+                    showErrMsg={formData.password.showError}
+                    validateMsg={passwordValidationMessage}
                 />
                 <Icon icon="mdi:password" className="IconLabel2"/>
             </DataBox>
             <DataBoxButton>
-                <ButtonLogin >Registrarme</ButtonLogin>
+                <ButtonRegister disabled={isSubmitButtonDisabled} onClick={changeLogin} type="submit">Registrarme</ButtonRegister>
             </DataBoxButton>
             <Login>
                 <A href="/login">Ya tienes cuenta?</A>
@@ -123,7 +168,117 @@ const DataBox = styled.div`
         height: 17px;
     }
 `
+
+const PhoneInputStyled = styled(PhoneInput)`
+    border-bottom: .5px solid black;
+    .phone-container {
+        width: 100%;
+    }
+
+    .phone-input {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        padding-left: 50px; /* Espacio para el selector de país */
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+        background-color: transparent;
+        color: #A6A6A6;
+
+        &:focus {
+            border-color: #b29464;
+        }
+    }
+
+    .flag-dropdown {
+        border: none;
+        border-right: none;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .selected-flag {
+        padding: 0 10px;
+        background: rgba(190, 190, 190, 0.219);
+        cursor: progress;
+        &:hover{
+            background: rgba(255, 255, 255, 0.219);
+        }
+    }
+
+    .flag-dropdown.open .selected-flag {
+        background-color: #B29464;
+    }
+
+    .phone-dropdown {
+        background: rgba(0, 0, 0, 0.418);
+        backdrop-filter: blur(3px);
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
+        max-height: 200px;
+        overflow-y: auto;
+        font-size: 14px;
+        cursor: pointer;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.219);
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #b29464;
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #8c6b43;
+        }
+
+        .country {
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.288); /* Fondo al pasar el mouse */
+            }
+
+            .country-name {
+                margin-right: 10px;
+                color: #B29464; /* Espacio entre el nombre y el código */
+            }
+
+            .dial-code  {
+                color: #cfa869;
+            }
+            
+        }
+        .country.highlight {
+            background-color: rgba(0, 0, 0, 0.288); /* Fondo para el país seleccionado */
+        }
+
+    }
+
+    .phone-dbutton {
+        background: rgba(190, 190, 190, 0.219);
+    }
+`
+
 const InputSection = styled.div`
+    width: 23em;
+`
+
+const InputSection1 = styled.div`
+    width: 23em;
+    display: flex;
+    align-items: center;
 `
 
 const DataBoxButton = styled.div`
@@ -131,27 +286,7 @@ const DataBoxButton = styled.div`
     position: relative;
 `
 
-const DataFPassword = styled.div`
-    display: flex;
-    justify-content: left;
-    gap: 5px;
-    margin: 8px 80px;
-`
-
-const CheckContent = styled.div`
-    position: absolute;
-    right: 112px;
-    transform: translateY(-15%);
-    display: flex;
-    align-items: center;
-`
-
-const TextCheck = styled.span`
-    font-size: 11px;
-    color: #A6A6A6;
-`
-
-const ButtonLogin = styled.button`
+const ButtonRegister = styled.button`
     background-color: #B29464;
     border-radius: 80px;
     width: 353px;
@@ -166,6 +301,12 @@ const ButtonLogin = styled.button`
     &:hover{
         background-color: #0F1824;
         transition: .5s ease;
+    }
+    &:disabled{
+        cursor: not-allowed;
+    }
+    &:not(:disabled){
+        cursor: pointer;
     }
 `
 
