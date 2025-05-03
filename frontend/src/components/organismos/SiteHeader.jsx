@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { Icon } from "@iconify/react/dist/iconify.js";
 import photoProfile from "../../assets/photoProfile.avif"
-import iconHotel from '../../assets/Logotipo_Havenis.png'
 import { Toggle } from "../moleculas/Toggle";
 import Logotipo_Havenis from '../../assets/Logotipo_Havenis.png'
 export const DashboardHeader = () => {

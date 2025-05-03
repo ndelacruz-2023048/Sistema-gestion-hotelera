@@ -1,40 +1,37 @@
 import { styled } from "styled-components"
 import { EventDetailForm } from "../../moleculas/EventDetails"
 import { Details } from "../Details"
+import { Auto } from "../Automatizacion"
+import { TicketHeader } from "../HeaderEventSection"
 
 export const EventSection = () => {
 
-    /* const events = [
-        { name: 'Boda' },
-        { name: 'XV Años' },
-        { name: 'Graduación' },
-    ] */
-
     return(
         <EventContainer>
+            <TicketHeader/>
             <TitleContainer>
                 <Title>Page 404</Title>
             </TitleContainer>
             <EventDetailForm/>
             <Details/>
+            <Auto/>
         </EventContainer>
     )
 }
 
 const EventContainer = styled.div`
-    background: ${({theme})=>theme.bgd};
+    background: ${({theme})=>theme.bgEvents};
     width: 25rem;
     height: auto;
-    border: 1px solid rgba(255, 255, 255, 0.2);
 `
 
 const TitleContainer = styled.div`
     height: 25px;
-    margin: 10px 0;
+    margin: 30px 0;
 `
 
 const Title = styled.span`
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 30px;
     color: ${({theme})=>theme.color};
 `

@@ -44,3 +44,20 @@ const IconWrapper = styled.div`
     transform: translateY(-50%);
     color: ${({theme})=>theme.color};
 `
+/* 
+width: 100%;
+    height: 55px;
+    margin: 15px 0;
+    border: none;
+    color: #000000;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    backdrop-filter: blur(10px);
+    &::placeholder {
+        color: white;
+        font-size: 15px;
+        padding: 0 15px;
+    } */

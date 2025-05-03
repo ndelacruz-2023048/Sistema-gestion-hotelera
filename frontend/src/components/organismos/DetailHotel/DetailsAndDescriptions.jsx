@@ -61,7 +61,7 @@ const Container = styled.div`
   }
 
   .react-calendar__tile{
-    padding: 2px 6.6667px;
+    padding: 0px 6.6667px;
     color:${({theme})=>theme.color}
   }
 
