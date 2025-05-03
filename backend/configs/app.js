@@ -29,6 +29,7 @@ const routes = (app) =>{
     app.use('/v1/hotelhavenis', userRoutes)
 }
 
+
 export const initServer = ()=>{
     const app = express()
     try{

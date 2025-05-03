@@ -19,6 +19,7 @@ export const connect = async()=>{
         })
         mongoose.connection.on('disconnected', ()=>{
             console.log('Mongo | Disconnected')
+            console.log('MongoDB | try connecting')
         })
         
         await mongoose.connect(
