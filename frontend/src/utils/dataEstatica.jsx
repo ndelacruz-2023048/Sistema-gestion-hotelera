@@ -21,6 +21,11 @@ export const LinksArraySidebar = [
         icon: "si:mail-line",
         to: "/events",
     },
+    {
+        label: "DetailFormHotel",
+        icon: "mingcute:hotel-line",
+        to: "/new-hotel",
+    },
     
 ]
 export const LinksArraySidebar2 = [

@@ -9,6 +9,7 @@ import { EventPlanning } from "../pages/EventPlanning"
 import PageNotFound from "../components/template/404"
 import { Register } from "../pages/Register"
 import { ProtectedRoutes } from "../hooks/ProtectedRoutes"
+import { NewHotelPage } from "../pages/NewHotelPage"
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,14 @@ const router = createBrowserRouter([
                 <Layout>
                     <EventPlanning/>
                 </Layout> 
+            </ProtectedRoutes>
+        )
+    },
+    {
+        path:'/new-hotel',
+        element:(
+            <ProtectedRoutes accesBy="authenticated">
+                    <NewHotelPage/>
             </ProtectedRoutes>
         )
     },
