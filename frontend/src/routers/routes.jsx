@@ -10,6 +10,11 @@ import PageNotFound from "../components/template/404"
 import { Register } from "../pages/Register"
 import { ProtectedRoutes } from "../hooks/ProtectedRoutes"
 import { NewHotelPage } from "../pages/NewHotelPage"
+import { DetailsRoom} from "../components/organismos/Forms/DetailsRoom"
+import { HiringStage } from "../components/organismos/Forms/HiringStage"
+import { ApplicationForm } from "../components/organismos/Forms/ApplicationForm"
+import { DetailsRoomHotel } from "../pages/DetailsRoomHotel"
+import { HiringStageHotel } from "../pages/HiringStageHotel"
 
 const router = createBrowserRouter([
     {
@@ -60,6 +65,32 @@ const router = createBrowserRouter([
                     <NewHotelPage/>
             </ProtectedRoutes>
         )
+    },
+    {
+        path:'/detailsRoom',
+        element:(
+            <ProtectedRoutes accesBy="authenticated">
+                    <DetailsRoomHotel/>
+            </ProtectedRoutes>
+        )
+    },
+    {
+        path:'/hiringStage',
+        element:(
+            <ProtectedRoutes accesBy="authenticated">
+                <HiringStageHotel/>
+            </ProtectedRoutes>
+        )
+        
+    },
+    {
+        path:'/applicationForm',
+        element:(
+            <ProtectedRoutes accesBy="authenticated">
+                <ApplicationForm/>
+            </ProtectedRoutes>
+        )
+
     },
     {
         path: '/login',

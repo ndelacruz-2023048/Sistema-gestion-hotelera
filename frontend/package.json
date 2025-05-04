@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@iconify/react": "^5.2.1",
+    "@mui/icons-material": "^7.0.2",
+    "@mui/material": "^7.0.2",
     "@remixicon/react": "^4.6.0",
     "axios": "^1.9.0",
     "framer-motion": "^12.9.4",
@@ -25,6 +29,7 @@
     "react-icons": "^5.5.0",
     "react-phone-input-2": "^2.15.1",
     "react-router": "^7.5.3",
+    "react-router-dom": "^7.5.3",
     "remixicon-react": "^1.0.0",
     "styled-components": "^6.1.17",
     "swiper": "^11.2.6",

@@ -27,6 +27,7 @@ export const Light ={
     iconRoomDetail:`#fff`,
     dateNow: '#ffff76',
     hotelcard: 'rgba(8, 8, 8, 0.5)',
+    colorLabel: 'black',
 }
 
 export const Dark = {
@@ -56,5 +57,6 @@ export const Dark = {
     toggleContainer: '#11172b',
     bgEvents: '#1e2125',
     eSection: '#2d333a',
-    eSBorder: '#3d474f'
+    eSBorder: '#3d474f',
+    colorLabel: 'white',
 }

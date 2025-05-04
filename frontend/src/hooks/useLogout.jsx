@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { logoutRequest } from '../services/app'
+import { logoutRequest } from '../routers/services/app'
 import { UserAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router'
 import toast from 'react-hot-toast'
