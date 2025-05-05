@@ -1,10 +1,10 @@
 import styled from "styled-components"
-import { EventForm } from "../organismos/EventPlanning/EventForm"
+import { EventPlanning } from "../organismos/EventPlanning/EventPlanning"
 
 export const EventPlanningTemplate = () => {
     return(
         <Container>
-            <EventForm/>
+          <EventPlanning/>
         </Container>
     )
 }

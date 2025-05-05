@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RiLock2Line, RiEyeFill, RiThumbUpFill, RiShareFill, RiMoreFill } from "@remixicon/react";
-import { PurpleTag } from '../atomos/Tag';
+import { Tag } from '../atomos/Tag';
 
 export const TicketHeader = () => {
   return (
     <Header>
       <ProjectTags>
-        <PurpleTag>SCRUM-11</PurpleTag>
+        <Tag variant={'purple'}>SCRUM-11</Tag>
         <RiLock2Line size={16} color="#000000" />
       </ProjectTags>
       <Actions>
