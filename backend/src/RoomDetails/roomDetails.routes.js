@@ -1,18 +1,18 @@
 import { Router } from 'express'
 import { 
     addNewRoom,
-    getAllRoom
-} from './room.controller.js'
+    getAllRooms
+} from './roomDetails.controller.js'
 
 const api = Router()
 
 api.get(
-    '/getAllRoom',
-    getAllRoom
+    '/getRooms',
+    getAllRooms
 )
 
 api.post(
-    '/addNewRoom',
+    '/addRooms',
     addNewRoom
 )
 

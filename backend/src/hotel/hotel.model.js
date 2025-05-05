@@ -8,13 +8,19 @@ const hotelSchema = new Schema({
     type: String, 
     required: true },
   category: { 
-    type: Number, required: true },
-    descripcion: String,
-  admin: {
+    type: String, 
+    required: true,
+    descripcion: String },
+  price:{
+    type: Schema.Types.Decimal128,
+    required: true },
+  /* admin: {
     type: Schema.Types.ObjectId,
     ref: 'Usuario',
-    required: true
-  }
+    required: true } */
+  image: {
+    type: String,
+    require: true }
 });
 
 export default model('Hotel', hotelSchema);

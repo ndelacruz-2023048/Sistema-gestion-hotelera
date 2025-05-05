@@ -1,0 +1,182 @@
+[
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b0",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 25,
+    "bedTypes": "queen",
+    "floor": 2,
+    "images": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg",
+      "https://example.com/image3.jpg",
+      "https://example.com/image4.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "150.50"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b1",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 30,
+    "bedTypes": "king",
+    "floor": 3,
+    "images": [
+      "https://example.com/image5.jpg",
+      "https://example.com/image6.jpg",
+      "https://example.com/image7.jpg",
+      "https://example.com/image8.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "180.75"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b2",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 35,
+    "bedTypes": "double",
+    "floor": 1,
+    "images": [
+      "https://example.com/image9.jpg",
+      "https://example.com/image10.jpg",
+      "https://example.com/image11.jpg",
+      "https://example.com/image12.jpg"
+    ],
+    "available": false,
+    "pricePerNight": {
+      "$numberDecimal": "200.00"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b3",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 28,
+    "bedTypes": "individual",
+    "floor": 4,
+    "images": [
+      "https://example.com/image13.jpg",
+      "https://example.com/image14.jpg",
+      "https://example.com/image15.jpg",
+      "https://example.com/image16.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "120.50"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b4",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 40,
+    "bedTypes": "queen",
+    "floor": 5,
+    "images": [
+      "https://example.com/image17.jpg",
+      "https://example.com/image18.jpg",
+      "https://example.com/image19.jpg",
+      "https://example.com/image20.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "210.00"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b5",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 50,
+    "bedTypes": "king",
+    "floor": 6,
+    "images": [
+      "https://example.com/image21.jpg",
+      "https://example.com/image22.jpg",
+      "https://example.com/image23.jpg",
+      "https://example.com/image24.jpg"
+    ],
+    "available": false,
+    "pricePerNight": {
+      "$numberDecimal": "250.50"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b6",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 55,
+    "bedTypes": "double",
+    "floor": 7,
+    "images": [
+      "https://example.com/image25.jpg",
+      "https://example.com/image26.jpg",
+      "https://example.com/image27.jpg",
+      "https://example.com/image28.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "280.00"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b7",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 60,
+    "bedTypes": "queen",
+    "floor": 8,
+    "images": [
+      "https://example.com/image29.jpg",
+      "https://example.com/image30.jpg",
+      "https://example.com/image31.jpg",
+      "https://example.com/image32.jpg"
+    ],
+    "available": false,
+    "pricePerNight": {
+      "$numberDecimal": "320.00"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b8",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 65,
+    "bedTypes": "king",
+    "floor": 9,
+    "images": [
+      "https://example.com/image33.jpg",
+      "https://example.com/image34.jpg",
+      "https://example.com/image35.jpg",
+      "https://example.com/image36.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "350.00"
+    },
+    "__v": 0
+  },
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b9",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 70,
+    "bedTypes": "king",
+    "floor": 10,
+    "images": [
+      "https://example.com/image37.jpg",
+      "https://example.com/image38.jpg",
+      "https://example.com/image39.jpg",
+      "https://example.com/image40.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "450.00"
+    },
+    "__v": 0
+  }
+]

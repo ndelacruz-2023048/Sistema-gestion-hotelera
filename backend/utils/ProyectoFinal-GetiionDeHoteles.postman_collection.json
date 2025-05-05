@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "e05b5ccc-0862-42c5-b7ec-c045b949d61c",
+		"name": "ProyectoFinal-GetiionDeHoteles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956964"
+	},
+	"item": [
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "GetHotels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/v1/hotelRoutes/getHotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"hotelRoutes",
+								"getHotels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddHotels",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Hotel vista Hermosa",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "19 Avenida zona 17",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Premiun",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1999.99",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1efe0241-37d7-4bd0-a884-32337c037d94"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/hotelRoutes/addHotels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"hotelRoutes",
+								"addHotels"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoomView",
+			"item": [
+				{
+					"name": "GetRoomView",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/v1/roomViewRoutes/getAllRoomView",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomViewRoutes",
+								"getAllRoomView"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddRoomView",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "room",
+									"value": "681810f001e5699f73d0bff7",
+									"type": "text"
+								},
+								{
+									"key": "squareMeters",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "bedTypes",
+									"value": "queen",
+									"type": "text"
+								},
+								{
+									"key": "floor",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "images.0",
+									"value": "https://example.com/image1.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.1",
+									"value": "https://example.com/image2.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.2",
+									"value": "https://example.com/image3.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.3",
+									"value": "https://example.com/image4.jpg",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "150.00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/roomViewRoutes/addNewRoomV",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomViewRoutes",
+								"addNewRoomV"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoomView",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/v1/roomViewRoutes/getAllRoomView",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomViewRoutes",
+								"getAllRoomView"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddRoomView",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "room",
+									"value": "681810f001e5699f73d0bff7",
+									"type": "text"
+								},
+								{
+									"key": "squareMeters",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "bedTypes",
+									"value": "queen",
+									"type": "text"
+								},
+								{
+									"key": "floor",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "images.0",
+									"value": "https://example.com/image1.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.1",
+									"value": "https://example.com/image2.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.2",
+									"value": "https://example.com/image3.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.3",
+									"value": "https://example.com/image4.jpg",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "150.00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/roomViewRoutes/addNewRoomV",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomViewRoutes",
+								"addNewRoomV"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoomDetails",
+			"item": [
+				{
+					"name": "GetRoomDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/v1/roomDetailsRoutes/getRooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomDetailsRoutes",
+								"getRooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddRoomDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "room",
+									"value": "681810f001e5699f73d0bff7",
+									"type": "text"
+								},
+								{
+									"key": "roomNumber",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "furniture",
+									"value": "Camas, muebles, estufa, mesas_plegables",
+									"type": "text"
+								},
+								{
+									"key": "tecnologie",
+									"value": "TV, aire_acondicionado, Cafeteras, refrigeradores",
+									"type": "text"
+								},
+								{
+									"key": "bathroom",
+									"value": "Retrete, ducha, yacusi",
+									"type": "text"
+								},
+								{
+									"key": "wifi",
+									"value": "Gratis",
+									"type": "text"
+								},
+								{
+									"key": "food",
+									"value": "Servicio al dormitorio",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/roomDetailsRoutes/addRooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomDetailsRoutes",
+								"addRooms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RoomOverview",
+			"item": [
+				{
+					"name": "GetRoomOverview",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/v1/roomRoutes/getAllRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomRoutes",
+								"getAllRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddRoomOverview",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
+									"type": "text"
+								},
+								{
+									"key": "nameOfTheRoom",
+									"value": "Habitación 101",
+									"type": "text"
+								},
+								{
+									"key": "typeRoom",
+									"value": "Premium",
+									"type": "text"
+								},
+								{
+									"key": "capacity.childrens",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "capacity.adults",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "squareMeters",
+									"value": "35",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Una habitación cómoda con vista al mar, cama king y jacuzzi privado.",
+									"type": "text"
+								},
+								{
+									"key": "disponibility.fechas_disponibles",
+									"value": "Resto del mes",
+									"type": "text"
+								},
+								{
+									"key": "disponibility.fechas_ocupadas.0",
+									"value": "2025-05-03",
+									"type": "text"
+								},
+								{
+									"key": "disponibility.fechas_ocupadas.1",
+									"value": "2025-05-07",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/roomRoutes/addNewRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomRoutes",
+								"addNewRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoomOverview",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/v1/roomRoutes/getAllRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomRoutes",
+								"getAllRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddRoomOverview",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
+									"type": "text"
+								},
+								{
+									"key": "nameOfTheRoom",
+									"value": "Habitación 101",
+									"type": "text"
+								},
+								{
+									"key": "typeRoom",
+									"value": "Premium",
+									"type": "text"
+								},
+								{
+									"key": "capacity.childrens",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "capacity.adults",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "squareMeters",
+									"value": "35",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Una habitación cómoda con vista al mar, cama king y jacuzzi privado.",
+									"type": "text"
+								},
+								{
+									"key": "disponibility.fechas_disponibles",
+									"value": "Resto del mes",
+									"type": "text"
+								},
+								{
+									"key": "disponibility.fechas_ocupadas.0",
+									"value": "2025-05-03",
+									"type": "text"
+								},
+								{
+									"key": "disponibility.fechas_ocupadas.1",
+									"value": "2025-05-07",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/v1/roomRoutes/addNewRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"v1",
+								"roomRoutes",
+								"addNewRoom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
