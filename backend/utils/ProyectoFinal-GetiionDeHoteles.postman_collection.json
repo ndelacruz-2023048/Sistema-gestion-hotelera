@@ -39,6 +39,11 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
+									"type": "text"
+								},
+								{
 									"key": "name",
 									"value": "Hotel vista Hermosa",
 									"type": "text"
@@ -118,54 +123,59 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "nameOfTheRoom",
-									"value": "Habitación 101",
-									"type": "text"
-								},
-								{
-									"key": "typeRoom",
-									"value": "Premium",
-									"type": "text"
-								},
-								{
-									"key": "capacity.childrens",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "capacity.adults",
-									"value": "1",
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
 									"type": "text"
 								},
 								{
 									"key": "squareMeters",
-									"value": "35",
+									"value": "25",
 									"type": "text"
 								},
 								{
-									"key": "description",
-									"value": "Una habitación cómoda con vista al mar, cama king y jacuzzi privado.",
+									"key": "bedTypes",
+									"value": "queen",
 									"type": "text"
 								},
 								{
-									"key": "disponibility.fechas_disponibles",
-									"value": "Resto del mes",
+									"key": "floor",
+									"value": "2",
 									"type": "text"
 								},
 								{
-									"key": "disponibility.fechas_ocupadas.0",
-									"value": "2025-05-03",
+									"key": "images.0",
+									"value": "https://example.com/image1.jpg",
 									"type": "text"
 								},
 								{
-									"key": "disponibility.fechas_ocupadas.1",
-									"value": "2025-05-07",
+									"key": "images.1",
+									"value": "https://example.com/image2.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.2",
+									"value": "https://example.com/image3.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.3",
+									"value": "https://example.com/image4.jpg",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "150.00",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/v1/roomOverviewRoutes/addNewRoomOs",
+							"raw": "http://localhost:3000/v1/roomViewRoutes/addNewRoomV",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -173,8 +183,8 @@
 							"port": "3000",
 							"path": [
 								"v1",
-								"roomOverviewRoutes",
-								"addNewRoomOs"
+								"roomViewRoutes",
+								"addNewRoomV"
 							]
 						}
 					},
@@ -210,54 +220,59 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "nameOfTheRoom",
-									"value": "Habitación 101",
-									"type": "text"
-								},
-								{
-									"key": "typeRoom",
-									"value": "Premium",
-									"type": "text"
-								},
-								{
-									"key": "capacity.childrens",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "capacity.adults",
-									"value": "1",
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
 									"type": "text"
 								},
 								{
 									"key": "squareMeters",
-									"value": "35",
+									"value": "25",
 									"type": "text"
 								},
 								{
-									"key": "description",
-									"value": "Una habitación cómoda con vista al mar, cama king y jacuzzi privado.",
+									"key": "bedTypes",
+									"value": "queen",
 									"type": "text"
 								},
 								{
-									"key": "disponibility.fechas_disponibles",
-									"value": "Resto del mes",
+									"key": "floor",
+									"value": "2",
 									"type": "text"
 								},
 								{
-									"key": "disponibility.fechas_ocupadas.0",
-									"value": "2025-05-03",
+									"key": "images.0",
+									"value": "https://example.com/image1.jpg",
 									"type": "text"
 								},
 								{
-									"key": "disponibility.fechas_ocupadas.1",
-									"value": "2025-05-07",
+									"key": "images.1",
+									"value": "https://example.com/image2.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.2",
+									"value": "https://example.com/image3.jpg",
+									"type": "text"
+								},
+								{
+									"key": "images.3",
+									"value": "https://example.com/image4.jpg",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "150.00",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/v1/roomOverviewRoutes/addNewRoomOs",
+							"raw": "http://localhost:3000/v1/roomViewRoutes/addNewRoomV",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -265,8 +280,8 @@
 							"port": "3000",
 							"path": [
 								"v1",
-								"roomOverviewRoutes",
-								"addNewRoomOs"
+								"roomViewRoutes",
+								"addNewRoomV"
 							]
 						}
 					},
@@ -306,6 +321,11 @@
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
+								{
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
+									"type": "text"
+								},
 								{
 									"key": "roomNumber",
 									"value": "12",
@@ -389,6 +409,11 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
+									"type": "text"
+								},
+								{
 									"key": "nameOfTheRoom",
 									"value": "Habitación 101",
 									"type": "text"
@@ -480,6 +505,11 @@
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
+								{
+									"key": "hotel",
+									"value": "6817f557a6c5062898ccc6f7",
+									"type": "text"
+								},
 								{
 									"key": "nameOfTheRoom",
 									"value": "Habitación 101",

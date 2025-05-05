@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 
 const roomOverviewSchema = new Schema({
+  hotel: { 
+    type: Schema.Types.ObjectId, 
+    ref: 'Hotel', required: true 
+  },
   nameOfTheRoom: {
     type: String,
     required: true
