@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const roomOverviewSchema = new Schema({
+const Room = new Schema({
   hotel: { 
     type: Schema.Types.ObjectId, 
     ref: 'Hotel', required: true 
@@ -44,4 +44,4 @@ const roomOverviewSchema = new Schema({
   }
 });
 
-export default model('roomOverview', roomOverviewSchema);
+export default model('Room', Room);

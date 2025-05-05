@@ -8,8 +8,8 @@ import cookieParser from "cookie-parser"
 import authRoutes from '../src/Auth/auth.routes.js'
 import userRoutes from '../src/User/user.routes.js'
 import HotelRoutes from '../src/hotel/hotel.routes.js'
+import RoomRoutes from '../src/room/room.routes.js'
 import RoomDetailsRoutes from '../src/RoomDetails/roomDetails.routes.js'
-import RoomOverviewRoutes from '../src/roomOverview/roomOverview.routes.js'
 import RoomViewRoutes from '../src/roomView/roomView.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
 
@@ -32,8 +32,8 @@ const routes = (app) =>{
     app.use('/v1/hotelhavenis', authRoutes)
     app.use('/v1/hotelhavenis', userRoutes)
     app.use('/v1/hotelRoutes', HotelRoutes)
+    app.use('/v1/roomRoutes', RoomRoutes)
     app.use('/v1/roomDetailsRoutes', RoomDetailsRoutes)
-    app.use('/v1/roomOverviewRoutes', RoomOverviewRoutes)
     app.use('/v1/roomViewRoutes', RoomViewRoutes)
 }
 

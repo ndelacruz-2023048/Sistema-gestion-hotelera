@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 
 const roomViewSchema = new Schema({
-  hotel: { 
+  room: { 
     type: Schema.Types.ObjectId, 
-    ref: 'Hotel', required: true 
+    ref: 'Room', required: true 
   },
   squareMeters:{
     type: Number,

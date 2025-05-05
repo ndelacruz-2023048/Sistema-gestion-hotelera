@@ -1,5 +1,6 @@
 [
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "2",
     "furniture": "Camas, muebles, estufa, mesas_plegables",
     "tecnologie": "TV, aire_acondicionado, Cafeteras, refrigeradores",
@@ -8,6 +9,7 @@
     "food": "Servicio al dormitorio"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "3",
     "furniture": "Cama King, escritorio, sillón",
     "tecnologie": "Smart TV, Alexa",
@@ -16,6 +18,7 @@
     "food": "Desayuno continental"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "4",
     "furniture": "Camas dobles, closet, mini bar",
     "tecnologie": "TV cable, aire acondicionado",
@@ -24,6 +27,7 @@
     "food": "Buffet incluido"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "5",
     "furniture": "Litera, escritorio, silla",
     "tecnologie": "TV",
@@ -32,6 +36,7 @@
     "food": "No disponible"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "6",
     "furniture": "Cama Queen, tocador, lámparas",
     "tecnologie": "TV, Cafetera, Bluetooth speaker",
@@ -40,6 +45,7 @@
     "food": "Menú gourmet"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "7",
     "furniture": "Cama individual, mesa de noche",
     "tecnologie": "TV, ventilador",
@@ -48,6 +54,7 @@
     "food": "Desayuno ligero"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "8",
     "furniture": "Cama doble, armario, espejo",
     "tecnologie": "Smart TV, mini refrigerador",
@@ -56,6 +63,7 @@
     "food": "Room service"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "9",
     "furniture": "Cama King, muebles rústicos",
     "tecnologie": "Pantalla curva, Chromecast",
@@ -64,6 +72,7 @@
     "food": "Desayuno + cena"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "10",
     "furniture": "Sofá cama, mueble multiusos",
     "tecnologie": "TV, consola de videojuegos",
@@ -72,6 +81,7 @@
     "food": "Comida rápida"
   },
   {
+    "room": "681810f001e5699f73d0bff7",
     "roomNumber": "11",
     "furniture": "Cama doble, escritorio moderno",
     "tecnologie": "TV 4K, Wi-Fi Mesh",

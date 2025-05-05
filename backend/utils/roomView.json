@@ -1,7 +1,7 @@
 [
   {
     "_id": "60b8f5f35f1d2b001c4d92b0",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 25,
     "bedTypes": "queen",
     "floor": 2,
@@ -19,7 +19,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b1",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 30,
     "bedTypes": "king",
     "floor": 3,
@@ -37,7 +37,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b2",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 35,
     "bedTypes": "double",
     "floor": 1,
@@ -55,7 +55,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b3",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 28,
     "bedTypes": "individual",
     "floor": 4,
@@ -73,7 +73,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b4",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 40,
     "bedTypes": "queen",
     "floor": 5,
@@ -91,7 +91,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b5",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 50,
     "bedTypes": "king",
     "floor": 6,
@@ -109,7 +109,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b6",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 55,
     "bedTypes": "double",
     "floor": 7,
@@ -127,7 +127,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b7",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 60,
     "bedTypes": "queen",
     "floor": 8,
@@ -145,7 +145,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b8",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 65,
     "bedTypes": "king",
     "floor": 9,
@@ -163,7 +163,7 @@
   },
   {
     "_id": "60b8f5f35f1d2b001c4d92b9",
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "room": "681810f001e5699f73d0bff7",
     "squareMeters": 70,
     "bedTypes": "king",
     "floor": 10,

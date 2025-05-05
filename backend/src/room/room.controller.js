@@ -1,8 +1,8 @@
-import RoomO from '../roomOverview/roomOverview.model.js'
+import Room from './room.model.js'
 
-export const getAllRoomOverView = async(req, res) => {
+export const getAllRoom = async(req, res) => {
     try {
-        const room = await RoomO.find()
+        const room = await Room.find()
         
         if(room.length === 0){
             return res.status(404).send(
@@ -30,10 +30,10 @@ export const getAllRoomOverView = async(req, res) => {
     }
 }
 
-export const addNewRoomO = async(req, res) => {
+export const addNewRoom = async(req, res) => {
     try {
         let data = req.body
-        let room = new RoomO(data)
+        let room = new Room(data)
         await room.save()
         return res.status(200).send(
             {
