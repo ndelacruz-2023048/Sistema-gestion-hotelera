@@ -14,6 +14,7 @@ export const Light ={
     colorBackground: '#e7ebec',
     colorAdvanceBooking:'white',
     colorIcon: 'black',
+    text: 'black',
     btn: '#c7c4c4',
     toggleIcon: '#a88f68',
     toggleIndicator: 'white',
@@ -27,9 +28,12 @@ export const Light ={
     iconRoomDetail:`#fff`,
     dateNow: '#ffff76',
     hotelcard: 'rgba(8, 8, 8, 0.5)',
+    hoverB: '#0F1824',
+    color1: 'white'
 }
 
 export const Dark = {
+    hoverB: '#1e263b',
     bg: '#11172b',
     bgd: '#11172b',
     row1: '#11172b',
@@ -40,9 +44,11 @@ export const Dark = {
     toggleIcon: 'white',
     activeIconSolidSidebar:'#64666f',
     activeIconBorderSidebar:'#404754',
+    text: 'white',
     divider:'#d4d1d1',
     divider2:'#d0d0d0',
     color: 'white', 
+    color1: 'white', 
     colorHover: '#ffcc00',
     colorBackground: '#1e263b',
     colorAdvanceBooking:'#1e263b',

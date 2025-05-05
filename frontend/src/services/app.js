@@ -8,6 +8,8 @@ const apiClient = axios.create(
     }
 )
 
+//Auth Methods
+
 export const registerRequest = async(user)=> {
     try {
         return await apiClient.post('/register', user)
@@ -40,3 +42,5 @@ export const logoutRequest = async()=> {
         }
     }
 }
+
+//Event methods

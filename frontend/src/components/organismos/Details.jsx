@@ -1,6 +1,6 @@
 import { styled } from "styled-components"
 import { DetailItem } from "../moleculas/DetailsItem";
-import { PurpleTag } from "../atomos/Tag";
+import { Tag } from "../atomos/Tag";
 import { RiArrowDropDownLine } from "@remixicon/react";
 import { RiGitBranchLine } from "@remixicon/react";
 import { RiGitCommitLine } from "@remixicon/react";
@@ -27,7 +27,7 @@ export const Details = ()=> {
               <span style={{ color: '#6B778C' }}>Ninguno</span>
             </DetailItem>
             <DetailItem label="Principal">
-              <PurpleTag>SCRUM-11 Home Hotel</PurpleTag>
+              <Tag variant={'purple'}>SCRUM-11 Home Hotel</Tag>
             </DetailItem>
             <DetailItem label="Team">
               <span style={{ color: '#6B778C' }}>Ninguno</span>
