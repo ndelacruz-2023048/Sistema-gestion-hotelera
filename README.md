@@ -6,6 +6,8 @@ Herramienta digital que permite a los usuarios buscar hoteles, visualizar habita
 
 ## Autenticación
 
+Para efectos de prueba, ya existe un usuario creado por defecto que puedes utilizar para iniciar sesión en el sistema:
+
 **Usuario:** CGomeza o cegomez1@gmail.com  
 **Contraseña:** 4DM1NH0TEL&25
 
