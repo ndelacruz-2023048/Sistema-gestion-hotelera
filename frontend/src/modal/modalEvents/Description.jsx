@@ -2,7 +2,7 @@
 import styled from "styled-components"
 import { useRef, useState, useEffect } from "react"
 
-export const Description = ()=> {
+export const Description = ({users, designatedUser, setDesignatedUser})=> {
     const [showDate, setShowDate] = useState(false)
     const [activeComponent, setActiveComponent] = useState("description")
 
@@ -51,13 +51,16 @@ export const Description = ()=> {
             <Time>
                     <SelectContainer>
                         <select
-                            id="componentSelector"
-                            value={activeComponent}
-                            onChange={(e) => setActiveComponent(e.target.value)}>
-                            <option value="null" >User</option>
-                            <option value="user1">Jesus</option>
-                            <option value="user2">José</option>
-                            <option value="user3">Maria</option>
+                            id="userSelector"
+                            value={designatedUser}
+                            onChange={(e) => setDesignatedUser(e.target.value)}
+                        >
+                            <option value="" >Usuario</option>
+                            {users.map(user => (
+                                <option key={user._id} value={user._id}>
+                                    {user.name} {user.surname}
+                                </option>
+                            ))}
                         </select>
                         <select
                             id="componentSelector"

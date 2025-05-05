@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import { useState } from "react"
 import styled from "styled-components"
-import { useThemeStore } from "../../../store/ThemeStore"
 import ModalEvents from '../../../modal/modalEvents'
 
 export const DashboardFavorites = () => {
@@ -10,7 +9,6 @@ export const DashboardFavorites = () => {
     const togglePopup = () => {
         setIsOpen(!isOpen)
     }
-    const {setTheme}= useThemeStore()
     return (
         <Container>
             <Container1>
@@ -19,7 +17,7 @@ export const DashboardFavorites = () => {
             </Container1>
             <Container2>
                 <Icon icon="tabler:access-point" width="24" height="24" className="IconoDeLocalizacion"/>
-                <button onClick={togglePopup}>cAMBIAR</button>
+                <button onClick={togglePopup}>Change</button>
 
                 {isOpen && (
                     <>

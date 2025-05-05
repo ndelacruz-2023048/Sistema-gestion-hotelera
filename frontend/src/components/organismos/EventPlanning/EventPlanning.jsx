@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Tag } from '../../atomos/Tag'
 import { Label } from '../../atomos/Label'
 import { Icon } from "@iconify/react/dist/iconify.js";
+import ModalEvents from '../../../modal/modalEvents'
 import { EventPlanningLeft } from '../../moleculas/EventPlanningLeft';
 import { EventPlanningCenter } from '../../moleculas/EventPlanningCenter';
 import { EventPlanningRight } from '../../moleculas/EventPlanningRight';
@@ -15,6 +16,10 @@ export const EventPlanning = () => {
     const [isOptionsOpen, setIsOptionsOpen] = useState(false)
     const [currentEvent, setCurrentEvent] = useState(null)
     const {events, isLoading, error} = useEvents()
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen)
+    }
 
     const handleOpen = (eventDetails)=> {
         setIsOpen(!isOpen)
@@ -63,7 +68,13 @@ export const EventPlanning = () => {
                 <DeliveryDetails startDate={currentEvent.startDate} endDate={currentEvent.endDate} />
             )}
             {isOptionsOpen && <Methods />}
-            <Button>+ Agregar Evento</Button>
+            
+            <Button onClick={togglePopup}>+ Agregar Evento</Button>
+            {isOpen && (
+                    <>
+                        <ModalEvents togglePopup={togglePopup}/>
+                    </>
+            )}
 
             {/* <Tag variant={'blue'}>Integrations</Tag>
             <Tag variant={'red'}>Marketing & Sales</Tag>
@@ -76,7 +87,6 @@ export const EventPlanning = () => {
 const EventWrapper = styled.div`
     margin-left: 200px;
 `
-
 const EventCard = styled.div`
     background-color: ${({theme})=>theme.colorBackground};
     border-radius: 5px 5px 5px 5px;
