@@ -8,7 +8,7 @@ en los hoteles registrados en la plataforma.
 
 ## Autenticacion
 
-Usuario: cegomez1@gmail.com
+Usuario: CGomeza o cegomez1@gmail.com
 password: 4DM1NH0TEL&25
 
 
