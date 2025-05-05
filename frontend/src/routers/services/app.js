@@ -12,7 +12,7 @@ const apiClient = axios.create(
 
 export const registerRequest = async(user)=> {
     try {
-        return await apiClient.post('/register', user)
+        return await apiClient.post('/auth/register', user)
     } catch (e) {
         return {
             error: true,
@@ -23,7 +23,7 @@ export const registerRequest = async(user)=> {
 
 export const loginRequest = async(user) => {
     try {
-        return await apiClient.post('/login', user)
+        return await apiClient.post('/auth/login', user)
     } catch (e) {
         return {
             error: true,
@@ -34,7 +34,7 @@ export const loginRequest = async(user) => {
 
 export const logoutRequest = async()=> {
     try {
-        return await apiClient.post('/logout')
+        return await apiClient.post('/auth/logout')
     } catch (e) {
         return {
             error: true,
@@ -44,3 +44,13 @@ export const logoutRequest = async()=> {
 }
 
 //Event methods
+export const eventGetRequest = async()=> {
+    try {
+        return await apiClient.get('/events/list')
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

@@ -1,25 +1,15 @@
-import React, { useState } from 'react'
-import { registerRequest } from '../routers/services/app'
+import {useState, useEffect} from 'react'
+import { eventGetRequest } from '../routers/services/app'
 import toast from 'react-hot-toast'
 
-export const useRegister = ()=> {
+export const useEvents = () => {
+    const [events, setEvents] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
 
-    const register = async(name, surname, address, mobilePhone, country, username, email, password)=> {
+    const getEvents = async() => {
         setIsLoading(true)
-        const user = {
-            name,
-            surname,
-            address,
-            mobilePhone,
-            country,
-            username,
-            email,
-            password
-        }
-
-        const response = await registerRequest(user)
+        const response = await eventGetRequest()
         setIsLoading(false)
 
         if(response.error){
@@ -33,17 +23,22 @@ export const useRegister = ()=> {
             return toast.error(
                 response?.e?.response?.data?.msg ||
                 response?.e?.data?.msg ||
-                'Error al intentar Registrate'
+                'Error al intentar obtener los datos'
             )
         }
         setError(false)
-        return toast.success(`${user.name}, Has sido registrado exitosamente`)
+        setEvents(response?.data?.events || []);
+        // return toast.success('Datos traidos con exito')
     }
 
+    useEffect(() => {
+        getEvents(); // Llama a getEvents al montar el componente
+    }, [])
     return {
-        register,
+        getEvents,
         isLoading,
         error,
-        setError
+        setError,
+        events
     }
 }

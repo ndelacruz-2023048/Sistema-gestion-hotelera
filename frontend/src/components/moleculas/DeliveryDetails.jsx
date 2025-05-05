@@ -61,22 +61,31 @@ const Checkmark = styled.span`
     margin-right: 5px;
 `;
 
-export const DeliveryDetails = () => {
+export const DeliveryDetails = ({ startDate, endDate }) => {
+    const formatDate = (date) => {
+        if (date) {
+          return new Date(date).toLocaleString(); // Formatea la fecha localmente
+        }
+        return 'N/A';
+    }
+
+    console.log(startDate, endDate);
+    
     return (
         <DeliveryDetailsWrapper>
         <DateInfo>
             <Bullet />
-            <span>15 December, 2019</span>
+            <span>{formatDate(startDate)}</span>
         </DateInfo>
         <DateInfo>
             <Checkmark>✓</Checkmark>
-            <span>20 December, 2019</span>
+            <span>Inicia</span>
         </DateInfo>
         <DateInfo>
-            <span>Started date</span>
+            <span>{formatDate(endDate)}</span>
         </DateInfo>
         <DateInfo>
-            <span>Estimated delivery</span>
+            <span>Finzaliza</span>
         </DateInfo>
         </DeliveryDetailsWrapper>
     );

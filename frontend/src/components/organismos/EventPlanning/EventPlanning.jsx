@@ -5,37 +5,63 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { EventPlanningLeft } from '../../moleculas/EventPlanningLeft';
 import { EventPlanningCenter } from '../../moleculas/EventPlanningCenter';
 import { EventPlanningRight } from '../../moleculas/EventPlanningRight';
-import styled from 'styled-components';
 import {DeliveryDetails} from '../../moleculas/DeliveryDetails';
 import { Methods } from '../../moleculas/Methods';
+import { useEvents } from '../../../hooks/useEvents'
+import styled from 'styled-components';
 
 export const EventPlanning = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isOptionsOpen, setIsOptionsOpen] = useState(false)
+    const [currentEvent, setCurrentEvent] = useState(null)
+    const {events, isLoading, error} = useEvents()
 
-    const handleOpen = ()=> {
+    const handleOpen = (eventDetails)=> {
         setIsOpen(!isOpen)
         setIsOptionsOpen(false)
+        setCurrentEvent(eventDetails)
     }
 
     const handleOptionsClick = () => {
         setIsOptionsOpen(!isOptionsOpen)
         setIsOpen(false)
-    };
+        setCurrentEvent(null)
+    }
+
+    if (isLoading) {
+        return <p>Cargando eventos...</p>;
+    }
+    
+    if (error) {
+        return <p>Error al cargar los eventos: {error}</p>;
+    }
     return (
         <EventWrapper>
-            <EventCard>
-                <EventPlanningLeft
-                    icon={"tdesign:task"}
-                    textLines={["Increase confidence with", "TrustPilot reviews"]}
-                    variant={'gray'}
-                    children={'Custom Task'}
-                />
-                <EventPlanningCenter onDeliveryClick={handleOpen}/>
-                <EventPlanningRight onOptionsClick={handleOptionsClick}/>
-            </EventCard>
+            {events.length > 0 ? (
+                events.map(event => (
+                <EventCard>
+                    <EventPlanningLeft
+                        icon={"tdesign:task"}
+                        textLines={[event.name, event.description]}
+                        children={event.organizer}
+                    />
+                    <EventPlanningCenter 
+                        price={event.price}
+                        designated={event.designated}
+                        startDate={event.startDate}
+                        endDate={event.endDate}
+                        onDeliveryClick={() => handleOpen({ startDate: event.startDate, endDate: event.endDate })}
+                    />
+                    <EventPlanningRight onOptionsClick={handleOptionsClick}/>
+                </EventCard>
+                ))
+            ) : (
+                <p>No hay Nada</p>
+            )}
 
-            {isOpen && <DeliveryDetails />}
+            {isOpen && currentEvent && ( // Renderiza DeliveryDetails solo si isOpen es true y currentEvent tiene un valor
+                <DeliveryDetails startDate={currentEvent.startDate} endDate={currentEvent.endDate} />
+            )}
             {isOptionsOpen && <Methods />}
             <Button>+ Agregar Evento</Button>
 
