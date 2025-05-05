@@ -11,6 +11,7 @@ import HotelRoutes from '../src/hotel/hotel.routes.js'
 import RoomRoutes from '../src/room/room.routes.js'
 import RoomDetailsRoutes from '../src/RoomDetails/roomDetails.routes.js'
 import RoomViewRoutes from '../src/roomView/roomView.routes.js'
+import eventRoutes from '../src/event/event.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
 
 const configs = (app) =>{
@@ -29,8 +30,9 @@ const configs = (app) =>{
 }
 
 const routes = (app) =>{
-    app.use('/v1/hotelhavenis', authRoutes)
-    app.use('/v1/hotelhavenis', userRoutes)
+    app.use('/v1/hotelhavenis/auth', authRoutes)
+    app.use('/v1/hotelhavenis/user', userRoutes)
+    app.use('/v1/hotelhavenis/events', eventRoutes)
     app.use('/v1/hotelRoutes', HotelRoutes)
     app.use('/v1/roomRoutes', RoomRoutes)
     app.use('/v1/roomDetailsRoutes', RoomDetailsRoutes)

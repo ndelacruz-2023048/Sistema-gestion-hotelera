@@ -1,8 +1,31 @@
-import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { EventSection } from '../organismos/EventsHotel/EventsSection';
+import { Icon } from '@iconify/react/dist/iconify.js';
+
+export const Methods = () => {
+    const [open, setOpen] = useState(false)
+    const toggleEventSection = ()=> {
+        setOpen(!open)
+    }
+
+    return (
+        <Wrapper>
+            <Option onClick={toggleEventSection}>
+                <Icon icon="line-md:edit-filled" width="24" height="24" />
+                Edit
+            </Option>
+            <Option>
+                <Icon icon="typcn:delete" width="24" height="24" />
+                Delete
+            </Option>
+            {open && <EventSection/>}
+        </Wrapper>
+    )
+}
 
 const Wrapper = styled.div`
-  position: absolute;
+    position: absolute;
     bottom: calc(100% + 10px); /* Se coloca encima del disparador */
     left: 90%;
     top: 180px;
@@ -31,18 +54,9 @@ const Wrapper = styled.div`
 `;
 
 const Option = styled.div`
-  padding: 8px 16px;
-  cursor: pointer;
-  &:hover {
-    background-color: #f0f0f0;
-  }
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
 `;
-
-export const Methods = () => {
-  return (
-    <Wrapper>
-      <Option>Edit</Option>
-      <Option>Delete</Option>
-    </Wrapper>
-  );
-};

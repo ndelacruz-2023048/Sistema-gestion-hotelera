@@ -1,31 +1,47 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose"
 
-const eventoSchema = new Schema({
-  hotel: { 
-    type: Schema.Types.ObjectId, 
-    ref: 'Hotel', 
-    required: true 
-},
-  name: { 
-    type: String, 
-    required: true 
-},
-  description:{ 
-    type: String
-},
-  dateStart: { 
-    type: Date, 
-    required: true 
-},
-  startEnd: { 
-    type: Date, 
-    required: true 
-},
-  typeEvent: String,
-  state: { 
-    type: String, 
-    enum: ['programado', 'cancelado', 'finalizado'], 
-    default: 'programado' }
-});
+const eventSchema = Schema(
+  {
+    name: {
+      type: String
+    },
+    description: {
+      type: String
+    },
+    startDate: {
+      type: Date
+    },
+    endDate: {
+      type: Date
+    },
+    location: {
+      type: String
+    },
+    organizer: {
+      type: String
+    },
+    designated: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    capacity: {
+      type: Number,
+      min: 1
+    },
+    price: {
+      type: Number,
+      min: 0,
+      default: 0
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  },
+  {
+      versionKey: false,
+      timestamps: true
+  }
+)
 
-export default model('Evento', eventoSchema);
+export default model('Event', eventSchema)

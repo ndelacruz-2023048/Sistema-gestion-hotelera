@@ -1,22 +1,54 @@
 import React from 'react'
 import styled from 'styled-components'
-import { EventSection } from '../organismos/EventsHotel/EventsSection'
-import photo from '../../assets/photoProfile.avif'
+//import photo from '../../assets/photoProfile.avif'
+import { generateInitialsAvatar } from '../../utils/GenerateInitialAvatar'
 
-export const EventPlanningCenter = ({ onDeliveryClick }) => {
+const calculateDuration = (startDate, endDate) => {
+    if (!startDate || !endDate) {
+        return 'N/A';
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const difference = end.getTime() - start.getTime(); // Diferencia en milisegundos
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    let durationString = '';
+    if (days > 0) {
+        durationString += `${days} día${days > 1 ? 's' : ''}`;
+    }
+    if (hours > 0) {
+        if (durationString) {
+            durationString += ', ';
+        }
+        durationString += `${hours} hora${hours > 1 ? 's' : ''}`;
+    }
+
+    return durationString || 'Menos de una hora';
+}
+
+export const EventPlanningCenter = ({ price, designated, startDate, endDate, onDeliveryClick }) => {
+    const duration = calculateDuration(startDate, endDate)
     return (
         <Wrapper>
             <TextArea>
                 <Text>
-                    <Label>$99.00 (1 credit)</Label>
+                    <Label>${price ? price.toFixed(2) : 'N/A'} (1 persona)</Label>
                     <SubText>Task Price</SubText>
                 </Text>
-                <SubTextType>Delivery: <Delivery onClick={onDeliveryClick}>within 5 days</Delivery></SubTextType>
+                <SubTextType>Dura: <Delivery onClick={() => onDeliveryClick({ startDate, endDate })}>{duration}</Delivery></SubTextType>
             </TextArea>
             <DataArea>
-                <Img src={photo}></Img>
+                {designated?.profilePicture ? (
+                    <Img src={designated.profilePicture}/>
+                ) : (
+                    designated && generateInitialsAvatar(designated.name, designated.surname)
+                )}
+                {/* <Img src={photo}></Img> */}
                 <Text>
-                    <Label>My name</Label>
+                    <Label>{designated?.name ? `${designated.name} ${designated.surname || ''}` : 'Sin asignar'}</Label>
                     <SubText>Assigned to</SubText>
                 </Text>
             </DataArea>

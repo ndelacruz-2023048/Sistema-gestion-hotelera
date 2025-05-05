@@ -3,7 +3,15 @@ import { Tag } from '../atomos/Tag'
 import { Icon } from "@iconify/react/dist/iconify.js";
 import styled from 'styled-components';
 
-export const EventPlanningLeft = ({icon, variant, textLines, children}) => {
+export const EventPlanningLeft = ({icon, textLines, children}) => {
+    const getRandomColorVariant = () => {
+        const colors = ['blue', 'red', 'gray', 'green', 'purple']; // Añade más colores si quieres
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+    }
+
+    const varianteRandom = getRandomColorVariant()
+
     return (
         <Wrapper>
             <Icon icon={icon} className='Icon'/>
@@ -11,7 +19,7 @@ export const EventPlanningLeft = ({icon, variant, textLines, children}) => {
                 {textLines && textLines.map((line, index) => (
                     <Label key={index}>{line}</Label>
                 ))}
-                <Tag variant={variant}>{children}</Tag>
+                <Tag variant={varianteRandom}>{children}</Tag>
             </Text>
         </Wrapper>
     )
