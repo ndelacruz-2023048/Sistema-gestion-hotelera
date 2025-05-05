@@ -1,0 +1,82 @@
+[
+  {
+    "roomNumber": "2",
+    "furniture": "Camas, muebles, estufa, mesas_plegables",
+    "tecnologie": "TV, aire_acondicionado, Cafeteras, refrigeradores",
+    "bathroom": "Retrete, ducha, yacusi",
+    "wifi": "Gratis",
+    "food": "Servicio al dormitorio"
+  },
+  {
+    "roomNumber": "3",
+    "furniture": "Cama King, escritorio, sillón",
+    "tecnologie": "Smart TV, Alexa",
+    "bathroom": "Ducha, secador de cabello",
+    "wifi": "Alta velocidad",
+    "food": "Desayuno continental"
+  },
+  {
+    "roomNumber": "4",
+    "furniture": "Camas dobles, closet, mini bar",
+    "tecnologie": "TV cable, aire acondicionado",
+    "bathroom": "Ducha, retrete",
+    "wifi": "Estándar",
+    "food": "Buffet incluido"
+  },
+  {
+    "roomNumber": "5",
+    "furniture": "Litera, escritorio, silla",
+    "tecnologie": "TV",
+    "bathroom": "Retrete compartido",
+    "wifi": "Gratis",
+    "food": "No disponible"
+  },
+  {
+    "roomNumber": "6",
+    "furniture": "Cama Queen, tocador, lámparas",
+    "tecnologie": "TV, Cafetera, Bluetooth speaker",
+    "bathroom": "Jacuzzi, ducha de lujo",
+    "wifi": "Alta velocidad",
+    "food": "Menú gourmet"
+  },
+  {
+    "roomNumber": "7",
+    "furniture": "Cama individual, mesa de noche",
+    "tecnologie": "TV, ventilador",
+    "bathroom": "Ducha",
+    "wifi": "Gratis",
+    "food": "Desayuno ligero"
+  },
+  {
+    "roomNumber": "8",
+    "furniture": "Cama doble, armario, espejo",
+    "tecnologie": "Smart TV, mini refrigerador",
+    "bathroom": "Ducha, retrete",
+    "wifi": "Media velocidad",
+    "food": "Room service"
+  },
+  {
+    "roomNumber": "9",
+    "furniture": "Cama King, muebles rústicos",
+    "tecnologie": "Pantalla curva, Chromecast",
+    "bathroom": "Jacuzzi, bidet, ducha",
+    "wifi": "Premium",
+    "food": "Desayuno + cena"
+  },
+  {
+    "roomNumber": "10",
+    "furniture": "Sofá cama, mueble multiusos",
+    "tecnologie": "TV, consola de videojuegos",
+    "bathroom": "Ducha, retrete",
+    "wifi": "Gratis",
+    "food": "Comida rápida"
+  },
+  {
+    "roomNumber": "11",
+    "furniture": "Cama doble, escritorio moderno",
+    "tecnologie": "TV 4K, Wi-Fi Mesh",
+    "bathroom": "Retrete, ducha con hidromasaje",
+    "wifi": "Ultra rápida",
+    "food": "Servicio personalizado"
+  }
+]

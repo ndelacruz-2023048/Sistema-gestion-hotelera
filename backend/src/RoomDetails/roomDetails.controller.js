@@ -1,22 +1,22 @@
-import Hotel from '../hotel/hotel.model.js'
+import RoomDetails from '../RoomDetails/roomDetails.model.js'
 
-export const getAllHotels = async(req, res) => {
+export const getAllRooms = async(req, res) => {
     try {
-        const hotels = await Hotel.find()
+        const room = await RoomDetails.find()
 
-        if(hotels.length === 0){
+        if(room.length === 0){
             return res.status(404).send(
                 {
                     success: false,
-                    message: 'Hotels not found'
+                    message: 'Rooms not found'
                 }
             )
         }
         return res.send(
             {
                 success: true,
-                message: 'Hotels found:', 
-                hotels
+                message: 'Rooms found:', 
+                room
             }   
         )
     } catch (e) {
@@ -30,16 +30,16 @@ export const getAllHotels = async(req, res) => {
     }
 }
 
-export const addNewHotel = async(req, res) => {
+export const addNewRoom = async(req, res) => {
     try {
         let data = req.body
-        let hotel = new Hotel(data)
-        await hotel.save()
+        let room = new RoomDetails(data)
+        await room.save()
         return res.status(200).send(
             {
                 success: true,
-                message: `Hotel created successfully`,
-                hotel
+                message: `Room created successfully`,
+                room
             }
         )
     } catch (e) {

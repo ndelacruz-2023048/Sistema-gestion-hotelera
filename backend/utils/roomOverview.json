@@ -1,0 +1,112 @@
+[
+  {
+    "nameOfTheRoom": "Habitación 101",
+    "typeRoom": "Premium",
+    "capacity": { "childrens": 2, "adults": 1 },
+    "squareMeters": 35,
+    "description": "Vista al mar, cama king y jacuzzi privado.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-03", "2025-05-07"]
+    }
+  },
+  {
+    "nameOfTheRoom": "Suite Ejecutiva",
+    "typeRoom": "Suite",
+    "capacity": { "childrens": 1, "adults": 2 },
+    "squareMeters": 45,
+    "description": "Suite con escritorio, minibar y vista panorámica.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-10"]
+    }
+  },
+  {
+    "nameOfTheRoom": "Deluxe 301",
+    "typeRoom": "Deluxe",
+    "capacity": { "childrens": 0, "adults": 2 },
+    "squareMeters": 50,
+    "description": "Amplia habitación con baño privado y terraza.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-15", "2025-05-16"]
+    }
+  },
+  {
+    "nameOfTheRoom": "Estandar 104",
+    "typeRoom": "Estandar",
+    "capacity": { "childrens": 2, "adults": 2 },
+    "squareMeters": 25,
+    "description": "Habitación sencilla con baño compartido.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": []
+    }
+  },
+  {
+    "nameOfTheRoom": "Semipremium 205",
+    "typeRoom": "Semipremium",
+    "capacity": { "childrens": 1, "adults": 3 },
+    "squareMeters": 38,
+    "description": "TV de 55'', ducha de hidromasaje y escritorio.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-05", "2025-05-06"]
+    }
+  },
+  {
+    "nameOfTheRoom": "Penthouse Azul",
+    "typeRoom": "Penthouse",
+    "capacity": { "childrens": 2, "adults": 4 },
+    "squareMeters": 70,
+    "description": "Penthouse con cocina, sala y vista de 360°.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-08"]
+    }
+  },
+  {
+    "nameOfTheRoom": "Estandar 002",
+    "typeRoom": "Estandar",
+    "capacity": { "childrens": 0, "adults": 1 },
+    "squareMeters": 20,
+    "description": "Ideal para una noche de descanso económico.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-20"]
+    }
+  },
+  {
+    "nameOfTheRoom": "Suite Familiar",
+    "typeRoom": "Suite",
+    "capacity": { "childrens": 3, "adults": 2 },
+    "squareMeters": 60,
+    "description": "Espaciosa, perfecta para familias numerosas.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-12", "2025-05-13"]
+    }
+  },
+  {
+    "nameOfTheRoom": "Premium Relax",
+    "typeRoom": "Premium",
+    "capacity": { "childrens": 1, "adults": 2 },
+    "squareMeters": 40,
+    "description": "Jacuzzi doble, vista al lago y vino de cortesía.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": []
+    }
+  },
+  {
+    "nameOfTheRoom": "Deluxe Twin",
+    "typeRoom": "Deluxe",
+    "capacity": { "childrens": 2, "adults": 2 },
+    "squareMeters": 42,
+    "description": "Dos camas grandes, balcón privado y desayuno incluido.",
+    "disponibility": {
+      "fechas_disponibles": "Resto del mes",
+      "fechas_ocupadas": ["2025-05-01", "2025-05-02"]
+    }
+  }
+]
