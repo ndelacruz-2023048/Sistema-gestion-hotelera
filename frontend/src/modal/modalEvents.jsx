@@ -7,7 +7,7 @@ import { useEvent } from "../hooks/useEvent";
 
 function ModalEvents({ togglePopup }) {
   const { events } = useEvent()
-    const { register, handleSubmit, control, formState: { errors }, reset } = useForm()
+    const { register, handleSubmit, control, formState: { errors, isValid }, reset } = useForm()
 
     const onSubmit = async (data)=> {
       console.log('a', data);
@@ -17,7 +17,7 @@ function ModalEvents({ togglePopup }) {
       await events(data, user, start, end)
       reset()
     }
-    // const buttonDisabled = !isValid
+    const buttonDisabled = !isValid
 
     return (
       <Container>
@@ -38,7 +38,7 @@ function ModalEvents({ togglePopup }) {
           <Line></Line>
           <Blue>
             <Clip icon="flowbite:paper-clip-outline" />
-            <button type="submit" form="formData" >Enviar</button>
+            <button type="submit" form="formData" disabled={buttonDisabled}>Enviar</button>
           </Blue>
         </PopupStyle>
       </Container>
