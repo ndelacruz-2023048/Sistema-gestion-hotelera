@@ -14,9 +14,9 @@ const hotelSchema = new Schema({
   price:{
     type: Schema.Types.Decimal128,
     required: true },
-  /* admin: {
+  /* user: {
     type: Schema.Types.ObjectId,
-    ref: 'Usuario',
+    ref: 'User',
     required: true } */
   image: {
     type: String,
