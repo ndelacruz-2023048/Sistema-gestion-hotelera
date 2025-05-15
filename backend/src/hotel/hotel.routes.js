@@ -1,7 +1,8 @@
 import { Router } from 'express'
 import { 
     addNewHotel,
-    getAllHotels
+    getAllHotels,
+    updateHotel
 } from './hotel.controller.js'
 
 /** 
@@ -58,9 +59,14 @@ import {
  *         content:
  *           application/json:  
  *             schema:
- *               type: array
- *               items:
- *                  $ref: '#/components/schemas/Hotel'
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Lista de todos los hoteles"
  *         links:
  *              GetUserById:
  *                operationId: getUser
@@ -82,6 +88,38 @@ import {
  *       
 */
 
+/**
+ * @swagger
+ * /v1/hotelhavenis/hotels/addHotels:
+ *   post:
+ *     summary: Agrega un nuevo hotel
+ *     tags: [Hotel]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Hotel'
+ *     responses:
+ *       200:
+ *         description: Hotel creado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Hotel created successfully
+ */
+
+/**
+ * @swagger
+ * 
+ */
 
 
 const api = Router()
@@ -93,7 +131,12 @@ api.get(
 
 api.post(
     '/addHotels',
-    addNewHotel
+    addNewHotel    
+)
+
+api.put(
+    '/updateHotel/:id',
+    updateHotel
 )
 
 export default api
