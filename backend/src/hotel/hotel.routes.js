@@ -116,11 +116,6 @@ import {
  *                   example: Hotel created successfully
  */
 
-/**
- * @swagger
- * 
- */
-
 
 const api = Router()
 
