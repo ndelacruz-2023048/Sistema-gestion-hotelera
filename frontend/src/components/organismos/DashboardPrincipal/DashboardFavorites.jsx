@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js"
 import { useState } from "react"
 import styled from "styled-components"
 import { useThemeStore } from "../../../store/ThemeStore"
-import ModalEvents from '../../../modal/modalEvents'
+import ModalEvents from "../modal/modalEvents"
 
 export const DashboardFavorites = () => {
     const [isOpen, setIsOpen] = useState(false);
