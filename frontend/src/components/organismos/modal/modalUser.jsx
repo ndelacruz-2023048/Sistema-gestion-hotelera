@@ -2,8 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import photoProfile from '../../../assets/photoProfile.avif'
 import { Icon } from '@iconify/react/dist/iconify.js'
+import { useNavigate } from 'react-router'
+import { useLogout } from '../../../hooks/useLogout'
 
 export const ModalUser = () => {
+  const navigate = useNavigate()
+  const { logout, isLoadingLogout} = useLogout()
+
+  const handleSettingsClick = () => {
+    navigate('/user');
+  }
+
+  const handleLogoutClick  = ()=> {
+   logout()
+  }
   return (
     <Container>
       <Section>
@@ -16,15 +28,16 @@ export const ModalUser = () => {
         <Cuenta>
           <Lista>
             <Dato>
-              <BTN>
+              <BTN onClick={handleSettingsClick}>
                 <Icon icon="majesticons:user" className='Leave'/>
-                Settings
+                Details
               </BTN>
             </Dato>
             <Dato>
-              <BTN>
+              <BTN onClick={handleLogoutClick}>
                 <Icon icon="ri:logout-box-r-line" className='Leave'/>
                 Log Out
+                {isLoadingLogout && <div>Cerrando sesión...</div>}
               </BTN>
             </Dato>
           </Lista>
