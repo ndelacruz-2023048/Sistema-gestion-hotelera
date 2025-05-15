@@ -4,69 +4,69 @@
     "address": "19 Avenida zona 17",
     "category": "premium",
     "price": 1999.99,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg"
   },
   {
     "name": "Hotel El Encanto",
     "address": "5a Avenida zona 10",
     "category": "estandar",
     "price": 799.00,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg"
   },
   {
     "name": "Hotel Paraíso Azul",
     "address": "Calle Reforma zona 9",
     "category": "premium",
     "price": 1599.50,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg"
   },
   {
     "name": "Hotel Boutique Colonial",
     "address": "Centro Histórico zona 1",
     "category": "deluxe",
     "price": 2299.90,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
   },
   {
     "name": "Hotel Las Palmas",
     "address": "Avenida Bolívar zona 3",
     "category": "semipremium",
     "price": 1299.99,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
   },
   {
     "name": "Hotel Aurora del Lago",
     "address": "Zona Hotelera, Petén",
     "category": "suite",
     "price": 3499.00,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
   },
   {
     "name": "Hotel Noche Serena",
     "address": "Zona Viva zona 14",
     "category": "estandar",
     "price": 899.99,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
   },
   {
     "name": "Hotel Brisas del Mar",
     "address": "Puerto San José",
     "category": "deluxe",
     "price": 2899.50,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
   },
   {
     "name": "Hotel Villa Romántica",
     "address": "Antigua Guatemala",
     "category": "premium",
     "price": 1699.25,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
   },
   {
     "name": "Hotel Jardines del Edén",
     "address": "Quetzaltenango zona 3",
     "category": "semipremium",
     "price": 1399.75,
-    "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1746142150/eqvizuzmxsdnl6v2xsmv.jpg"
+    "image": "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
   }
 ]

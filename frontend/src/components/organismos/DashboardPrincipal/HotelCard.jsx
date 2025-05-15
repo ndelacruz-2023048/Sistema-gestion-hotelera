@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import styled from "styled-components"
 import Room from '../../../assets/Room.jpg'
-export const HotelCard = () => {
+export const HotelCard = ({imageHotel,nameHotel,addressHotel,priceHotel}) => {
     return (
         <Container>
             <WrapperCard>
@@ -13,15 +13,15 @@ export const HotelCard = () => {
                         <ContainerIconeStar>
                             <Icon icon="uis:favorite" className="iconoStar"/><br /><p className="p">4,44</p>
                         </ContainerIconeStar>
-                        <Imagen src={Room}/>
+                        <Imagen src={imageHotel}/>
                     </ContainerImage>
                     <ContainerSection>
                         <Section1>
-                            <Title>Individual Moderno House </Title>
-                            <Description>1903 St, LaSanta Alley, 21</Description> 
+                            <Title>{nameHotel}</Title>
+                            <Description>{addressHotel}</Description> 
                         </Section1>
                         <Section2>
-                            <Price>$ 1,099</Price>
+                            <Price>${priceHotel.$numberDecimal}</Price>
                             <Total>Total</Total>
                         </Section2>
                     </ContainerSection>

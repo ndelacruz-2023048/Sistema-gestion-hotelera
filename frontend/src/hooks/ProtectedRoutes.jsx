@@ -6,7 +6,7 @@ export const ProtectedRoutes =({children,accesBy})=>{
 
     if (loading) {
         // Muestra el mismo indicador de carga que en AuthContext
-        return <div>Cargando...</div>; // O un componente de carga consistente
+        // return <div>Cargando...</div>; // O un componente de carga consistente
     }
 
     if (accesBy === "non-authenticated") {
