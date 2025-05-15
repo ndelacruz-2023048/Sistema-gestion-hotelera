@@ -43,10 +43,33 @@ export const logoutRequest = async()=> {
     }
 }
 
+//User methods
+export const getUserRequest = async() => {
+    try {
+        return await apiClient.get('/user/list')
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
 //Event methods
 export const eventGetRequest = async()=> {
     try {
         return await apiClient.get('/events/list')
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
+export const newEventRequest = async(event)=> {
+    try {
+        return await apiClient.post('/events/new', event)
     } catch (e) {
         return {
             error: true,

@@ -10,7 +10,6 @@ export const DashboardFavorites = () => {
     const togglePopup = () => {
         setIsOpen(!isOpen)
     }
-    const {setTheme}= useThemeStore()
     return (
         <Container>
             <Container1>
@@ -19,7 +18,7 @@ export const DashboardFavorites = () => {
             </Container1>
             <Container2>
                 <Icon icon="tabler:access-point" width="24" height="24" className="IconoDeLocalizacion"/>
-                <button onClick={togglePopup}>cAMBIAR</button>
+                <button onClick={togglePopup}>Change</button>
 
                 {isOpen && (
                     <>

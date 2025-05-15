@@ -2,10 +2,21 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import {Description} from './modalEvents/Description'
+import { useUsers } from "../../../hooks/useUsers";
 
 function ModalEvents({ togglePopup }) {
     const [selectedOption, setSelectedOption] = useState(null)
+    const [designatedUser, setDesignatedUser] = useState(null)
+    const { users, isLoading, error } = useUsers()
+    if (isLoading) {
+      return <p>Cargando eventos...</p>;
+    }
+    
+    if (error) {
+        return <p>Error al cargar los eventos: {error}</p>;
+    }
     return (
+      <Container>
         <PopupStyle>
           <Up>
             <OptionRow>
@@ -50,7 +61,11 @@ function ModalEvents({ togglePopup }) {
           </Up>
           <Line></Line>
           <Cont>
-            <Description/>
+            <Description
+              users={users}
+              designatedUser={designatedUser}
+              setDesignatedUser={setDesignatedUser}
+            />
           </Cont>
           <Line></Line>
           <Blue>
@@ -58,10 +73,24 @@ function ModalEvents({ togglePopup }) {
             <button>Enviar</button>
           </Blue>
         </PopupStyle>
+      </Container>
     )
 }
 
 export default ModalEvents
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  backdrop-filter: blur(25px);
+  height: 100vh;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  right: 0;
+`
 
 const PopupStyle = styled.div`
   position: fixed;
