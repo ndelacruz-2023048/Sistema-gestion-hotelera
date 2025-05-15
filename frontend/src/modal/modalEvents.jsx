@@ -1,11 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
-import {Description} from './modalEvents/Description'
+import {DataSection} from './modalEvents/DataSection'
 import { useUsers } from "../hooks/useUsers";
 
 function ModalEvents({ togglePopup }) {
-    const [selectedOption, setSelectedOption] = useState(null)
     const [designatedUser, setDesignatedUser] = useState(null)
     const { users, isLoading, error } = useUsers()
     if (isLoading) {
@@ -19,49 +18,12 @@ function ModalEvents({ togglePopup }) {
       <Container>
         <PopupStyle>
           <Up>
-            <OptionRow>
-              <OptionBox
-                isActive={selectedOption === "boda"}
-                onClick={() => setSelectedOption("boda")}
-              >
-                Boda
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "cumple"}
-                onClick={() => setSelectedOption("cumple")}
-              >
-                Cumpleaños
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "graduacion"}
-                onClick={() => setSelectedOption("graduacion")}
-              >
-                Graduacion
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "conf"}
-                onClick={() => setSelectedOption("conf")}
-              >
-                Conferencias
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "reuniones"}
-                onClick={() => setSelectedOption("reuniones")}
-              >
-                Reuniones
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "otros"}
-                onClick={() => setSelectedOption("otros")}
-              >
-                Otro
-              </OptionBox>
-            </OptionRow>
+            <label htmlFor="">Agregar un nuevo evento</label>
             <CloseIcon icon="mdi:close" onClick={togglePopup} />
           </Up>
           <Line></Line>
           <Cont>
-            <Description
+            <DataSection
               users={users}
               designatedUser={designatedUser}
               setDesignatedUser={setDesignatedUser}
@@ -142,21 +104,6 @@ const OptionRow = styled.div`
   padding: 10px;
   padding-bottom: 0px;
   margin-bottom: 0px;
-`
-
-const OptionBox = styled.div`
-  background-color: ${({theme})=>theme.bgSidebar});
-  color: ${(props) => (props.isActive ? "${({theme})=>theme.colorHover}" : "${({theme})=>theme.color}")};
-  padding: 10px 20px;
-  border-radius: 10px 10px 0 0;
-  border-bottom: ${(props) =>
-    props.isActive ? "5px solid rgb(0, 76, 255)" : "none"};
-  cursor: pointer;
-  transition: 0.5s;
-
-  &:hover {
-    background-color: ${({theme})=>theme.colorHover};
-  }
 `
 
 const Line = styled.div`

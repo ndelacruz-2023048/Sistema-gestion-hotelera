@@ -1,17 +1,24 @@
 //import { Icon } from "@iconify/react/dist/iconify.js"
 import styled from "styled-components"
 import { useRef, useState, useEffect } from "react"
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { es } from 'date-fns/locale';
 
-export const Description = ({users, designatedUser, setDesignatedUser})=> {
-    const [showDate, setShowDate] = useState(false)
-    const [activeComponent, setActiveComponent] = useState("description")
+import { Input2 } from "../../components/atomos/Input2"
+import { InputExtendible } from "../../components/atomos/InputExtendible";
 
+export const DataSection = ({users, designatedUser, setDesignatedUser})=> {
+    const [value, setValue] = useState(new Date());
     const dateRef = useRef(null)
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dateRef.current && !dateRef.current.contains(event.target)) {
-                setShowDate(false)
+                console.log('algo');
+                
             }
         }
 
@@ -24,33 +31,13 @@ export const Description = ({users, designatedUser, setDesignatedUser})=> {
     return(
         <Container>
             <Up>
-                <input type="number" placeholder="Invitados" className="count"/>
-                
-
-                <div ref={dateRef} style={{ position: "relative" }}>
-                    <Date onClick={() => setShowDate(!showDate)}>Horario</Date>
-                    {showDate && (
-                        <div style={{ position: "absolute", zIndex: 1 }}>
-                            <input type="date" style={Inputs} />
-                            <Time>
-                                <input type="time" style={Inputs} />
-                                <span>--</span>
-                                <input type="time" style={Inputs} />
-                            </Time>
-                        </div>
-                    )}
-                </div>
+                <Input2
+                    holder={'Titulo'}
+                />
             </Up>
             <Text>
-                <Title type="text" placeholder="Titulo" />
-                <Address type="text" placeholder="Direccion" />
-                <Desc placeholder="Descripción"></Desc>
-                
-            </Text>
-            
-            <Time>
-                    <SelectContainer>
-                        <select
+                <SelectContainer>
+                    <select
                             id="userSelector"
                             value={designatedUser}
                             onChange={(e) => setDesignatedUser(e.target.value)}
@@ -61,17 +48,47 @@ export const Description = ({users, designatedUser, setDesignatedUser})=> {
                                     {user.name} {user.surname}
                                 </option>
                             ))}
-                        </select>
-                        <select
-                            id="componentSelector"
-                            value={activeComponent}
-                            onChange={(e) => setActiveComponent(e.target.value)}>
-                            <option value="null" >Pago</option>
-                            <option value="dollar">USD</option>
-                            <option value="euro">EUR</option>
-                            <option value="quetzal">GTM</option>
-                        </select>
-                    </SelectContainer>
+                    </select>
+                    <div>
+                        <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={es}>
+                            <DateTimePicker
+                                label="Selecciona fecha y hora de inicio"
+                                value={value}
+                                onChange={(newValue) => setValue(newValue)}
+                                renderInput={(params) => <TextField {...params} fullWidth />}
+                            />
+                        </LocalizationProvider>
+                        <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={es}>
+                            <DateTimePicker
+                                label="Selecciona fecha y hora de finalización"
+                                value={value}
+                                onChange={(newValue) => setValue(newValue)}
+                                renderInput={(params) => <TextField {...params} fullWidth />}
+                            />
+                        </LocalizationProvider>
+                    </div>
+                    <div>
+                        <InputExtendible
+                            multiline
+                            placeholder={'Descripción breve'}
+                            rows={3}
+                            
+                        />
+                    </div>
+                    <Input2
+                        holder={'Lugar'}
+                    />
+                    <Input2
+                        holder={'Capacidad'}
+                        type={'number'}
+                    />
+                    <Input2
+                        holder={'Precio'}
+                        type={'text'}
+                    />
+                </SelectContainer>
+            </Text>
+            <Time>
             </Time>
         </Container>
     )
@@ -116,7 +133,7 @@ const Inputs = {
     border: "1px solid rgb(165, 165, 165)",
 }
 
-const Date = styled.button`
+const Dates = styled.button`
     height: 30px;
     padding: 5px;
     color: rgb(165, 165, 165);
@@ -171,7 +188,7 @@ const Desc = styled.textarea`
 
 const SelectContainer = styled.div`
     margin-left: 3%;
-
+    overflow-y: scroll;
     select{
         height: 30px;
         padding: 5px;

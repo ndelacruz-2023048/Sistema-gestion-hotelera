@@ -18,7 +18,7 @@ const eventSchema = Schema(
       type: String
     },
     organizer: {
-      type: String
+      type: String //Persona logueada "token" o el nombre del hotel?
     },
     designated: {
       type: Schema.Types.ObjectId,
