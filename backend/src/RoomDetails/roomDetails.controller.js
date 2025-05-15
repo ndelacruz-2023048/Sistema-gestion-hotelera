@@ -12,7 +12,7 @@ export const getAllRooms = async(req, res) => {
                 }
             )
         }
-        return res.send(
+        return res.status(200).send(
             {
                 success: true,
                 message: 'Rooms found:', 

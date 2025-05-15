@@ -11,30 +11,50 @@ const api = Router()
  *       type: object
  *       required:
  *         - name
- *         - address
- *         - category
+ *         - description
+ *         - startDate
+ *         - endDate
+ *         - location
+ *         - organizer
+ *         - designated
+ *         - capacity
  *         - price
- *         - image
+ *         - createdAt
  *       properties:
  *         id:
  *           type: string
- *           description: El ID auto-generado del hotel
+ *           description: El ID auto-generado del evento
  *         name:
  *           type: string
- *           description: El nombre del hotel
- *         address:
+ *           description: El nombre del evento
+ *         description:
  *           type: string
- *           description: La dirección del hotel
- *         category:
+ *           description: La descripción del evento
+ *         startDate:
+ *           type: date
+ *           description: Fecha y hora de inicio del evento
+ *         endDate:
+ *           type: date
+ *           description: Fecha y hora de finalización del evento 
+ *         location:
+ *           type: string   
+ *           description:  Ubicación del salon del evento 
+ *         organizer:
  *           type: string
- *           description: La categoría del hotel
+ *           description: Organizador del evento
+ *         designated: 
+ *           type: Schema.Types.ObjectId
+ *           description: Designado del evento 
+ *         capacity:
+ *           type: number
+ *           description: Capacidad del evento
  *         price:
  *           type: number
- *           description: El precio por noche
- *         image:
- *           type: string   
- *           description: La imagen del hotel
- *         
+ *           description: Precio del evento
+ *         createdAt:
+ *           type: date
+ *           description: Fecha de cuando se hiso la reservación del evento
+ * 
  */
 
 /**
@@ -44,37 +64,79 @@ const api = Router()
  *   description: The events managment api
  */
 
+/**
+ * @swagger
+ * /v1/hotelhavenis/events/list:
+ *   get:
+ *     summary: Retorna la lista de todos los eventos
+ *     tags: [Events]
+ *     responses:
+ *       200:
+ *         description: Lista de todos los eventos
+ *         content:
+ *           application/json:  
+ *             schema:
+ *               type: array
+ *               items:
+ *                  $ref: '#/components/schemas/Events' 
+ *       404:
+ *         description: No se encontraron eventos
+ *         content:
+ *           application/json:  
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: 
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Not event found
+ *       400:
+ *         description: Error general
+ *         content:
+ *           application/json:  
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: 
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: General error when list Events
+*/
 
 /**
  * @swagger
- * /v1/hotelhavenis/hotels/new:
- *   get:
- *     summary: Retorna la lista de todos los hoteles
- *     tags: [Events]
- *     responses:
- *       200:
- *         description: Lista de todos los hoteles
- *         content:
- *           application/json:  
- *             schema:
- *               type: array
- *               items:
- *                  $ref: '#/components/schemas/Events' 
- * 
+ * /v1/hotelhavenis/events/new:
  *   post:
- *     summary: Retorna la lista de todos los hoteles
+ *     summary: Crea un nuevo evento
  *     tags: [Events]
  *     responses:
  *       200:
- *         description: Lista de todos los hoteles
+ *         description: Crea un nuevo evento
  *         content:
  *           application/json:  
  *             schema:
  *               type: array
  *               items:
- *                  $ref: '#/components/schemas/Events' 
+ *                  $ref: '#/components/schemas/Events'
+ *       400:
+ *         description: Error general
+ *         content:
+ *           application/json:  
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: 
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: General error when list Events
+ *
 */
-
 
 api.post('/new', newEvent)
 api.get('/list', getAll)
