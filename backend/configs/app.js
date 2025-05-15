@@ -13,6 +13,8 @@ import RoomDetailsRoutes from '../src/RoomDetails/roomDetails.routes.js'
 import RoomViewRoutes from '../src/roomView/roomView.routes.js'
 import eventRoutes from '../src/event/event.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
+import swaggerUI from "swagger-ui-express"
+import swaggerJsDoc from "swagger-jsdoc"
 
 const configs = (app) =>{
     app.use(express.json())
@@ -29,15 +31,41 @@ const configs = (app) =>{
     app.use(limiter)
 }
 
+const optionsSwagger = {
+    definition:{
+        openapi:"3.0.0",
+        info:{
+            title:"Hotel Avenis API",
+            version:"0.0.0",
+            description:"A complete Hotel Managment API"
+        },
+        servers:[
+            {
+                url:"http://localhost:3000"
+            }
+        ],
+    },
+    apis:["./src/**/*.js"]
+}
+
+const docsApi = (app)=>{
+    const specs = swaggerJsDoc(optionsSwagger)
+    app.use("/v1/docs",swaggerUI.serve,swaggerUI.setup(specs))
+}
+
+
+
 const routes = (app) =>{
     app.use('/v1/hotelhavenis/auth', authRoutes)
     app.use('/v1/hotelhavenis/user', userRoutes)
     app.use('/v1/hotelhavenis/events', eventRoutes)
-    app.use('/v1/hotelRoutes', HotelRoutes)
-    app.use('/v1/roomRoutes', RoomRoutes)
-    app.use('/v1/roomDetailsRoutes', RoomDetailsRoutes)
-    app.use('/v1/roomViewRoutes', RoomViewRoutes)
+    app.use('/v1/hotelhavenis/hotels', HotelRoutes)
+    app.use('/v1/hotelhavenis/rooms', RoomRoutes)
+    app.use('/v1/hotelhavenis/room-details', RoomDetailsRoutes)
+    app.use('/v1/hotelhavenis/room-view', RoomViewRoutes)
 }
+
+    
 
 
 export const initServer = ()=>{
@@ -45,6 +73,7 @@ export const initServer = ()=>{
     try{
         configs(app)
         routes(app)
+        docsApi(app)
         app.listen(process.env.PORT)
         console.log(`Server running in port: ${process.env.PORT}`)
     }catch(err){
