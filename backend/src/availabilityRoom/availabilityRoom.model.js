@@ -8,7 +8,7 @@ const facturaSchema = new Schema({
   },
   usuario: {
     type: Schema.Types.ObjectId,
-    ref: 'Usuario',
+    ref: 'User',
     required: [true, 'El usuario es obligatorio']
   },
   fecha_emision: {
