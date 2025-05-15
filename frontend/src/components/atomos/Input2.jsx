@@ -2,49 +2,34 @@ import styled from "styled-components"
 import propTypes from 'prop-types'
 
 export const Input2  = ({
-    field,
     holder, 
     type, 
-    value, 
-    change,
-    showErrMsg,
-    validateMsg,
-    blur,
-    textarea
+    textarea,
+    error, 
+    ...rest
 }) => {
-
-    const handleValueChange = (e)=> {
-        change(e.target.value, field)
-    }
-
-    const handleOnBlur = (e)=> {
-        blur(e.target.value, field)
-    }
-
     return (
         <InputWrapper>
             {
                 textarea ? (
                     <textarea
                         type={type}
-                        value={value}
+                        {...rest}
+                        error={error}
                         placeholder={holder}
-                        onChange={handleValueChange}
-                        onBlur={handleOnBlur}
                     />
                 ) : (
                     <StyledInput 
                         type={type}
-                        value={value}
+                        {...rest}
+                        error={error}
                         placeholder={holder}
-                        onChange={handleValueChange}
-                        onBlur={handleOnBlur}
                     />
                 )
             }
 
             <ErrorMsg>
-                {showErrMsg && validateMsg}
+                {error && <p>{error.message}</p>}
             </ErrorMsg>
         </InputWrapper>
     )
@@ -89,10 +74,7 @@ Input2.propTypes = {
     field: propTypes.string.isRequired,
     holder: propTypes.string.isRequired, 
     type: propTypes.string.isRequired, 
-    value: propTypes.string.isRequired, 
     change: propTypes.func.isRequired,
-    showErrMsg: propTypes.bool.isRequired,
-    validateMsg: propTypes.string,
     blur: propTypes.func.isRequired,
     textarea: propTypes.bool.isRequired
 }

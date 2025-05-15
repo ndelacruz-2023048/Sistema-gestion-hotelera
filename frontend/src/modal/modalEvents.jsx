@@ -1,19 +1,24 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import {DataSection} from './modalEvents/DataSection'
-import { useUsers } from "../hooks/useUsers";
+import { useForm } from 'react-hook-form'
+import { useEvent } from "../hooks/useEvent";
 
 function ModalEvents({ togglePopup }) {
-    const [designatedUser, setDesignatedUser] = useState(null)
-    const { users, isLoading, error } = useUsers()
-    if (isLoading) {
-      return <p>Cargando eventos...</p>;
+  const { events } = useEvent()
+    const { register, handleSubmit, control, formState: { errors }, reset } = useForm()
+
+    const onSubmit = async (data)=> {
+      console.log('a', data);
+      const user = data?.designated?.value
+      const start = data?.startDate.toISOString()
+      const end = data?.endDate.toISOString()
+      await events(data, user, start, end)
+      reset()
     }
-    
-    if (error) {
-        return <p>Error al cargar los eventos: {error}</p>;
-    }
+    // const buttonDisabled = !isValid
+
     return (
       <Container>
         <PopupStyle>
@@ -23,16 +28,17 @@ function ModalEvents({ togglePopup }) {
           </Up>
           <Line></Line>
           <Cont>
+            <form id="formData" onSubmit={handleSubmit(onSubmit)}></form>
             <DataSection
-              users={users}
-              designatedUser={designatedUser}
-              setDesignatedUser={setDesignatedUser}
+              register={register}
+              control={control}
+              errors={errors}
             />
           </Cont>
           <Line></Line>
           <Blue>
             <Clip icon="flowbite:paper-clip-outline" />
-            <button>Enviar</button>
+            <button type="submit" form="formData" >Enviar</button>
           </Blue>
         </PopupStyle>
       </Container>
@@ -125,17 +131,7 @@ const Blue = styled.div`
   align-items: center;
   border-radius: 0 0 10px 15px;
 
-  button {
-    height: 60%;
-    width: 20%;
-    font-size: 20px;
-    color: rgb(165, 165, 165);
-    padding: 10px;
-    margin-right: 5%;
-    border: none;
-    border-radius: 10px;
-    background-color: rgb(4, 54, 170);
-  }
+  
 `
 
 const Clip = styled(Icon)`
