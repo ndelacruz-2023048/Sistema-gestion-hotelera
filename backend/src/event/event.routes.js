@@ -62,6 +62,7 @@ const api = Router()
  * tags:
  *   name: Events
  *   description: The events managment api
+ * 
  */
 
 /**

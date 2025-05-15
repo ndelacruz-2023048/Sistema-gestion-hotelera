@@ -52,6 +52,7 @@ const api = Router()
  * tags:
  *   name: roomDetails
  *   description: The Room Details managment api
+ * 
  */ 
 
 /**
