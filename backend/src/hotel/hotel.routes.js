@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { 
     addNewHotel,
     getAllHotels,
-    updateHotel
+    updateHotel,
 } from './hotel.controller.js'
 
 /** 
@@ -116,12 +116,6 @@ import {
  *                   example: Hotel created successfully
  */
 
-/**
- * @swagger
- * /v1/hotelhavenis/hotels/updateHotel/:id:
- * 
- */
-
 
 const api = Router()
 
@@ -132,7 +126,7 @@ api.get(
 
 api.post(
     '/addHotels',
-    addNewHotel    
+    addNewHotel        
 )
 
 api.put(

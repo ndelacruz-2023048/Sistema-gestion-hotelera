@@ -30,6 +30,6 @@ const roomDetailsSchema = new Schema({
     type: String,
     required: true,
   }
-});
+})
 
-export default model('roomDetails', roomDetailsSchema);
+export default model('roomDetails', roomDetailsSchema)
