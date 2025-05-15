@@ -26,6 +26,22 @@ const router = createBrowserRouter([
                 </Layout> 
             </ProtectedRoutes>
         ),
+        children:[
+            {
+                path:"hotel",
+                children:[
+                    {
+                        path:":idhotel",
+                        element:<ProtectedRoutes accesBy="authenticated">
+                        <Layout>
+                        <DetailHotel/>
+                        </Layout> 
+                    </ProtectedRoutes>
+                    }
+                ]
+                
+            }
+        ]
         // errorElement: <PageNotFound/>
     },
     {
