@@ -8,6 +8,7 @@ import { HotelCard } from "../organismos/DashboardPrincipal/HotelCard"
 import { useHotelStore } from "../../store/HotelStore"
 import { LottieAnimacion } from "../atomos/LottieAnimacion"
 import animationhotel from "../../assets/animationhotel.json"
+import { useNavigate } from "react-router"
 export const DashboardPrincipalTemplate = () => {
     const [open, setOpen] = useState(false)
     const {hotels} = useHotelStore()
@@ -15,6 +16,11 @@ export const DashboardPrincipalTemplate = () => {
         setOpen(!open)
     }
     console.log(hotels?.hotels);
+    const navigation = useNavigate()
+    const handleRoomClick = (id)=>{
+        navigation(`/hotel/${id}`)
+    }
+
     
     return(
         <Container>
@@ -26,7 +32,7 @@ export const DashboardPrincipalTemplate = () => {
                 {
                   hotels?.hotels?.length >0?(
                       hotels?.hotels?.map((e)=>(
-                          <HotelCard imageHotel={e.image} nameHotel={e.name} addressHotel={e.address} priceHotel={e.price}/>
+                          <HotelCard id={e._id} imageHotel={e.image} nameHotel={e.name} addressHotel={e.address} priceHotel={e.price} onEventClick={handleRoomClick}/>
                       )) 
                     ):
                     <div className="container_animation">

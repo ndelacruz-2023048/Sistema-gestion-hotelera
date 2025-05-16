@@ -1,12 +1,26 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import styled from "styled-components"
 import Room from '../../../assets/Room.jpg'
-export const HotelCard = ({imageHotel,nameHotel,addressHotel,priceHotel}) => {
+import { useState } from "react";
+import { SliderRooms } from "./SliderRooms";
+import { useQuery } from "@tanstack/react-query";
+import { useRoomStore } from "../../../store/RoomsStore";
+export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEventClick}) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const {roomsByHotel,fetchRoomsByHotel} = useRoomStore()
+    const {data} = useQuery({queryKey:['roomsByHotel',id],queryFn:()=>fetchRoomsByHotel(id), enabled: isHovered &&!!id,retry:false})
+    
     return (
-        <Container>
+        <Container onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
             <WrapperCard>
                 <Card>
-                    <ContainerImage>
+                    <ContainerImage onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
+                        {
+                            isHovered && 
+                            <div className="rooms">
+                                <SliderRooms roomsData={data?.room} onEventClick={onEventClick}/>
+                            </div>
+                        }
                         <ContainerIconLove>
                             <Icon icon="ic:outline-favorite-border" className="iconoFavorite"/>
                         </ContainerIconLove>
@@ -39,6 +53,17 @@ const Container = styled.div`
    align-items: center;
    width:32%;
    height: 330px;
+   position: relative;
+   .rooms{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    display: flex;
+    }
 `
 const WrapperCard = styled.div`
     display: flex;

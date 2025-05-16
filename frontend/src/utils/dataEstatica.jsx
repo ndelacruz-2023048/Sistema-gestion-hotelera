@@ -7,11 +7,6 @@ export const LinksArraySidebar = [
         to: "/",
     },
     {
-        label: "Calendar",
-        icon: "heroicons-outline:calendar",
-        to: "/DetailHotel",
-    },
-    {
         label: "Favorites",
         icon: "icon-park-outline:like",
         to: "/favorites",

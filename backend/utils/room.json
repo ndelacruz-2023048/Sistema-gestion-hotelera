@@ -1,6 +1,6 @@
 [
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6a",
     "nameOfTheRoom": "Habitación 101",
     "typeRoom": "Premium",
     "capacity": { "childrens": 2, "adults": 1 },
@@ -12,7 +12,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6b",
     "nameOfTheRoom": "Suite Ejecutiva",
     "typeRoom": "Suite",
     "capacity": { "childrens": 1, "adults": 2 },
@@ -24,7 +24,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6d",
     "nameOfTheRoom": "Deluxe 301",
     "typeRoom": "Deluxe",
     "capacity": { "childrens": 0, "adults": 2 },
@@ -36,7 +36,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6e",
     "nameOfTheRoom": "Estandar 104",
     "typeRoom": "Estandar",
     "capacity": { "childrens": 2, "adults": 2 },
@@ -48,7 +48,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6f",
     "nameOfTheRoom": "Semipremium 205",
     "typeRoom": "Semipremium",
     "capacity": { "childrens": 1, "adults": 3 },
@@ -60,7 +60,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6f",
     "nameOfTheRoom": "Penthouse Azul",
     "typeRoom": "Penthouse",
     "capacity": { "childrens": 2, "adults": 4 },
@@ -72,7 +72,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6c",
     "nameOfTheRoom": "Estandar 002",
     "typeRoom": "Estandar",
     "capacity": { "childrens": 0, "adults": 1 },
@@ -84,7 +84,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6d",
     "nameOfTheRoom": "Suite Familiar",
     "typeRoom": "Suite",
     "capacity": { "childrens": 3, "adults": 2 },
@@ -96,7 +96,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e6d",
     "nameOfTheRoom": "Premium Relax",
     "typeRoom": "Premium",
     "capacity": { "childrens": 1, "adults": 2 },
@@ -108,7 +108,7 @@
     }
   },
   {
-    "hotel": "6817f557a6c5062898ccc6f7",
+    "hotel": "6826de70b033c53f55289e72",
     "nameOfTheRoom": "Deluxe Twin",
     "typeRoom": "Deluxe",
     "capacity": { "childrens": 2, "adults": 2 },

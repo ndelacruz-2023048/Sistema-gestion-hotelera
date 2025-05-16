@@ -18,113 +18,63 @@ import { HiringStageHotel } from "../pages/HiringStageHotel"
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                <Layout>
-                    <DashboardPrincipal/>
-                </Layout> 
-            </ProtectedRoutes>
+        path: '/',
+        element: (
+          <ProtectedRoutes accesBy="authenticated">
+            <Layout />
+          </ProtectedRoutes>
         ),
-        children:[
-            {
-                path:"hotel",
-                children:[
-                    {
-                        path:":idhotel",
-                        element:<ProtectedRoutes accesBy="authenticated">
-                        <Layout>
-                        <DetailHotel/>
-                        </Layout> 
-                    </ProtectedRoutes>
-                    }
-                ]
-                
-            }
+        children: [
+          {
+            path: '', // ruta raíz "/"
+            element: <DashboardPrincipal />
+          },
+          {
+            path: 'hotel/:idhotel',
+            element: <DetailHotel />
+          },
+          {
+            path: 'favorites',
+            element: <DashboardFavorites />
+          },
+          {
+            path: 'events',
+            element: <EventPlanning />
+          },
+          {
+            path: 'new-hotel',
+            element: <NewHotelPage />
+          },
+          {
+            path: 'detailsRoom',
+            element: <DetailsRoomHotel />
+          },
+          {
+            path: 'hiringStage',
+            element: <HiringStageHotel />
+          },
+          {
+            path: 'applicationForm',
+            element: <ApplicationForm />
+          },
         ]
-        // errorElement: <PageNotFound/>
-    },
-    {
-        path:'/DetailHotel',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                <Layout>
-                    <DetailHotel/>
-                </Layout> 
-            </ProtectedRoutes>
-        )
-    },
-    {
-        path:'/favorites',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                <Layout>
-                    <DashboardFavorites/>
-                </Layout> 
-            </ProtectedRoutes>
-        )
-    },
-    {
-        path:'/events',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                <Layout>
-                    <EventPlanning/>
-                </Layout> 
-            </ProtectedRoutes>
-        )
-    },
-    {
-        path:'/new-hotel',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                    <NewHotelPage/>
-            </ProtectedRoutes>
-        )
-    },
-    {
-        path:'/detailsRoom',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                    <DetailsRoomHotel/>
-            </ProtectedRoutes>
-        )
-    },
-    {
-        path:'/hiringStage',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                <HiringStageHotel/>
-            </ProtectedRoutes>
-        )
-        
-    },
-    {
-        path:'/applicationForm',
-        element:(
-            <ProtectedRoutes accesBy="authenticated">
-                <ApplicationForm/>
-            </ProtectedRoutes>
-        )
-
-    },
-    {
+      },
+      {
         path: '/login',
-        element:(
-            <ProtectedRoutes accesBy="non-authenticated">
-                <Login/>
-            </ProtectedRoutes>
-        ),
-        // errorElement: <PageNotFound/>
-    },
-    {
+        element: (
+          <ProtectedRoutes accesBy="non-authenticated">
+            <Login />
+          </ProtectedRoutes>
+        )
+      },
+      {
         path: '/register',
         element: (
-            <ProtectedRoutes accesBy="non-authenticated">
-                <Register/>
-            </ProtectedRoutes>
+          <ProtectedRoutes accesBy="non-authenticated">
+            <Register />
+          </ProtectedRoutes>
         )
-    }
+      },
 ])
 
 const MyRoutes = ()=><RouterProvider router={router}/>
