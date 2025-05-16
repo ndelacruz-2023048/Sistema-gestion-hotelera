@@ -16,4 +16,6 @@ api.post(
     addNewRoomV
 )
 
+api.get('/getRoomViewByRoom/:room', getAllRoomView)
+
 export default api

@@ -1,92 +1,274 @@
 [
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "2",
-    "furniture": "Camas, muebles, estufa, mesas_plegables",
-    "tecnologie": "TV, aire_acondicionado, Cafeteras, refrigeradores",
-    "bathroom": "Retrete, ducha, yacusi",
-    "wifi": "Gratis",
-    "food": "Servicio al dormitorio"
+    "room": "68278a779889627fe1528307",
+    "roomNumber": 101,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Habitación amplia con cama matrimonial y escritorio."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi de alta velocidad incluido."
+      },
+      {
+        "name": "Tecnología",
+        "description": "TV Smart de 50 pulgadas con acceso a Netflix y YouTube."
+      },
+      {
+        "name": "Climatización",
+        "description": "Aire acondicionado y calefacción central."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño privado con ducha, toallas y artículos de tocador."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Incluye cafetera Nespresso, cápsulas y tazas."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Caja fuerte y cerradura electrónica con tarjeta."
+      }
+    ]
   },
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "3",
-    "furniture": "Cama King, escritorio, sillón",
-    "tecnologie": "Smart TV, Alexa",
-    "bathroom": "Ducha, secador de cabello",
-    "wifi": "Alta velocidad",
-    "food": "Desayuno continental"
+    "room": "68278a779889627fe1528308",
+    "roomNumber": 102,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Habitación doble con camas individuales y balcón con vista."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi gratuito disponible en toda la habitación."
+      },
+      {
+        "name": "Tecnología",
+        "description": "TV de 42 pulgadas con canales por cable."
+      },
+      {
+        "name": "Climatización",
+        "description": "Ventilador de techo y calefacción eléctrica."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño moderno con ducha de lluvia y secador de pelo."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Hervidor eléctrico con té y café de cortesía."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Puerta con cerradura inteligente y alarma de humo."
+      }
+    ]
   },
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "4",
-    "furniture": "Camas dobles, closet, mini bar",
-    "tecnologie": "TV cable, aire acondicionado",
-    "bathroom": "Ducha, retrete",
-    "wifi": "Estándar",
-    "food": "Buffet incluido"
+    "room": "68278a779889627fe1528309",
+    "roomNumber": 103,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Suite con cama king size, sala privada y minibar."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi premium con velocidad extra para streaming."
+      },
+      {
+        "name": "Tecnología",
+        "description": "Sistema de sonido Bluetooth y TV 4K de 55 pulgadas."
+      },
+      {
+        "name": "Climatización",
+        "description": "Climatización automática por sensores."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño con jacuzzi, toallas de lujo y artículos de spa."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Máquina de espresso profesional con selección de cápsulas."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Caja fuerte biométrica y vigilancia por cámara exterior."
+      }
+    ]
   },
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "5",
-    "furniture": "Litera, escritorio, silla",
-    "tecnologie": "TV",
-    "bathroom": "Retrete compartido",
-    "wifi": "Gratis",
-    "food": "No disponible"
+    "room": "68278a779889627fe152830a",
+    "roomNumber": 104,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Habitación compacta ideal para estancias cortas."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi compartido del piso, buena cobertura."
+      },
+      {
+        "name": "Tecnología",
+        "description": "TV LED de 32 pulgadas con puertos HDMI."
+      },
+      {
+        "name": "Climatización",
+        "description": "Aire acondicionado de ventana y ventilador portátil."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño compartido pero higienizado diariamente."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Tetera eléctrica y sobres individuales de café."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Cerradura mecánica y mirilla en la puerta."
+      }
+    ]
   },
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "6",
-    "furniture": "Cama Queen, tocador, lámparas",
-    "tecnologie": "TV, Cafetera, Bluetooth speaker",
-    "bathroom": "Jacuzzi, ducha de lujo",
-    "wifi": "Alta velocidad",
-    "food": "Menú gourmet"
+    "room": "68278a779889627fe152830b",
+    "roomNumber": 105,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Loft moderno con cocina integrada y área de trabajo."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi dedicado con router dentro de la habitación."
+      },
+      {
+        "name": "Tecnología",
+        "description": "Proyector con pantalla desplegable y sonido envolvente."
+      },
+      {
+        "name": "Climatización",
+        "description": "Aire acondicionado central con control remoto."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño con cabina de hidromasaje y espejo antivaho."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Estación de barista con molinillo y café orgánico."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Sistema de entrada con reconocimiento facial."
+      }
+    ]
   },
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "7",
-    "furniture": "Cama individual, mesa de noche",
-    "tecnologie": "TV, ventilador",
-    "bathroom": "Ducha",
-    "wifi": "Gratis",
-    "food": "Desayuno ligero"
+    "room": "68278a779889627fe152830d",
+    "roomNumber": 106,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Loft moderno con cocina integrada y área de trabajo."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi dedicado con router dentro de la habitación."
+      },
+      {
+        "name": "Tecnología",
+        "description": "Proyector con pantalla desplegable y sonido envolvente."
+      },
+      {
+        "name": "Climatización",
+        "description": "Aire acondicionado central con control remoto."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño con cabina de hidromasaje y espejo antivaho."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Estación de barista con molinillo y café orgánico."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Sistema de entrada con reconocimiento facial."
+      }
+    ]
   },
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "8",
-    "furniture": "Cama doble, armario, espejo",
-    "tecnologie": "Smart TV, mini refrigerador",
-    "bathroom": "Ducha, retrete",
-    "wifi": "Media velocidad",
-    "food": "Room service"
+    "room": "68278a779889627fe152830e",
+    "roomNumber": 107,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Loft moderno con cocina integrada y área de trabajo."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi dedicado con router dentro de la habitación."
+      },
+      {
+        "name": "Tecnología",
+        "description": "Proyector con pantalla desplegable y sonido envolvente."
+      },
+      {
+        "name": "Climatización",
+        "description": "Aire acondicionado central con control remoto."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño con cabina de hidromasaje y espejo antivaho."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Estación de barista con molinillo y café orgánico."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Sistema de entrada con reconocimiento facial."
+      }
+    ]
   },
   {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "9",
-    "furniture": "Cama King, muebles rústicos",
-    "tecnologie": "Pantalla curva, Chromecast",
-    "bathroom": "Jacuzzi, bidet, ducha",
-    "wifi": "Premium",
-    "food": "Desayuno + cena"
-  },
-  {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "10",
-    "furniture": "Sofá cama, mueble multiusos",
-    "tecnologie": "TV, consola de videojuegos",
-    "bathroom": "Ducha, retrete",
-    "wifi": "Gratis",
-    "food": "Comida rápida"
-  },
-  {
-    "room": "681810f001e5699f73d0bff7",
-    "roomNumber": "11",
-    "furniture": "Cama doble, escritorio moderno",
-    "tecnologie": "TV 4K, Wi-Fi Mesh",
-    "bathroom": "Retrete, ducha con hidromasaje",
-    "wifi": "Ultra rápida",
-    "food": "Servicio personalizado"
+    "room": "68278a779889627fe152830f",
+    "roomNumber": 108,
+    "details": [
+      {
+        "name": "Habitación",
+        "description": "Loft moderno con cocina integrada y área de trabajo."
+      },
+      {
+        "name": "Internet",
+        "description": "Wi-Fi dedicado con router dentro de la habitación."
+      },
+      {
+        "name": "Tecnología",
+        "description": "Proyector con pantalla desplegable y sonido envolvente."
+      },
+      {
+        "name": "Climatización",
+        "description": "Aire acondicionado central con control remoto."
+      },
+      {
+        "name": "Baño",
+        "description": "Baño con cabina de hidromasaje y espejo antivaho."
+      },
+      {
+        "name": "Zona de café",
+        "description": "Estación de barista con molinillo y café orgánico."
+      },
+      {
+        "name": "Seguridad",
+        "description": "Sistema de entrada con reconocimiento facial."
+      }
+    ]
   }
 ]
