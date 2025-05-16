@@ -3,6 +3,7 @@ import {
     addNewHotel,
     getAllHotels,
     updateHotel,
+    deleteHotel
 } from './hotel.controller.js'
 
 /** 
@@ -116,6 +117,128 @@ import {
  *                   example: Hotel created successfully
  */
 
+/**
+ * @swagger
+ * /v1/hotelhavenis/hotels/updateHotel/{id}:
+ *   put:
+ *     summary: Actualiza los detalles de un hotel
+ *     tags: [Hotel]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del hotel a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Hotel'
+ *     responses:
+ *       200:
+ *         description: Hotel actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel updated successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid hotel data"
+ *       404:
+ *         description: Hotel no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel not found"
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/hotels/deleteHotel/{id}:
+ *   delete:
+ *     summary: Elimina los detalles de un hotel
+ *     tags: [Hotel]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del hotel a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Hotel'
+ *     responses:
+ *       200:
+ *         description: Hotel actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel deleted successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid hotel data"
+ *       404:
+ *         description: Hotel no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel not found"
+ */
+
 
 const api = Router()
 
@@ -126,12 +249,17 @@ api.get(
 
 api.post(
     '/addHotels',
-    addNewHotel        
+    addNewHotel    
 )
 
 api.put(
     '/updateHotel/:id',
     updateHotel
+)
+
+api.delete(
+    '/deleteHotel/:id',
+    deleteHotel
 )
 
 export default api

@@ -1,7 +1,9 @@
 import { Router } from 'express'
 import { 
     addNewRoom,
-    getAllRoom
+    getAllRoom,
+    updateRoom,
+    deleteRoom
 } from './room.controller.js'
 
 const api = Router()
@@ -156,6 +158,128 @@ const api = Router()
  *  
  */
 
+/**
+ * @swagger
+ * /v1/hotelhavenis/rooms/updateRoom/{id}:
+ *   put:
+ *     summary: Actualiza los detalles de un room
+ *     tags: [Room]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del room a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Room'
+ *     responses:
+ *       200:
+ *         description: Room actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Room update successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid room data"
+ *       404:
+ *         description: Room no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Room not found"
+ */
+/**
+ * @swagger
+ * /v1/hotelhavenis/rooms/deleteRoom/{id}:
+ *   delete:
+ *     summary: Elimia los datos de un room
+ *     tags: [Room]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del room a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Room'
+ *     responses:
+ *       200:
+ *         description: Room actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Room deleted successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid room data"
+ *       404:
+ *         description: Room no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Room not found"
+ */
+
+
 api.get(
     '/getAllRoom',
     getAllRoom
@@ -164,6 +288,16 @@ api.get(
 api.post(
     '/addNewRoom',
     addNewRoom
+)
+
+api.put(
+    '/updateRoom/:id',
+    updateRoom
+)
+
+api.delete(
+    '/deleteRoom/:id',
+    deleteRoom
 )
 
 export default api
