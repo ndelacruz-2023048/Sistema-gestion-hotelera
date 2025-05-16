@@ -15,6 +15,7 @@ import eventRoutes from '../src/event/event.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
 import swaggerUI from "swagger-ui-express"
 import swaggerJsDoc from "swagger-jsdoc"
+import ReservationRoutes from '../src/Reservation/reservation.routes.js'
 
 const configs = (app) =>{
     app.use(express.json())
@@ -63,6 +64,7 @@ const routes = (app) =>{
     app.use('/v1/hotelhavenis/rooms', RoomRoutes)
     app.use('/v1/hotelhavenis/room-details', RoomDetailsRoutes)
     app.use('/v1/hotelhavenis/room-view', RoomViewRoutes)
+    app.use('/v1/hotelhavenis/reservation', ReservationRoutes)
 }
 
     
