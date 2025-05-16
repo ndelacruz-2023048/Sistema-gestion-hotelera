@@ -13,7 +13,7 @@ export const useRegister = ()=> {
             surname: data?.surname,
             address: data?.address,
             mobilePhone: data?.mobilePhone,
-            country: data?.country,
+            country: data?.countryCode,
             username: data?.username,
             email: data?.email,
             password: data?.password

@@ -7,12 +7,12 @@ import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router';
 import { Controller } from 'react-hook-form'
 
-export const SectionDataRegister = ({register, disabledButton, control, handleCountryCodeChange, errors }) => {
+export const SectionDataRegister = ({register, validateMobilePhone, watch, control, handleCountryCodeChange, errors }) => {
     
     const navigate = useNavigate();
 
     const changeLogin = ()=> {
-        navigate('/login')
+        navigate('/register')
     }
 
     return (
@@ -73,24 +73,24 @@ export const SectionDataRegister = ({register, disabledButton, control, handleCo
                         name="mobilePhone"
                         control={control}
                         rules={{
-                        required: "El número de teléfono es obligatorio",
-                        validate: value => value.length >= 8 || "Número muy corto"
+                            required: "El número de teléfono es obligatorio",
+                            validate: validateMobilePhone // Usa la función de validación aquí
                         }}
                         render={({ field }) => (
-                        <PhoneInputStyled
-                        {...field}
-                            country={'gt'} // o usa formData.countryCode si lo necesitas dinámico
-                            onChange={(value, country) => {
-                            field.onChange(value);
-                            // Aquí puedes manejar el código de país si lo necesitas
-                            handleCountryCodeChange(country);
-                        }}
-                        inputClass="phone-input"
-                        containerClass="phone-container"
-                        dropdownClass="phone-dropdown"
-                        buttonClass="phone-dbutton"
-                        enableSearch
-                        />
+                            <PhoneInputStyled
+                                {...field}
+                                ref={undefined}
+                                country={watch('countryCode') || 'gt'} // Usa watch para obtener el valor actual
+                                onChange={(value, country) => {
+                                    field.onChange(value);
+                                    handleCountryCodeChange(country); // Llama a tu función para actualizar el estado
+                                }}
+                                inputClass="phone-input"
+                                containerClass="phone-container"
+                                dropdownClass="phone-dropdown"
+                                buttonClass="phone-dbutton"
+                                enableSearch
+                            />
                         )}
                     />
                     {errors.mobilePhone && (
@@ -178,7 +178,7 @@ export const SectionDataRegister = ({register, disabledButton, control, handleCo
                 <Icon icon="mdi:password" className="IconLabel2"/>
             </DataBox>
             <DataBoxButton>
-                <ButtonRegister disabled={disabledButton} onClick={changeLogin} type="submit">Registrarme</ButtonRegister>
+                <ButtonRegister  onClick={changeLogin} type="submit">Registrarme</ButtonRegister>
             </DataBoxButton>
             <Login>
                 <A href="/login">Ya tienes cuenta?</A>
