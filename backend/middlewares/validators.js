@@ -53,7 +53,7 @@ export const registerUser = [
                 minUppercase: 1
             }
         )
-        .isLength({ min: 12 }).withMessage(`The password must be at least 12 characters long`)
+        .isLength({ min: 8 }).withMessage(`The password must be at least 8 characters long`)
         .custom(comonPasswords),
     body('role')
         .optional()

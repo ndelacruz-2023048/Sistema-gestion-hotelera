@@ -1,4 +1,3 @@
-//import { Icon } from "@iconify/react/dist/iconify.js"
 import styled from "styled-components"
 import { useRef, useEffect } from "react"
 import TextField from '@mui/material/TextField';
@@ -9,14 +8,11 @@ import { es } from 'date-fns/locale';
 import { Input2 } from "../../components/atomos/Input2"
 import { InputExtendible } from "../../components/atomos/InputExtendible";
 import { SelectUser } from "../../components/atomos/SelectUser";
-
 import { Controller } from 'react-hook-form'
 
 
 export const DataSection = ({register, control, errors })=> {
     const dateRef = useRef(null)
-
-    
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -31,8 +27,6 @@ export const DataSection = ({register, control, errors })=> {
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [])
-
-    
 
     return(
         <Container>

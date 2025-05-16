@@ -1,10 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Input2 } from "../atomos/Input2"
-import { userLoginMessage, passwordValidationMessage } from '../../hooks/validators'
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnBlur, isSubmitButtonDisabled}) => {
+export const SectionDataLogin = ({register, disabledButton, errors }) => {
     return (
         <DataWrapper>
             <DataBox
@@ -13,14 +12,16 @@ export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnB
                 transition={{ delay: 0.6, duration: 0.2, ease: "easeOut" }}
             >
                 <Input2
-                    field={'userLogin'}
                     type={"text"}
-                    value={formData.userLogin.value}
                     holder={"Usuario o Email"}
-                    change={handleValueChange}
-                    blur={handleValidateOnBlur}
-                    showErrMsg={formData.userLogin.showError}
-                    validateMsg={userLoginMessage}
+                    {...register('userLogin', {
+                            required: {
+                                value: true,
+                                message: 'Usuario o email es obligatorio',
+                            }
+                        }
+                    )}
+                    error={errors.userLogin}
                 />
                 <Icon icon="fa:user" className="IconLabel"/>
             </DataBox>
@@ -30,14 +31,12 @@ export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnB
                 transition={{ delay: 0.7, duration: 0.2, ease: "easeOut" }}
             >
                 <Input2
-                    field={'password'}
                     type={"password"}
-                    value={formData.password.value}
                     holder={"Contraseña"}
-                    change={handleValueChange}
-                    blur={handleValidateOnBlur}
-                    showErrMsg={formData.password.showError}
-                    validateMsg={passwordValidationMessage}
+                    {...register('password', {
+                        required: true,
+                        message: 'La contraseña es obligatoria'
+                    })}
                 />
                 <Icon icon="mdi:password" className="IconLabel"/>
             </DataBox>
@@ -57,7 +56,7 @@ export const SectionDataLogin = ({formData, handleValueChange, handleValidateOnB
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.3, ease: "easeOut" }}
             >
-                <ButtonLogin disabled={isSubmitButtonDisabled} type="submit">Iniciar Seción</ButtonLogin>
+                <ButtonLogin disabled={disabledButton} type="submit">Iniciar Seción</ButtonLogin>
             </DataBoxButton>
             <Register
                 initial={{ opacity: 0, y: 5 }}

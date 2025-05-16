@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { SectionDataLogin } from '../moleculas/SectionDataLogin'
-import { validateUserLogin, validatePassword } from '../../hooks/validators'
 import { useLogin } from '../../hooks/useLogin'
 import styled from 'styled-components'
 
 export const LoginForm = () => {
-  const form = {
+  const { login } = useLogin()
+  const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm()
+  /* const form = {
     userLogin: {
         value: '',
         isValid: false,
@@ -22,7 +23,6 @@ export const LoginForm = () => {
   const [formData, setFormData] = useState(form)
   
   //Variables/Constantes u Objetos/Arrays
-  const { login } = useLogin()
 
   const isSubmitButtonDisabled = !formData.userLogin.isValid || 
                                   !formData.password.isValid
@@ -73,18 +73,22 @@ export const LoginForm = () => {
         }
       }
     ))
+  } */
+  
+  const onSubmit = async(data)=> {
+    console.log('a', data);
+    await login(data)
+    reset()
   }
-  
-  //Logica Condicional
-  
-  //Renderizado JSX
+
+  const onDisabledBtn = !isValid
+
   return (
-      <LoginFormWrapper onSubmit={handleSubmit}>
+      <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
           <SectionDataLogin
-            formData={formData}
-            handleValueChange={handleValueChange}
-            handleValidateOnBlur={handleValidateOnBlur}
-            isSubmitButtonDisabled={isSubmitButtonDisabled}
+            register={register}
+            errors={errors}
+            disabledButton={onDisabledBtn}
           />
       </LoginFormWrapper>
   )

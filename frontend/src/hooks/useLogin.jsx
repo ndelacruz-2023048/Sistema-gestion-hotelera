@@ -9,11 +9,11 @@ export const useLogin = () => {
     const [error, setError] = useState(false)
     const { setAuthUser } = UserAuth();
 
-    const login = async(userLogin, password)=> {
+    const login = async(data)=> {
         setIsLoading(true)
         const user = {
-            userLogin,
-            password
+            userLogin: data?.userLogin,
+            password: data?.password
         }
 
         const response = await loginRequest(user)
