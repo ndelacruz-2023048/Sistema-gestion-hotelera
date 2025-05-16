@@ -30,7 +30,8 @@ export const Light ={
     hotelcard: 'rgba(8, 8, 8, 0.5)',
     colorLabel: 'black',
     hoverB: '#0F1824',
-    color1: 'white'
+    color1: 'white',
+    infoText: 'rgb(199, 152, 65)'
 }
 
 export const Dark = {
@@ -65,4 +66,5 @@ export const Dark = {
     eSection: '#2d333a',
     eSBorder: '#3d474f',
     colorLabel: 'white',
+    infoText: '#ffcc00'
 }

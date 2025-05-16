@@ -5,16 +5,18 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import { useNavigate } from 'react-router'
 import { useLogout } from '../../../hooks/useLogout'
 
-export const ModalUser = () => {
+export const ModalUser = ({ togglePopup }) => {
   const navigate = useNavigate()
   const { logout, isLoadingLogout} = useLogout()
 
   const handleSettingsClick = () => {
     navigate('/user');
+    togglePopup()
   }
 
   const handleLogoutClick  = ()=> {
-   logout()
+    logout()
+    togglePopup()
   }
   return (
     <Container>
@@ -81,7 +83,7 @@ const Data = styled.div`
   }
 
   h5{
-  color:${({ theme }) => theme.colorHover};
+  color:${({ theme }) => theme.infoText};
   }
 `
 
