@@ -120,3 +120,116 @@ export const addNewRoom = async(req, res) => {
         )
     }
 }
+
+export const defaultRooms = async(newHotelData)=>{
+    const newRooms = [
+        {
+          "hotel": "6826de70b033c53f55289e6a",
+          "nameOfTheRoom": "Habitación Premium",
+          "typeRoom": "Premium",
+          "capacity": { "childrens": 2, "adults": 1 },
+          "squareMeters": 35,
+          "description": "Vista al mar, cama king y jacuzzi privado.",
+          "disponibility": {
+            "fechas_disponibles": "Resto del mes",
+            "fechas_ocupadas": ["2025-05-03", "2025-05-07"]
+          }
+        },
+        {
+          "hotel": "6826de70b033c53f55289e6b",
+          "nameOfTheRoom": "Suite Ejecutiva",
+          "typeRoom": "Suite",
+          "capacity": { "childrens": 1, "adults": 2 },
+          "squareMeters": 45,
+          "description": "Suite con escritorio, minibar y vista panorámica.",
+          "disponibility": {
+            "fechas_disponibles": "Resto del mes",
+            "fechas_ocupadas": ["2025-05-10"]
+          }
+        },
+        {
+            "hotel": "6826de70b033c53f55289e6a",
+            "nameOfTheRoom": "Deluxe",
+            "typeRoom": "Premium",
+            "capacity": { "childrens": 2, "adults": 1 },
+            "squareMeters": 35,
+            "description": "Amplia habitación con baño privado y terraza.",
+            "disponibility": {
+              "fechas_disponibles": "Resto del mes",
+              "fechas_ocupadas": ["2025-05-03", "2025-05-07"]
+            }
+          },
+          {
+            "hotel": "6826de70b033c53f55289e6b",
+            "nameOfTheRoom": "Estandar",
+            "typeRoom": "Suite",
+            "capacity": { "childrens": 1, "adults": 2 },
+            "squareMeters": 45,
+            "description": "Habitación sencilla con baño compartido.",
+            "disponibility": {
+              "fechas_disponibles": "Resto del mes",
+              "fechas_ocupadas": ["2025-05-10"]
+            }
+          },
+          {
+            "hotel": "6826de70b033c53f55289e6a",
+            "nameOfTheRoom": "Semipremium",
+            "typeRoom": "Premium",
+            "capacity": { "childrens": 2, "adults": 1 },
+            "squareMeters": 35,
+            "description": "TV de 55'', ducha de hidromasaje y escritorio.",
+            "disponibility": {
+              "fechas_disponibles": "Resto del mes",
+              "fechas_ocupadas": ["2025-05-03", "2025-05-07"]
+            }
+          },
+          {
+            "hotel": "6826de70b033c53f55289e6b",
+            "nameOfTheRoom": "Suite Ejecutiva",
+            "typeRoom": "Suite",
+            "capacity": { "childrens": 1, "adults": 2 },
+            "squareMeters": 45,
+            "description": "Suite con escritorio, minibar y vista panorámica.",
+            "disponibility": {
+              "fechas_disponibles": "Resto del mes",
+              "fechas_ocupadas": ["2025-05-10"]
+            }
+          },
+          {
+            "hotel": "6826de70b033c53f55289e6b",
+            "nameOfTheRoom": "Penthouse",
+            "typeRoom": "Penthouse",
+            "capacity": { "childrens": 1, "adults": 2 },
+            "squareMeters": 45,
+            "description": "Penthouse con cocina, sala y vista de 360°.",
+            "disponibility": {
+              "fechas_disponibles": "Resto del mes",
+              "fechas_ocupadas": ["2025-05-10"]
+            }
+          }
+    ]
+
+    
+
+    const existDefaultRooms = await Room.find({nameOfTheRoom:"Hotel Vista Hermosa"})
+    const idHotels = []
+    let listCreatedRooms = []
+    newHotelData.map((element)=>{
+        idHotels.push(element._id)
+    })
+    
+    if(existDefaultRooms.length === 0 ){ 
+        for (let index = 0; index < newRooms.length; index++) {
+            const room = newRooms[index];
+            room.hotel = index <= 2 ? idHotels[0] : idHotels[1];
+          
+            const savedNewRoom = new Room(room);
+            const responseSavedRoom = await savedNewRoom.save();
+            listCreatedRooms.push(responseSavedRoom);
+        }
+
+        return listCreatedRooms
+    }else{
+        return{success:false}
+    }
+}

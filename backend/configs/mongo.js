@@ -1,4 +1,7 @@
 import mongoose from "mongoose"
+import { defaultHotels } from "../src/hotel/hotel.controller.js"
+import { defaultRooms } from "../src/room/room.controller.js"
+import { defaultRoomViews } from "../src/roomView/roomView.controller.js"
 
 export const connect = async()=>{
     try{
@@ -29,6 +32,13 @@ export const connect = async()=>{
                 serverSelectionTimeoutMS: 5000
             }
         )
+        const responseHotel =await defaultHotels()
+        if(responseHotel.success !== false){
+            const data = await defaultRooms(responseHotel)
+            await defaultRoomViews(data)
+        }
+        
+
     }catch(err){
         console.error('Database connection failed', err)
     }

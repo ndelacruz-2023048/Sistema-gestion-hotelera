@@ -85,7 +85,7 @@ const Main = styled.div`
 
     .swiper-personalized .swiper-wrapper{
         width: 500px;
-        height: 400px;/* Aqui podes cambiar el tamaño de la imagen grande o de las imagenes*/
+        height: 320px;/* Aqui podes cambiar el tamaño de la imagen grande o de las imagenes*/
     }
     
     .container-swiper-controls{
@@ -118,7 +118,7 @@ const Main = styled.div`
 
 const Image = styled.img`
     object-fit: cover;
-    width: 98%;
+    width: 100%;
     height: 100%;
     border-radius: 20px;
 `

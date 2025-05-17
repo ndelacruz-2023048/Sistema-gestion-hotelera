@@ -94,3 +94,30 @@ export const deleteHotel = async(req, res) => {
         )
     }
 }
+
+export const defaultHotels =async ()=>{
+    const newHotel = [
+        {
+            "name": "Hotel Vista Hermosa",
+            "address": "19 Avenida zona 17",
+            "category": "premium",
+            "price": 1999.99,
+            "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1747505665/pexels-asman-chema-91897-594077_rc8mn1.jpg"
+        },
+        {
+            "name": "Hotel El Encanto",
+            "address": "5a Avenida zona 10",
+            "category": "estandar",
+            "price": 799.00,
+            "image": "https://res.cloudinary.com/dtmwybty7/image/upload/v1747505844/pexels-pixabay-261395_or9or5.jpg"
+        }
+    ]
+
+    const existDefaultHotels = await Hotel.find({name:"Hotel Vista Hermosa"})
+    if(existDefaultHotels.length === 0 ){ 
+        const savedHotels = await Hotel.insertMany(newHotel);
+        return savedHotels
+    }else{
+        return{success:false}
+    }
+}
