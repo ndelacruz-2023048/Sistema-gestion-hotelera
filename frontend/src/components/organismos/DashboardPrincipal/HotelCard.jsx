@@ -1,27 +1,41 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import styled from "styled-components"
 import Room from '../../../assets/Room.jpg'
-export const HotelCard = () => {
+import { useState } from "react";
+import { SliderRooms } from "./SliderRooms";
+import { useQuery } from "@tanstack/react-query";
+import { useRoomStore } from "../../../store/RoomsStore";
+export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEventClick}) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const {roomsByHotel,fetchRoomsByHotel} = useRoomStore()
+    const {data} = useQuery({queryKey:['roomsByHotel',id],queryFn:()=>fetchRoomsByHotel(id), enabled: isHovered &&!!id,retry:false})
+    
     return (
-        <Container>
+        <Container onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
             <WrapperCard>
                 <Card>
-                    <ContainerImage>
+                    <ContainerImage onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
+                        {
+                            isHovered && 
+                            <div className="rooms">
+                                <SliderRooms roomsData={data?.room} onEventClick={onEventClick}/>
+                            </div>
+                        }
                         <ContainerIconLove>
                             <Icon icon="ic:outline-favorite-border" className="iconoFavorite"/>
                         </ContainerIconLove>
                         <ContainerIconeStar>
                             <Icon icon="uis:favorite" className="iconoStar"/><br /><p className="p">4,44</p>
                         </ContainerIconeStar>
-                        <Imagen src={Room}/>
+                        <Imagen src={imageHotel}/>
                     </ContainerImage>
                     <ContainerSection>
                         <Section1>
-                            <Title>Individual Moderno House </Title>
-                            <Description>1903 St, LaSanta Alley, 21</Description> 
+                            <Title>{nameHotel}</Title>
+                            <Description>{addressHotel}</Description> 
                         </Section1>
                         <Section2>
-                            <Price>$ 1,099</Price>
+                            <Price>${priceHotel.$numberDecimal}</Price>
                             <Total>Total</Total>
                         </Section2>
                     </ContainerSection>
@@ -39,6 +53,17 @@ const Container = styled.div`
    align-items: center;
    width:32%;
    height: 330px;
+   position: relative;
+   .rooms{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    display: flex;
+    }
 `
 const WrapperCard = styled.div`
     display: flex;

@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Sidebar } from "../components/organismos/sidebar/Sidebar"
 import { DashboardHeader } from "../components/organismos/SiteHeader"
 import { CategoryFilterBar } from "../components/organismos/CategoryFilterBar"
+import { Outlet } from "react-router"
 
 export const Layout = ({children}) => {
     return (
@@ -16,7 +17,7 @@ export const Layout = ({children}) => {
                     <Sidebar/>
                 </section>
                 <ContainerBody>
-                    {children}
+                {children ? children : <Outlet />}
                 </ContainerBody>
             </MainContent>
         </Container>

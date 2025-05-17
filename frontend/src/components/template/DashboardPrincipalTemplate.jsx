@@ -5,14 +5,23 @@ import { EventSection } from "../organismos/EventsHotel/EventsSection"
 import { useState } from "react"
 
 import { HotelCard } from "../organismos/DashboardPrincipal/HotelCard"
-
+import { useHotelStore } from "../../store/HotelStore"
+import { LottieAnimacion } from "../atomos/LottieAnimacion"
+import animationhotel from "../../assets/animationhotel.json"
+import { useNavigate } from "react-router"
 export const DashboardPrincipalTemplate = () => {
     const [open, setOpen] = useState(false)
-
+    const {hotels} = useHotelStore()
     const toggleEventSection = ()=> {
         setOpen(!open)
     }
+    console.log(hotels?.hotels);
+    const navigation = useNavigate()
+    const handleRoomClick = (id)=>{
+        navigation(`/hotel/${id}`)
+    }
 
+    
     return(
         <Container>
             <MainContent>
@@ -20,16 +29,17 @@ export const DashboardPrincipalTemplate = () => {
                     <DashboardSearchFilters/>
                 </Area1>
                 <Area2 className="area2">
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
-                    <HotelCard/>
+                {
+                  hotels?.hotels?.length >0?(
+                      hotels?.hotels?.map((e)=>(
+                          <HotelCard id={e._id} imageHotel={e.image} nameHotel={e.name} addressHotel={e.address} priceHotel={e.price} onEventClick={handleRoomClick}/>
+                      )) 
+                    ):
+                    <div className="container_animation">
+                        <LottieAnimacion alto={205} ancho={205} animacion={animationhotel}/>
+                        <p className="container_animation_title">No Hotels Found</p>
+                    </div>
+                }
                 </Area2>
                 {/* <Area2>
                     <Btn1 onClick={toggleEventSection}/>
@@ -76,5 +86,17 @@ const Area2 = styled.div`
     &::-webkit-scrollbar-thumb {
         background-color: #0dff00;    /* color of the scroll thumb */
         border-radius: 20px;       /* roundness of the scroll thumb */
+    }
+    .container_animation{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        &_title{
+            color: ${({theme})=>theme.text};
+            font-weight: 600;
+        }
     }
 `

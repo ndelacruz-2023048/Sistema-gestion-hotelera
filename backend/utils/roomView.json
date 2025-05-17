@@ -1,15 +1,14 @@
 [
   {
-    "_id": "60b8f5f35f1d2b001c4d92b0",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe1528307",
     "squareMeters": 25,
     "bedTypes": "queen",
     "floor": 2,
     "images": [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-      "https://example.com/image4.jpg"
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg",
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg"
     ],
     "available": true,
     "pricePerNight": {
@@ -18,16 +17,15 @@
     "__v": 0
   },
   {
-    "_id": "60b8f5f35f1d2b001c4d92b1",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe1528308",
     "squareMeters": 30,
     "bedTypes": "king",
     "floor": 3,
     "images": [
-      "https://example.com/image5.jpg",
-      "https://example.com/image6.jpg",
-      "https://example.com/image7.jpg",
-      "https://example.com/image8.jpg"
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
     ],
     "available": true,
     "pricePerNight": {
@@ -36,16 +34,15 @@
     "__v": 0
   },
   {
-    "_id": "60b8f5f35f1d2b001c4d92b2",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe152830a",
     "squareMeters": 35,
     "bedTypes": "double",
     "floor": 1,
     "images": [
-      "https://example.com/image9.jpg",
-      "https://example.com/image10.jpg",
-      "https://example.com/image11.jpg",
-      "https://example.com/image12.jpg"
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg",
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg"
     ],
     "available": false,
     "pricePerNight": {
@@ -54,16 +51,15 @@
     "__v": 0
   },
   {
-    "_id": "60b8f5f35f1d2b001c4d92b3",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe152830b",
     "squareMeters": 28,
     "bedTypes": "individual",
     "floor": 4,
     "images": [
-      "https://example.com/image13.jpg",
-      "https://example.com/image14.jpg",
-      "https://example.com/image15.jpg",
-      "https://example.com/image16.jpg"
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
     ],
     "available": true,
     "pricePerNight": {
@@ -72,16 +68,15 @@
     "__v": 0
   },
   {
-    "_id": "60b8f5f35f1d2b001c4d92b4",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe152830c",
     "squareMeters": 40,
     "bedTypes": "queen",
     "floor": 5,
     "images": [
-      "https://example.com/image17.jpg",
-      "https://example.com/image18.jpg",
-      "https://example.com/image19.jpg",
-      "https://example.com/image20.jpg"
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg",
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg"
     ],
     "available": true,
     "pricePerNight": {
@@ -90,16 +85,15 @@
     "__v": 0
   },
   {
-    "_id": "60b8f5f35f1d2b001c4d92b5",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe152830d",
     "squareMeters": 50,
     "bedTypes": "king",
     "floor": 6,
     "images": [
-      "https://example.com/image21.jpg",
-      "https://example.com/image22.jpg",
-      "https://example.com/image23.jpg",
-      "https://example.com/image24.jpg"
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
     ],
     "available": false,
     "pricePerNight": {
@@ -108,16 +102,15 @@
     "__v": 0
   },
   {
-    "_id": "60b8f5f35f1d2b001c4d92b6",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe152830e",
     "squareMeters": 55,
     "bedTypes": "double",
     "floor": 7,
     "images": [
-      "https://example.com/image25.jpg",
-      "https://example.com/image26.jpg",
-      "https://example.com/image27.jpg",
-      "https://example.com/image28.jpg"
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg",
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg"
     ],
     "available": true,
     "pricePerNight": {
@@ -126,56 +119,19 @@
     "__v": 0
   },
   {
-    "_id": "60b8f5f35f1d2b001c4d92b7",
-    "room": "681810f001e5699f73d0bff7",
+    "room": "68278a779889627fe152830f",
     "squareMeters": 60,
     "bedTypes": "queen",
     "floor": 8,
     "images": [
-      "https://example.com/image29.jpg",
-      "https://example.com/image30.jpg",
-      "https://example.com/image31.jpg",
-      "https://example.com/image32.jpg"
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
     ],
     "available": false,
     "pricePerNight": {
       "$numberDecimal": "320.00"
-    },
-    "__v": 0
-  },
-  {
-    "_id": "60b8f5f35f1d2b001c4d92b8",
-    "room": "681810f001e5699f73d0bff7",
-    "squareMeters": 65,
-    "bedTypes": "king",
-    "floor": 9,
-    "images": [
-      "https://example.com/image33.jpg",
-      "https://example.com/image34.jpg",
-      "https://example.com/image35.jpg",
-      "https://example.com/image36.jpg"
-    ],
-    "available": true,
-    "pricePerNight": {
-      "$numberDecimal": "350.00"
-    },
-    "__v": 0
-  },
-  {
-    "_id": "60b8f5f35f1d2b001c4d92b9",
-    "room": "681810f001e5699f73d0bff7",
-    "squareMeters": 70,
-    "bedTypes": "king",
-    "floor": 10,
-    "images": [
-      "https://example.com/image37.jpg",
-      "https://example.com/image38.jpg",
-      "https://example.com/image39.jpg",
-      "https://example.com/image40.jpg"
-    ],
-    "available": true,
-    "pricePerNight": {
-      "$numberDecimal": "450.00"
     },
     "__v": 0
   }

@@ -10,26 +10,21 @@ const roomDetailsSchema = new Schema({
     required: true,
     unique: true
   },
-  furniture: {
-    type: String,
-    required: true,
-  }, // Ej: ['Cama', 'Sofá', 'Mesa']
-  tecnologie: {
-    type: String,
-    required: true,
-  }, // Ej: ['TV', 'Refrigerador', 'Cafetera', 'AC']
-  bathroom: {
-    type: String,
-    required: true,
-  }, // Ej: ['Retrete', 'Ducha']
-  wifi: {
-    type: String,
-    required: true,
-  },
-  food: {
-    type: String,
-    required: true,
-  }
-})
+  details:[
+    {
+      name: {
+        type: String,
+        enum: ['Habitación', 'Mobiliario', 'Internet', 'Conectividad', 'Tecnología', 'Climatización', 'Baño',' Zona de café',
+          'Seguridad','Servicios', 'Estacionamiento', 'Lavandería', 'Mascotas', 'Exteriores'
+        ],
+        required: true
+      },
+      description: {
+        type: String,
+        required: true
+      },
+    }
+  ],
+});
 
 export default model('roomDetails', roomDetailsSchema)

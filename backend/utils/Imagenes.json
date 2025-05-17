@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "60b8f5f35f1d2b001c4d92b0",
+    "room": "681810f001e5699f73d0bff7",
+    "squareMeters": 25,
+    "bedTypes": "queen",
+    "floor": 2,
+    "images": [
+      "https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg",
+      "https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg"
+    ],
+    "available": true,
+    "pricePerNight": {
+      "$numberDecimal": "150.50"
+    },
+    "__v": 0
+  }
+]

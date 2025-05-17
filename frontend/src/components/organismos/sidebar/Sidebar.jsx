@@ -31,9 +31,9 @@ export const Sidebar = () => {
             <Divider />
             <section className="sidebarSection2">
                 <div className="LinkContainer">
-                    <NavLink to="/help" className={({ isActive }) => `Links${isActive ? " active" : ""}`}>
+                    <NavLink to="/settings" className={({ isActive }) => `Links${isActive ? " active" : ""}`}>
                         <section>
-                            <Icon icon="ci:square-help" className="LinkIcon" />
+                            <Icon icon="ep:setting" className="LinkIcon" />
                         </section>
                     </NavLink>
                 </div>

@@ -32,7 +32,7 @@ export const AuthContextProvider = ({ children }) => {
 
     if (loading) {
         // Puedes mostrar un indicador de carga aquí mientras se verifica la sesión
-        return <div>Cargando...</div>; // O un componente de carga más sofisticado
+        // return <div>Cargando...</div>; // O un componente de carga más sofisticado
     }
 
     return (
