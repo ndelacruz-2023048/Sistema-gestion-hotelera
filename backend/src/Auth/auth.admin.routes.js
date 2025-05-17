@@ -5,11 +5,13 @@ import authRoutes from './auth.routes.js';
 
 const adminApi = Router();
 
+/*SCHEMA DE CADA RUTA */
+
 /** 
  * @swagger
  * components:
  *   schemas:
- *     Admin:
+ *     Hotel:
  *       type: object
  *       required:
  *         - name
@@ -36,19 +38,767 @@ const adminApi = Router();
  *         image:
  *           type: string   
  *           description: La imagen del hotel
+ *     Administrador de plataforma:
+ *       type: object
+ *       required:
+ *         - name
+ *         - address
+ *         - category
+ *         - price
+ *         - image
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: El ID auto-generado del hotel
+ *         name:
+ *           type: string
+ *           description: El nombre del hotel
+ *         address:
+ *           type: string
+ *           description: La dirección del hotel
+ *         category:
+ *           type: string
+ *           description: La categoría del hotel
+ *         price:
+ *           type: number
+ *           description: El precio por noche
+ *         image:
+ *           type: string   
+ *           description: La imagen del hotel 
  *         
+ */
+
+/** 
+ * @swagger
+ * components:
+ *   schemas:
+ *     Room:
+ *       type: object
+ *       required:
+ *         - hotel
+ *         - nameOfTheRoom
+ *         - typeRoom
+ *         - capacity
+ *         - squareMeters
+ *         - description
+ *         - disponibility
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: El ID auto-generado del Room
+ *         hotel:
+ *           $ref: '#/components/schemas/Hotel'
+ *         nameOfTheRoom:
+ *           type: string
+ *           description: La dirección del Room
+ *         typeRoom:
+ *           type: string
+ *           description: La categoría del Room
+ *         capacity:
+ *           type: object
+ *           required:
+ *             - adults
+ *             - childrens
+ *           properties:
+ *             adults:
+ *               type: integer
+ *               description: El número de adultos
+ *             childrens:
+ *               type: integer
+ *               description: El número de niños
+ *         squareMeters:
+ *           type: number   
+ *           description: La imagen del Room
+ *         description:
+ *           type: string
+ *           description: La descripción del Room
+ *         disponibility:
+ *           type: object
+ *           required:
+ *             - fechas_ocupadas
+ *             - fechas_disponibles
+ *           properties:
+ *             fechas_ocupadas:
+ *               type: array
+ *               items:
+ *                 type: string
+ *                 format: date
+ *               description: Fechas ya ocupadas
+ *             fechas_disponibles:
+ *               type: array
+ *               items:
+ *                 type: string
+ *                 format: date
+ *               description: Fechas disponibles  
  */
 
 /**
  * @swagger
- * tags:
- *   - name: Administrador de plataforma
- *     description: Operaciones generales para administradores de plataforma
- *   - name: Administrador de plataforma:Hoteles
- *     description: Operaciones relacionadas con la gestión de hoteles
- *   - name: Administrador de plataforma:Habitaciones
- *     description: Operaciones relacionadas con la gestión de habitaciones
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - name
+ *         - surname
+ *         - address
+ *         - mobilePhone
+ *         - country
+ *         - username
+ *         - email
+ *         - password
+ *         - role
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: El ID auto-generado del usuario
+ *         name:
+ *           type: string
+ *           description: El nombre del usuario
+ *         surname:
+ *           type: string
+ *           description: El apellido del usuario
+ *         address:
+ *           type: string
+ *           description: La dirección del usuario
+ *         mobilePhone:
+ *           type: string
+ *           description: El número de teléfono móvil del usuario
+ *         country:
+ *           type: string
+ *           description: El país del usuario
+ *         username:
+ *           type: string
+ *           description: El nombre de usuario único
+ *         email:
+ *           type: string
+ *           description: El correo electrónico único del usuario
+ *         password:
+ *           type: string
+ *           description: La contraseña del usuario
+ *         profilePicture:
+ *           type: string
+ *           description: La foto de perfil del usuario
+ *         role:
+ *           type: string
+ *           description: El rol del usuario (ADMIN, CLIENT, EMPLOYEE)
+ *         birthDate:
+ *           type: string
+ *           format: date
+ *           description: La fecha de nacimiento del usuario (requerido para empleados)
+ *         identificationNumber:
+ *           type: string
+ *           description: El número de identificación del usuario (requerido para empleados)
+ *         paymentInfo:
+ *           type: string
+ *           description: La información de pago del usuario
+ *         roomPreferences:
+ *           type: string
+ *           description: Las preferencias de habitación del usuario
+ *         reservationHistory:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: El historial de reservas del usuario
+ *         jobPosition:
+ *           type: string
+ *           description: La posición laboral del usuario (requerido para empleados)
+ *         hireDate:
+ *           type: string
+ *           format: date
+ *           description: La fecha de contratación del usuario (requerido para empleados)
+ *         permissions:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Los permisos del usuario (requerido para administradores y empleados)
+ * 
  */
+
+
+
+/**
+ * @swagger
+ * tags:
+ *   name: Administrador de plataforma
+ *   description: The hotel managment api
+ */
+
+/*ADMIN CON ACCESO A HOTELES */
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/hotels/getHotels:
+ *   get:
+ *     summary: Retorna la lista de todos los hoteles (Accesible para todos los usuarios)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint puede ser accedido por cualquier usuario autenticado, incluyendo administradores de plataforma, administradores de hotel y usuarios generales.
+ *     responses:
+ *       200:
+ *         description: Lista de todos los hoteles
+ *         content:
+ *           application/json:  
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Lista de todos los hoteles"
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Hotel'
+ *       404:
+ *         description: No se encontraron hoteles
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: 
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Hotels not found"
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/hotels/addHotels:
+ *   post:
+ *     summary: Agrega un nuevo hotel (Solo para administradores)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint solo puede ser accedido por administradores de plataforma.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "Hotel Nery"
+ *               address:
+ *                 type: string
+ *                 example: "Calle 123, Ciudad"
+ *               category:
+ *                 type: string
+ *                 example: "5 estrellas"
+ *               price:
+ *                 type: number
+ *                 example: 150.00
+ *               image:
+ *                 type: string
+ *                 example: "https://example.com/image.jpg"
+ *     responses:
+ *       200:
+ *         description: Hotel creado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel created successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid hotel data"
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/hotels/updateHotel/{id}:
+ *   put:
+ *     summary: Actualiza los detalles de un hotel (Solo para administradores)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint solo puede ser accedido por administradores de plataforma.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del hotel a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "Hotel Nery Actualizado"
+ *               address:
+ *                 type: string
+ *                 example: "Calle 123, Ciudad"
+ *               category:
+ *                 type: string
+ *                 example: "4 estrellas"
+ *               price:
+ *                 type: number
+ *                 example: 150.00
+ *               image:
+ *                 type: string
+ *                 example: "https://example.com/image.jpg"
+ *     responses:
+ *       200:
+ *         description: Hotel actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel updated successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid hotel data"
+ *       404:
+ *         description: Hotel no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel not found"
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/hotels/deleteHotel/{id}:
+ *   delete:
+ *     summary: Elimina un hotel (Solo para administradores)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint solo puede ser accedido por administradores de plataforma.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del hotel a eliminar
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Hotel eliminado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel deleted successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid hotel data"
+ *       404:
+ *         description: Hotel no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Hotel not found"
+ */
+
+/*ADMIN CON ACCESO A LOS CUARTOS*/
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/rooms/getAllRoom:
+ *   get:
+ *     summary: Retorna la lista de todos los cuartos (Accesible para todos los usuarios)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint puede ser accedido por cualquier usuario autenticado, incluyendo administradores de plataforma, administradores de hotel y usuarios generales.
+ *     responses:
+ *       200:
+ *         description: Lista de todos los cuartos
+ *         content:
+ *           application/json:  
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Lista de cuartos obtenida con éxito"
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Room'
+ *       404:
+ *         description: No se encontraron habitaciones
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: 
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Rooms not found"
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/rooms/addNewRoom:
+ *   post:
+ *     summary: Agrega una nueva habitación (Solo para administradores de plataforma y administradores de hotel)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint solo puede ser accedido por administradores de plataforma y administradores de hotel.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "Suite Deluxe"
+ *               floor:
+ *                 type: number
+ *                 example: 5
+ *               bedTypes:
+ *                 type: string
+ *                 example: "King Size"
+ *               pricePerNight:
+ *                 type: number
+ *                 example: 150
+ *               available:
+ *                 type: boolean
+ *                 example: true
+ *     responses:
+ *       200:
+ *         description: Habitación agregada correctamente
+ *         content:
+ *           application/json:  
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Room added successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success: 
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid room data"
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/rooms/updateRoom/{id}:
+ *   put:
+ *     summary: Actualiza los detalles de un room (Solo para administradores de plataforma y administradores de hotel)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint solo puede ser accedido por administradores de plataforma y administradores de hotel.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del room a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "Suite Deluxe Actualizada"
+ *               pricePerNight:
+ *                 type: number
+ *                 example: 180
+ *               available:
+ *                 type: boolean
+ *                 example: false
+ *     responses:
+ *       200:
+ *         description: Room actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Room updated successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid room data"
+ *       404:
+ *         description: Room no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Room not found"
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/rooms/deleteRoom/{id}:
+ *   delete:
+ *     summary: Elimina los datos de un room (Solo para administradores de plataforma y administradores de hotel)
+ *     tags: [Administrador de plataforma]
+ *     description: Este endpoint solo puede ser accedido por administradores de plataforma y administradores de hotel.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del room a eliminar
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Room eliminado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Room deleted successfully"
+ *       400:
+ *         description: Error en la solicitud
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Invalid room data"
+ *       404:
+ *         description: Room no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Room not found"
+ */
+
+/*ADMIN CON ACCESO A LOGIN Y REGISTER */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/auth/register:
+ *   post:
+ *     summary: Registra un nuevo usuario
+ *     tags: [Administrador de plataforma]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Usuario registrado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Usuario registrado exitosamente
+ *       400:
+ *         description: Error en el registro del usuario
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Error en el registro del usuario
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/auth/login:
+ *   post:
+ *     summary: Inicia sesión un usuario
+ *     tags: [Administrador de plataforma]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: El nombre de usuario
+ *               password:
+ *                 type: string
+ *                 description: La contraseña del usuario
+ *     responses:
+ *       200:
+ *         description: Inicio de sesión exitoso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Inicio de sesión exitoso
+ *       401:
+ *         description: Credenciales inválidas
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Credenciales inválidas
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/admin/auth/logout:
+ *   post:
+ *     summary: Cierra sesión un usuario
+ *     tags: [Administrador de plataforma]
+ *     responses:
+ *       200:
+ *         description: Cierre de sesión exitoso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Cierre de sesión exitoso
+ */
+
+
 
 
 adminApi.use('/hotels', hotelRoutes);
