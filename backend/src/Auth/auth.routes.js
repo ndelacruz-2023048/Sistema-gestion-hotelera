@@ -205,6 +205,10 @@ const api = Router()
  *                   example: Cierre de sesión exitoso
  */
 
+
+
+
+
 api.post(
     '/register',
     [

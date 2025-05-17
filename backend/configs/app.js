@@ -12,6 +12,7 @@ import RoomRoutes from '../src/room/room.routes.js'
 import RoomDetailsRoutes from '../src/RoomDetails/roomDetails.routes.js'
 import RoomViewRoutes from '../src/roomView/roomView.routes.js'
 import eventRoutes from '../src/event/event.routes.js'
+import adminApi from "../src/Auth/auth.admin.routes.js"
 import { limiter } from '../middlewares/rate.limit.js'
 import swaggerUI from "swagger-ui-express"
 import swaggerJsDoc from "swagger-jsdoc"
@@ -63,6 +64,7 @@ const routes = (app) =>{
     app.use('/v1/hotelhavenis/rooms', RoomRoutes)
     app.use('/v1/hotelhavenis/room-details', RoomDetailsRoutes)
     app.use('/v1/hotelhavenis/room-view', RoomViewRoutes)
+    app.use('/v1/hotelhavenis/admin', adminApi)
 }
 
     
