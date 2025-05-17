@@ -4,7 +4,7 @@ import {
     getAllRoomView,
     updateRoomView,
     deleteRoomView
-} from './RoomView.controller.js'
+} from './roomView.controller.js'
 
 const api = Router()
 

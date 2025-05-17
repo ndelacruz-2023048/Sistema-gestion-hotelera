@@ -37,7 +37,6 @@ export const connect = async()=>{
             const data = await defaultRooms(responseHotel)
             await defaultRoomViews(data)
         }
-        
 
     }catch(err){
         console.error('Database connection failed', err)
