@@ -243,12 +243,9 @@ api.post(
     addNewRoomV
 )
 
-<<<<<<< HEAD
 api.get('/getRoomViewByRoom/:room', getAllRoomView)
-=======
 api.put('/:id', updateRoomView)
 
 api.delete('/:id', deleteRoomView)
->>>>>>> ccolorado-2023223
 
 export default api

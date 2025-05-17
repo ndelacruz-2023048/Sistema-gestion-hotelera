@@ -31,7 +31,8 @@ export const Light ={
     colorLabel: 'black',
     hoverB: '#0F1824',
     color1: 'white',
-    infoText: 'rgb(199, 152, 65)'
+    infoText: 'rgb(199, 152, 65)',
+    bgRoomHotel:'#e3d6c0'
 }
 
 export const Dark = {
@@ -66,5 +67,6 @@ export const Dark = {
     eSection: '#2d333a',
     eSBorder: '#3d474f',
     colorLabel: 'white',
-    infoText: '#ffcc00'
+    infoText: '#ffcc00',
+    bgRoomHotel:'#615035;'
 }

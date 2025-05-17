@@ -2,12 +2,10 @@ import { Router } from 'express'
 import { 
     addNewRoom,
     getAllRoom,
-<<<<<<< HEAD
-    getRoomsByHotel
-=======
+    getRoomById,
+    getRoomsByHotel,
     updateRoom,
     deleteRoom
->>>>>>> hcordero-2023253
 } from './room.controller.js'
 
 const api = Router()
@@ -318,11 +316,9 @@ api.post(
     addNewRoom
 )
 
-<<<<<<< HEAD
 api.get(
     '/getRoomByHotel/:id',
-    getRoomsByHotel
-=======
+    getRoomsByHotel)
 api.put(
     '/updateRoom/:id',
     updateRoom
@@ -331,7 +327,10 @@ api.put(
 api.delete(
     '/deleteRoom/:id',
     deleteRoom
->>>>>>> hcordero-2023253
+)
+api.get(
+    '/getRoomById/:id',
+    getRoomById
 )
 
 export default api

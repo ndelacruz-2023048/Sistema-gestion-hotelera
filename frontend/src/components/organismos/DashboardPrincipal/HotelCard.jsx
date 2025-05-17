@@ -5,10 +5,12 @@ import { useState } from "react";
 import { SliderRooms } from "./SliderRooms";
 import { useQuery } from "@tanstack/react-query";
 import { useRoomStore } from "../../../store/RoomsStore";
+import { NavLink } from "react-router";
 export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEventClick}) => {
     const [isHovered, setIsHovered] = useState(false);
     const {roomsByHotel,fetchRoomsByHotel} = useRoomStore()
     const {data} = useQuery({queryKey:['roomsByHotel',id],queryFn:()=>fetchRoomsByHotel(id), enabled: isHovered &&!!id,retry:false})
+    console.log(data);
     
     return (
         <Container onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
@@ -18,7 +20,9 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
                         {
                             isHovered && 
                             <div className="rooms">
-                                <SliderRooms roomsData={data?.room} onEventClick={onEventClick}/>
+                                <NavLink to={`/hotel/${id}`}>
+                                    <button className="btn"><Icon icon="fluent:conference-room-24-regular" className='icon'/>View Hotel </button>
+                                </NavLink>
                             </div>
                         }
                         <ContainerIconLove>
@@ -55,14 +59,32 @@ const Container = styled.div`
    height: 330px;
    position: relative;
    .rooms{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    display: flex;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .btn{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #00000044;
+            color: white;
+            font-size: 17px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            &:hover{
+                background-color: #00000066;
+            }
+            .icon{
+                font-size: 28px;
+            }
+        }
     }
 `
 const WrapperCard = styled.div`

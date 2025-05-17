@@ -65,11 +65,8 @@ const routes = (app) =>{
     app.use('/v1/hotelhavenis/rooms', RoomRoutes)
     app.use('/v1/hotelhavenis/room-details', RoomDetailsRoutes)
     app.use('/v1/hotelhavenis/room-view', RoomViewRoutes)
-<<<<<<< HEAD
     app.use('/v1/hotelhavenis/admin', adminApi)
-=======
     app.use('/v1/hotelhavenis/reservation', ReservationRoutes)
->>>>>>> ccolorado-2023223
 }
 
     

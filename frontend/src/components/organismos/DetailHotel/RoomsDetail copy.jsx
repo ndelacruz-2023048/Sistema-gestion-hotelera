@@ -1,41 +1,12 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import styled from "styled-components"
 import { BtnDetail } from "../../moleculas/BtnDetail"
-import { HotelView } from "./HotelView"
-import { useRef, useState } from 'react'
-import { ScrollHorizontal } from "../../moleculas/ScrollHorizontal"
 
-export const RoomsDetail = ({data}) => {
-    console.log(data);
-    const containerRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
-
-    const handleMouseDown = (e) => {
-        setIsDragging(true);
-        setStartX(e.pageX - containerRef.current.offsetLeft);
-        setScrollLeft(containerRef.current.scrollLeft);
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
-
-    const handleMouseMove = (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - containerRef.current.offsetLeft;
-        const walk = (x - startX) * 2;
-        containerRef.current.scrollLeft = scrollLeft - walk;
-    };
+export const RoomsDetail = () => {
     return(
         <Container>
-            <HotelView dataHotelView={data?.room?.views}/>
-            <div>
-                <h3>{data?.room?.nameOfTheRoom}</h3>
-                <ScrollHorizontal/>
-                {/* <Section>
+            <SectionGlobal>
+                <Section>
                     <Section1>
                         <Title>Room Details</Title>
                         <Icon icon="material-symbols:info-outline-rounded" className="infoIcon"/>
@@ -50,20 +21,18 @@ export const RoomsDetail = ({data}) => {
                         <BtnDetail iconLeft="material-symbols:wifi" title="Wifi" text="Gratis"/>
                         <BtnDetail iconLeft="mdi:food" title="Comida" text="Servicio al Dormitorio"/>
                     </ContainerButtonDetail>
-                </Section> */}
-            </div>
+                </Section>
+            </SectionGlobal>
         </Container>
     )
 }
 
 const Container = styled.div`
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    height: 87%;
     background: ${({theme})=>theme.bgdgradient};
-    width: 100%;
+    width: 40%;
     border-radius: 20px;
-    
 `
 
 const Title = styled.h2`
@@ -83,7 +52,7 @@ const Section = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 30%;
+    height: 100%;
     width: 90%;
 
 `

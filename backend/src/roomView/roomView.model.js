@@ -11,7 +11,7 @@ const roomViewSchema = new Schema({
   },
   bedTypes: {
     type: String,
-    enum: ['individual', 'doble', 'queen', 'king'],
+    enum: ['individual', 'double', 'queen', 'king'],
     required: true
   },
   floor: {
