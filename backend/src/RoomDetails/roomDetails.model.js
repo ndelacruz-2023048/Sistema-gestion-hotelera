@@ -25,10 +25,7 @@ const roomDetailsSchema = new Schema({
       },
     }
   ],
-<<<<<<< HEAD
 });
-=======
-})
->>>>>>> ccolorado-2023223
+
 
 export default model('roomDetails', roomDetailsSchema)
