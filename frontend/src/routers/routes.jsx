@@ -15,6 +15,7 @@ import { HiringStage } from "../components/organismos/Forms/HiringStage"
 import { ApplicationForm } from "../components/organismos/Forms/ApplicationForm"
 import { DetailsRoomHotel } from "../pages/DetailsRoomHotel"
 import { HiringStageHotel } from "../pages/HiringStageHotel"
+import { DetailUser } from "../components/template/DetailUser"
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,16 @@ const router = createBrowserRouter([
                 <Layout>
                     <EventPlanning/>
                 </Layout> 
+            </ProtectedRoutes>
+        )
+    },
+    {
+        path: '/user',
+        element:(
+            <ProtectedRoutes accesBy="authenticated">
+                <Layout>
+                    <DetailUser/>
+                </Layout>
             </ProtectedRoutes>
         )
     },

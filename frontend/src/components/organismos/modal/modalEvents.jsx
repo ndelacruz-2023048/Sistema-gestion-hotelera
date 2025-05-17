@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
 import {Description} from './modalEvents/Description'
-import { useUsers } from "../hooks/useUsers";
+import { useUsers } from "../../../hooks/useUsers";
 
 function ModalEvents({ togglePopup }) {
     const [selectedOption, setSelectedOption] = useState(null)

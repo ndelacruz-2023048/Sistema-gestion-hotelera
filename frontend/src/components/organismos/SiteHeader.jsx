@@ -3,7 +3,14 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import photoProfile from "../../assets/photoProfile.avif"
 import { Toggle } from "../moleculas/Toggle";
 import Logotipo_Havenis from '../../assets/Logotipo_Havenis.png'
+import { useState } from "react";
+import { ModalUser } from "./modal/modalUser";
 export const DashboardHeader = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    
+    const togglePopup = () => {
+        setIsOpen(!isOpen)
+    }
     return (
         <Container>
             <Section1>
@@ -33,9 +40,15 @@ export const DashboardHeader = () => {
                     <Divider/>
                 </DividerContainer>
                 
-                <ImageContainer>
-                    <Image src={photoProfile}/>
+                <ImageContainer >
+                    <Image src={photoProfile} onClick={togglePopup}/>
                 </ImageContainer>
+
+                {isOpen && (
+                    <>
+                        <ModalUser togglePopup={togglePopup}/>
+                    </>
+                )}
             </Section2>
         </Container>
     )
@@ -126,6 +139,7 @@ const Divider = styled.div`
 
 const ImageContainer  = styled.div`
     width: 10%;
+    
 `
 const Logo = styled.img`
     width: 60px;
@@ -136,4 +150,5 @@ const Image = styled.img`
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    cursor: pointer;
 `

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Tag } from '../../atomos/Tag'
 import { Label } from '../../atomos/Label'
 import { Icon } from "@iconify/react/dist/iconify.js";
-import ModalEvents from '../../../modal/modalEvents'
+import ModalEvents from '../modal/modalEvents'
 import { EventPlanningLeft } from '../../moleculas/EventPlanningLeft';
 import { EventPlanningCenter } from '../../moleculas/EventPlanningCenter';
 import { EventPlanningRight } from '../../moleculas/EventPlanningRight';
