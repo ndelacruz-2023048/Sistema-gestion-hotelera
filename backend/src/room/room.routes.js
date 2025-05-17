@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { 
     addNewRoom,
     getAllRoom,
+    getRoomById,
     getRoomsByHotel
 } from './room.controller.js'
 
@@ -170,6 +171,10 @@ api.post(
 api.get(
     '/getRoomByHotel/:id',
     getRoomsByHotel
+)
+api.get(
+    '/getRoomById/:id',
+    getRoomById
 )
 
 export default api

@@ -9,8 +9,10 @@ import Comedor from '../../../assets/Comedor.jpg'
 import Cama from '../../../assets/Cama.jpg'
 import Sala from '../../../assets/sala.jpg'
 import { Icon } from '@iconify/react/dist/iconify.js';
-export const HotelView = () => {
+export const HotelView = ({dataHotelView}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const data = dataHotelView?.[0]
+    console.log(data);
     return (
         <Container>
             <RoomBadges>
@@ -35,10 +37,17 @@ export const HotelView = () => {
             modules={[FreeMode, Navigation, Thumbs]}
             className='swiper-personalized'
             >
-                <SwiperSlide className='swiper-slide-personalized'><Image src={RoomPrincipal} alt="" /></SwiperSlide>
+                {
+                    data?.images?.map((image,index)=>{
+                        return(
+                            <SwiperSlide className='swiper-slide-personalized' key={index}><Image src={image} alt="" /></SwiperSlide>
+                        )
+                    })
+                }
+                {/* <SwiperSlide className='swiper-slide-personalized'><Image src={RoomPrincipal} alt="" /></SwiperSlide>
                 <SwiperSlide className='swiper-slide-personalized'><Image src={Comedor} alt="" /></SwiperSlide>
                 <SwiperSlide className='swiper-slide-personalized'><Image src={Cama} alt="" /></SwiperSlide>
-                <SwiperSlide className='swiper-slide-personalized'><Image src={Sala} alt="" /></SwiperSlide>
+                <SwiperSlide className='swiper-slide-personalized'><Image src={Sala} alt="" /></SwiperSlide> */}
             </Swiper>
             <Swiper
                 onSwiper={setThumbsSwiper}
@@ -48,10 +57,17 @@ export const HotelView = () => {
                 className='container-swiper-controls'
                 style={{position:'initial'}}
                 >
-                <SwiperSlide className='swiper-controls'><MiniImage src={RoomPrincipal} alt="" /></SwiperSlide>
+                {
+                    data?.images?.map((image,index)=>{
+                        return(
+                            <SwiperSlide className='swiper-controls' key={index}><MiniImage src={image} alt="" /></SwiperSlide>
+                        )
+                    })
+                }
+                {/* <SwiperSlide className='swiper-controls'><MiniImage src={RoomPrincipal} alt="" /></SwiperSlide>
                 <SwiperSlide className='swiper-controls'><MiniImage src={Comedor} alt="" /></SwiperSlide>
                 <SwiperSlide className='swiper-controls'><MiniImage src={Cama} alt="" /></SwiperSlide>
-                <SwiperSlide className='swiper-controls'><MiniImage src={Sala} alt="" /></SwiperSlide>
+                <SwiperSlide className='swiper-controls'><MiniImage src={Sala} alt="" /></SwiperSlide> */}
             </Swiper>
         </Main>
         </Container>
@@ -60,7 +76,7 @@ export const HotelView = () => {
 }
 const Container = styled.div`
     position: relative;
-    width: 60%;
+    width: 100%;
 `
 
 

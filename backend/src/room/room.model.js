@@ -45,4 +45,21 @@ const Room = new Schema({
   }
 });
 
+Room.virtual('details', {
+  ref: 'roomDetails',
+  localField: '_id',
+  foreignField: 'room',
+  justOne: false
+});
+
+Room.virtual('views', {
+  ref: 'roomView',
+  localField: '_id',
+  foreignField: 'room',
+  justOne: false
+});
+
+Room.set('toObject', { virtuals: true });
+Room.set('toJSON', { virtuals: true });
+
 export default model('Room', Room);

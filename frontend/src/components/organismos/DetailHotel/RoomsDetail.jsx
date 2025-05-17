@@ -1,28 +1,12 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
 import styled from "styled-components"
 import { BtnDetail } from "../../moleculas/BtnDetail"
+import { HotelView } from "./HotelView"
 
-export const RoomsDetail = () => {
+export const RoomsDetail = ({data}) => {
     return(
         <Container>
-            <SectionGlobal>
-                <Section>
-                    <Section1>
-                        <Title>Room Details</Title>
-                        <Icon icon="material-symbols:info-outline-rounded" className="infoIcon"/>
-                        
-                    </Section1>
-                    <Line></Line>
-                    <ContainerButtonDetail>
-                        <BtnDetail iconLeft="material-symbols-light:meeting-room" title="Habitación" text="1 Dormitorio y una Sala de estar"/>
-                        <BtnDetail iconLeft="famicons:bed" title="Muebles" text="Cama, sofa, mesa, etc."/>
-                        <BtnDetail iconLeft="mdi:tv" title="Tecnologia" text="TV, Refrigerador, Cafetera, AC"/>
-                        <BtnDetail iconLeft="solar:bath-bold" title="Baño" text="Retrete, Ducha"/>
-                        <BtnDetail iconLeft="material-symbols:wifi" title="Wifi" text="Gratis"/>
-                        <BtnDetail iconLeft="mdi:food" title="Comida" text="Servicio al Dormitorio"/>
-                    </ContainerButtonDetail>
-                </Section>
-            </SectionGlobal>
+            <HotelView dataHotelView={data?.room?.views}/>
         </Container>
     )
 }
@@ -31,7 +15,7 @@ const Container = styled.div`
     display: flex;
     height: 87%;
     background: ${({theme})=>theme.bgdgradient};
-    width: 40%;
+    width: 100%;
     border-radius: 20px;
 `
 
