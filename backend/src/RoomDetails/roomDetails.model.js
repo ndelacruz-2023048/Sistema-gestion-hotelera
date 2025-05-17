@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 
 const roomDetailsSchema = new Schema({
-  room: { 
-      type: Schema.Types.ObjectId, 
-      ref: 'Room', required: true 
+  room: {
+      type: Schema.Types.ObjectId,
+      ref: 'Room', required: true
   },
   roomNumber: {
     type: Number,
@@ -25,6 +25,10 @@ const roomDetailsSchema = new Schema({
       },
     }
   ],
+<<<<<<< HEAD
 });
+=======
+})
+>>>>>>> ccolorado-2023223
 
 export default model('roomDetails', roomDetailsSchema)

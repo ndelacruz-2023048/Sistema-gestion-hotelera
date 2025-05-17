@@ -1,7 +1,9 @@
 import { Router } from 'express'
 import { 
     addNewRoom,
-    getAllRooms
+    getAllRooms,
+    updateRoomDetails,
+    deleteRoomDetails
 } from './roomDetails.controller.js'
 
 const api = Router()
@@ -132,6 +134,117 @@ const api = Router()
  *                   example: Error al crear el detalle de habitación
  */
 
+/**
+ * @swagger
+ * /v1/hotelhavenis/room-details/updateRoom/{id}:
+ *   put:
+ *     summary: Actualiza un detalle de habitación existente
+ *     tags: [roomDetails]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del detalle de habitación a actualizar
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/roomDetails'
+ *     responses:
+ *       200:
+ *         description: Detalle de habitación actualizado correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/roomDetails'
+ *       404:
+ *         description: Detalle de habitación no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Room detail not found
+ *       500:
+ *         description: Error general al actualizar
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: General error
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/room-details/deleteRoom/{id}:
+ *   delete:
+ *     summary: Elimina un detalle de habitación por ID
+ *     tags: [roomDetails]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del detalle de habitación a eliminar
+ *     responses:
+ *       200:
+ *         description: Detalle de habitación eliminado correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Room detail deleted successfully
+ *       404:
+ *         description: Detalle de habitación no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Room detail not found
+ *       500:
+ *         description: Error general al eliminar
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: General error
+ */
+
+
+
 api.get(
     '/getRooms',
     getAllRooms
@@ -142,4 +255,7 @@ api.post(
     addNewRoom
 )
 
+api.put('/updateRoom/:id', updateRoomDetails)
+
+api.delete('/deleteRoom/:id', deleteRoomDetails)
 export default api

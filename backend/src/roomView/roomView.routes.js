@@ -1,7 +1,9 @@
 import { Router } from 'express'
 import { 
     addNewRoomV,
-    getAllRoomView
+    getAllRoomView,
+    updateRoomView,
+    deleteRoomView
 } from './RoomView.controller.js'
 
 const api = Router()
@@ -134,6 +136,103 @@ const api = Router()
  *  
  */
 
+/**
+ * @swagger
+ * /v1/hotelhavenis/room-view/{id}:
+ *   put:
+ *     summary: Actualiza un RoomView por su ID
+ *     tags: [RoomView]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del RoomView a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/RoomView'
+ *     responses:
+ *       200:
+ *         description: RoomView actualizado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Room updated successfully
+ *                 room:
+ *                   $ref: '#/components/schemas/RoomView'
+ *       404:
+ *         description: RoomView no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Room not found
+ *       500:
+ *         description: Error general
+ */
+
+/**
+ * @swagger
+ * /v1/hotelhavenis/room-view/{id}:
+ *   delete:
+ *     summary: Elimina un RoomView por su ID
+ *     tags: [RoomView]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del RoomView a eliminar
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: RoomView eliminado correctamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Room deleted successfully
+ *       404:
+ *         description: RoomView no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Room not found
+ *       500:
+ *         description: Error general
+ */
+
+
 api.get(
     '/getAllRoomView',
     getAllRoomView
@@ -144,6 +243,12 @@ api.post(
     addNewRoomV
 )
 
+<<<<<<< HEAD
 api.get('/getRoomViewByRoom/:room', getAllRoomView)
+=======
+api.put('/:id', updateRoomView)
+
+api.delete('/:id', deleteRoomView)
+>>>>>>> ccolorado-2023223
 
 export default api

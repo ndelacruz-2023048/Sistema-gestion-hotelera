@@ -43,6 +43,6 @@ const Room = new Schema({
       required: true
     }
   }
-});
+})
 
-export default model('Room', Room);
+export default model('Room', Room)

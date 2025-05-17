@@ -2,6 +2,11 @@ import { Schema, model } from "mongoose"
 
 const eventSchema = Schema(
   {
+    hotel: {
+      type: Schema.Types.ObjectId,
+      ref: 'Hotel',
+      required: true
+    },
     name: {
       type: String
     },
