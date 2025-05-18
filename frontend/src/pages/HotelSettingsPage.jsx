@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ArrivalCard } from '../components/organismos/ArrivalCard'
 
 export const HotelSettingsPage = () => {
   return (
@@ -43,46 +44,34 @@ export const HotelSettingsPage = () => {
         <TimelineBox>
 
         </TimelineBox>
-
-        <FreeRooms>
-          <h3>Free rooms</h3>
-          <RoomList>
-            <RoomBox>4 Single</RoomBox>
-            <RoomBox>7 Double</RoomBox>
-            <RoomBox>7 Family Suite</RoomBox>
-            <RoomBox>3 President Suite</RoomBox>
-          </RoomList>
-        </FreeRooms>
-        <Sidebar>
-          <ActionButton>Lock POS</ActionButton>
-          <ActionButton>Support</ActionButton>
-        </Sidebar>
+        <RightBottom>
+          <FreeRooms>
+            <h3>Free rooms</h3>
+            <RoomList>
+              <RoomBox><p>4 Single</p></RoomBox>
+              <RoomBox><p>7 Double</p></RoomBox>
+              <RoomBox><p>7 Family Suite</p></RoomBox>
+              <RoomBox><p>3 President Suite</p></RoomBox>
+            </RoomList>
+          </FreeRooms>
+          <Sidebar>
+            <ActionButton>Lock POS</ActionButton>
+            <ActionButton>Support</ActionButton>
+          </Sidebar>
+        </RightBottom>
+        
         
       </RightColumn>
     </Container>
   )
 }
 
-const ArrivalCard = ({ name, time, nights, room, roomType, board, status, action }) => (
-  <Card>
-    <TopRow>
-      <Time>{time}</Time>
-      <ActionButton>{action}</ActionButton>
-    </TopRow>
-    <Name>{name}</Name>
-    <Details>
-      Room {room} • {nights} nights • {roomType} • {board}
-    </Details>
-    <Status>{status}</Status>
-  </Card>
-)
-
-
 const Container = styled.div`
   display: flex;
   gap: 1rem;
   padding: 1rem;
   max-height: 70vh;
+  overflow-y: auto;
 `
 
 const LeftColumn = styled.div`
@@ -97,6 +86,7 @@ const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: 87vh;
 `
 
 const SectionTitle = styled.h2`
@@ -104,80 +94,46 @@ const SectionTitle = styled.h2`
   margin-bottom: 0.5rem;
 `
 
-const Card = styled.div`
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-`
-
-const TopRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const Time = styled.span`
-  font-weight: bold;
-  color: #333;
-`
-
-const Name = styled.h3`
-  margin: 0.5rem 0 0.2rem;
-  font-size: 1.1rem;
-`
-
-const Details = styled.p`
-  font-size: 0.9rem;
-  color: #555;
-`
-
-const Status = styled.span`
-  font-size: 0.85rem;
-  color: green;
-  margin-top: 0.5rem;
-`
-
 const ActionButton = styled.button`
-  background-color: #007aff;
+  background-color:${({ theme }) => theme.infoText};
   border: none;
   color: white;
-  padding: 0.5rem 0.8rem;
+  padding: 50px;
   border-radius: 8px;
   cursor: pointer;
 `
 
 const TimelineBox = styled.div`
-  background: #ffffff;
+  background-color: none;
   border-radius: 12px;
   padding: 1rem;
-  min-height: 300px;
+  height: 80%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 `
 
-const TimelineBar = styled.div`
-  background-color: ${props => props.secondary ? '#fcd34d' : '#3b82f6'};
-  color: white;
-  padding: 0.5rem;
-  border-radius: 8px;
-`
-
 const Sidebar = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  margin-top: auto;
+  margin: auto;
+  align-items: center;
+`
+
+const RightBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 60%;
 `
 
 const FreeRooms = styled.div`
-  background: #ffffff;
+  background-color: ${({ theme }) => theme.colorBackground};
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   width: 50%;
+  height: 100%;
 `
 
 const RoomList = styled.div`
@@ -188,8 +144,14 @@ const RoomList = styled.div`
 `
 
 const RoomBox = styled.div`
-  background: #f0f0f0;
+  display: flex;
+  background: ${({ theme }) => theme.square};
+  color: ${({ theme }) => theme.color};
+  font-weight: bold;
+  font-size: 20px;
   padding: 0.6rem;
+  height: 10vh;
   border-radius: 8px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 `

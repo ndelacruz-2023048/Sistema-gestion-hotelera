@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/react';
 import React from 'react'
 import { useRef, useState } from 'react'
 import styled from 'styled-components';
@@ -31,31 +32,44 @@ export const ScrollHorizontal = () => {
             onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove} className="containerspan">
 
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
+            <span>
+                <Icon icon="material-symbols-light:meeting-room" className="infoIcon"/>
+                <p>1 Dormitorio y una Sala</p>
+            </span>
+            <span>
+                <Icon icon="famicons:bed" className="infoIcon"/>
+                <p>Cama, sofa, mesa, etc.</p>
+            </span>
+            <span>
+                <Icon icon="mdi:tv" className="infoIcon"/>
+                <p>TV, Refrigerador, Cafetera, AC</p>
+            </span>
+            <span>
+                <Icon icon="solar:bath-bold" className="infoIcon"/>
+                <p>Retrete, Ducha</p>
+            </span>
+            <span>
+                <Icon icon="material-symbols:wifi" className="infoIcon"/>
+                <p>Gratis</p>
+            </span>
+            <span>
+                <Icon icon="mdi:food" className="infoIcon"/>
+                <p>Servicio al Dormitorio</p>
+            </span>
         </Container>
     )
 }
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     width: 100%;
-    overflow-x: scroll;
+    max-width: 95%;
+    overflow-x: auto;
     gap: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: ${({ theme }) => theme.color};
     
     &::-webkit-scrollbar {
         display: none;
@@ -63,7 +77,9 @@ const Container = styled.div`
     
     span {
         background: ${({ theme }) => theme.bgd};
-        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
         border-radius: 10px;
         white-space: nowrap;
         flex-shrink: 0;
@@ -72,6 +88,10 @@ const Container = styled.div`
         
         &:hover {
             opacity: 0.8;
+        }
+
+        .infoIcon{
+            font-size: 30px;
         }
     }
     

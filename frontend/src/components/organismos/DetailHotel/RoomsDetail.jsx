@@ -22,6 +22,20 @@ export const RoomsDetail = ({data}) => {
         setIsDragging(false);
     };
 
+    const renderStars = (rating) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            if (rating >= i) {
+                stars.push(<Icon icon="material-symbols:star" key={i} className="starIcon" />)
+            } else if (rating >= i - 0.5) {
+                stars.push(<Icon icon="material-symbols:star-half" key={i} className="starIcon" />)
+            } else {
+                stars.push(<Icon icon="material-symbols:star-outline" key={i} className="starIcon" />)
+            }
+        }
+        return stars
+    }
+
     const handleMouseMove = (e) => {
         if (!isDragging) return;
         e.preventDefault();
@@ -34,23 +48,32 @@ export const RoomsDetail = ({data}) => {
             <HotelView dataHotelView={data?.room?.views}/>
             <div>
                 <h3>{data?.room?.nameOfTheRoom}</h3>
+                <StarsContainer>
+                    {renderStars(4)}
+                </StarsContainer>
+                <InfoList>
+                    <InfoRow>
+                        <span>Precio:</span>
+                        <span>${data?.room?.price ?? '---'}</span>
+                    </InfoRow>
+                    <InfoRow>
+                        <span>T. Reserva:</span>
+                        <span>{data?.room?.reservationTime ?? '---'}</span>
+                    </InfoRow>
+                    <InfoRow>
+                        <span>L. Personas:</span>
+                        <span>{data?.room?.maxPeople ?? '---'} Personas</span>
+                    </InfoRow>
+                </InfoList>
                 <ScrollHorizontal/>
-                {/* <Section>
-                    <Section1>
-                        <Title>Room Details</Title>
-                        <Icon icon="material-symbols:info-outline-rounded" className="infoIcon"/>
-                        
-                    </Section1>
-                    <Line></Line>
-                    <ContainerButtonDetail>
-                        <BtnDetail iconLeft="material-symbols-light:meeting-room" title="Habitación" text="1 Dormitorio y una Sala de estar"/>
-                        <BtnDetail iconLeft="famicons:bed" title="Muebles" text="Cama, sofa, mesa, etc."/>
-                        <BtnDetail iconLeft="mdi:tv" title="Tecnologia" text="TV, Refrigerador, Cafetera, AC"/>
-                        <BtnDetail iconLeft="solar:bath-bold" title="Baño" text="Retrete, Ducha"/>
-                        <BtnDetail iconLeft="material-symbols:wifi" title="Wifi" text="Gratis"/>
-                        <BtnDetail iconLeft="mdi:food" title="Comida" text="Servicio al Dormitorio"/>
-                    </ContainerButtonDetail>
-                </Section> */}
+                <Section>
+                    <DescriptionContainer>
+                        <DescriptionTitle>Descripción del Cuarto</DescriptionTitle>
+                        <DescriptionText>
+                        Esta habitación está diseñada para brindar la mejor comodidad durante tu estadía. Cuenta con áreas amplias, mobiliario moderno, y todas las comodidades que podrías necesitar para una experiencia inolvidable.
+                        </DescriptionText>
+                    </DescriptionContainer>
+                </Section>
             </div>
         </Container>
     )
@@ -63,7 +86,13 @@ const Container = styled.div`
     background: ${({theme})=>theme.bgdgradient};
     width: 100%;
     border-radius: 20px;
+    color: ${({theme})=>theme.color};
+    overflow-y: auto;
+    overflow-x: hidden;
     
+    h3{
+        margin: 2%;
+    }
 `
 
 const Title = styled.h2`
@@ -112,4 +141,52 @@ const Line = styled.div`
     justify-content: center;
 `
 
+const StarsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  .starIcon {
+    font-size: 24px;
+    color: ${({theme})=>theme.hover};
+    margin-right: 2px;
+  }
+`
 
+const InfoList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0;
+  padding: 0 10px;
+`
+
+const InfoRow = styled.div`
+  margin-left: 1.5%;
+  display: flex;
+  color: ${({theme}) => theme.color};
+  font-size: 16px;
+  font-weight: 500;
+
+  span:first-child {
+    opacity: 0.7;
+  }
+`
+
+const DescriptionContainer = styled.div`
+  padding: 10px 15px;
+  margin-top: 20px;
+`
+
+const DescriptionTitle = styled.h4`
+  color: ${({ theme }) => theme.color};
+  margin-bottom: 8px;
+  font-size: 18px;
+`
+
+const DescriptionText = styled.p`
+  color: ${({ theme }) => theme.color};
+  opacity: 0.7;
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 0;
+`
