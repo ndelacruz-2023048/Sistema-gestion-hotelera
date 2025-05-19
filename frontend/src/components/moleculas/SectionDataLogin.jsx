@@ -3,7 +3,7 @@ import { Input2 } from "../atomos/Input2"
 import styled from "styled-components"
 import { motion } from 'framer-motion'
 
-export const SectionDataLogin = ({register, disabledButton, errors }) => {
+export const SectionDataLogin = ({register, errors }) => {
     return (
         <DataWrapper>
             <DataBox
@@ -34,8 +34,10 @@ export const SectionDataLogin = ({register, disabledButton, errors }) => {
                     type={"password"}
                     holder={"Contraseña"}
                     {...register('password', {
-                        required: true,
-                        message: 'La contraseña es obligatoria'
+                        required: {
+                            value: true,
+                            message: 'La contraseña es obligatoria',
+                        }
                     })}
                 />
                 <Icon icon="mdi:password" className="IconLabel"/>
@@ -56,7 +58,7 @@ export const SectionDataLogin = ({register, disabledButton, errors }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.3, ease: "easeOut" }}
             >
-                <ButtonLogin disabled={disabledButton} type="submit">Iniciar Seción</ButtonLogin>
+                <ButtonLogin type="submit">Iniciar Seción</ButtonLogin>
             </DataBoxButton>
             <Register
                 initial={{ opacity: 0, y: 5 }}
