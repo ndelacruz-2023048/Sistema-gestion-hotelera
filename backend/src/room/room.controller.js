@@ -208,7 +208,6 @@ export const defaultRooms = async(newHotelData)=>{
           "nameOfTheRoom": "Habitación Premium",
           "typeRoom": "Premium",
           "capacity": { "childrens": 2, "adults": 1 },
-          "squareMeters": 35,
           "description": "Vista al mar, cama king y jacuzzi privado.",
           "disponibility": {
             "fechas_disponibles": "Resto del mes",
@@ -220,7 +219,6 @@ export const defaultRooms = async(newHotelData)=>{
           "nameOfTheRoom": "Suite Ejecutiva",
           "typeRoom": "Suite",
           "capacity": { "childrens": 1, "adults": 2 },
-          "squareMeters": 45,
           "description": "Suite con escritorio, minibar y vista panorámica.",
           "disponibility": {
             "fechas_disponibles": "Resto del mes",
@@ -232,7 +230,6 @@ export const defaultRooms = async(newHotelData)=>{
             "nameOfTheRoom": "Deluxe",
             "typeRoom": "Premium",
             "capacity": { "childrens": 2, "adults": 1 },
-            "squareMeters": 35,
             "description": "Amplia habitación con baño privado y terraza.",
             "disponibility": {
               "fechas_disponibles": "Resto del mes",
@@ -244,7 +241,6 @@ export const defaultRooms = async(newHotelData)=>{
             "nameOfTheRoom": "Estandar",
             "typeRoom": "Suite",
             "capacity": { "childrens": 1, "adults": 2 },
-            "squareMeters": 45,
             "description": "Habitación sencilla con baño compartido.",
             "disponibility": {
               "fechas_disponibles": "Resto del mes",
@@ -256,7 +252,6 @@ export const defaultRooms = async(newHotelData)=>{
             "nameOfTheRoom": "Semipremium",
             "typeRoom": "Premium",
             "capacity": { "childrens": 2, "adults": 1 },
-            "squareMeters": 35,
             "description": "TV de 55'', ducha de hidromasaje y escritorio.",
             "disponibility": {
               "fechas_disponibles": "Resto del mes",
@@ -268,7 +263,6 @@ export const defaultRooms = async(newHotelData)=>{
             "nameOfTheRoom": "Suite Ejecutiva",
             "typeRoom": "Suite",
             "capacity": { "childrens": 1, "adults": 2 },
-            "squareMeters": 45,
             "description": "Suite con escritorio, minibar y vista panorámica.",
             "disponibility": {
               "fechas_disponibles": "Resto del mes",
@@ -280,7 +274,6 @@ export const defaultRooms = async(newHotelData)=>{
             "nameOfTheRoom": "Penthouse",
             "typeRoom": "Penthouse",
             "capacity": { "childrens": 1, "adults": 2 },
-            "squareMeters": 45,
             "description": "Penthouse con cocina, sala y vista de 360°.",
             "disponibility": {
               "fechas_disponibles": "Resto del mes",
@@ -288,8 +281,6 @@ export const defaultRooms = async(newHotelData)=>{
             }
           }
     ]
-
-    
 
     const existDefaultRooms = await Room.find({nameOfTheRoom:"Hotel Vista Hermosa"})
     const idHotels = []

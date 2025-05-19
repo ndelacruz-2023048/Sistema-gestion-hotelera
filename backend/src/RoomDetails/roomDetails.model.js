@@ -14,7 +14,7 @@ const roomDetailsSchema = new Schema({
     {
       name: {
         type: String,
-        enum: ['Habitación', 'Mobiliario', 'Internet', 'Conectividad', 'Tecnología', 'Climatización', 'Baño',' Zona de café',
+        enum: ['Habitación', 'Mobiliario', 'Internet', 'Conectividad', 'Tecnología', 'Climatización', 'Baño',
           'Seguridad','Servicios', 'Estacionamiento', 'Lavandería', 'Mascotas', 'Exteriores'
         ],
         required: true

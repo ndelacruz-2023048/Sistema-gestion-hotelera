@@ -2,6 +2,7 @@ import mongoose from "mongoose"
 import { defaultHotels } from "../src/hotel/hotel.controller.js"
 import { defaultRooms } from "../src/room/room.controller.js"
 import { defaultRoomViews } from "../src/roomView/roomView.controller.js"
+import { defaultRoomDetail } from "../src/RoomDetails/roomDetails.controller.js"
 
 export const connect = async()=>{
     try{
@@ -36,6 +37,7 @@ export const connect = async()=>{
         if(responseHotel.success !== false){
             const data = await defaultRooms(responseHotel)
             await defaultRoomViews(data)
+            await defaultRoomDetail(data)
         }
 
     }catch(err){

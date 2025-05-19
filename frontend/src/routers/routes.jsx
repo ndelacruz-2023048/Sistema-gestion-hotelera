@@ -44,10 +44,10 @@ const router = createBrowserRouter([
             path: 'events',
             element: <EventPlanning />
           },
-          // {
-          //   path: 'new-hotel',
-          //   element: <NewHotelPage />
-          // },
+          {
+            path: 'new-hotel',
+            element: <NewHotelPage />
+          },
           {
             path: 'detailsRoom',
             element: <DetailsRoomHotel />

@@ -12,21 +12,20 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 export const HotelView = ({dataHotelView}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const data = dataHotelView?.[0]
-    console.log(data);
     return (
         <Container>
             <RoomBadges>
                 <ContainBadgeIcon>
                     <Icon icon="gis:measure-area-alt" className='icon'/>
-                    <Badges>400 sq.ft</Badges>
+                    <Badges>{dataHotelView?.[0].squareMeters} m²</Badges>
                 </ContainBadgeIcon>
                 <ContainBadgeIcon>
                     <Icon icon="lucide:bed-single" className='icon'/>
-                    <Badges>dabble</Badges>
+                    <Badges>{dataHotelView?.[0].bedTypes}</Badges>
                 </ContainBadgeIcon>
                 <ContainBadgeIcon>
                 <Icon icon="ri:stack-fill" className='icon'/>
-                    <Badges>3rd floor</Badges>
+                    <Badges>{dataHotelView?.[0].floor}th level</Badges>
                 </ContainBadgeIcon>
             </RoomBadges>
         <Main>

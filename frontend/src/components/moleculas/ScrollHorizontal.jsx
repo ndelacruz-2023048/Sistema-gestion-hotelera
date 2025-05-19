@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import React from 'react'
 import { useRef, useState } from 'react'
 import styled from 'styled-components';
-export const ScrollHorizontal = () => {
+export const ScrollHorizontal = ({data}) => {
     const containerRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
@@ -31,11 +31,14 @@ export const ScrollHorizontal = () => {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove} className="containerspan">
-
-            <span>
-                <Icon icon="material-symbols-light:meeting-room" className="infoIcon"/>
-                <p>1 Dormitorio y una Sala</p>
-            </span>
+            {/* {
+                data.map((e)=>(
+                    <span>
+                        <Icon icon="material-symbols-light:meeting-room" className="infoIcon"/>
+                        <p>{e?.name}</p>
+                    </span>
+                ))
+            } */}
             <span>
                 <Icon icon="famicons:bed" className="infoIcon"/>
                 <p>Cama, sofa, mesa, etc.</p>
@@ -51,6 +54,10 @@ export const ScrollHorizontal = () => {
             <span>
                 <Icon icon="material-symbols:wifi" className="infoIcon"/>
                 <p>Gratis</p>
+            </span>
+            <span>
+                <Icon icon="mdi:food" className="infoIcon"/>
+                <p>Servicio al Dormitorio</p>
             </span>
             <span>
                 <Icon icon="mdi:food" className="infoIcon"/>

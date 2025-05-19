@@ -7,21 +7,7 @@ import { ScrollHorizontal } from "../../moleculas/ScrollHorizontal"
 
 export const RoomsDetail = ({data}) => {
     console.log(data);
-    const containerRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
-
-    const handleMouseDown = (e) => {
-        setIsDragging(true);
-        setStartX(e.pageX - containerRef.current.offsetLeft);
-        setScrollLeft(containerRef.current.scrollLeft);
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-    };
-
+    
     const renderStars = (rating) => {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
@@ -36,13 +22,6 @@ export const RoomsDetail = ({data}) => {
         return stars
     }
 
-    const handleMouseMove = (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - containerRef.current.offsetLeft;
-        const walk = (x - startX) * 2;
-        containerRef.current.scrollLeft = scrollLeft - walk;
-    };
     return(
         <Container>
             <HotelView dataHotelView={data?.room?.views}/>
@@ -59,9 +38,9 @@ export const RoomsDetail = ({data}) => {
                     <InfoRow>
                         <span>
                             <Icon icon="basil:sand-watch-solid" />
-                            <p>Duration</p>
+                            <p>Available</p>
                         </span>
-                        <span>{data?.room?.reservationTime ?? '---'} Days</span>
+                        <span>{data?.room?.views[0].available ===true ? "Disponible":"No Disponible"}</span>
                     </InfoRow>
                     <InfoRow>
                         <span>
@@ -75,7 +54,7 @@ export const RoomsDetail = ({data}) => {
                             <Icon icon="ri:money-dollar-box-line" />
                             <p>Price</p>
                         </span>
-                        <span>${data?.room?.price ?? '00.00'} per person</span>
+                        <span>${data?.room?.views[0].pricePerNight?.$numberDecimal}</span>
                     </InfoRow>
                 </InfoList>
                 <ScrollHorizontal/>

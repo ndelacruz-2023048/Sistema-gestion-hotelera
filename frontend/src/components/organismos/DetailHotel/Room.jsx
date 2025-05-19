@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Icon } from '@iconify/react/dist/iconify.js'
 
 export const Room = ({isSelected,onClick,isDetailRoomActive,name,image}) => {
-    console.log(image);
     
   return (
     <Container onClick={onClick} className={isSelected?"active":""}>
