@@ -26,7 +26,7 @@ const api = Router()
  *         room:
  *           $ref: '#/components/schemas/Room'           
  *         event:
- *           $ref: '#/components/schemas/Event'
+ *           $ref: '#/components/schemas/Events'
  *         reservationDate:
  *           type: string
  *           format: date

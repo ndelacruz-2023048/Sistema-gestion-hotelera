@@ -4,7 +4,7 @@ import roomRoutes from '../room/room.routes.js';
 import authRoutes from './auth.routes.js';
 import roomViewRoutes from '../roomView/roomView.routes.js';
 import roomDetailsRoutes from '../RoomDetails/roomDetails.routes.js';
-import user from '../user/user.routes.js';
+import user from '../User/user.routes.js'
 import eventRoutes from '../event/event.routes.js';
 import Reservations from '../reservation/reservation.routes.js';
 

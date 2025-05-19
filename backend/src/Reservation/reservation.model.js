@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { Schema, model, models } = mongoose;
+const { Schema, model } = mongoose;
 
 const reservationSchema = new Schema({
   user: {
@@ -38,4 +38,4 @@ const reservationSchema = new Schema({
   timestamps: true
 });
 
-export default models.Reservation || model('Reservation', reservationSchema);
+export default model('Reservation', reservationSchema);

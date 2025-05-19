@@ -1,4 +1,5 @@
 import Room from './room.model.js'
+import Reservation from '../reservation/reservation.model.js';
 
 export const getAllRoom = async(req, res) => {
     try {
@@ -29,6 +30,7 @@ export const getAllRoom = async(req, res) => {
         )
     }
 }
+
 
 export const getRoomsByHotel = async(req, res) => {
     try {
@@ -166,6 +168,37 @@ export const deleteRoom = async (req, res) => {
             }
         )
     }
+}
+
+export const getMostReservedRoom = async (req, res) => {
+  try {
+    const result = await Reservation.aggregate([
+      { $match: { room: { $ne: null } } },
+      { $group: { _id: "$room", count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 3 },
+      {
+        $lookup: {
+          from: "rooms",
+          localField: "_id",
+          foreignField: "_id",
+          as: "room"
+        }
+      },
+      { $unwind: "$room" }
+    ]);
+
+    res.send({
+      success: true,
+      mostReservedRooms: result // ahora es una lista
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      success: false,
+      message: 'Error al obtener la habitación más reservada'
+    })
+  }
 }
 
 export const defaultRooms = async(newHotelData)=>{

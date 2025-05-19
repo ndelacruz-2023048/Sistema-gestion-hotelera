@@ -18,7 +18,8 @@ import client from "../src/Auth/auth.user.routes.js"
 import { limiter } from '../middlewares/rate.limit.js'
 import swaggerUI from "swagger-ui-express"
 import swaggerJsDoc from "swagger-jsdoc"
-import ReservationRoutes from '../src/Reservation/reservation.routes.js'
+import ReservationRoutes from '../src/reservation/reservation.routes.js'
+import StatisticsRoutes from '../src/statistics/statistics.routes.js'
 const configs = (app) =>{
     app.use(express.json())
     app.use(express.urlencoded({extended: false}))
@@ -70,6 +71,7 @@ const routes = (app) =>{
     app.use('/v1/hotelhavenis/adminHotel',adminHotel )
     app.use('/v1/hotelhavenis/client', client)
     app.use('/v1/hotelhavenis/reservation', ReservationRoutes)
+    app.use('/v1/hotelhavenis/statistics', StatisticsRoutes)
 }
 
     
