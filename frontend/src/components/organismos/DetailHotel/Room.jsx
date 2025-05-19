@@ -3,7 +3,7 @@ import RoomPrincipal from "../../../assets/RoomPrincipal.jpg"
 import styled from 'styled-components'
 import { Icon } from '@iconify/react/dist/iconify.js'
 
-export const Room = ({isSelected,onClick,isDetailRoomActive,name,image}) => {
+export const Room = ({isSelected,onClick,isDetailRoomActive,name,image,SquateMeters,aviable,price}) => {
     
   return (
     <Container onClick={onClick} className={isSelected?"active":""}>
@@ -13,11 +13,11 @@ export const Room = ({isSelected,onClick,isDetailRoomActive,name,image}) => {
             <div className='sectiondescription'>
                 <div className='flag'>
                     <Icon icon="fluent:device-meeting-room-32-regular" className='icon'/>
-                    <p className='text'>4 Available</p>
+                    <p className='text'>{aviable}</p>
                 </div>
                 <div className='flag'>
                     <Icon icon="mdi:social-distance-2-meters" className='icon'/>
-                    <p className='text'>25m</p>
+                    <p className='text'>{SquateMeters}</p>
                 </div>
             </div>
             <div className='sectionscosts'>
@@ -25,7 +25,7 @@ export const Room = ({isSelected,onClick,isDetailRoomActive,name,image}) => {
                     <Icon icon="mdi:star" className='rating_icon'/>
                     <p className='rating_text'>4.5</p>
                 </div>
-                <p className='cost'><span className='cost_number'>$1500</span>/per night</p>
+                <p className='cost'><span className='cost_number'>{price}</span>/per night</p>
             </div>
         </section>
     </Container>

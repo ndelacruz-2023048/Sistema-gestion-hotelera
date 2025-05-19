@@ -14,6 +14,8 @@ export const DetailHotelTemplate = () => {
   const [selectedRoomId, setSelectedRoomId] = useState(null);
   const {roomsByHotel,fetchRoomsById} = useRoomStore()
 
+  console.log(roomsByHotel.room[0].views[0].available);
+
 
   const [selectedId, setSelectedId] = useState(null);
   const {isLoading,data} = useQuery({queryKey:['roomById',selectedId],queryFn:()=>fetchRoomsById(selectedId), enabled: !!selectedId})
@@ -31,7 +33,9 @@ export const DetailHotelTemplate = () => {
                   <div className="sectioncentered_rooms">
                     {
                       roomsByHotel.room?.map((e,index)=>(
-                        <Room name={e.nameOfTheRoom} image={e.views} isDetailRoomActive={isDetailRoomActive} isSelected={selectedRoomId===index} onClick={()=>handleClickRoomDetail(index,e._id)}/>
+                        <Room name={e.nameOfTheRoom} image={e.views} isDetailRoomActive={isDetailRoomActive} isSelected={selectedRoomId===index}
+                        aviable={e.views[0].available? "Aviable" : "Not Aviable" } SquateMeters={e.views[0].squareMeters} price={e.views[0].pricePerNight.$numberDecimal}
+                        onClick={()=>handleClickRoomDetail(index,e._id)}/>
                       ))
                     }
                   </div>
