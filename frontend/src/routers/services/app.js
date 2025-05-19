@@ -77,3 +77,14 @@ export const newEventRequest = async(event)=> {
         }
     }
 }
+
+export const updateEventRequest = async(id, event)=> {
+    try {
+        return await apiClient.put(`/events/updated/${id}`, event)
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

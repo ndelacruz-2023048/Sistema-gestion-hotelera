@@ -1,17 +1,18 @@
-import { useState } from 'react';
+
 import styled from 'styled-components';
-import { EventSection } from '../organismos/EventsHotel/EventsSection';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-export const Methods = () => {
-    const [open, setOpen] = useState(false)
-    const toggleEventSection = ()=> {
-        setOpen(!open)
+export const Methods = ({ togglePopup, setIsEdit, setCurrentEvent }) => {
+
+    const handleEdit = (eventDetail) => {
+        setCurrentEvent(eventDetail)
+        setIsEdit(true)
+        togglePopup()
     }
 
     return (
         <Wrapper>
-            <Option onClick={toggleEventSection}>
+            <Option onClick={handleEdit}>
                 <Icon icon="line-md:edit-filled" width="24" height="24" />
                 Edit
             </Option>
@@ -19,7 +20,6 @@ export const Methods = () => {
                 <Icon icon="typcn:delete" width="24" height="24" />
                 Delete
             </Option>
-            {open && <EventSection/>}
         </Wrapper>
     )
 }

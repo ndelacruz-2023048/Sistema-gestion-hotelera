@@ -4,27 +4,60 @@ import { Icon } from "@iconify/react";
 import {DataSection} from './modalEvents/DataSection'
 import { useForm } from 'react-hook-form'
 import { useEvent } from "../hooks/useEvent";
+import { useEvents } from "../hooks/useEvents";
+import { useEffect } from "react";
 
-function ModalEvents({ togglePopup }) {
+function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
   const { events } = useEvent()
-    const { register, handleSubmit, control, formState: { errors, isValid }, reset } = useForm()
+  const { updateEvents } = useEvents()
+    const { register, handleSubmit, control, formState: { errors }, reset } = useForm(
+      {
+        mode: 'onChange'
+      }
+    )
+
+    useEffect(()=> {
+      if(isEdit && event) {
+        reset(
+          {
+            name: event.name || '',
+            description: event.description || '',
+            location: event.location || '',
+            capacity: event.capacity || '',
+            price: event.price || '',
+            startDate: event.startDate || '',
+            endDate: event.endDate || '',
+            designated: {
+              value: event.designated || '',
+              label: `${event.designated} ${event.designated} || ''`
+            }
+          }
+        )
+      }
+    }, [isEdit, event, reset])
 
     const onSubmit = async (data)=> {
-      console.log('a', data);
       const user = data?.designated?.value
       const start = data?.startDate.toISOString()
       const end = data?.endDate.toISOString()
-      await events(data, user, start, end)
+      
+      if(isEdit) {
+        await updateEvents(event._id, data, user, start, end)
+      } else {
+        await events(data, user, start, end)
+      }
+      setIsEdit(false)
       reset()
     }
-    const buttonDisabled = !isValid
-
+//Agregar un nuevo evento
     return (
       <Container>
         <PopupStyle>
           <Up>
-            <label htmlFor="">Agregar un nuevo evento</label>
-            <CloseIcon icon="mdi:close" onClick={togglePopup} />
+            <div className="Up">
+              <label htmlFor="">{isEdit ? 'Actualizar evento': 'Agregar un nuevo evento'}</label>
+              <CloseIcon icon="mdi:close" onClick={togglePopup} />
+            </div>
           </Up>
           <Line></Line>
           <Cont>
@@ -35,10 +68,11 @@ function ModalEvents({ togglePopup }) {
               errors={errors}
             />
           </Cont>
-          <Line></Line>
+          <Line />
           <Blue>
-            <Clip icon="flowbite:paper-clip-outline" />
-            <button type="submit" form="formData" disabled={buttonDisabled}>Enviar</button>
+            <div className="bottom">
+              <button type="submit" form="formData">Enviar</button>
+            </div>
           </Blue>
         </PopupStyle>
       </Container>
@@ -62,10 +96,10 @@ const Container = styled.div`
 
 const PopupStyle = styled.div`
   position: fixed;
-  top: 40%;
+  top: 35%;
   left: 50%;
-  height: 500px;
-  width: 45%;
+  height: 750px;
+  width: 55%;
   border-radius: 15px;
   transform: translate(-50%, -30%);
   padding: 0px;
@@ -80,12 +114,17 @@ const Up = styled.div`
   height: 20%;
   width: 100%;
   display: flex;
-  padding: 0px;
-  margin-bottom: 0px;
   border-radius: 15px;
   align-items: center;
   justify-content: space-between;
   background-color: ${({theme})=>theme.bgSidebar};
+  .Up {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 20px;
+  }
 `;
 
 const CloseIcon = styled(Icon)`
@@ -101,15 +140,6 @@ const CloseIcon = styled(Icon)`
     color: ${({theme})=>theme.colorHover};
   }
 
-`
-
-const OptionRow = styled.div`
-  display: flex;
-  gap: 0px;
-  background-color: ${({theme})=>theme.bgSidebar};
-  padding: 10px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
 `
 
 const Line = styled.div`
@@ -130,20 +160,7 @@ const Blue = styled.div`
   justify-content: flex-end;
   align-items: center;
   border-radius: 0 0 10px 15px;
-
-  
-`
-
-const Clip = styled(Icon)`
-  color: rgb(165, 165, 165);
-  font-size: 30px;
-  cursor: pointer;
-  margin-right: 3%;
-  transition: 0.5s;
-
-  &:hover {
-    color: ${({theme})=>theme.colorHover};
+  .bottom {
+    margin: 0 20px;
   }
-
 `
-

@@ -66,9 +66,9 @@ const baseInputStyles = `
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #DDDDDD;
+    border: 1px solid black;
     border-radius: 8px;
-    background-color: white;
+    background-color: transparent;
     transition: all 0.2s;
     
     &:focus {
@@ -78,7 +78,7 @@ const baseInputStyles = `
     }
     
     &:disabled {
-        background-color: #F5F5F5;
+        background-color: transparent;
         cursor: not-allowed;
     }
     

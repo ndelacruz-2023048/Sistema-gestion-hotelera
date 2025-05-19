@@ -8,15 +8,15 @@ export const SelectUser = ({control, name, rules, error}) => {
     const { users, isLoading, error: errorUsers } = useUsers()
     const options = users.map((user) => ({
         value: user._id,
-        label: user.name + user.surname
+        label: `${user.name} ${user.surname}`
     }))
 
     return (
         <Container>
             { isLoading ? (
-                <LoadingMessage>Cargando cursos...</LoadingMessage>
+                <LoadingMessage>Cargando Usuarios...</LoadingMessage>
             ) : errorUsers ? (
-                <ErrorMessage>Error al cargar los cursos</ErrorMessage>
+                <ErrorMessage>Error al cargar los Usuarios</ErrorMessage>
             ) : (
                 <Controller
                     name={name}

@@ -34,19 +34,18 @@ export const DataSection = ({register, control, errors })=> {
                 <Input2
                     holder={'Titulo'}
                     type={'text'}
-                    {...register('name', { required: true})}
+                    {...register('name', { 
+                        required: {
+                            value: true,
+                            message: 'El titulo es requerido'
+                        }
+                    })}
                     error={errors.title}
                 />
             </Up>
             <Text>
                 <SelectContainer>
-                    <SelectUser
-                        control={control}
-                        name={'designated'}
-                        rules={{required: true}}
-                        error={errors.designated}
-                    />
-                    <div>
+                    <div className="Dates">
                         <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={es}>
                             <Controller
                                 name="startDate"
@@ -93,12 +92,23 @@ export const DataSection = ({register, control, errors })=> {
                             />
                         </LocalizationProvider>
                     </div>
-                    <div>
+                    <div className="SelectContent">    
+                        <SelectUser
+                            control={control}
+                            name={'designated'}
+                            rules={{required: true}}
+                            error={errors.designated}
+                        />
+                    </div>
+                    <div className="InputE">
                         <InputExtendible
                             multiline
                             placeholder={'Descripción breve'}
                             rows={3}
-                            {...register('description', {required: true})}
+                            {...register('description', {required: {
+                                value: true,
+                                message: 'La descripcion es obligatoria'
+                            }})}
                             error={errors.text}
                         />
                     </div>
@@ -121,8 +131,6 @@ export const DataSection = ({register, control, errors })=> {
                     />
                 </SelectContainer>
             </Text>
-            <Time>
-            </Time>
         </Container>
     )
 }
@@ -140,41 +148,6 @@ const Up = styled.div`
     width: 100%;
     margin: 3%;
     gap: 5px;
-
-    .count{
-        height: 20px;
-        width: 10%;
-        padding: 3px;
-        color: rgb(165, 165, 165);
-        border-radius: 10px;
-        margin-right: 5px;
-        font-size: 15px;
-        background-color:rgba(255, 255, 255, 0);
-        border: 1px solid rgb(165, 165, 165);
-    }
-
-`
-
-const Inputs = {
-    height: "20px",
-    padding: "3px",
-    color: "rgb(165, 165, 165)",
-    borderRadius: "10px",
-    marginRight: "5px",
-    fontSize: "15px",
-    backgroundColor: "rgba(255, 255, 255, 0)",
-    border: "1px solid rgb(165, 165, 165)",
-}
-
-const Dates = styled.button`
-    height: 30px;
-    padding: 5px;
-    color: rgb(165, 165, 165);
-    border-Radius: 10px;
-    margin-Right: 5px;
-    font-Size: 15px;
-    background-Color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(165, 165, 165);
 `
 
 const Text = styled.div`
@@ -191,45 +164,22 @@ const Time = styled.div`
     width: 100%;
 `
 
-const Title = styled.input`
-    height: 20%;
-    background-color:rgba(255, 255, 255, 0);
-    color: white;
-    padding-left: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
-`
-const Address = styled.input`
-    height: 20%;
-    background-color:rgba(255, 255, 255, 0);
-    color: white;
-    padding-left: 20px;
-    font-size: 18px;
-    border: none;
-`
-
-const Desc = styled.textarea`
-    height: 80%;
-    background-color:rgba(255, 255, 255, 0);
-    color: white;
-    padding-left: 20px;
-    font-size: 20px;
-    resize: none;
-    border: none;
-`
-
 const SelectContainer = styled.div`
-    margin-left: 3%;
+    margin: 0 30px;
     overflow-y: scroll;
-    select{
-        height: 30px;
-        padding: 5px;
-        color: rgb(165, 165, 165);
-        border-Radius: 10px;
-        margin-Right: 5px;
-        font-Size: 15px;
-        background-Color: rgba(255, 255, 255, 0);
-        border: 1px solid rgb(165, 165, 165);
+    scrollbar-width: none;
+    .Dates {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .InputE {
+        width: 59em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .SelectContent {
+        margin-bottom: 20px;
+        margin-top: 20px;
     }
 `
