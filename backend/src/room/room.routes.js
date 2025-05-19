@@ -133,23 +133,7 @@ const api = Router()
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: "Suite Deluxe"
- *               floor:
- *                 type: number
- *                 example: 5
- *               bedTypes:
- *                 type: string
- *                 example: "King Size"
- *               pricePerNight:
- *                 type: number
- *                 example: 150
- *               available:
- *                 type: boolean
- *                 example: true
+ *             $ref: '#/components/schemas/Room'
  *     responses:
  *       200:
  *         description: Habitación agregada correctamente
@@ -198,17 +182,7 @@ const api = Router()
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: "Suite Deluxe Actualizada"
- *               pricePerNight:
- *                 type: number
- *                 example: 180
- *               available:
- *                 type: boolean
- *                 example: false
+ *             $ref: '#/components/schemas/Room'
  *     responses:
  *       200:
  *         description: Room actualizado exitosamente
@@ -250,7 +224,6 @@ const api = Router()
  *                   type: string
  *                   example: "Room not found"
  */
-
 /**
  * @swagger
  * /v1/hotelhavenis/rooms/deleteRoom/{id}:
@@ -318,7 +291,8 @@ api.post(
 
 api.get(
     '/getRoomByHotel/:id',
-    getRoomsByHotel)
+    getRoomsByHotel
+)
 api.put(
     '/updateRoom/:id',
     updateRoom

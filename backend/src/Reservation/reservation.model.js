@@ -1,4 +1,6 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
+
+const { Schema, model, models } = mongoose;
 
 const reservationSchema = new Schema({
   user: {
@@ -34,6 +36,6 @@ const reservationSchema = new Schema({
 }, {
   versionKey: false,
   timestamps: true
-})
+});
 
-export default model('Reservation', reservationSchema)
+export default models.Reservation || model('Reservation', reservationSchema);

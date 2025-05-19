@@ -27,4 +27,5 @@ const roomDetailsSchema = new Schema({
   ],
 });
 
+
 export default model('roomDetails', roomDetailsSchema)

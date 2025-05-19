@@ -13,11 +13,12 @@ import RoomDetailsRoutes from '../src/RoomDetails/roomDetails.routes.js'
 import RoomViewRoutes from '../src/roomView/roomView.routes.js'
 import eventRoutes from '../src/event/event.routes.js'
 import adminApi from "../src/Auth/auth.admin.routes.js"
+import adminHotel from "../src/Auth/auth.adminHotel.routes.js"
+import client from "../src/Auth/auth.user.routes.js"
 import { limiter } from '../middlewares/rate.limit.js'
 import swaggerUI from "swagger-ui-express"
 import swaggerJsDoc from "swagger-jsdoc"
 import ReservationRoutes from '../src/Reservation/reservation.routes.js'
-
 const configs = (app) =>{
     app.use(express.json())
     app.use(express.urlencoded({extended: false}))
@@ -66,6 +67,8 @@ const routes = (app) =>{
     app.use('/v1/hotelhavenis/room-details', RoomDetailsRoutes)
     app.use('/v1/hotelhavenis/room-view', RoomViewRoutes)
     app.use('/v1/hotelhavenis/admin', adminApi)
+    app.use('/v1/hotelhavenis/adminHotel',adminHotel )
+    app.use('/v1/hotelhavenis/client', client)
     app.use('/v1/hotelhavenis/reservation', ReservationRoutes)
 }
 

@@ -8,11 +8,9 @@ import user from '../user/user.routes.js';
 import eventRoutes from '../event/event.routes.js';
 import Reservations from '../reservation/reservation.routes.js';
 
-const adminApi = Router();
+const adminHotel = Router()
 
-/*SCHEMA DE CADA RUTA */
-
-/** 
+/**
  * @swagger
  * components:
  *   schemas:
@@ -43,34 +41,6 @@ const adminApi = Router();
  *         image:
  *           type: string   
  *           description: La imagen del hotel
- *     Administrador de plataforma:
- *       type: object
- *       required:
- *         - name
- *         - address
- *         - category
- *         - price
- *         - image
- *       properties:
- *         id:
- *           type: string
- *           description: El ID auto-generado del hotel
- *         name:
- *           type: string
- *           description: El nombre del hotel
- *         address:
- *           type: string
- *           description: La dirección del hotel
- *         category:
- *           type: string
- *           description: La categoría del hotel
- *         price:
- *           type: number
- *           description: El precio por noche
- *         image:
- *           type: string   
- *           description: La imagen del hotel 
- *         
  */
 
 /** 
@@ -400,21 +370,20 @@ const adminApi = Router();
  * 
  */  
 
-
 /**
  * @swagger
  * tags:
- *   name: Administrador de plataforma
- *   description: The hotel managment api
+ *   name: AdministradorPlataformaHotel
+ *   description: He hotel management API for platform admins
  */
 
-/*ADMIN CON ACCESO A HOTELES */
+
 /**
  * @swagger
- * /v1/hotelhavenis/admin/hotels/getHotels:
+ * /v1/hotelhavenis/adminHotel/hotels/getHotels:
  *   get:
  *     summary: Retorna la lista de todos los hoteles (Accesible para todos los usuarios)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint puede ser accedido por cualquier usuario autenticado, incluyendo administradores de plataforma, administradores de hotel y usuarios generales.
  *     responses:
  *       200:
@@ -451,10 +420,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/hotels/addHotels:
+ * /v1/hotelhavenis/adminHotel/hotels/addHotels:
  *   post:
  *     summary: Agrega un nuevo hotel (Solo para administradores)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint solo puede ser accedido por administradores de plataforma.
  *     requestBody:
  *       required: true
@@ -509,10 +478,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/hotels/updateHotel/{id}:
+ * /v1/hotelhavenis/adminHotel/hotels/updateHotel/{id}:
  *   put:
  *     summary: Actualiza los detalles de un hotel (Solo para administradores)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint solo puede ser accedido por administradores de plataforma.
  *     parameters:
  *       - in: path
@@ -587,10 +556,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/hotels/deleteHotel/{id}:
+ * /v1/hotelhavenis/adminHotel/hotels/deleteHotel/{id}:
  *   delete:
  *     summary: Elimina un hotel (Solo para administradores)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint solo puede ser accedido por administradores de plataforma.
  *     parameters:
  *       - in: path
@@ -645,10 +614,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/rooms/getAllRoom:
+ * /v1/hotelhavenis/adminHotel/rooms/getAllRoom:
  *   get:
  *     summary: Retorna la lista de todos los cuartos (Accesible para todos los usuarios)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint puede ser accedido por cualquier usuario autenticado, incluyendo administradores de plataforma, administradores de hotel y usuarios generales.
  *     responses:
  *       200:
@@ -685,10 +654,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/rooms/addNewRoom:
+ * /v1/hotelhavenis/adminHotel/rooms/addNewRoom:
  *   post:
  *     summary: Agrega una nueva habitación (Solo para administradores de plataforma y administradores de hotel)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint solo puede ser accedido por administradores de plataforma y administradores de hotel.
  *     requestBody:
  *       required: true
@@ -727,10 +696,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/rooms/updateRoom/{id}:
+ * /v1/hotelhavenis/adminHotel/rooms/updateRoom/{id}:
  *   put:
  *     summary: Actualiza los detalles de un room (Solo para administradores de plataforma y administradores de hotel)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint solo puede ser accedido por administradores de plataforma y administradores de hotel.
  *     parameters:
  *       - in: path
@@ -789,10 +758,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/rooms/deleteRoom/{id}:
+ * /v1/hotelhavenis/adminHotel/rooms/deleteRoom/{id}:
  *   delete:
  *     summary: Elimina los datos de un room (Solo para administradores de plataforma y administradores de hotel)
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Este endpoint solo puede ser accedido por administradores de plataforma y administradores de hotel.
  *     parameters:
  *       - in: path
@@ -847,10 +816,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/auth/register:
+ * /v1/hotelhavenis/adminHotel/auth/register:
  *   post:
  *     summary: Registra un nuevo usuario
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     requestBody:
  *       required: true
  *       content:
@@ -888,10 +857,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/auth/login:
+ * /v1/hotelhavenis/adminHotel/auth/login:
  *   post:
  *     summary: Inicia sesión un usuario
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     requestBody:
  *       required: true
  *       content:
@@ -936,10 +905,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/auth/logout:
+ * /v1/hotelhavenis/adminHotel/auth/logout:
  *   post:
  *     summary: Cierra sesión un usuario
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     responses:
  *       200:
  *         description: Cierre de sesión exitoso
@@ -960,10 +929,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-view/getAllRoomView:
+ * /v1/hotelhavenis/adminHotel/room-view/getAllRoomView:
  *   get:
  *     summary: Retorna la lista de todos los RoomView
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     responses:
  *       200:
  *         description: Lista de todos los RoomView
@@ -995,10 +964,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-view/addNewRoomV:
+ * /v1/hotelhavenis/adminHotel/room-view/addNewRoomV:
  *   post:
  *     summary: Agrega una nueva vista de habitación
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     requestBody:
  *       required: true
  *       content:
@@ -1038,10 +1007,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-view/{id}:
+ * /v1/hotelhavenis/adminHotel/room-view/{id}:
  *   put:
  *     summary: Actualiza un RoomView por su ID
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     parameters:
  *       - in: path
  *         name: id
@@ -1090,10 +1059,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-view/{id}:
+ * /v1/hotelhavenis/adminHotel/room-view/{id}:
  *   delete:
  *     summary: Elimina un RoomView por su ID
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     parameters:
  *       - in: path
  *         name: id
@@ -1136,10 +1105,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-details/getRooms:
+ * /v1/hotelhavenis/adminHotel/room-details/getRooms:
  *   get:
  *     summary: Retorna la lista de todos los detalles de las habitaciones
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     responses:
  *       200:
  *         description: Lista de todos los detalles de las habitaciones
@@ -1179,10 +1148,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-details/addRooms:
+ * /v1/hotelhavenis/adminHotel/room-details/addRooms:
  *   post:
  *     summary: Crea un nuevo detalle de habitación
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     requestBody:
  *       required: true
  *       content:
@@ -1213,10 +1182,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-details/updateRoom/{id}:
+ * /v1/hotelhavenis/adminHotel/room-details/updateRoom/{id}:
  *   put:
  *     summary: Actualiza un detalle de habitación existente
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     parameters:
  *       - in: path
  *         name: id
@@ -1267,10 +1236,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/room-details/deleteRoom/{id}:
+ * /v1/hotelhavenis/adminHotel/room-details/deleteRoom/{id}:
  *   delete:
  *     summary: Elimina un detalle de habitación por ID
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     parameters:
  *       - in: path
  *         name: id
@@ -1323,10 +1292,10 @@ const adminApi = Router();
 /*ADMIN CON ACCESO A EVENT */
 /**
  * @swagger
- * /v1/hotelhavenis/admin/events/list:
+ * /v1/hotelhavenis/adminHotel/events/list:
  *   get:
  *     summary: Retorna la lista de todos los eventos
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     responses:
  *       200:
  *         description: Lista de todos los eventos
@@ -1366,10 +1335,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/events/new:
+ * /v1/hotelhavenis/adminHotel/events/new:
  *   post:
  *     summary: Crea un nuevo evento
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     responses:
  *       200:
  *         description: Crea un nuevo evento
@@ -1399,10 +1368,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/reservation/getAllReservations:
+ * /v1/hotelhavenis/adminHotel/reservation/getAllReservations:
  *   get:
  *     summary: Get all reservations
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     description: Get all reservations
  *     responses:
  *       200:
@@ -1439,10 +1408,10 @@ const adminApi = Router();
 
 /**
  * @swagger
- * /v1/hotelhavenis/admin/reservation/createReservation:
+ * /v1/hotelhavenis/adminHotel/reservation/createReservation:
  *   post:
  *     summary: Post all reservations
- *     tags: [Administrador de plataforma]
+ *     tags: [AdministradorPlataformaHotel]
  *     responses:
  *       200:
  *         description: Reservations retrieved successfully
@@ -1477,13 +1446,13 @@ const adminApi = Router();
  */
 
 
-adminApi.use('/hotels', hotelRoutes);
-adminApi.use('/rooms', roomRoutes);
-adminApi.use('/auth', authRoutes);
-adminApi.use('/events', eventRoutes);
-adminApi.use('/users', user);
-adminApi.use('/reservation', Reservations);
-adminApi.use('/roomDetails', roomDetailsRoutes);
-adminApi.use('/roomView', roomViewRoutes);
+adminHotel.use('/hotels', hotelRoutes);
+adminHotel.use('/rooms', roomRoutes);
+adminHotel.use('/auth', authRoutes);
+adminHotel.use('/events', eventRoutes);
+adminHotel.use('/users', user);
+adminHotel.use('/reservation', Reservations);
+adminHotel.use('/roomDetails', roomDetailsRoutes);
+adminHotel.use('/roomView', roomViewRoutes);
 
-export default adminApi;
+export default adminHotel;
