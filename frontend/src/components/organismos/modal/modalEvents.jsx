@@ -1,76 +1,78 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styled from "styled-components";
 import { Icon } from "@iconify/react";
-import {Description} from './modalEvents/Description'
-import { useUsers } from "../../../hooks/useUsers";
+import {DataSection} from './modalEvents/DataSection'
+import { useForm } from 'react-hook-form'
+import { useEvent } from "../../../hooks/useEvent";
+import { useEvents } from "../hooks/useEvents";
+import { useEffect } from "react";
 
-function ModalEvents({ togglePopup }) {
-    const [selectedOption, setSelectedOption] = useState(null)
-    const [designatedUser, setDesignatedUser] = useState(null)
-    const { users, isLoading, error } = useUsers()
-    if (isLoading) {
-      return <p>Cargando eventos...</p>;
+function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
+  const { events } = useEvent()
+  const { updateEvents } = useEvents()
+    const { register, handleSubmit, control, formState: { errors }, reset } = useForm(
+      {
+        mode: 'onChange'
+      }
+    )
+
+    useEffect(()=> {
+      if(isEdit && event) {
+        reset(
+          {
+            name: event.name || '',
+            description: event.description || '',
+            location: event.location || '',
+            capacity: event.capacity || '',
+            price: event.price || '',
+            startDate: event.startDate || '',
+            endDate: event.endDate || '',
+            designated: {
+              value: event.designated || '',
+              label: `${event.designated} ${event.designated} || ''`
+            }
+          }
+        )
+      }
+    }, [isEdit, event, reset])
+
+    const onSubmit = async (data)=> {
+      const user = data?.designated?.value
+      const start = data?.startDate.toISOString()
+      const end = data?.endDate.toISOString()
+      
+      if(isEdit) {
+        await updateEvents(event._id, data, user, start, end)
+      } else {
+        await events(data, user, start, end)
+      }
+      setIsEdit(false)
+      reset()
     }
-    
-    if (error) {
-        return <p>Error al cargar los eventos: {error}</p>;
-    }
+//Agregar un nuevo evento
     return (
       <Container>
         <PopupStyle>
           <Up>
-            <OptionRow>
-              <OptionBox
-                isActive={selectedOption === "boda"}
-                onClick={() => setSelectedOption("boda")}
-              >
-                Boda
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "cumple"}
-                onClick={() => setSelectedOption("cumple")}
-              >
-                Cumpleaños
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "graduacion"}
-                onClick={() => setSelectedOption("graduacion")}
-              >
-                Graduacion
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "conf"}
-                onClick={() => setSelectedOption("conf")}
-              >
-                Conferencias
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "reuniones"}
-                onClick={() => setSelectedOption("reuniones")}
-              >
-                Reuniones
-              </OptionBox>
-              <OptionBox
-                isActive={selectedOption === "otros"}
-                onClick={() => setSelectedOption("otros")}
-              >
-                Otro
-              </OptionBox>
-            </OptionRow>
-            <CloseIcon icon="mdi:close" onClick={togglePopup} />
+            <div className="Up">
+              <label htmlFor="">{isEdit ? 'Actualizar evento': 'Agregar un nuevo evento'}</label>
+              <CloseIcon icon="mdi:close" onClick={togglePopup} />
+            </div>
           </Up>
           <Line></Line>
           <Cont>
-            <Description
-              users={users}
-              designatedUser={designatedUser}
-              setDesignatedUser={setDesignatedUser}
+            <form id="formData" onSubmit={handleSubmit(onSubmit)}></form>
+            <DataSection
+              register={register}
+              control={control}
+              errors={errors}
             />
           </Cont>
-          <Line></Line>
+          <Line />
           <Blue>
-            <Clip icon="flowbite:paper-clip-outline" />
-            <button>Enviar</button>
+            <div className="bottom">
+              <button type="submit" form="formData">Enviar</button>
+            </div>
           </Blue>
         </PopupStyle>
       </Container>
@@ -94,10 +96,10 @@ const Container = styled.div`
 
 const PopupStyle = styled.div`
   position: fixed;
-  top: 40%;
+  top: 35%;
   left: 50%;
-  height: 500px;
-  width: 45%;
+  height: 750px;
+  width: 55%;
   border-radius: 15px;
   transform: translate(-50%, -30%);
   padding: 0px;
@@ -112,12 +114,17 @@ const Up = styled.div`
   height: 20%;
   width: 100%;
   display: flex;
-  padding: 0px;
-  margin-bottom: 0px;
   border-radius: 15px;
   align-items: center;
   justify-content: space-between;
   background-color: ${({theme})=>theme.bgSidebar};
+  .Up {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 20px;
+  }
 `;
 
 const CloseIcon = styled(Icon)`
@@ -133,30 +140,6 @@ const CloseIcon = styled(Icon)`
     color: ${({theme})=>theme.colorHover};
   }
 
-`
-
-const OptionRow = styled.div`
-  display: flex;
-  gap: 0px;
-  background-color: ${({theme})=>theme.bgSidebar};
-  padding: 10px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-`
-
-const OptionBox = styled.div`
-  background-color: ${({theme})=>theme.bgSidebar});
-  color: ${(props) => (props.isActive ? "${({theme})=>theme.colorHover}" : "${({theme})=>theme.color}")};
-  padding: 10px 20px;
-  border-radius: 10px 10px 0 0;
-  border-bottom: ${(props) =>
-    props.isActive ? "5px solid rgb(0, 76, 255)" : "none"};
-  cursor: pointer;
-  transition: 0.5s;
-
-  &:hover {
-    background-color: ${({theme})=>theme.colorHover};
-  }
 `
 
 const Line = styled.div`
@@ -177,30 +160,7 @@ const Blue = styled.div`
   justify-content: flex-end;
   align-items: center;
   border-radius: 0 0 10px 15px;
-
-  button {
-    height: 60%;
-    width: 20%;
-    font-size: 20px;
-    color: rgb(165, 165, 165);
-    padding: 10px;
-    margin-right: 5%;
-    border: none;
-    border-radius: 10px;
-    background-color: rgb(4, 54, 170);
+  .bottom {
+    margin: 0 20px;
   }
 `
-
-const Clip = styled(Icon)`
-  color: rgb(165, 165, 165);
-  font-size: 30px;
-  cursor: pointer;
-  margin-right: 3%;
-  transition: 0.5s;
-
-  &:hover {
-    color: ${({theme})=>theme.colorHover};
-  }
-
-`
-

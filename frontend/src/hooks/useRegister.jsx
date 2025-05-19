@@ -6,17 +6,17 @@ export const useRegister = ()=> {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
 
-    const register = async(name, surname, address, mobilePhone, country, username, email, password)=> {
+    const register = async(data)=> {
         setIsLoading(true)
         const user = {
-            name,
-            surname,
-            address,
-            mobilePhone,
-            country,
-            username,
-            email,
-            password
+            name: data?.name,
+            surname: data?.surname,
+            address: data?.address,
+            mobilePhone: data?.mobilePhone,
+            country: data?.countryCode,
+            username: data?.username,
+            email: data?.email,
+            password: data?.password
         }
 
         const response = await registerRequest(user)

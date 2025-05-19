@@ -16,6 +16,7 @@ export const EventPlanning = () => {
     const [isOptionsOpen, setIsOptionsOpen] = useState(false)
     const [currentEvent, setCurrentEvent] = useState(null)
     const {events, isLoading, error} = useEvents()
+    const [isEdit, setIsEdit] = useState(false)
 
     const togglePopup = () => {
         setIsOpen(!isOpen)
@@ -31,6 +32,12 @@ export const EventPlanning = () => {
         setIsOptionsOpen(!isOptionsOpen)
         setIsOpen(false)
         setCurrentEvent(null)
+    }
+
+    const handleEdit = (eventDetail) => {
+        setCurrentEvent(eventDetail)
+        setIsEdit(true)
+        setIsOpen(true)
     }
 
     if (isLoading) {
@@ -67,19 +74,14 @@ export const EventPlanning = () => {
             {isOpen && currentEvent && ( // Renderiza DeliveryDetails solo si isOpen es true y currentEvent tiene un valor
                 <DeliveryDetails startDate={currentEvent.startDate} endDate={currentEvent.endDate} />
             )}
-            {isOptionsOpen && <Methods />}
+            {isOptionsOpen && <Methods togglePopup={togglePopup} setCurrentEvent={setCurrentEvent} setIsEdit={setIsEdit} event={currentEvent}/>}
             
             <Button onClick={togglePopup}>+ Agregar Evento</Button>
             {isOpen && (
                     <>
-                        <ModalEvents togglePopup={togglePopup}/>
+                        <ModalEvents togglePopup={togglePopup} isEdit={isEdit} setIsEdit={setIsEdit} event={currentEvent}/>
                     </>
             )}
-
-            {/* <Tag variant={'blue'}>Integrations</Tag>
-            <Tag variant={'red'}>Marketing & Sales</Tag>
-            <Tag variant={'gray'}>Custom Task</Tag>
-            <Tag variant={'green'}>Optimization</Tag> */}
         </EventWrapper>
     )
 }

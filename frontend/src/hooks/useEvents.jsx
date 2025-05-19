@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { eventGetRequest } from '../routers/services/app'
+import { eventGetRequest, updateEventRequest } from '../routers/services/app'
 import toast from 'react-hot-toast'
 
 export const useEvents = () => {
@@ -31,11 +31,21 @@ export const useEvents = () => {
         // return toast.success('Datos traidos con exito')
     }
 
+    const updateEvents = async(id, data)=> {
+        const response = await updateEventRequest(id, data)
+        if(response.error) {
+            toast.error('Error al actualizar el evento')
+        }
+        await getEvents()
+    }
+
     useEffect(() => {
         getEvents(); // Llama a getEvents al montar el componente
     }, [])
+
     return {
         getEvents,
+        updateEvents,
         isLoading,
         error,
         setError,

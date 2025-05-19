@@ -1,90 +1,28 @@
-import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { SectionDataLogin } from '../moleculas/SectionDataLogin'
-import { validateUserLogin, validatePassword } from '../../hooks/validators'
 import { useLogin } from '../../hooks/useLogin'
 import styled from 'styled-components'
 
 export const LoginForm = () => {
-  const form = {
-    userLogin: {
-        value: '',
-        isValid: false,
-        showError: false
-    },
-    password: {
-        value: '',
-        isValid: false,
-        showError: false
-    }
-  }
-
-  //Hooks
-  const [formData, setFormData] = useState(form)
-  
-  //Variables/Constantes u Objetos/Arrays
   const { login } = useLogin()
-
-  const isSubmitButtonDisabled = !formData.userLogin.isValid || 
-                                  !formData.password.isValid
-      console.log(isSubmitButtonDisabled);
-      
-
-  //Funciones/Manejadores
-  const handleSubmit = (e)=> {
-    e.preventDefault()
-    login(
-      formData.userLogin.value,
-      formData.password.value
-    )
-  }
-  
-  const handleValueChange = (value, field)=> {
-    setFormData((prevData)=> (
-      {
-        ...prevData,
-        [field]: {
-          ...prevData[field],
-          value
-        }
-      }
-    ))
-  }
-  
-  const handleValidateOnBlur = (value, field)=> {
-    let isValid = false
-    switch (field) {
-      case 'userLogin':
-          isValid = validateUserLogin(value)
-          break;
-      case 'password':
-          isValid = validatePassword(value)
-          break;
-      default:
-        break;
+  const { register, handleSubmit, formState: { errors }, reset } = useForm(
+    {
+      mode: 'onChange'
     }
+  )
 
-    setFormData((prevData)=> (
-      {
-        ...prevData,
-        [field]: {
-          ...prevData[field],
-          isValid,
-          showError: !isValid
-        }
-      }
-    ))
+  const onSubmit = async(data)=> {
+    console.log('a', data);
+    await login(data)
+    reset()
   }
-  
-  //Logica Condicional
-  
-  //Renderizado JSX
+
+
   return (
-      <LoginFormWrapper onSubmit={handleSubmit}>
+      <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
           <SectionDataLogin
-            formData={formData}
-            handleValueChange={handleValueChange}
-            handleValidateOnBlur={handleValidateOnBlur}
-            isSubmitButtonDisabled={isSubmitButtonDisabled}
+            register={register}
+            errors={errors}
           />
       </LoginFormWrapper>
   )

@@ -57,3 +57,34 @@ console.log(events);
         )
     }
 }
+
+export const updateEvent = async(req, res) => {
+    const { id } = req.params
+    const data = req.body
+    try {
+        const event = await Event.findByIdAndUpdate(
+            id,
+            data,
+            {new: true}
+        )
+        if (!event) return res.status(404).send(
+            {
+                success: false,
+                message: 'Event not found, event not updated'
+            }
+        )
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Event updated'
+            }
+        )
+    } catch (e) {
+        return res.status(400).send(
+            {
+                success: false,
+                message: 'General error when updated event'
+            }
+        )
+    }
+}

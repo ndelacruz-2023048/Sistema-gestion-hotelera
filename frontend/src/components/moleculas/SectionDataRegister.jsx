@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Input2 } from '../atomos/Input2'
-import { emailValidationMessage, usernameValidationMessage, passwordValidationMessage, nameValidationMessage, surNameValidationMessage, addressValidationMessage} from '../../hooks/validators'
 import { Icon } from "@iconify/react/dist/iconify.js";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router';
+import { Controller } from 'react-hook-form'
 
-export const SectionDataRegister = ({formData, handleValueChange, handleValidateOnBlur, isSubmitButtonDisabled, handleCountryCodeChange, phoneError}) => {
+export const SectionDataRegister = ({register, validateMobilePhone, watch, control, handleCountryCodeChange, errors }) => {
     
     const navigate = useNavigate();
 
     const changeLogin = ()=> {
-        navigate('/login')
+        navigate('/register')
     }
 
     return (
@@ -20,27 +20,33 @@ export const SectionDataRegister = ({formData, handleValueChange, handleValidate
             <DataBox>
                 <InputSection>
                     <Input2
-                        field={'name'}
                         type={"text"}
                         holder={"Nombres"}
-                        value={formData.name.value}
-                        change={handleValueChange}
-                        blur={handleValidateOnBlur}
-                        showErrMsg={formData.name.showError}
-                        validateMsg={nameValidationMessage}
+                        {...register('name', 
+                            {
+                                required: {
+                                    value: true,
+                                    message: 'El nombre es obligatorio',
+                                }
+                            }
+                        )}
+                        error={errors.name}
                     />
                     <Icon icon="material-symbols:id-card" className="IconLabel1"/>
                 </InputSection>
                 <InputSection>
                     <Input2
-                        field={'surname'}
                         type={"text"}
                         holder={"Apellidos"}
-                        value={formData.surname.value}
-                        change={handleValueChange}
-                        blur={handleValidateOnBlur}
-                        showErrMsg={formData.surname.showError}
-                        validateMsg={surNameValidationMessage}
+                        {...register('surname', 
+                            {
+                                required: {
+                                    value: true,
+                                    message: 'Los Apellidos es obligatorio',
+                                }
+                            }
+                        )}
+                        error={errors.surname}
                     />
                     <Icon icon="material-symbols:id-card" className="IconLabel"/>
                 </InputSection>
@@ -48,80 +54,131 @@ export const SectionDataRegister = ({formData, handleValueChange, handleValidate
             <DataBox>
                 <InputSection>
                     <Input2
-                        field={'address'}
                         type={"text"}
                         holder={"Dirección"}
-                        value={formData.address.value}
-                        change={handleValueChange}
-                        blur={handleValidateOnBlur}
-                        showErrMsg={formData.address.showError}
-                        validateMsg={addressValidationMessage}
+                        {...register('address', 
+                            {
+                                required: {
+                                    value: true,
+                                    message: 'La dirección es obligatoria',
+                                }
+                            }
+                        )}
+                        error={errors.address}
                     />
                     <Icon icon="mingcute:location-3-fill" className='IconLabel1'/>
                 </InputSection>
                 <InputSection1>
-                    <PhoneInputStyled
-                        country={formData.countryCode}
-                        value={formData.mobilePhone.value}
-                        onChange={(value, country) => {
-                            handleValueChange(value, 'mobilePhone');
-                            handleCountryCodeChange(country);
-                            
+                    <Controller
+                        name="mobilePhone"
+                        control={control}
+                        rules={{
+                            required: "El número de teléfono es obligatorio",
+                            validate: validateMobilePhone // Usa la función de validación aquí
                         }}
-                        onBlur={(e) => handleValidateOnBlur(e.target.value, 'mobilePhone')}
-                        inputClass="phone-input"
-                        containerClass="phone-container"
-                        dropdownClass="phone-dropdown"
-                        buttonClass='phone-dbutton'
-                        enableSearch={true}
+                        render={({ field }) => (
+                            <PhoneInputStyled
+                                {...field}
+                                ref={undefined}
+                                country={watch('countryCode') || 'gt'} // Usa watch para obtener el valor actual
+                                onChange={(value, country) => {
+                                    field.onChange(value);
+                                    handleCountryCodeChange(country); // Llama a tu función para actualizar el estado
+                                }}
+                                inputClass="phone-input"
+                                containerClass="phone-container"
+                                dropdownClass="phone-dropdown"
+                                buttonClass="phone-dbutton"
+                                enableSearch
+                            />
+                        )}
                     />
-                    {phoneError && <p style={{ color: 'red', fontSize: '0.8em', marginTop: '5px' }}>{phoneError}</p>}
+                    {errors.mobilePhone && (
+                        <p style={{ color: 'red', fontSize: '0.8em', marginTop: '5px' }}>
+                        {errors.mobilePhone.message}
+                        </p>
+                    )}
                     <Icon icon="line-md:phone-filled" className='IconLabel'/>
                 </InputSection1>
             </DataBox>
             <DataBox>
                 <InputSection>
                     <Input2
-                        field={'username'}
                         type={"text"}
                         holder={"Usuario"}
-                        value={formData.username.value}
-                        change={handleValueChange}
-                        blur={handleValidateOnBlur}
-                        showErrMsg={formData.username.showError}
-                        validateMsg={usernameValidationMessage}
+                        {...register('username', 
+                            {
+                                required: {
+                                    value: true,
+                                    message: 'El nombre de usuario es obligatorio'
+                                },
+                                minLenght: {
+                                    value: 4,
+                                    message: 'Debe tener al menos 4 caracteres'
+                                },
+                                maxLength: {
+                                    value: 10,
+                                    message: 'No debe tener más de 10 caracteres'
+                                }
+                            }
+                        )}
+                        error={errors.username}
                     />
                     <Icon icon="fa:user" className="IconLabel1"/>
                 </InputSection>
                 <InputSection>
                     <Input2
-                        field={'email'}
                         type={"email"}
                         holder={"Correo Electrónico"}
-                        value={formData.email.value}
-                        change={handleValueChange}
-                        blur={handleValidateOnBlur}
-                        showErrMsg={formData.email.showError}
-                        validateMsg={emailValidationMessage}
+                        {...register('email', 
+                            {
+                                required: {
+                                    value: true,
+                                    message: 'Email obligatorio'
+                                },
+                                pattern: {
+                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message: 'Correo no valido'
+                                }
+                            }
+                        )}
+                        error={errors.email}
                     />
                     <Icon icon="entypo:email" className='IconLabel'/>
                 </InputSection>
             </DataBox>
             <DataBox>
                 <Input2
-                    field={'password'}
                     type={"password"}
                     holder={"Contraseña"}
-                    value={formData.password.value}
-                    change={handleValueChange}
-                    blur={handleValidateOnBlur}
-                    showErrMsg={formData.password.showError}
-                    validateMsg={passwordValidationMessage}
+                    {...register('password', 
+                        {
+                            required: {
+                                value: true,
+                                message: 'La contraseña es obligatoria',
+                            },
+                            minLenght: {
+                                value: 8,
+                                message: 'Debe tener al menos 8 caracteres'
+                            },
+                            validate: {
+                                hasUpper: value =>
+                                /[A-Z]/.test(value) || "Debe contener al menos una mayúscula",
+                                hasLower: value =>
+                                /[a-z]/.test(value) || "Debe contener al menos una minúscula",
+                                hasNumber: value =>
+                                /[0-9]/.test(value) || "Debe contener al menos un número",
+                                hasSymbol: value =>
+                                /[^a-zA-Z0-9]/.test(value) || "Debe contener al menos un símbolo"
+                            }
+                        }
+                    )}
+                    error={errors.password}
                 />
                 <Icon icon="mdi:password" className="IconLabel2"/>
             </DataBox>
             <DataBoxButton>
-                <ButtonRegister disabled={isSubmitButtonDisabled} onClick={changeLogin} type="submit">Registrarme</ButtonRegister>
+                <ButtonRegister  onClick={changeLogin} type="submit">Registrarme</ButtonRegister>
             </DataBoxButton>
             <Login>
                 <A href="/login">Ya tienes cuenta?</A>
