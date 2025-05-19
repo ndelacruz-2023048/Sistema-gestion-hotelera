@@ -47,22 +47,35 @@ export const RoomsDetail = ({data}) => {
         <Container>
             <HotelView dataHotelView={data?.room?.views}/>
             <div>
-                <h3>{data?.room?.nameOfTheRoom}</h3>
+            <HeaderRow>
+                <h2>{data?.room?.nameOfTheRoom}</h2>
+                <BookButton>Book Now</BookButton>
+            </HeaderRow>
                 <StarsContainer>
-                    {renderStars(4)}
+                    {renderStars(4.5)}
+                    <ScoreText>4.5 (200 opiniones)</ScoreText>
                 </StarsContainer>
                 <InfoList>
                     <InfoRow>
-                        <span>Precio:</span>
-                        <span>${data?.room?.price ?? '---'}</span>
+                        <span>
+                            <Icon icon="basil:sand-watch-solid" />
+                            <p>Duration</p>
+                        </span>
+                        <span>{data?.room?.reservationTime ?? '---'} Days</span>
                     </InfoRow>
                     <InfoRow>
-                        <span>T. Reserva:</span>
-                        <span>{data?.room?.reservationTime ?? '---'}</span>
+                        <span>
+                            <Icon icon="gravity-ui:persons" />
+                            <p>Quote</p>
+                        </span>
+                        <span>{data?.room?.maxPeople ?? '---'} Participants</span>
                     </InfoRow>
                     <InfoRow>
-                        <span>L. Personas:</span>
-                        <span>{data?.room?.maxPeople ?? '---'} Personas</span>
+                        <span>
+                            <Icon icon="ri:money-dollar-box-line" />
+                            <p>Price</p>
+                        </span>
+                        <span>${data?.room?.price ?? '00.00'} per person</span>
                     </InfoRow>
                 </InfoList>
                 <ScrollHorizontal/>
@@ -79,6 +92,8 @@ export const RoomsDetail = ({data}) => {
     )
 }
 
+/* ${({theme})=>theme.toggleIcon} */
+
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -89,23 +104,6 @@ const Container = styled.div`
     color: ${({theme})=>theme.color};
     overflow-y: auto;
     overflow-x: hidden;
-    
-    h3{
-        margin: 2%;
-    }
-`
-
-const Title = styled.h2`
-    margin: 0;
-    color: ${({theme})=>theme.color};
-`
-
-const SectionGlobal = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    width: 100%;
-    height: 90%;
 `
 
 const Section = styled.div`
@@ -117,76 +115,97 @@ const Section = styled.div`
 
 `
 
-const Section1 = styled.div`
+const HeaderRow = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 15px;
-    .infoIcon{
-        column-gap: 16px;
-        font-size: 35px;
+    margin: 2% 2% 0 2%;
+
+    h2{
+        margin: 2%;
     }
 `
 
-const ContainerButtonDetail = styled.div`
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-`
+const BookButton = styled.button`
+    background-color: ${({ theme }) => theme.infoText};
+    color: ${({ theme }) => theme.colorBackground};
+    border: none;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
 
-const Line = styled.div`
-    height: 2px;
-    width: 100%;
-    background-color: ${({theme})=>theme.bgd};
-    justify-content: center;
+    &:hover {
+        background-color: transparent;
+        color: ${({ theme }) => theme.infoText};
+        border: 1px solid ${({ theme }) => theme.infoText};
+    }
 `
 
 const StarsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 15px;
-  .starIcon {
-    font-size: 24px;
-    color: ${({theme})=>theme.hover};
-    margin-right: 2px;
-  }
+    display: flex;
+    align-items: center;
+    margin: 15px;
+
+    .starIcon {
+        font-size: 24px;
+        color: ${({theme})=>theme.infoText};
+        margin-right: 2px;
+    }
+`
+
+const ScoreText = styled.span`
+    font-size: 16px;
+    color: ${({ theme }) => theme.color};
+    margin-left: 8px;
+    opacity: 0.5;
 `
 
 const InfoList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin: 10px 0;
-  padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin: 10px;
+    padding: 0 10px;
 `
 
 const InfoRow = styled.div`
-  margin-left: 1.5%;
-  display: flex;
-  color: ${({theme}) => theme.color};
-  font-size: 16px;
-  font-weight: 500;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 0px;
+    color: ${({ theme }) => theme.color};
+    font-size: 16px;
+    font-weight: 500;
+    padding: 4px 0;
 
-  span:first-child {
-    opacity: 0.7;
-  }
+    span:first-child {
+        opacity: 0.5;
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    span:first-child p{
+        margin: 0;
+        margin-left: 3%;
+    }
 `
 
 const DescriptionContainer = styled.div`
-  padding: 10px 15px;
-  margin-top: 20px;
+    padding: 0px 15px;
 `
 
 const DescriptionTitle = styled.h4`
-  color: ${({ theme }) => theme.color};
-  margin-bottom: 8px;
-  font-size: 18px;
+    color: ${({ theme }) => theme.color};
+    margin-bottom: 8px;
+    font-size: 18px;
+    opacity: 0.5;
 `
 
 const DescriptionText = styled.p`
-  color: ${({ theme }) => theme.color};
-  opacity: 0.7;
-  font-size: 15px;
-  line-height: 1.4;
-  margin: 0;
+    color: ${({ theme }) => theme.color};
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
 `

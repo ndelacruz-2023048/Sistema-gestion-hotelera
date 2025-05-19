@@ -79,8 +79,8 @@ const Container = styled.div`
         background: ${({ theme }) => theme.bgd};
         display: flex;
         align-items: center;
-        padding: 5px 10px;
-        border-radius: 10px;
+        padding: 2px 10px;
+        border-radius: 15px;
         white-space: nowrap;
         flex-shrink: 0;
         user-select: none;
@@ -90,8 +90,12 @@ const Container = styled.div`
             opacity: 0.8;
         }
 
+        p{
+            font-size: 12px;
+        }
+
         .infoIcon{
-            font-size: 30px;
+            font-size: 20px;
         }
     }
     
