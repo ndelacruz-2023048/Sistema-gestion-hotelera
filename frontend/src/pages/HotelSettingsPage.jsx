@@ -96,11 +96,18 @@ const SectionTitle = styled.h2`
 
 const ActionButton = styled.button`
   background-color:${({ theme }) => theme.infoText};
-  border: none;
-  color: white;
+  color: ${({ theme }) => theme.colorBackground};
+  border: solid 0.5px ${({ theme }) => theme.infoText};
   padding: 50px;
   border-radius: 8px;
   cursor: pointer;
+
+  &:hover{
+    background-color: ${({ theme }) => theme.colorBackground};
+    color: ${({ theme }) => theme.infoText};
+    border: solid 0.5px ${({ theme }) => theme.infoText};
+    transition: 0.5s;
+  }
 `
 
 const TimelineBox = styled.div`
