@@ -7,7 +7,7 @@ export const HotelSettingsPage = () => {
     <Container>
       <LeftColumn>
         <SectionTitle>Arrivals</SectionTitle>
-        {/* <ArrivalCard
+         <ArrivalCard
           name="Hotel"
           time="14:30"
           nights="7"
@@ -36,7 +36,7 @@ export const HotelSettingsPage = () => {
           board="Expedia"
           status="Payment in installments"
           action="Calculate"
-        /> */}
+        /> 
       </LeftColumn>
 
       <RightColumn>
