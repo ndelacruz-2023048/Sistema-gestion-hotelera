@@ -1,4 +1,7 @@
 import Hotel from '../hotel/hotel.model.js'
+import Room from '../room/room.model.js'
+import roomDetails from '../RoomDetails/roomDetails.model.js'
+import roomView from '../roomView/roomView.model.js'
 
 export const getAllHotels = async(req, res) => {
     try {
@@ -71,29 +74,40 @@ export const updateHotel = async(req, res) => {
     }
 }
 
-export const deleteHotel = async(req, res) => {
+export const deleteHotel = async (req, res) => {
     try {
-        let hotel = await Hotel.findByIdAndDelete(
-            req.params.id
-        )
-        return res.status(200).send(
-            {
-                success: true,
-                message: `Hotel deleted successfully`,
-                hotel
-            }
-        )
-    }
-    catch (e) {
-        console.error(e);
-        return res.status(500).send(
-            {
+        // Eliminar el hotel
+        const hotel = await Hotel.findByIdAndDelete(req.params.id)
+        if (!hotel) {
+            return res.status(404).send({
                 success: false,
-                message: 'General error'
-            }
-        )
+                message: 'Hotel not found'
+            })
+        }
+
+        const rooms = await Room.find({ hotel: req.params.id })
+
+        const roomIds = rooms.map(room => room._id)
+
+        await roomDetails.deleteMany({ room: { $in: roomIds } })
+
+        await roomView.deleteMany({ room: { $in: roomIds } })
+
+        await Room.deleteMany({ hotel: req.params.id })
+        return res.status(200).send({
+
+            success: true,
+            message: 'Hotel and related data deleted successfully',
+            hotel
+        });
+    } catch (e) {
+        console.error(e);
+        return res.status(500).send({
+            success: false,
+            message: 'General error'
+        });
     }
-}
+};
 
 export const defaultHotels =async ()=>{
     const newHotel = [
