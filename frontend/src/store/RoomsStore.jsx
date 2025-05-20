@@ -34,5 +34,4 @@ export const useRoomStore = create((set) => ({
             console.log('Error fetching post by id',error);
         }
     },
-    
 }))

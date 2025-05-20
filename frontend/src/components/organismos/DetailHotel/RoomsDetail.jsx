@@ -6,7 +6,6 @@ import { useRef, useState } from 'react'
 import { ScrollHorizontal } from "../../moleculas/ScrollHorizontal"
 
 export const RoomsDetail = ({data}) => {
-    console.log(data);
     
     const renderStars = (rating) => {
         const stars = [];
@@ -57,7 +56,7 @@ export const RoomsDetail = ({data}) => {
                         <span>${data?.room?.views[0].pricePerNight?.$numberDecimal}</span>
                     </InfoRow>
                 </InfoList>
-                <ScrollHorizontal/>
+                <ScrollHorizontal data={data?.room?.details[0]?.details}/>
                 <Section>
                     <DescriptionContainer>
                         <DescriptionTitle>Descripción del Cuarto</DescriptionTitle>
