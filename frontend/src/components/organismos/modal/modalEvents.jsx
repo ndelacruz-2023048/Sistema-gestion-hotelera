@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import {DataSection} from './modalEvents/DataSection'
 import { useForm } from 'react-hook-form'
 import { useEvent } from "../../../hooks/useEvent";
-import { useEvents } from "../hooks/useEvents";
+import { useEvents } from "../../../hooks/useEvents"
 import { useEffect } from "react";
 
 function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {

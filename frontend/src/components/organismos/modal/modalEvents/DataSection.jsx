@@ -5,9 +5,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { es } from 'date-fns/locale';
-import { Input2 } from "../../components/atomos/Input2"
-import { InputExtendible } from "../../components/atomos/InputExtendible";
-import { SelectUser } from "../../components/atomos/SelectUser";
+import { Input2 } from "../../../atomos/Input2"
+import { InputExtendible } from "../../../atomos/InputExtendible";
+import { SelectUser } from "../../../atomos/SelectUser";
 import { Controller } from 'react-hook-form'
 
 
@@ -18,7 +18,6 @@ export const DataSection = ({register, control, errors })=> {
         const handleClickOutside = (event) => {
             if (dateRef.current && !dateRef.current.contains(event.target)) {
                 console.log('algo');
-                
             }
         }
 
