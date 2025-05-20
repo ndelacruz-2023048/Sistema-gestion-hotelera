@@ -7,124 +7,55 @@ import { SlArrowLeftCircle } from "react-icons/sl";
 import { GoArrowRight } from "react-icons/go";
 import {Icon} from '@iconify/react'
 import { ButtonHome } from "../../atomos/ButtonHome";
+import { useForm } from "react-hook-form";
 
 
-export const Reservation = () => {
+export const Reservation = ({register,errors}) => {
   const navigate = useNavigate();
-  const [formErrors, setFormErrors] = useState({});
-  const [formData, setFormData] = useState({
-    jobTitle: "",
-    role: "",
-    category: "",
-    employmentType: "",
-    jobPlacement: "",
-    experience: "",
-    city: "",
-    country: "",
-    province: "",
-    zipCode: "",
-    addressLine1: "",
-    addressLine2: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.jobTitle) errors.jobTitle = "Job Title is required.";
-    if (!formData.role) errors.role = "Role is required.";
-    if (!formData.category) errors.category = "Category is required.";
-    if (!formData.employmentType) errors.employmentType = "Employment Type is required.";
-    if (!formData.jobPlacement) errors.jobPlacement = "Job Placement is required.";
-    if (!formData.experience) errors.experience = "Experience is required.";
-    if (!formData.city) errors.city = "City is required.";
-    if (!formData.country) errors.country = "Country is required.";
-    if (!formData.province) errors.province = "Province/State is required.";
-    if (!formData.zipCode) errors.zipCode = "Zip/Postal Code is required.";
-    if (!formData.addressLine1) errors.addressLine1 = "Address Line 1 is required.";
-    setFormErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      console.log("Form submitted successfully:", formData);
-      navigate("/detailsRoom"); 
-    }
-  };
 
   return (
     <MainContainer>
-      <form onSubmit={handleSubmit}>
-        <Header>
-          <ButtonHome />
-          <SectionTitleHeader>Reservation Form Hotel</SectionTitleHeader>
-          <ButtonGroupHeader>
-          <ButtonGoup variant="contained">
-            <Icon icon="hugeicons:clock-04" className="clock" />
-          </ButtonGoup>
-          <LineIcon/>
-          <ButtonGoup variant="contained">
-            <Icon icon="fluent:question-24-filled" className="question" />
-          </ButtonGoup>
-          </ButtonGroupHeader>
-        </Header>
-          <LineHeader />
+      <form>
+        <LineHeader />
 
         <Body>
-          <Sidebar>
-            <SidebarItem><RadioButtonUncheckedIcon />Resevation</SidebarItem>
-            <SidebarItem><RadioButtonUncheckedIcon />Details Room</SidebarItem>
-            <SidebarItem><RadioButtonUncheckedIcon />Hiring Stage</SidebarItem>
-          </Sidebar>
           <Container>
             <FormContainer>
               <SectionTitle>Basic Information</SectionTitle>
               <FormGroup>
                 <CustomTextField
-                  name="jobTitle"
-                  label="Job Title"
-                  variant="outlined"
+                  label="School Title"
                   placeholder="React Native Mobile Developer"
                   fullWidth
-                  value={formData.jobTitle}
-                  onChange={handleInputChange}
-                  error={!!formErrors.jobTitle}
-                  helperText={formErrors.jobTitle}
+                  {...register("jobTitle", { required: "Job Title is required." })}
+                  error={!!errors.jobTitle}
+                  helperText={errors.jobTitle?.message}
                 />
               </FormGroup>
 
               <Container2>
                 <FormGroup>
-                  <TextOption name="role"
+                  <TextOption
                     select
                     label="Role"
-                    variant="outlined"
                     fullWidth
-                    value={formData.role}
-                    onChange={handleInputChange}
-                    error={!!formErrors.role}
-                    helperText={formErrors.role}>
+                    {...register("role", { required: "Role is required." })}
+                    error={!!errors.role}
+                    helperText={errors.role?.message}
+                  >
                     <MenuItem value="Mobile Developer">Mobile Developer</MenuItem>
                     <MenuItem value="Web Developer">Web Developer</MenuItem>
                   </TextOption>
                 </FormGroup>
 
                 <FormGroup>
-                  <TextOption 
-                    name="category"
+                  <TextOption
                     select
                     label="Category"
-                    variant="outlined"
                     fullWidth
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    error={!!formErrors.category}
-                    helperText={formErrors.category}
+                    {...register("category", { required: "Category is required." })}
+                    error={!!errors.category}
+                    helperText={errors.category?.message}
                   >
                     <MenuItem value="Developer">Developer</MenuItem>
                     <MenuItem value="Designer">Designer</MenuItem>
@@ -137,15 +68,12 @@ export const Reservation = () => {
               <SectionTitle>Additional Information</SectionTitle>
               <FormGroup>
                 <CustomTextField
-                  name="employmentType"
                   select
                   label="Employment Type"
-                  variant="outlined"
                   fullWidth
-                  value={formData.employmentType}
-                  onChange={handleInputChange}
-                  error={!!formErrors.employmentType}
-                  helperText={formErrors.employmentType}
+                  {...register("employmentType", { required: "Employment Type is required." })}
+                  error={!!errors.employmentType}
+                  helperText={errors.employmentType?.message}
                 >
                   <MenuItem value="Fulltime">Fulltime</MenuItem>
                   <MenuItem value="Freelance">Freelance</MenuItem>
@@ -155,15 +83,12 @@ export const Reservation = () => {
               <Container2>
                 <FormGroup>
                   <CustomTextField
-                    name="jobPlacement"
                     select
                     label="Job Placement"
-                    variant="outlined"
                     fullWidth
-                    value={formData.jobPlacement}
-                    onChange={handleInputChange}
-                    error={!!formErrors.jobPlacement}
-                    helperText={formErrors.jobPlacement}
+                    {...register("jobPlacement", { required: "Job Placement is required." })}
+                    error={!!errors.jobPlacement}
+                    helperText={errors.jobPlacement?.message}
                   >
                     <MenuItem value="Onsite">Onsite</MenuItem>
                     <MenuItem value="Remote">Remote</MenuItem>
@@ -171,15 +96,12 @@ export const Reservation = () => {
                 </FormGroup>
                 <FormGroup>
                   <CustomTextField
-                    name="experience"
                     select
                     label="Experience"
-                    variant="outlined"
                     fullWidth
-                    value={formData.experience}
-                    onChange={handleInputChange}
-                    error={!!formErrors.experience}
-                    helperText={formErrors.experience}
+                    {...register("experience", { required: "Experience is required." })}
+                    error={!!errors.experience}
+                    helperText={errors.experience?.message}
                   >
                     <MenuItem value="4-6 years">4-6 years</MenuItem>
                     <MenuItem value="2-4 years">2-4 years</MenuItem>
@@ -192,30 +114,24 @@ export const Reservation = () => {
               <Container2>
                 <FormGroup>
                   <CustomTextField
-                    name="city"
                     select
                     label="City"
-                    variant="outlined"
                     fullWidth
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    error={!!formErrors.city}
-                    helperText={formErrors.city}
+                    {...register("city", { required: "City is required." })}
+                    error={!!errors.city}
+                    helperText={errors.city?.message}
                   >
                     <MenuItem value="Select City">Select City</MenuItem>
                   </CustomTextField>
                 </FormGroup>
                 <FormGroup>
                   <CustomTextField
-                    name="country"
                     select
                     label="Country"
-                    variant="outlined"
                     fullWidth
-                    value={formData.country}
-                    onChange={handleInputChange}
-                    error={!!formErrors.country}
-                    helperText={formErrors.country}
+                    {...register("country", { required: "Country is required." })}
+                    error={!!errors.country}
+                    helperText={errors.country?.message}
                   >
                     <MenuItem value="Select Country">Select Country</MenuItem>
                   </CustomTextField>
@@ -225,73 +141,30 @@ export const Reservation = () => {
               <Container2>
                 <FormGroup>
                   <CustomTextField
-                    name="province"
                     select
                     label="Province/State"
-                    variant="outlined"
                     fullWidth
-                    value={formData.province}
-                    onChange={handleInputChange}
-                    error={!!formErrors.province}
-                    helperText={formErrors.province}
+                    {...register("province", { required: "Province/State is required." })}
+                    error={!!errors.province}
+                    helperText={errors.province?.message}
                   >
-                    <MenuItem value="Select Province/State">
-                      Select Province/State
-                    </MenuItem>
+                    <MenuItem value="Select Province/State">Select Province/State</MenuItem>
                   </CustomTextField>
                 </FormGroup>
                 <FormGroup>
                   <CustomTextField
-                    name="zipCode"
                     label="Zip/Postal Code"
-                    variant="outlined"
                     placeholder="ex. 098098"
                     fullWidth
-                    value={formData.zipCode}
-                    onChange={handleInputChange}
-                    error={!!formErrors.zipCode}
-                    helperText={formErrors.zipCode}
-                    
+                    {...register("zipCode", { required: "Zip/Postal Code is required." })}
+                    error={!!errors.zipCode}
+                    helperText={errors.zipCode?.message}
                   />
                 </FormGroup>
               </Container2>
-
-              <FormGroup>
-                <CustomTextField
-                  name="addressLine1"
-                  label="Address Line 1"
-                  variant="outlined"
-                  placeholder="Address line 1"
-                  fullWidth
-                  value={formData.addressLine1}
-                  onChange={handleInputChange}
-                  error={!!formErrors.addressLine1}
-                  helperText={formErrors.addressLine1}
-                />
-                <CustomTextField
-                  name="addressLine2"
-                  label="Address Line 2 (Optional)"
-                  variant="outlined"
-                  placeholder="Address line 2 (Optional)"
-                  fullWidth
-                  value={formData.addressLine2}
-                  onChange={handleInputChange}
-                />
-              </FormGroup>
             </FormContainer>
           </Container>
         </Body>
-
-        <Pie>
-          
-            <ButtonLeft variant="contained">
-              <NavLink to="/">Cancel</NavLink>
-            </ButtonLeft>
-          
-            <ButtonRigth primary variant="contained" type="submit">
-              Continue<Arrow/>
-            </ButtonRigth>
-        </Pie>
       </form>
     </MainContainer>
   );

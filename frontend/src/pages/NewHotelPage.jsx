@@ -3,6 +3,8 @@ import { Reservation } from '../components/organismos/Forms/Reservation'
 import { Layout } from '../hooks/Layout'
 import styled from 'styled-components'
 import {defineStepper} from "@stepperize/react"
+import { useForm } from 'react-hook-form'
+import { HiringStage } from '../components/organismos/Forms/HiringStage'
 
 export const NewHotelPage = () => {
   const {useStepper} = defineStepper(
@@ -21,23 +23,25 @@ export const NewHotelPage = () => {
 
   const methods = useStepper()
 
+  const {register,handleSubmit,formState:{errors}} = useForm()
+
+  const onSubmit= (data)=>{
+    console.log("Primer paso correcto");
+    console.log(data);
+    methods.next()
+  }
+
+  const handleClickNextStep = async()=>{
+    await handleSubmit(onSubmit)()
+  }
+
   return (
-        // <Reservation />
     <Container>
       <div>
-        <div>
-          <button onClick={()=>methods.prev()}>Prev</button>
-          <button onClick={()=>methods.next()}>Next</button>
-        </div>
         {
           methods.switch({
-            "step-1":(step)=><span>{step.title}</span>,
-            "step-2":(step)=>(
-              <div>
-                <span>Secon:{step.title}</span>
-                <p>{step.description}</p>
-              </div>
-            ),
+            "step-1":(step)=><Reservation register={register} errors={errors}/>,
+            "step-2":(step)=><HiringStage register={register} errors={errors}/>,
             "step-3":(step)=>(
               <div>
                 <span>Secon:{step.title}</span>
@@ -46,6 +50,10 @@ export const NewHotelPage = () => {
             )
           })
         }
+        <div>
+          <button onClick={()=>methods.prev()}>Prev</button>
+          <button onClick={handleClickNextStep}>Next</button> 
+        </div>
       </div>
     </Container>
   )
