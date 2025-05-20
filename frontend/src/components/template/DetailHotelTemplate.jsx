@@ -14,8 +14,8 @@ export const DetailHotelTemplate = () => {
   const [selectedRoomId, setSelectedRoomId] = useState(null);
   const {roomsByHotel,fetchRoomsById} = useRoomStore()
 
-  console.log(roomsByHotel.room[0].views[0].available);
-
+  console.log(roomsByHotel.room);
+  
 
   const [selectedId, setSelectedId] = useState(null);
   const {isLoading,data} = useQuery({queryKey:['roomById',selectedId],queryFn:()=>fetchRoomsById(selectedId), enabled: !!selectedId})

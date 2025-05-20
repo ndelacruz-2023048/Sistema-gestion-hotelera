@@ -31,38 +31,14 @@ export const ScrollHorizontal = ({data}) => {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove} className="containerspan">
-            {/* {
-                data.map((e)=>(
+            {
+                data?.map((e)=>(
                     <span>
                         <Icon icon="material-symbols-light:meeting-room" className="infoIcon"/>
                         <p>{e?.name}</p>
                     </span>
                 ))
-            } */}
-            <span>
-                <Icon icon="famicons:bed" className="infoIcon"/>
-                <p>Cama, sofa, mesa, etc.</p>
-            </span>
-            <span>
-                <Icon icon="mdi:tv" className="infoIcon"/>
-                <p>TV, Refrigerador, Cafetera, AC</p>
-            </span>
-            <span>
-                <Icon icon="solar:bath-bold" className="infoIcon"/>
-                <p>Retrete, Ducha</p>
-            </span>
-            <span>
-                <Icon icon="material-symbols:wifi" className="infoIcon"/>
-                <p>Gratis</p>
-            </span>
-            <span>
-                <Icon icon="mdi:food" className="infoIcon"/>
-                <p>Servicio al Dormitorio</p>
-            </span>
-            <span>
-                <Icon icon="mdi:food" className="infoIcon"/>
-                <p>Servicio al Dormitorio</p>
-            </span>
+            }
         </Container>
     )
 }
