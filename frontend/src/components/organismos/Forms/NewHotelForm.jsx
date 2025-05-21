@@ -10,7 +10,7 @@ import { ButtonHome } from "../../atomos/ButtonHome";
 import { useForm } from "react-hook-form";
 
 
-export const Reservation = ({register,errors}) => {
+export const NewHotelForm = ({register,errors}) => {
   const navigate = useNavigate();
 
   return (
@@ -292,12 +292,9 @@ const SidebarItem = styled.div`
 const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 20px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 1px 2px  ${({theme})=>theme.color};
-    width: 200%;  
-    height: 100%;
 `;
 
 const CustomTextField = styled(TextField)`

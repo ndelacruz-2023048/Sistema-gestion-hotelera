@@ -1,5 +1,5 @@
 import React from 'react'
-import { Reservation } from '../components/organismos/Forms/Reservation'
+import { NewHotelForm } from '../components/organismos/Forms/NewHotelForm'
 import { Layout } from '../hooks/Layout'
 import styled from 'styled-components'
 import {defineStepper} from "@stepperize/react"
@@ -37,10 +37,13 @@ export const NewHotelPage = () => {
 
   return (
     <Container>
-      <div>
+      <div className='stepsForm'>
+
+      </div>
+      <div className='containerForms'>
         {
           methods.switch({
-            "step-1":(step)=><Reservation register={register} errors={errors}/>,
+            "step-1":(step)=><NewHotelForm register={register} errors={errors}/>,
             "step-2":(step)=><HiringStage register={register} errors={errors}/>,
             "step-3":(step)=>(
               <div>
@@ -50,15 +53,29 @@ export const NewHotelPage = () => {
             )
           })
         }
-        <div>
-          <button onClick={()=>methods.prev()}>Prev</button>
-          <button onClick={handleClickNextStep}>Next</button> 
-        </div>
+      </div>
+      <div className='buttonManagment'>
+        <button onClick={()=>methods.prev()}>Prev</button>
+        <button onClick={handleClickNextStep}>Next</button> 
       </div>
     </Container>
   )
 }
 
 const Container = styled.div`
-  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  .stepsForm{
+    height: 10%;
+    background-color: skyblue;
+  }
+  .containerForms{
+    height: 80%;
+  }
+  .buttonManagment{
+    height: 10%;
+    background-color: green;
+  }
 `
