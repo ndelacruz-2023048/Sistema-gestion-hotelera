@@ -19,6 +19,7 @@ export const LayoutNewRoom = ({children}) => {
 
 const Container = styled.div`
     display: flex;
+    height: 97%;
     .sectionMain{
         width: 70%;
     }
