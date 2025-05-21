@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { TextField, MenuItem, Button as MuiButton } from "@mui/material";
 import {NavLink,useNavigate } from "react-router-dom";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -8,10 +8,31 @@ import { GoArrowRight } from "react-icons/go";
 import {Icon} from '@iconify/react'
 import { ButtonHome } from "../../atomos/ButtonHome";
 import { useForm } from "react-hook-form";
+import {useDropzone} from 'react-dropzone'
+import { UploadImage } from "../UploadImage/UploadImage";
+import { UploadImageSucces } from "../UploadImage/UploadImageSuccess";
+import { useSaveImage } from "../../../hooks/SaveImage";
+import { useRoomStore } from "../../../store/RoomsStore";
 
 
 export const NewHotelForm = ({register,errors}) => {
-  const navigate = useNavigate();
+
+
+  ///Codigo para subir una imagen
+  const {dataImage,isLoadingImage,registerImage} = useSaveImage()
+
+  //Estados para subir imagenes
+  const {dataFileImageHotel,setDataFileImageHotel} = useRoomStore()
+  const [urlImage,setUrlImage] = useState(null)/*State para URL IMAGEN */
+  const [isInteractionDisabled, setIsInteractionDisabled] = useState(false)/*State para deshabilitar botones e inputs cuando algo se este subiendo o guardando */
+
+  const onDrop = useCallback(acceptedFiles => {
+    setDataFileImageHotel()
+    const imageUrl = URL.createObjectURL(acceptedFiles[0]);
+    setUrlImage(imageUrl)
+    // setValue("uploadImage",acceptedFiles)
+  }, [])
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop,disabled:isInteractionDisabled})
 
   return (
     <MainContainer>
@@ -109,59 +130,19 @@ export const NewHotelForm = ({register,errors}) => {
                 </FormGroup>
               </Container2>
 
-              <SectionTitle>Location</SectionTitle>
-
-              <Container2>
-                <FormGroup>
-                  <CustomTextField
-                    select
-                    label="City"
-                    fullWidth
-                    {...register("city", { required: "City is required." })}
-                    error={!!errors.city}
-                    helperText={errors.city?.message}
-                  >
-                    <MenuItem value="Select City">Select City</MenuItem>
-                  </CustomTextField>
-                </FormGroup>
-                <FormGroup>
-                  <CustomTextField
-                    select
-                    label="Country"
-                    fullWidth
-                    {...register("country", { required: "Country is required." })}
-                    error={!!errors.country}
-                    helperText={errors.country?.message}
-                  >
-                    <MenuItem value="Select Country">Select Country</MenuItem>
-                  </CustomTextField>
-                </FormGroup>
-              </Container2>
-
-              <Container2>
-                <FormGroup>
-                  <CustomTextField
-                    select
-                    label="Province/State"
-                    fullWidth
-                    {...register("province", { required: "Province/State is required." })}
-                    error={!!errors.province}
-                    helperText={errors.province?.message}
-                  >
-                    <MenuItem value="Select Province/State">Select Province/State</MenuItem>
-                  </CustomTextField>
-                </FormGroup>
-                <FormGroup>
-                  <CustomTextField
-                    label="Zip/Postal Code"
-                    placeholder="ex. 098098"
-                    fullWidth
-                    {...register("zipCode", { required: "Zip/Postal Code is required." })}
-                    error={!!errors.zipCode}
-                    helperText={errors.zipCode?.message}
-                  />
-                </FormGroup>
-              </Container2>
+              <ContainUploadImage {...getRootProps({className: 'dropzone'})}>
+            <input {...getInputProps()}/>
+            {
+              urlImage===null ? (
+                <>
+                  <UploadImage errors={errors}/>
+                </>
+              ):(
+                <UploadImageSucces dataFile={dataFileImageHotel} imageURL={urlImage}  isLoadingImage={isLoadingImage} isInteractionDisabled={isInteractionDisabled}/>
+              )
+                
+            }
+          </ContainUploadImage>   
             </FormContainer>
           </Container>
         </Body>
@@ -177,116 +158,15 @@ const MainContainer = styled.div`
   height: 100%;
 `;
 
-
-
-const Header = styled.div`
-  display: flex;
-  margin-left : 40px;
-  background-color: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.color};
-  font-size: 24px;
-  font-weight: bold;
-  .clock {
-    font-size: 35px;
-    color: ${({ theme }) => theme.color};
-  }
-  .question {
-    font-size: 35px;
-    color: ${({ theme }) => theme.color};
-  }
-`;
-
-const ArrowLeft = styled(SlArrowLeftCircle)`
-  color: ${({ theme }) => theme.color};
-  font-size: 35px;
-  display: flex;
-  margin-top: 12px;
-`
-
-const SectionTitleHeader = styled.h3`
-  font-size: 24px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.color};
-  margin-left: 20px;
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-`;
-
-const ButtonGroupHeader = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: 900px;
-  
-`
-
-const ButtonGoup = styled(MuiButton)`
-    && {
-        width: 40px; 
-        height: 40px;
-        padding: 5px;  
-        font-size: 14px; 
-        color: #fff;
-        border-radius: 10px;
-        background-color: transparent;
-        display: flex;
-        align-items: center; 
-        justify-content: center;
-        &:hover {
-            background-color: transparent;
-        }
-        .MuiButton-label {
-            color: ${({ theme }) => theme.color};
-        }
-    }
-`;
-
 const Body = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1; 
 `;
 
-const Pie = styled.div`
-  display: flex;
-  justify-content: space-between; /* Cambiado de flex-end a space-between */
-  align-items: center;
-  padding: 20px;
-  background-color: ${({ theme }) => theme.backgroundColor};
-  border-top: 1px solid ${({ theme }) => theme.color};
-`;
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-`;
-
-const Sidebar = styled.div`
-  gap: 10px;
-  height: 100vh;
-  width: 250px;
-  background-color: ${({ theme }) => theme.backgroundColor};
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  cursor: pointer;
-  &:hover {
-    color: ${({ theme }) => theme.colorHover};
-  }
-`;
-
-const SidebarItem = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.color};
-  cursor: pointer;
-  &:hover {
-    color: ${({ theme }) => theme.colorHover};
-  }
 `;
 
 const FormContainer = styled.div`
@@ -375,39 +255,6 @@ const FormGroup = styled.div`
     
 `;
 
-const ButtonLeft = styled(MuiButton)`
-    && {
-        padding: 10px 20px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #fff;
-        border-radius: 28px;
-        
-        background-color: ${(props) => (props.primary ? "#4caf50" : "#ccc")};
-        &:hover {
-        background-color: ${(props) => (props.primary ? "#45a049" : "#b3b3b3")};
-        }
-    }
-`;
-const ButtonRigth = styled(MuiButton)`
-    && {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 20px;
-        font-weight: bold;
-        background-color: #4caf50;
-        border-radius: 28px;
-        margin-left: 1000px;
-    }
-`;
-
-const Arrow = styled(GoArrowRight)`
-    color: ${({theme})=>theme.color};
-    font-size: 20px;
-    margin-left: 5px; 
-    align-items: center;
-`;
 
 const Line = styled.div`
     width: 100%;
@@ -420,12 +267,9 @@ const LineHeader = styled.div`
     
 `;
 
-const LineIcon = styled.div`
-  height: 50%; 
-  width: 2px; 
-  background-color: ${({theme})=>theme.color};
-  margin: 0 10px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+
+const ContainUploadImage = styled.div`
+  height: 30%;
+  width: 100%;
+  border: 1px dashed #65dbff;
+`

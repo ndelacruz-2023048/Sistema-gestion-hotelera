@@ -1,9 +1,14 @@
 import { create } from "zustand";
 
-export const useRoomStore = create((set) => ({
+export const useRoomStore = create((set,get) => ({
     hotelId:0,
     setHotelId:(p)=>{
         set({hotelId:p})
+    },
+    dataFileImageHotel:[],
+    setDataFileImageHotel:(p)=>{
+        const {dataFileImageHotel} = get()
+        set({dataFileImageHotel:p})
     },
     rooms:[],
     fetchRooms:async()=>{
