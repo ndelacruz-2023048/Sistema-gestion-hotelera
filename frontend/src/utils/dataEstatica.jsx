@@ -19,7 +19,7 @@ export const LinksArraySidebar = [
     {
         label: "DetailFormHotel",
         icon: "mingcute:hotel-line",
-        to: "/new-hotel",
+        to: "/hotel/new",
     },
     
 ]

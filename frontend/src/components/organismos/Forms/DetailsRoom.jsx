@@ -35,7 +35,6 @@ export const DetailsRoom = () => {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted successfully:", formData);
-      navigate("/hiringStage"); 
     }
   }
 

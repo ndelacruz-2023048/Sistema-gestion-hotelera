@@ -1,6 +1,10 @@
 import { create } from "zustand";
 
 export const useRoomStore = create((set) => ({
+    hotelId:0,
+    setHotelId:(p)=>{
+        set({hotelId:p})
+    },
     rooms:[],
     fetchRooms:async()=>{
         try {

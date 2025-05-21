@@ -282,7 +282,6 @@ export const ApplicationForm = () => {
         <Pie>
           
             <ButtonLeft variant="contained">
-              <NavLink to="/hiringStage">Go back</NavLink>
             </ButtonLeft>
           
             <ButtonRigth primary variant="contained" type="submit">

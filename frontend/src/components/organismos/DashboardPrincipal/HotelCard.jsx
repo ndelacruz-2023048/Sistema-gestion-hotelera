@@ -8,10 +8,12 @@ import { useRoomStore } from "../../../store/RoomsStore";
 import { NavLink } from "react-router";
 export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEventClick}) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [getData, setGetData] = useState(false)
     const {roomsByHotel,fetchRoomsByHotel} = useRoomStore()
-    const {data} = useQuery({queryKey:['roomsByHotel',id],queryFn:()=>fetchRoomsByHotel(id), enabled: isHovered &&!!id,retry:false})
-    console.log(data);
-    
+    const {data} = useQuery({queryKey:['roomsByHotel',id],queryFn:()=>fetchRoomsByHotel(id), enabled: getData &&!!id,retry:false})    
+    const handleClickFetchRoomByHotel = ()=>{
+        setGetData(true)
+    }
     return (
         <Container onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
             <WrapperCard>

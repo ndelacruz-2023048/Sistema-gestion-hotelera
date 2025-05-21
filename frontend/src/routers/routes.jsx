@@ -11,13 +11,12 @@ import { Register } from "../pages/Register"
 import { ProtectedRoutes } from "../hooks/ProtectedRoutes"
 import { NewHotelPage } from "../pages/NewHotelPage"
 import { DetailsRoom} from "../components/organismos/Forms/DetailsRoom"
-import { HiringStage } from "../components/organismos/Forms/HiringStage"
 import { ApplicationForm } from "../components/organismos/Forms/ApplicationForm"
 import { DetailsRoomHotel } from "../pages/DetailsRoomHotel"
-import { HiringStageHotel } from "../pages/HiringStageHotel"
 import { DetailUser } from "../components/template/DetailUser"
 import { SettingsPage } from "../pages/SettingsPage"
 import { HotelSettingsPage } from "../pages/HotelSettingsPage"
+import { NewRoomPage } from "../pages/NewRoomPage"
 
 const router = createBrowserRouter([
     {
@@ -45,21 +44,17 @@ const router = createBrowserRouter([
             element: <EventPlanning />
           },
           {
-            path: 'new-hotel',
+            path: 'hotel/new',
             element: <NewHotelPage />
           },
           {
             path: 'detailsRoom',
             element: <DetailsRoomHotel />
           },
-          // {
-          //   path: 'hiringStage',
-          //   element: <HiringStageHotel />
-          // },
-          // {
-          //   path: 'applicationForm',
-          //   element: <ApplicationForm />
-          // },
+          {
+            path: 'room/new',
+            element: <NewRoomPage />
+          },
           {
             path: 'user',
             element: <DetailUser />

@@ -15,12 +15,10 @@ export const DashboardPrincipalTemplate = () => {
     const toggleEventSection = ()=> {
         setOpen(!open)
     }
-    console.log(hotels?.hotels);
     const navigation = useNavigate()
     const handleRoomClick = (id)=>{
         navigation(`/hotel/${id}`)
     }
-
     
     return(
         <Container>

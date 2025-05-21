@@ -33,7 +33,12 @@ export const Light ={
     color1: 'white',
     infoText: 'rgb(199, 152, 65)',
     bgRoomHotel:'#e3d6c0',
-    square: 'rgb(192, 192, 192)'
+    square: 'rgb(192, 192, 192)',
+    textCircleStepper:'white',
+    textStepper:'black',
+    buttonStepperColor1:'#a88f68',
+    buttonStepperColor2:'#d4d1d1',
+    buttonStepperColor3:'#a88f68'
 }
 
 export const Dark = {
@@ -70,5 +75,10 @@ export const Dark = {
     colorLabel: 'white',
     infoText: '#ffcc00',
     bgRoomHotel:'#615035',
-    square: 'rgb(24, 32, 51)'
+    square: 'rgb(24, 32, 51)',
+    textCircleStepper:'#1e263b',
+    textStepper:'white',
+    buttonStepperColor1:'#a88f68',
+    buttonStepperColor2:"#11172b",
+    buttonStepperColor3:'#a88f68'
 }
