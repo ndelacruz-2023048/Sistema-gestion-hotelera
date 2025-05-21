@@ -1,3 +1,4 @@
+import * as HoverCard from '@radix-ui/react-hover-card';
 import { Icon } from '@iconify/react';
 import React from 'react'
 import { useRef, useState } from 'react'
@@ -32,11 +33,31 @@ export const ScrollHorizontal = ({data}) => {
             onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove} className="containerspan">
             {
-                data?.map((e)=>(
-                    <span>
-                        <Icon icon="material-symbols-light:meeting-room" className="infoIcon"/>
+                data?.map((e) => (
+                    <HoverCard.Root key={e._id}>
+                    <HoverCard.Trigger asChild>
+                        <span className="hoverCardTrigger">
+                        <Icon icon="material-symbols-light:meeting-room" className="infoIcon" />
                         <p>{e?.name}</p>
-                    </span>
+                        </span>
+                    </HoverCard.Trigger>
+                    <HoverCard.Portal>
+                        <HoverCard.Content
+                        sideOffset={5}
+                        style={{
+                            backgroundColor: 'white',
+                            borderRadius: '8px',
+                            padding: '1rem',
+                            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                            maxWidth: 240,
+                        }}
+                        >
+                        <p style={{ fontSize: '0.85rem', lineHeight: '1.4' }}>
+                            <strong>Descripción:</strong> {e?.description || 'Sin descripción'}
+                        </p>
+                        </HoverCard.Content>
+                    </HoverCard.Portal>
+                    </HoverCard.Root>
                 ))
             }
         </Container>
