@@ -38,6 +38,10 @@ export const HotelSettingsPage = () => {
   const selectedRoom = roomsByHotel?.room?.find(r => r._id === selectedRoomId)
 
   useEffect(() => {
+    if(selectedHotel) {
+      console.log("Hotel Seleccionado: ", selectedHotel)
+    }
+
     if (selectedRoom) {
       console.log("Room seleccionado:", selectedRoom)
     }
@@ -86,17 +90,16 @@ export const HotelSettingsPage = () => {
         {selectedHotel && (
           <ArrivalCard title="Hotel" data={selectedHotel} />
         )}
-        {selectedRoom && (
-          <ArrivalCard title="Room" data={selectedRoom} />
-        )}
+        
       </LeftColumn>
 
       <RightColumn>
-        <SectionTitle>Today</SectionTitle>
         <TimelineBox>
-
+          {selectedRoom && (
+            <ArrivalCard title="Room" data={selectedRoom} />
+          )}
         </TimelineBox>
-        <RightBottom>
+        {/* <RightBottom>
           <FreeRooms>
             <h3>Free rooms</h3>
             <RoomList>
@@ -110,9 +113,7 @@ export const HotelSettingsPage = () => {
             <ActionButton>Lock POS</ActionButton>
             <ActionButton>Support</ActionButton>
           </Sidebar>
-        </RightBottom>
-        
-        
+        </RightBottom> */}
       </RightColumn>
     </Container>
   )
@@ -217,7 +218,7 @@ const RoomBox = styled.div`
 
 const StyledTrigger = styled(Select.Trigger)`
   all: unset;
-  background-color: #f1f1f1;
+  background-color:${({ theme }) => theme.colorBackground};
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 14px;
@@ -226,28 +227,28 @@ const StyledTrigger = styled(Select.Trigger)`
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  color: #333;
+  color: ${({ theme }) => theme.color};
   width: 250px;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
 
   &:hover {
-    background-color: #eaeaea;
+    background-color:${({ theme }) => theme.square};
   }
-`;
+`
 
 const StyledContent = styled(Select.Content)`
-  background-color: white;
+  background-color: ${({ theme }) => theme.square};
   border-radius: 8px;
   padding: 5px;
   box-shadow: 0px 10px 38px -10px rgba(22,23,24,0.35), 0px 10px 20px -15px rgba(22,23,24,0.2);
   z-index: 999;
-`;
+`
 
 const StyledItem = styled(Select.Item)`
   font-size: 14px;
   line-height: 1;
-  color: #333;
+  color: ${({ theme }) => theme.color};
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -256,14 +257,10 @@ const StyledItem = styled(Select.Item)`
   cursor: pointer;
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: ${({ theme }) => theme.colorBackground};
   }
 
   &[data-highlighted] {
-    background-color: #e1e1e1;
+    background-color: ${({ theme }) => theme.colorBackground};
   }
-`;
-
-const StyledIcon = styled(Select.Icon)`
-  color: #555;
-`;
+`

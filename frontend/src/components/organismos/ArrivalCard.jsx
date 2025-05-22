@@ -1,14 +1,67 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Icon } from "@iconify/react"
+import { useHotelStore } from '../../store/HotelStore'
 
 export const ArrivalCard = ({ title, data }) => {
+  const { updateHotel, fetchHotels } = useHotelStore()
+  const [isEditing, setIsEditing] = useState(false)
+  const [formData, setFormData] = useState(data)
+  const [imageUrl, setImageUrl] = useState(null)
+
+  // Inicializa formData y el link de imagen
+  useEffect(() => {
+    setFormData(data)
+    setImageUrl(data.image || null)
+  }, [data])
+
+  // Escucha constantemente cambios en el campo "image"
+  useEffect(() => {
+    if (formData?.image) {
+      setImageUrl(formData.image)
+    } else {
+      setImageUrl(null)
+    }
+  }, [formData?.image])
+
+  const handleChange = (key, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [key]: value
+    }))
+  }
+
+  const handleUpdate = async () => {
+    const result = await updateHotel(formData._id, formData)
+    if (result?.success) {
+      setIsEditing(false)
+      await fetchHotels()
+    }
+  }
+
+  const handleCancel = () => {
+    setFormData(data)
+    setIsEditing(false)
+    setImageUrl(data.image || null)
+  }
+
   return (
     <Card>
       <TopRow>
         <RightActions>
-          <ActionButton>Upgrade</ActionButton>
-          <Icon icon="mdi:edit-outline" className='Icon' />
+          {isEditing ? (
+            <>
+              <ActionButton onClick={handleUpdate}>Update</ActionButton>
+              <CancelButton onClick={handleCancel}>Cancelar</CancelButton>
+            </>
+          ) : (
+            <Icon 
+              icon="mdi:edit-outline" 
+              className='Icon' 
+              onClick={() => setIsEditing(true)} 
+              style={{ cursor: 'pointer' }}
+            />
+          )}
         </RightActions>
       </TopRow>
 
@@ -16,25 +69,36 @@ export const ArrivalCard = ({ title, data }) => {
       <Bar />
 
       <Details>
-  {Object.entries(data)
-    .filter(([key]) => key !== '_id' && key !== '__v')
-    .map(([key, value]) => (
-      <FieldWrapper key={key}>
-        <Label>{key.charAt(0).toUpperCase() + key.slice(1)}</Label>
-        <Input
-          type="text"
-          value={
-            typeof value === 'object'
-              ? value?.toString()
-              : value
-          }
-          readOnly
-        />
-      </FieldWrapper>
-    ))}
-</Details>
+        {Object.entries(formData)
+          .filter(([key]) => key !== '_id' && key !== '__v')
+          .map(([key, value]) => (
+            <FieldWrapper key={key}>
+              <Label>{key.charAt(0).toUpperCase() + key.slice(1)}</Label>
+              <Input
+                type="text"
+                value={
+                  typeof value === 'object'
+                    ? value?.$numberDecimal || JSON.stringify(value)
+                    : value
+                }
+                readOnly={!isEditing}
+                onChange={(e) => handleChange(key, e.target.value)}
+              />
+            </FieldWrapper>
+          ))}
+      </Details>
 
-      <Status>Hotel seleccionado</Status>
+      {imageUrl && (
+        <ImagePreviewWrapper>
+          <ImagePreview
+            src={imageUrl}
+            alt="Vista previa"
+            onError={(e) => (e.target.style.display = 'none')}
+          />
+        </ImagePreviewWrapper>
+      )}
+
+      <Status>Hotel {isEditing ? "en edición" : "seleccionado"}</Status>
     </Card>
   )
 }
@@ -132,4 +196,31 @@ const ActionButton = styled.button`
     color: ${({ theme }) => theme.colorBackground};
     transition: 0.5s;
   }
+`
+
+const CancelButton = styled.button`
+  background-color: ${({ theme }) => theme.colorBackground};
+  color: #ff4444;
+  border: solid 0.5px #ff4444;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ff4444;
+    color: ${({ theme }) => theme.colorBackground};
+    transition: 0.5s;
+  }
+`
+const ImagePreviewWrapper = styled.div`
+  margin-top: 1rem;
+  text-align: center;
+`
+
+const ImagePreview = styled.img`
+  max-height: 200px;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 `
