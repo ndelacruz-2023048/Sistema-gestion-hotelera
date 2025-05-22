@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js"
+import Swal from 'sweetalert2';
 import styled from "styled-components"
 import Room from '../../../assets/Room.jpg'
 import { useState } from "react";
@@ -6,6 +7,7 @@ import { SliderRooms } from "./SliderRooms";
 import { useQuery } from "@tanstack/react-query";
 import { useRoomStore } from "../../../store/RoomsStore";
 import { NavLink } from "react-router";
+import { deleteHotel } from "../../../routers/services/app";
 export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEventClick}) => {
     const [isHovered, setIsHovered] = useState(false);
     const [getData, setGetData] = useState(false)
@@ -14,6 +16,34 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
     const handleClickFetchRoomByHotel = ()=>{
         setGetData(true)
     }
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            const response = await deleteHotel(id);
+            if (response?.error) {
+                Swal.fire({
+                title: "Error",
+                text: "There was a problem deleting the hotel.",
+                icon: "error"
+                });
+            } else {
+                Swal.fire({
+                title: "Deleted!",
+                text: "The hotel has been deleted.",
+                icon: "success"
+                }).then(() => {
+                    window.location.reload();
+                });
+            }
+        });
+    };
     return (
         <Container onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
             <WrapperCard>
@@ -25,6 +55,14 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
                                 <NavLink to={`/hotel/${id}`}>
                                     <button className="btn"><Icon icon="fluent:conference-room-24-regular" className='icon'/>View Hotel </button>
                                 </NavLink>
+                                <NavLink to={`/settings/hotel`}>
+                                    <button className="btn-editar">
+                                        <Icon icon="material-symbols:contract-edit-sharp" className='icon'/>Edit Hotel
+                                    </button>
+                                </NavLink>
+                                    <button className="btn-delete" onClick={handleDelete}>
+                                        <Icon icon="mdi-light:delete" className='icon'/>Delete Hotel
+                                    </button>
                             </div>
                         }
                         <ContainerIconLove>
@@ -73,6 +111,44 @@ const Container = styled.div`
         align-items: center;
         .btn{
             display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #00000044;
+            color: white;
+            font-size: 17px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            &:hover{
+                background-color: #00000066;
+            }
+            .icon{
+                font-size: 28px;
+            }
+        }
+        .btn-editar{
+            position: absolute;
+            display: flex;
+            top: 170px;
+            left: 20px;
+            align-items: center;
+            gap: 10px;
+            background-color: #00000044;
+            color: white;
+            font-size: 17px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            &:hover{
+                background-color: #00000066;
+            }
+            .icon{
+                font-size: 28px;
+            }
+        }
+        .btn-delete{
+            position: absolute;
+            display: flex;
+            top: 170px;
+            right: 15px;
             align-items: center;
             gap: 10px;
             background-color: #00000044;
