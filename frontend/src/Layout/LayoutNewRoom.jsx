@@ -19,6 +19,7 @@ export const LayoutNewRoom = ({children}) => {
 
 const Container = styled.div`
     display: flex;
+    justify-content: space-between;
     height: 97%;
     .sectionMain{
         width: 70%;
@@ -26,7 +27,6 @@ const Container = styled.div`
     .sectionPreviews{
         display: flex;
         justify-content: center;
-        width:30%;
         border-left: 2px solid ${({theme})=>theme.eSBorder};
         &_container{
             display: flex;

@@ -1,0 +1,21 @@
+try {
+          console.log("Datos recibidos del primer form:", data);
+
+          // Aquí envías a backend solo desde el primer form:
+          const res = await fetch("http://localhost:3000/v1/hotelhavenis/rooms/addNewRoom", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          if (!res.ok) throw new Error("Error al crear habitación");
+
+          const result = await res.json();
+          console.log("Habitación creada:", result);
+
+          // Opcionalmente avanzar al siguiente paso si quieres:
+          // methods.next();
+
+        } catch (error) {
+          console.error(error);
+        }

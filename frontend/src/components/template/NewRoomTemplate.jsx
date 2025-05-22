@@ -27,32 +27,18 @@ export const NewRoomTemplate = () => {
     
       const methods = useStepper()
       const methodsForm = useForm();
-      console.log(methods);
-      
-      const {register,handleSubmit,formState:{errors}} = useForm()
+      const {handleSubmit} = methodsForm
       const currentStepIndex = utils.getIndex(methods.current.id)
+
+
+      const validateRooom =(data)=>{
+        console.log(data);
+        methods.next()
+      }
       
       const onSubmit = async (data) => {
-        try {
-          console.log("Datos recibidos del primer form:", data);
-
-          // Aquí envías a backend solo desde el primer form:
-          const res = await fetch("http://localhost:3000/v1/hotelhavenis/rooms/addNewRoom", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          });
-
-          if (!res.ok) throw new Error("Error al crear habitación");
-
-          const result = await res.json();
-          console.log("Habitación creada:", result);
-
-          // Opcionalmente avanzar al siguiente paso si quieres:
-          // methods.next();
-
-        } catch (error) {
-          console.error(error);
+        if(currentStepIndex===0){
+          validateRooom(data)
         }
       };
         
@@ -94,7 +80,7 @@ export const NewRoomTemplate = () => {
               />
                 <div className='buttonManagment'>
                   <button className='buttonManagment_prev' onClick={()=>methods.prev()}>Prev</button>
-                  <button className='buttonManagment_next' onClick={handleClickNextStep}>Next</button> 
+                  <button className='buttonManagment_next' onClick={()=>handleClickNextStep()}>Next</button> 
                 </div>
             </FormProvider>
           </Container>
