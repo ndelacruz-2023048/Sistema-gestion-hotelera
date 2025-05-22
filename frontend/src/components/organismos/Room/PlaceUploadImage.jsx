@@ -2,10 +2,13 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import React from 'react'
 import styled from 'styled-components'
 
-export const PlaceUploadImage = () => {
+export const PlaceUploadImage = ({percetageSize,children, ...props}) => {
   return (
-    <Container>
+    <Container percetageSize={percetageSize}>
+        <div {...props}>
+      {children}
         <Icon icon="lucide:plus" className='icon'/>
+        </div>
     </Container>
   )
 }
@@ -16,10 +19,18 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 50%;
+    width: ${props=>props.percetageSize}%;
+    height: ${props=>props.percetageSize}%;
     border-radius: 20px;
     .icon{
         font-size: 35px;
+    }
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        
     }
 `

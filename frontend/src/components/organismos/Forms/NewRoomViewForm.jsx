@@ -1,30 +1,33 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { PlaceUploadImage } from '../Room/PlaceUploadImage';
 import { useEffect } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 export const NewRoomViewForm = () => {
-  const images = [
-    "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
-      "https://cdn.pixabay.com/photo/2018/06/14/21/15/bedroom-3475656_1280.jpg",
-      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
-      "https://cdn.pixabay.com/photo/2021/06/01/12/39/beach-6301597_1280.jpg",
+  const roomImagesList = [
   ]
   const [countSections, setCountSections] = useState(0)
   const [countSectionLeft, setCountSectionLeft] = useState(0)
   const [countSectionRight, setCountSectionRight] = useState(0)
-  const [arrayImages,setArrayImages] = useState(images)
+  const [itemsImagesLeft, setitemsImagesLeft] = useState(0)
+  const [itemsImagesRight, setitemsImagesRight] = useState(0)
+  const [arrayImages,setArrayImages] = useState(roomImagesList)
   
   const { register, formState: { errors } } = useFormContext();
   useEffect(()=>{
     const extraValue = 1; // Valor adicional que siempre se sumará
     if(arrayImages.length === 0){
       setCountSectionLeft(0)
-      setCountSectionRight(0)
+      setCountSectionRight(100)
     }else if((arrayImages.length + extraValue) > 4){
       let count = arrayImages.length + extraValue
       let num1 = count - 4
+
+      let itemsLeft = arrayImages.length -3 
+      setitemsImagesLeft(itemsLeft)
+      setitemsImagesRight(3)
       if(num1>=2){
         setCountSectionLeft(50)
       }else{
@@ -33,35 +36,87 @@ export const NewRoomViewForm = () => {
       setCountSectionRight(50)
     }else{
       let count = arrayImages.length + extraValue
+    
       setCountSectionLeft(100)
       if((count-1)>=2){
+        let itemsRight = arrayImages.length -1
+        setitemsImagesRight(itemsRight)
+        setitemsImagesLeft(1)
         setCountSectionRight(50)
+
       }else{
         setCountSectionRight(100)
+        setitemsImagesLeft(1)
+        setitemsImagesRight(1)
       }
     }
   },[arrayImages])
-  
-  console.log("Imagenes izquierda",countSectionLeft);
-  console.log("Imagenes derecha",countSectionRight);
+
+  //Codigo de Dropzone 
+  const [urlImage,setUrlImage] = useState(null)
+  const onDrop = useCallback(acceptedFiles => {
+    const imageUrl = URL.createObjectURL(acceptedFiles[0]);
+    setUrlImage(imageUrl)
+    setArrayImages(prevImages => [...prevImages, imageUrl])
+  }, [])
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
   
   return (
-    <Container>
+    <Container percentajeImageLeft={countSectionLeft} percentajeImageRight={countSectionRight}>
       <div className='roomImage'>
         <div className='showImages'>
           <div className='containerShowImages'>
-            <div className='showImages_section1'>
-              <img className='imageRoomPrincipal' src="https://cdn.pixabay.com/photo/2013/04/02/20/17/riu-99533_1280.jpg" alt="" />
-            </div>
-            <div className='showImages_section2'>
-              <img className='imageRoomSmall' src="https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg" alt="" />
-              <img className='imageRoomSmall' src="https://cdn.pixabay.com/photo/2017/01/28/19/31/landscape-2016308_1280.jpg" alt="" />
+            {arrayImages.length === 0 ? (
+               <PlaceUploadImage percetageSize={countSectionRight} {...getRootProps({className: 'dropzone'})}>
+               <input {...getInputProps()}/>
+               </PlaceUploadImage>
+            ):(
+              <>
+              <div className='showImages_section1'>
+                  {arrayImages
+                    .slice(0, itemsImagesLeft)
+                    .map((element, index) => (
+                      <img 
+                        key={`principal-${index}`}
+                        className='imageRoomPrincipal' 
+                        src={element} 
+                        alt={`Imagen principal ${index + 1}`} 
+                      />
+                    ))
+                  }
+                </div>
+                <div className='showImages_section2'>
+                  {arrayImages.length === 1 ? (
+                    <PlaceUploadImage percetageSize={countSectionRight} {...getRootProps({className: 'dropzone'})}>
+                    <input {...getInputProps()}/>
+                    </PlaceUploadImage>
+                  ) : (
+                    <>
+                      {arrayImages
+                        .slice(-itemsImagesRight)
+                        .map((element, index) => (
+                          <img 
+                            key={`small-${index}`}
+                            className='imageRoomSmall' 
+                            src={element} 
+                            alt={`Imagen pequeña ${index + 1}`} 
+                          />
+                        ))
+                      }
 
-            </div>
+                <PlaceUploadImage percetageSize={countSectionRight} {...getRootProps({className: 'dropzone'})}>
+                <input {...getInputProps()}/>
+                </PlaceUploadImage>
+                  </>
+                )}
+
+              </div>  
+              </>
+            )}
           </div>
         </div>
         <div className='editImages'>
-
         </div>
       </div>
       <div className='roomImageForm'>
@@ -95,11 +150,12 @@ const Container = styled.div`
         }
         &_section1{
           display: flex;
+          flex-wrap: wrap;
           width: 50%;
           height: 100%;
           .imageRoomPrincipal{
-            width: 100%;
-            height: 100%;
+            width: ${props => props.percentajeImageLeft}%;
+            height: ${props => props.percentajeImageLeft}%;
             border-radius: 20px;
           }
         }
@@ -112,8 +168,8 @@ const Container = styled.div`
           height: 100%;
           .imageRoomSmall{
             border-radius: 20px;
-            width:50%;
-            height:50%;
+            width:${props => props.percentajeImageRight}%;
+            height:${props => props.percentajeImageRight}%;
           }
         }
       }
