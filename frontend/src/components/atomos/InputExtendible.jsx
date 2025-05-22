@@ -9,6 +9,7 @@ export const InputExtendible = forwardRef(({
     rows = 3,
     disabled = false,
     fullWidth = true,
+    id,
     error,
     ...rest
 }, ref) => {
@@ -30,6 +31,7 @@ export const InputExtendible = forwardRef(({
             value={value ?? localValue}
             onChange={handleChange}
             rows={rows}
+            id={id}
             disabled={disabled}
             {...rest}
             error={error}
@@ -40,6 +42,7 @@ export const InputExtendible = forwardRef(({
             type="text"
             placeholder={placeholder}
             value={value ?? localValue}
+            id={id}
             onChange={handleChange}
             disabled={disabled}
             {...rest}

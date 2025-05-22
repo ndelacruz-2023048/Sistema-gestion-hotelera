@@ -2,14 +2,12 @@
 import styled from 'styled-components';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-export const Methods = ({ togglePopup, setIsEdit, setCurrentEvent }) => {
-
-    const handleEdit = (eventDetail) => {
-        setCurrentEvent(eventDetail)
+export const Methods = ({ togglePopup, setIsEdit, onEdit }) => {
+    const handleEdit = () => {
         setIsEdit(true)
+        onEdit()
         togglePopup()
     }
-
     return (
         <Wrapper>
             <Option onClick={handleEdit}>

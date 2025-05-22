@@ -88,3 +88,14 @@ export const updateEventRequest = async(id, event)=> {
         }
     }
 }
+
+export const getHotelRequest = async()=> {
+    try {
+        return await apiClient.get('/hotels/getHotels')
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}

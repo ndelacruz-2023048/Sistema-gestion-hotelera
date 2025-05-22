@@ -12,42 +12,47 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
   const { updateEvents } = useEvents()
     const { register, handleSubmit, control, formState: { errors }, reset } = useForm(
       {
-        mode: 'onChange'
+        mode: 'onChange',
+        defaultValues: event
       }
     )
+    
 
-    useEffect(()=> {
-      if(isEdit && event) {
-        reset(
-          {
-            name: event.name || '',
-            description: event.description || '',
-            location: event.location || '',
-            capacity: event.capacity || '',
-            price: event.price || '',
-            startDate: event.startDate || '',
-            endDate: event.endDate || '',
-            designated: {
-              value: event.designated || '',
-              label: `${event.designated} ${event.designated} || ''`
-            }
-          }
-        )
+    console.log('recibido maestro: ',event);
+    useEffect(() => {
+      
+      if (event) {
+          reset({
+              _id: event._id || '',
+              name: event.name || '',
+              description: event.description || '',
+              startDate: event.startDate ? new Date(event.startDate) : null,
+              endDate: event.endDate ? new Date(event.endDate) : null,
+              location: event.location || '',
+              capacity: event.capacity || '',
+              price: event.price || '',
+              designated: event.designated ? {
+                value: event.designated?._id || event.designated.value || '',
+                label: event.designated?.name || event.designated.label || ''
+              } : null,
+              hotel: event.hotel ? {
+                value: event.hotel?._id || event.hotel.value || '',
+                label: event.hotel?.name || event.hotel.label || ''
+              } : null
+          });
+      } else {
+          reset();
       }
-    }, [isEdit, event, reset])
+    }, [event, reset])
+    
 
     const onSubmit = async (data)=> {
       const user = data?.designated?.value
+      const hotel = data?.hotel?.value
       const start = data?.startDate.toISOString()
       const end = data?.endDate.toISOString()
       
-      if(isEdit) {
-        await updateEvents(event._id, data, user, start, end)
-      } else {
-        await events(data, user, start, end)
-      }
-      setIsEdit(false)
-      reset()
+      await events(data, user, hotel, start, end)
     }
 //Agregar un nuevo evento
     return (
@@ -55,8 +60,13 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
         <PopupStyle>
           <Up>
             <div className="Up">
-              <label htmlFor="">{isEdit ? 'Actualizar evento': 'Agregar un nuevo evento'}</label>
-              <CloseIcon icon="mdi:close" onClick={togglePopup} />
+              <label htmlFor="">{isEdit ? 'Editar evento' : 'Agregar un nuevo evento'}</label>
+              <CloseIcon icon="mdi:close" onClick={() => {
+                    togglePopup()
+                    setIsEdit(false)
+                  }
+                } 
+              />
             </div>
           </Up>
           <Line></Line>
@@ -71,7 +81,7 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
           <Line />
           <Blue>
             <div className="bottom">
-              <button type="submit" form="formData">Enviar</button>
+              <button type="submit" form="formData">{isEdit ? 'Guardar Cambios' : 'Guardar evento'}</button>
             </div>
           </Blue>
         </PopupStyle>

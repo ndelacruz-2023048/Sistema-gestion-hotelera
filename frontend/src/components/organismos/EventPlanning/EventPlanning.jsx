@@ -13,32 +13,36 @@ import styled from 'styled-components';
 
 export const EventPlanning = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpenD, setIsOpenD] = useState(false)
     const [isOptionsOpen, setIsOptionsOpen] = useState(false)
     const [currentEvent, setCurrentEvent] = useState(null)
-    const {events, isLoading, error} = useEvents()
     const [isEdit, setIsEdit] = useState(false)
+    const {events, isLoading, error} = useEvents()
 
     const togglePopup = () => {
         setIsOpen(!isOpen)
+        setIsOpenD(false)
+        setIsOptionsOpen(false)
     }
 
     const handleOpen = (eventDetails)=> {
-        setIsOpen(!isOpen)
+        setIsOpenD(!isOpenD)
+        setIsOpen(false)
         setIsOptionsOpen(false)
         setCurrentEvent(eventDetails)
     }
 
-    const handleOptionsClick = () => {
+    const handleOptionsClick = (event) => {
         setIsOptionsOpen(!isOptionsOpen)
         setIsOpen(false)
-        setCurrentEvent(null)
+        setCurrentEvent(event)
     }
 
-    const handleEdit = (eventDetail) => {
-        setCurrentEvent(eventDetail)
+    const handleEdit =()=> {
         setIsEdit(true)
         setIsOpen(true)
-    }
+    }   
+
 
     if (isLoading) {
         return <p>Cargando eventos...</p>;
@@ -55,7 +59,7 @@ export const EventPlanning = () => {
                     <EventPlanningLeft
                         icon={"tdesign:task"}
                         textLines={[event.name, event.description]}
-                        children={event.organizer}
+                        children={event.hotel?.name}
                     />
                     <EventPlanningCenter 
                         price={event.price}
@@ -64,21 +68,26 @@ export const EventPlanning = () => {
                         endDate={event.endDate}
                         onDeliveryClick={() => handleOpen({ startDate: event.startDate, endDate: event.endDate })}
                     />
-                    <EventPlanningRight onOptionsClick={handleOptionsClick}/>
+                    <EventPlanningRight onOptionsClick={()=> handleOptionsClick(event)}/>
                 </EventCard>
                 ))
             ) : (
                 <p>No hay Nada</p>
             )}
 
-            {isOpen && currentEvent && ( // Renderiza DeliveryDetails solo si isOpen es true y currentEvent tiene un valor
+            {isOpenD && currentEvent && ( // Renderiza DeliveryDetails solo si isOpen es true y currentEvent tiene un valor
                 <DeliveryDetails startDate={currentEvent.startDate} endDate={currentEvent.endDate} />
             )}
-            {isOptionsOpen && <Methods togglePopup={togglePopup} setCurrentEvent={setCurrentEvent} setIsEdit={setIsEdit} event={currentEvent}/>}
+            {isOptionsOpen && <Methods setIsEdit={setIsEdit} togglePopup={togglePopup} onEdit={handleEdit}/>}
             
-            <Button onClick={togglePopup}>+ Agregar Evento</Button>
+            <Button onClick={()=> {
+                    togglePopup()
+                    setIsEdit(false)
+                }
+            }>+ Agregar Evento</Button>
             {isOpen && (
                     <>
+                    {console.log('currentEvent:', currentEvent)}
                         <ModalEvents togglePopup={togglePopup} isEdit={isEdit} setIsEdit={setIsEdit} event={currentEvent}/>
                     </>
             )}

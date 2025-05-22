@@ -5,6 +5,7 @@ export const Input2  = ({
     holder, 
     type, 
     textarea,
+    id,
     error, 
     ...rest
 }) => {
@@ -14,6 +15,7 @@ export const Input2  = ({
                 textarea ? (
                     <textarea
                         type={type}
+                        id={id}
                         {...rest}
                         error={error}
                         placeholder={holder}
@@ -21,6 +23,7 @@ export const Input2  = ({
                 ) : (
                     <StyledInput 
                         type={type}
+                        id={id}
                         {...rest}
                         error={error}
                         placeholder={holder}

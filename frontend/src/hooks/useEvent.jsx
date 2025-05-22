@@ -6,9 +6,10 @@ export const useEvent = ()=> {
     const [error, setError] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
-    const events = async(data, user, start, end)=> {
+    const events = async(data, user, hotel, start, end)=> {
         setIsLoading(true)
         const event = {
+            hotel: hotel,
             name: data?.name,
             description: data?.description,
             startDate: start,

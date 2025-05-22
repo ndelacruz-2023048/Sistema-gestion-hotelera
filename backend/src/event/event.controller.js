@@ -26,10 +26,16 @@ export const newEvent = async(req, res) => {
 export const getAll = async(req, res)=> {
     try {
         const events = await Event.find().populate(
-            {
-                path: 'designated',
-                select: 'profilePicture name surname -_id'
-            }
+            [
+                {
+                    path: 'designated',
+                    select: 'profilePicture name surname -_id'
+                },
+                {
+                    path: 'hotel',
+                    select: 'name -_id' 
+                }
+            ]
         )
 
         if(events.length === 0 ) return res.status(404).send(
@@ -38,7 +44,6 @@ export const getAll = async(req, res)=> {
                 message: 'Not event found'
             }
         )
-console.log(events);
 
             return res.status(200).send(
                 {
