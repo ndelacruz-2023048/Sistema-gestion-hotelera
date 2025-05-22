@@ -5,7 +5,7 @@ import { PlaceUploadImage } from '../Room/PlaceUploadImage';
 import { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { CardRoomImagesAdded } from '../Room/RoomView/CardRoomImagesAdded';
-
+import * as Select from '@radix-ui/react-select';
 export const NewRoomViewForm = () => {
   const roomImagesList = [
   ]
@@ -135,7 +135,70 @@ export const NewRoomViewForm = () => {
         </div>
       </div>
       <div className='roomImageForm'>
-        
+        <div className='containerRoomImageForm'>
+          <div>
+              <div>
+                <h3>Room View</h3>
+                <p>Add more Information </p>
+              </div>
+              <form className='formRoomView'>
+                <div className=''>
+                  <div className='sectioninputs1'>
+                    <div className='inputGroup1'>
+                      <div>
+                        <label>Size Room</label>
+                        <span></span>
+                      </div>
+                      <input type="number" />
+                    </div>
+                    <div className='inputGroup1'>
+                      <div>
+                        <label>Ubication Floor Hotel</label>
+                        <span></span>
+                      </div>
+                      <input type="number" />
+                    </div>
+                  </div>
+                  <div className='sectioninputs1'>
+                    <div className='inputGroup1'>
+                      <div>
+                        <label>Size Room</label>
+                        <span></span>
+                      </div>
+                      <input type="number" />
+                    </div>
+                    <div className='inputGroup1 selectGroup'>
+                      <div>
+                        <label>Ubication Floor Hotel</label>
+                        <span></span>
+                      </div>
+                      <Select.Root defaultValue="apple" className="selectRoomView">
+                        <Select.Trigger className='selectRoomView_selectTrigger'/>
+                        <Select.Content className='selectRoomView_selectContent'>
+                          <Select.Group>
+                            <Select.Label>Fruits</Select.Label>
+                            <Select.Item value="orange">Orange</Select.Item>
+                            <Select.Item value="apple">Apple</Select.Item>
+                            <Select.Item value="grape" disabled>
+                              Grape
+                            </Select.Item>
+                          </Select.Group>
+                          <Select.Separator />
+                          <Select.Group>
+                            <Select.Label>Vegetables</Select.Label>
+                            <Select.Item value="carrot">Carrot</Select.Item>
+                            <Select.Item value="potato">Potato</Select.Item>
+                          </Select.Group>
+                        </Select.Content>
+                      </Select.Root>
+                    </div>
+                  </div>
+                </div>
+                <div></div>
+                <div></div>
+              </form>
+          </div>
+        </div>
       </div>
     </Container>
   )
@@ -224,8 +287,42 @@ const Container = styled.div`
       }
     }
     .roomImageForm{
+      display: flex;
       width: 48%;
       background-color: white;
       border-radius: 20px;
+      .containerRoomImageForm{
+        width: 95%;
+        height: 96%;
+        margin: auto;
+        .formRoomView{
+          display: flex;
+          flex-direction: column;
+          .sectioninputs1{
+            display: flex;
+            justify-content: space-between;
+            .inputGroup1{
+              display: flex;
+              flex-direction: column;
+              width: 48%;
+            }
+
+            .selectGroup{
+              .selectRoomView{
+                &_selectTrigger{
+                  height: 100%;
+                }
+                &_selectContent{
+                  overflow: hidden;
+                  background-color: white;
+                  border-radius: 8px;
+                  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35);
+                  
+                }
+              }
+            }
+          }
+        }
+      }
     }
 `
