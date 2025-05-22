@@ -15,6 +15,7 @@ export const NewRoomViewForm = () => {
   const [itemsImagesLeft, setitemsImagesLeft] = useState(0)
   const [itemsImagesRight, setitemsImagesRight] = useState(0)
   const [arrayImages,setArrayImages] = useState(roomImagesList)
+  const [disponibilidad, setDisponibilidad] = useState();
   
   const { register, formState: { errors } } = useFormContext();
   useEffect(()=>{
@@ -137,65 +138,44 @@ export const NewRoomViewForm = () => {
       <div className='roomImageForm'>
         <div className='containerRoomImageForm'>
           <div>
-              <div>
-                <h3>Room View</h3>
-                <p>Add more Information </p>
-              </div>
-              <form className='formRoomView'>
-                <div className=''>
-                  <div className='sectioninputs1'>
-                    <div className='inputGroup1'>
-                      <div>
-                        <label>Size Room</label>
-                        <span></span>
-                      </div>
-                      <input type="number" />
-                    </div>
-                    <div className='inputGroup1'>
-                      <div>
-                        <label>Ubication Floor Hotel</label>
-                        <span></span>
-                      </div>
-                      <input type="number" />
-                    </div>
-                  </div>
-                  <div className='sectioninputs1'>
-                    <div className='inputGroup1'>
-                      <div>
-                        <label>Size Room</label>
-                        <span></span>
-                      </div>
-                      <input type="number" />
-                    </div>
-                    <div className='inputGroup1 selectGroup'>
-                      <div>
-                        <label>Ubication Floor Hotel</label>
-                        <span></span>
-                      </div>
-                      <Select.Root defaultValue="apple" className="selectRoomView">
-                        <Select.Trigger className='selectRoomView_selectTrigger'/>
-                        <Select.Content className='selectRoomView_selectContent'>
-                          <Select.Group>
-                            <Select.Label>Fruits</Select.Label>
-                            <Select.Item value="orange">Orange</Select.Item>
-                            <Select.Item value="apple">Apple</Select.Item>
-                            <Select.Item value="grape" disabled>
-                              Grape
-                            </Select.Item>
-                          </Select.Group>
-                          <Select.Separator />
-                          <Select.Group>
-                            <Select.Label>Vegetables</Select.Label>
-                            <Select.Item value="carrot">Carrot</Select.Item>
-                            <Select.Item value="potato">Potato</Select.Item>
-                          </Select.Group>
-                        </Select.Content>
-                      </Select.Root>
-                    </div>
+              <form className="formRoomView">
+                <h2 className="formTitle">Details room</h2>
+
+                <div className="formSection">
+                  <label>Square Meters</label>
+                  <input type="number" className="inputText" placeholder="Ej. 30" required />
+                </div>
+
+                <div className="formSection">
+                <label>Bed Types</label>
+                  <div className='formSelection'>
+                    <Select.Root value={disponibilidad} onValueChange={setDisponibilidad} position="popper">
+                      <StyledTrigger className="selectRoomView_selectTrigger">
+                        <Select.Value placeholder="Selecciona disponibilidad" />
+                      </StyledTrigger>
+                      <StyledContent className="selectRoomView_selectContent">
+                        <Select.Group className='groupSelect'>
+                          <StyledItem value="disponible" className="selectRoomView_selectItem">
+                            <Select.ItemText>Queen</Select.ItemText>
+                          </StyledItem>
+                          <StyledItem value="no_disponible" className="selectRoomView_selectItem">
+                            <Select.ItemText>King</Select.ItemText>
+                          </StyledItem>
+                        </Select.Group> 
+                      </StyledContent>
+                    </Select.Root>
                   </div>
                 </div>
-                <div></div>
-                <div></div>
+
+                <div className="formSection">
+                  <label>Floor</label>
+                  <input type="number" className="inputText" placeholder="Ej. 3" required />
+                </div>
+
+                <div className="formSection">
+                  <label>Price Per Night</label>
+                  <input type="number" className="inputText" placeholder="Ej. 500" required />
+                </div>
               </form>
           </div>
         </div>
@@ -289,40 +269,111 @@ const Container = styled.div`
     .roomImageForm{
       display: flex;
       width: 48%;
+      margin-right: 10px;
       background-color: white;
       border-radius: 20px;
       .containerRoomImageForm{
         width: 95%;
-        height: 96%;
         margin: auto;
-        .formRoomView{
-          display: flex;
-          flex-direction: column;
-          .sectioninputs1{
+        .formRoomView {
+          max-width: 600px;
+          margin: auto;
+          background-color: #fafafa;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+          .formTitle {
+            font-size: 28px;
+            color: #2e2e2e;
+            text-align: center;
+            margin-bottom: 2rem;
+          }
+
+          .formSection {
             display: flex;
-            justify-content: space-between;
-            .inputGroup1{
-              display: flex;
-              flex-direction: column;
-              width: 48%;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+
+          .formSelection {
+            display: flex;
+            justify-content: center;
+
+          }
+
+            label {
+              font-weight: bold;
+              font-size: 14px;
+              margin-bottom: 0.5rem;
+              color: #333;
             }
 
-            .selectGroup{
-              .selectRoomView{
-                &_selectTrigger{
-                  height: 100%;
-                }
-                &_selectContent{
-                  overflow: hidden;
-                  background-color: white;
-                  border-radius: 8px;
-                  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35);
-                  
-                }
+            .inputText,
+            .inputSelect {
+              font-size: 15px;
+              border: 1px solid #ccc;
+              border-radius: 6px;
+              background-color: #fff;
+              transition: border-color 0.3s;
+
+              &:focus {
+                border-color: #e5c100;
+                outline: none;
               }
             }
           }
         }
       }
     }
+`
+
+const StyledTrigger = styled(Select.Trigger)`
+  all: unset;
+  background-color: #f1f1f1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  color: #333;
+  width: 100%;
+  margin-bottom: 0;
+  border: 1px solid #ccc;
+ 
+  &:hover {
+    background-color: #eaeaea;
+  }
+`;
+ 
+const StyledContent = styled(Select.Content)`
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 10px 38px -10px rgba(22,23,24,0.35), 0px 10px 20px -15px rgba(22,23,24,0.2);
+  z-index: 999;
+  top: 10px;
+  .groupSelect{
+    width: 530px;
+  }
+`
+ 
+const StyledItem = styled(Select.Item)`
+  font-size: 14px;
+  line-height: 1;
+  color: #333;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  user-select: none;
+  cursor: pointer;
+ 
+  &:hover {
+    background-color: #f0f0f0;
+  }
+ 
+  &[data-highlighted] {
+    background-color: #e1e1e1;
+  }
 `

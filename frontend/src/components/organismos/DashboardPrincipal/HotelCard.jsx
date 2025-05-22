@@ -25,25 +25,27 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then(async(result) => {
-            const response = await deleteHotel(id);
-            if (response?.error) {
-                Swal.fire({
-                title: "Error",
-                text: "There was a problem deleting the hotel.",
-                icon: "error"
-                });
-            } else {
-                Swal.fire({
-                title: "Deleted!",
-                text: "The hotel has been deleted.",
-                icon: "success"
-                }).then(() => {
-                    window.location.reload();
-                });
+        }).then(async (result) => {
+            if (result.isConfirmed) {  // Solo si confirma
+                const response = await deleteHotel(id)
+                if (response?.error) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "There was a problem deleting the hotel.",
+                        icon: "error"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "The hotel has been deleted.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload()
+                    });
+                }
             }
-        });
-    };
+        })
+    }
     return (
         <Container onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
             <WrapperCard>
