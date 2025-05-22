@@ -138,7 +138,6 @@ const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 87vh;
 `
 
 const SectionTitle = styled.h2`
