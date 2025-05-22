@@ -26,38 +26,77 @@ export const NewRoomTemplate = () => {
       )
     
       const methods = useStepper()
-      const methodsForm = useForm();
+      const methodsForm = useForm()
       console.log(methods);
       
-      const {register,handleSubmit,formState:{errors}} = useForm()
+      //const {register,handleSubmit,formState:{errors}} = useForm()
       const currentStepIndex = utils.getIndex(methods.current.id)
       
       const onSubmit = async (data) => {
         try {
-          console.log("Datos recibidos del primer form:", data);
-
-          // Aquí envías a backend solo desde el primer form:
-          const res = await fetch("http://localhost:3000/v1/hotelhavenis/rooms/addNewRoom", {
+          console.log("Datos de todos los formularios:", data)
+      
+          // 1. Crear habitación
+          const roomRes = await fetch("http://localhost:3000/v1/hotelhavenis/rooms/addNewRoom", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          });
-
-          if (!res.ok) throw new Error("Error al crear habitación");
-
-          const result = await res.json();
-          console.log("Habitación creada:", result);
-
-          // Opcionalmente avanzar al siguiente paso si quieres:
-          // methods.next();
-
+            body: JSON.stringify({
+              hotel: data.hotel,
+              nameOfTheRoom: data.nameOfTheRoom,
+              typeRoom: data.typeRoom,
+              capacity: {
+                adults: data.capacity.adults,
+                childrens: data.capacity.childrens,
+              },
+              description: data.description,
+              disponibility: {
+                fechas_ocupadas: data.disponibility.fechas_ocupadas.split(',').map(f => f.trim()),
+                fechas_disponibles: data.disponibility.fechas_disponibles,
+              }
+            })
+          })
+      
+          if (!roomRes.ok) throw new Error("Error al crear habitación")
+      
+            const json = await roomRes.json()
+            const createdRoom = json.room   // Ahora createdRoom._id sí existe
+          //console.log("Respuesta completa del backend de la habitación:", createdRoom)
+          //console.log("Detalles a enviar:", data.details, data.roomNumber, createdRoom._id)
+          // 2. Crear detalle de habitación usando el _id de la habitación recién creada
+          const detailRes = await fetch(
+            "http://localhost:3000/v1/hotelhavenis/room-details/addRooms",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                room: createdRoom._id,       // este ya está definido
+                roomNumber: data.roomNumber,
+                details: data.details,
+              }),
+            }
+          )
+      
+          if (!detailRes.ok) throw new Error("Error al crear detalle de habitación");
+      
+          const createdDetail = await detailRes.json();
+      
+          alert("Habitación creada con éxito ✅");
+          methodsForm.reset();
+          methods.goTo("step-1");
+      
         } catch (error) {
           console.error(error);
+          alert("Ocurrió un error al crear la habitación, Hola")
         }
-      };
+      }
         
-      const handleClickNextStep = async()=>{
-        handleSubmit(onSubmit)()
+      const handleClickNextStep = async () => {
+        if (methods.current.id === 'step-3') {
+          // Último paso: enviar
+          methodsForm.handleSubmit(onSubmit)();
+        } else {
+          methods.next();
+        }
       }
       
       const handleClickGoToSpecificStep = (id)=>{

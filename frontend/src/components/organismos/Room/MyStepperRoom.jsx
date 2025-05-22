@@ -6,7 +6,7 @@ import { NewDetailRoomForm } from '../Forms/NewDetailRoomForm'
 
 export const MyStepperRoom = ({ onRestart, stepper, onSubmit }) => {
   return stepper.switch({
-    "step-1": () => <NewRoomForm onSubmit={onSubmit} />,  // onSubmit ya viene como handleSubmit(onSubmit)
+    "step-1": () => <NewRoomForm />,  // onSubmit ya viene como handleSubmit(onSubmit)
     "step-2": () => <NewDetailRoomForm />,
     "step-3": () => <NewRoomViewForm />
   })
