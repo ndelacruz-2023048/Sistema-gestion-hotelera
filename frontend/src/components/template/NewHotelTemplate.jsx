@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { NewHotelForm } from '../organismos/Forms/NewHotelForm'
 import { CompleteNewHotelForm } from '../organismos/Forms/CompleteNewHotelForm'
+import { useHotelStore } from '../../store/HotelStore'
 
 export const NewHotelTemplate = () => {
+  const {setNewHotel} = useHotelStore()
     const {useStepper,utils} = defineStepper(
         {
           id: 'step-1',
@@ -20,14 +22,13 @@ export const NewHotelTemplate = () => {
       )
     
       const methods = useStepper()
-      console.log(methods);
       
-      const {register,handleSubmit,formState:{errors}} = useForm()
+      const {register,handleSubmit,formState:{errors},setValue} = useForm()
       const currentStepIndex = utils.getIndex(methods.current.id)
       
       const onSubmit= (data)=>{
         console.log("Primer paso correcto");
-        console.log(data);
+        setNewHotel(data)
         methods.next()
       }
     
@@ -60,7 +61,7 @@ export const NewHotelTemplate = () => {
           <div className='containerForms'>
             {
               methods.switch({
-                "step-1":(step)=><NewHotelForm register={register} errors={errors}/>,
+                "step-1":(step)=><NewHotelForm register={register} errors={errors} setValue={setValue}/>,
                 "step-2":(step)=><CompleteNewHotelForm/>,
               })
             }

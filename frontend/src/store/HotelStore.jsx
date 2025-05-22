@@ -11,5 +11,23 @@ export const useHotelStore = create((set)=>({
         } catch (error) {
             console.log("Error fetching hotels by id");
         }
-    }
+    },
+    newHotel:{},
+    setNewHotel:(p)=>{
+        set({newHotel:p})
+    },
+    createHotel:async(p)=>{
+        const response = await fetch("http://localhost:3000/v1/hotelhavenis/hotels/addHotels",{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json" // Le dice al servidor que el cuerpo es JSON
+            },
+            body:JSON.stringify(p)
+        })
+        const responseJSON = await response.json()
+        return {
+            data:responseJSON
+        }
+    },
+
 }))

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TextField, MenuItem, Button as MuiButton } from "@mui/material";
 import {NavLink,useNavigate } from "react-router-dom";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -15,7 +15,7 @@ import { useSaveImage } from "../../../hooks/SaveImage";
 import { useRoomStore } from "../../../store/RoomsStore";
 
 
-export const NewHotelForm = ({register,errors}) => {
+export const NewHotelForm = ({register,errors,setValue}) => {
 
 
   ///Codigo para subir una imagen
@@ -30,9 +30,14 @@ export const NewHotelForm = ({register,errors}) => {
     setDataFileImageHotel(acceptedFiles[0])
     const imageUrl = URL.createObjectURL(acceptedFiles[0]);
     setUrlImage(imageUrl)
-    // setValue("uploadImage",acceptedFiles)
+    setValue("uploadImage",acceptedFiles)
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop,disabled:isInteractionDisabled})
+
+  useEffect(() => {
+    register("uploadImage",{required:"Imagen requerida"})
+  }, [])
+  
 
   return (
     <MainContainer>
@@ -58,32 +63,32 @@ export const NewHotelForm = ({register,errors}) => {
           <div className="formDataHotel">
               <div className="containerDataHotel">
                 <div className="containerfield">
-                  <div>
+                  <div className="fieldsText">
                     <p className="containerfield_title">Name</p>
-                    <span></span>
+                    <span className="containerfield_error">{errors?.nameHotel?.message}</span>
                   </div>
-                  <input className="containerfield_input" type="text" />
+                  <input className="containerfield_input" type="text" {...register("nameHotel",{required:"Name Hotel is required"})}/>
                 </div>
                 <div className="containerfield">
-                  <div>
+                  <div className="fieldsText">
                     <p className="containerfield_title">Address</p>
-                    <span></span>
+                    <span className="containerfield_error">{errors?.addressHotel?.message}</span>
                   </div>
-                  <input className="containerfield_input" type="text" />
+                  <input className="containerfield_input" type="text" {...register("addressHotel",{required:"Address Hotel is required"})}/>
                 </div>
                 <div className="containerfield">
-                  <div>
+                  <div className="fieldsText">
                     <p className="containerfield_title">Category</p>
-                    <span></span>
+                    <span className="containerfield_error">{errors?.categoryHotel?.message}</span>
                   </div>
-                  <input className="containerfield_input" type="text" />
+                  <input className="containerfield_input" type="text" {...register("categoryHotel",{required:"Category Hotel is required"})}/>
                 </div>
                 <div className="containerfield">
-                  <div>
+                  <div className="fieldsText">
                     <p className="containerfield_title">Price</p>
-                    <span></span>
+                    <span className="containerfield_error">{errors?.priceHotel?.message}</span>
                   </div>
-                  <input className="containerfield_input" type="text" />
+                  <input className="containerfield_input" type="number" {...register("priceHotel",{required:"Price Hotel is required"})}/>
                 </div>
               </div>
           </div>
@@ -140,13 +145,25 @@ const MainContainer = styled.div`
             font-weight: 600;
             color: #a88f68;
           }
+          .fieldsText{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
           &_input{
             border: 1px solid #cccccc;
             border-radius: 5px;
+            padding: 5px;
             &:focus{
               border-color: #a88f68;
             }
             outline: none;
+          }
+          &_error{
+            color: #d38c19;;
+            font-size: 12px;
+            margin: 0;
+            font-weight: 600;
           }
         }
       }
