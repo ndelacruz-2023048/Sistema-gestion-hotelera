@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { newEventRequest } from "../routers/services/app"
 import { toast } from 'react-hot-toast'
+import { io } from 'socket.io-client'
+
+const socket = io('http://localhost:3000')
 
 export const useEvent = ()=> {
     const [error, setError] = useState(false)
@@ -38,8 +41,8 @@ export const useEvent = ()=> {
             )
         }
         setError(false)
+        socket.emit('newEvent', {...event})
         return toast.success('Evento creado con exito')
-        
     }
 
     return {

@@ -35,7 +35,7 @@ export const EventPlanningCenter = ({ price, designated, startDate, endDate, onD
         <Wrapper>
             <TextArea>
                 <Text>
-                    <Label>${price ? price.toFixed(2) : 'N/A'} (1 persona)</Label>
+                    <Label>${typeof price === 'number' ? price.toFixed(2) : 'N/A'} (1 persona)</Label>
                     <SubText>Task Price</SubText>
                 </Text>
                 <SubTextType>Dura: <Delivery onClick={() => onDeliveryClick({ startDate, endDate })}>{duration}</Delivery></SubTextType>

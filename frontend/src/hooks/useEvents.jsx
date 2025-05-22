@@ -1,13 +1,16 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useCallback} from 'react'
 import { deleteEventRequest, eventGetRequest, updateEventRequest } from '../routers/services/app'
 import toast from 'react-hot-toast'
+import { io } from 'socket.io-client'
+
+const socket = io('http://localhost:3000')
 
 export const useEvents = () => {
     const [events, setEvents] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(false)
 
-    const getEvents = async() => {
+    const getEvents = useCallback(async() => {
         setIsLoading(true)
         const response = await eventGetRequest()
         setIsLoading(false)
@@ -33,7 +36,7 @@ export const useEvents = () => {
         setError(false)
         setEvents(response?.data?.events || []);
         // return toast.success('Datos traidos con exito')
-    }
+    }, [])
 
     const updateEvents = async(data, id, user, hotel, start, end)=> {
         const SendData = {
@@ -69,8 +72,17 @@ export const useEvents = () => {
     }
 
     useEffect(() => {
-        getEvents(); // Llama a getEvents al montar el componente
-    }, [])
+        getEvents();
+
+        // Escuchar eventos en tiempo real
+        socket.on('newEvent', (newEvent) => {
+            setEvents((prevEvents) => [...newEvent, ...prevEvents]);
+        })
+
+        return () => {
+            socket.off('newEvent')
+        };
+    }, [getEvents]);
 
     return {
         getEvents,

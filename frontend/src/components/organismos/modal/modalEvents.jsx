@@ -10,6 +10,7 @@ import { useEffect } from "react";
 function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
   const { events } = useEvent()
   const { updateEvents } = useEvents()
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
     const { register, handleSubmit, control, formState: { errors }, reset } = useForm(
       {
         mode: 'onChange',
@@ -18,9 +19,7 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
     )
     
     useEffect(() => {
-      
       if (event && isEdit===true) {
-
           reset({
               _id: event._id || '',
               name: event.name || '',
@@ -44,22 +43,25 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
       }
     }, [event, reset, isEdit])
     
-
   const onSubmit = async (data) => {
-  // Si no hay cambios, usamos los valores anteriores
-  const user = data?.designated?.value || event.designated?._id;
-  const hotel = data?.hotel?.value || event.hotel?._id;
-  const start = data?.startDate ? data.startDate.toISOString() : (event.startDate ? new Date(event.startDate).toISOString() : null);
-  const end = data?.endDate ? data.endDate.toISOString() : (event.endDate ? new Date(event.endDate).toISOString() : null);
+    const user = data?.designated?.value || event.designated?._id;
+    const hotel = data?.hotel?.value || event.hotel?._id;
+    const start = data?.startDate ? data.startDate.toISOString() : (event.startDate ? new Date(event.startDate).toISOString() : null);
+    const end = data?.endDate ? data.endDate.toISOString() : (event.endDate ? new Date(event.endDate).toISOString() : null);
 
-  if (isEdit) {
-    await updateEvents(data, event._id, user, hotel, start, end);
-  } else {
-    await events(data, user, hotel, start, end);
+    if (isEdit) {
+      await updateEvents(data, event._id, user, hotel, start, end);
+    } else {
+      await events(data, user, hotel, start, end);
+    }
+
+    reset()
   }
 
-  reset();
-};
+  const handleTogglePopup = async () => {
+      await delay(1500)
+      togglePopup()
+  }
 
 //Agregar un nuevo evento
     return (
@@ -88,7 +90,7 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
           <Line />
           <Blue>
             <div className="bottom">
-              <button type="submit" form="formData">{isEdit ? 'Guardar Cambios' : 'Guardar evento'}</button>
+              <button type="submit" form="formData" onClick={handleTogglePopup}>{isEdit ? 'Guardar Cambios' : 'Guardar evento'}</button>
             </div>
           </Blue>
         </PopupStyle>

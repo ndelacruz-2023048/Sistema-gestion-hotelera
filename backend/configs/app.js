@@ -5,6 +5,8 @@ import morgan from "morgan"
 import helmet from "helmet"
 import cors from "cors"
 import cookieParser from "cookie-parser"
+import { Server as SocketServer } from 'socket.io'
+import http from 'http'
 import authRoutes from '../src/Auth/auth.routes.js'
 import userRoutes from '../src/User/user.routes.js'
 import HotelRoutes from '../src/hotel/hotel.routes.js'
@@ -79,12 +81,41 @@ const routes = (app) =>{
 
 export const initServer = ()=>{
     const app = express()
+    const server = http.createServer(app)
+    const io = new SocketServer(server, {
+        cors: 'http://localhost:5173'
+    })
+
+    io.on('connection', socket => {
+        console.log('Cliente Socket.IO conectado:', socket.id);
+
+        socket.on('newEvent', (message) => {
+            console.log(`Mensaje Socket.IO recibido de ${socket.id}:`, message);
+        io.emit('newEvent', message)
+        socket.emit('newEvent', `Servidor dice (${socket.id}): ${JSON.stringify(message)}`);
+        console.log('newEvent', `Servidor dice (${socket.id}): ${JSON.stringify(message)}`);
+        
+        });
+
+
+        socket.on('disconnect', () => {
+            console.log('Cliente Socket.IO desconectado:', socket.id);
+        });
+
+        socket.on('error', (error) => {
+            console.error('Error en Socket.IO:', error);
+        });
+
+        socket.emit('welcome', '¡Bienvenido a Socket.IO desde el servidor!');
+    });
+
+
     try{
         configs(app)
         routes(app)
         docsApi(app)
-        app.listen(process.env.PORT)
-        console.log(`Server running in port: ${process.env.PORT}`)
+        server.listen(process.env.PORT)
+        console.log(`Server express and socket, running in port: ${process.env.PORT}`)
     }catch(err){
         console.error('Server init failed', err)
     }
