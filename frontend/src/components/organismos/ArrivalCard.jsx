@@ -1,31 +1,44 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Icon } from "@iconify/react/dist/iconify.js"
+import { Icon } from "@iconify/react"
 
-export const ArrivalCard = ({ name, time, nights, room, roomType, board, status, action }) => {
-    return(
-        <Card>
-            <TopRow>
-              <Time>{time}</Time>
-              <RightActions>
-                <ActionButton>{action}</ActionButton>
-                <Icon icon="mdi:edit-outline" className='Icon'/>
-              </RightActions>
-            </TopRow>
-            <Name>{name}</Name>
-            <Bar />
-            <Details>
-                <Label>Room</Label><Label>Nights</Label><Label>Room Type</Label>
-                <Value>{room}</Value><Value>{nights}</Value><Value>{roomType}</Value>
-        
-                <Label>Board</Label><Label>Status</Label><Label>Time</Label>
-                <Value>{board}</Value><Value>{status}</Value><Value>{time}</Value>
-            </Details>
-            <Status>{status}</Status>
-        </Card>
-    )
-    
+export const ArrivalCard = ({ title, data }) => {
+  return (
+    <Card>
+      <TopRow>
+        <RightActions>
+          <ActionButton>Upgrade</ActionButton>
+          <Icon icon="mdi:edit-outline" className='Icon' />
+        </RightActions>
+      </TopRow>
+
+      <Title>{title}</Title>
+      <Bar />
+
+      <Details>
+  {Object.entries(data)
+    .filter(([key]) => key !== '_id' && key !== '__v')
+    .map(([key, value]) => (
+      <FieldWrapper key={key}>
+        <Label>{key.charAt(0).toUpperCase() + key.slice(1)}</Label>
+        <Input
+          type="text"
+          value={
+            typeof value === 'object'
+              ? value?.toString()
+              : value
+          }
+          readOnly
+        />
+      </FieldWrapper>
+    ))}
+</Details>
+
+      <Status>Hotel seleccionado</Status>
+    </Card>
+  )
 }
+
 
 const Card = styled.div`
   background-color: ${({ theme }) => theme.colorBackground};
@@ -37,8 +50,7 @@ const Card = styled.div`
 
 const TopRow = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
 `
 
 const RightActions = styled.div`
@@ -46,7 +58,7 @@ const RightActions = styled.div`
   gap: 0.5rem;
   align-items: center;
 
-  .Icon{
+  .Icon {
     font-size: 23px;
     color: #888;
     padding: 4px;
@@ -61,42 +73,44 @@ const RightActions = styled.div`
   }
 `
 
-const Time = styled.span`
-  font-weight: bold;
-  color: #333;
-  color: ${({ theme }) => theme.color};
-`
-
-const Name = styled.h3`
+const Title = styled.h3`
   margin: 0.5rem 0 0.2rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: ${({ theme }) => theme.color};
 `
 
 const Bar = styled.div`
-  display: flex;
   width: 100%;
   height: 1px;
-  margin: 0.3%;
+  margin: 0.3rem 0;
   background-color: #888;
 `
 
 const Details = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px 12px;
+  gap: 16px;
   margin-top: 8px;
-  text-align: left;
 `
 
-const Label = styled.div`
-  font-size: 15px;
+const FieldWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`
+
+const Label = styled.label`
+  font-size: 14px;
   color: #888;
 `
 
-const Value = styled.div`
-  font-size: 15px;
+const Input = styled.input`
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 14px;
   color: ${({ theme }) => theme.color};
+  background-color: transparent;
 `
 
 const Status = styled.span`
@@ -113,8 +127,8 @@ const ActionButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
 
-  &:hover{
-    background-color:${({ theme }) => theme.infoText};
+  &:hover {
+    background-color: ${({ theme }) => theme.infoText};
     color: ${({ theme }) => theme.colorBackground};
     transition: 0.5s;
   }
