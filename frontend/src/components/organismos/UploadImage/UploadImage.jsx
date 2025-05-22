@@ -20,7 +20,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #eef4fd;
+    background-color: #c7c0b3;
     height: 100%;
 
 `
@@ -30,7 +30,7 @@ const ContainIcon = styled.div`
     padding: 10px;
     border-radius: 50%;
     .iconUpload{
-        color:#0b6ff8;
+        color:#a88f68;
         font-size: 25px;
     }
     `
@@ -39,7 +39,7 @@ const Description = styled.p`
 `
 
 const DescriptionSpan = styled.span`
-    color:#0b6ff8;
+    color:#a88f68;
     margin-right: 8px;
 `
 
