@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { eventGetRequest, updateEventRequest } from '../routers/services/app'
+import { deleteEventRequest, eventGetRequest, updateEventRequest } from '../routers/services/app'
 import toast from 'react-hot-toast'
 
 export const useEvents = () => {
@@ -31,10 +31,35 @@ export const useEvents = () => {
         // return toast.success('Datos traidos con exito')
     }
 
-    const updateEvents = async(id, data)=> {
-        const response = await updateEventRequest(id, data)
+    const updateEvents = async(data, id, user, hotel, start, end)=> {
+        const SendData = {
+            hotel: hotel,
+            name: data?.name,
+            description: data?.description,
+            startDate: start,
+            endDate: end,
+            location: data?.location,
+            organizer: data?.organizer,
+            designated: user,
+            capacity: data?.capacity,
+            price: data?.price,
+        }
+        
+        const response = await updateEventRequest(id, SendData)
         if(response.error) {
             toast.error('Error al actualizar el evento')
+        } else {
+            toast.success('Evento actualizado con exito')
+        }
+        await getEvents()
+    }
+
+    const deleteEvents = async(id)=> {
+        const response = await deleteEventRequest(id)
+        if(response.error) {
+            toast.error('Error al eliminar el evento')
+        } else {
+            toast.success('Evento eliminado con exito')
         }
         await getEvents()
     }
@@ -46,6 +71,7 @@ export const useEvents = () => {
     return {
         getEvents,
         updateEvents,
+        deleteEvents,
         isLoading,
         error,
         setError,

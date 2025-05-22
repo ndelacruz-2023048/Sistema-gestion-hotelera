@@ -17,11 +17,10 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
       }
     )
     
-
-    console.log('recibido maestro: ',event);
     useEffect(() => {
       
-      if (event) {
+      if (event && isEdit===true) {
+
           reset({
               _id: event._id || '',
               name: event.name || '',
@@ -33,7 +32,7 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
               price: event.price || '',
               designated: event.designated ? {
                 value: event.designated?._id || event.designated.value || '',
-                label: event.designated?.name || event.designated.label || ''
+                label: `${event.designated?.name || ''} ${event.designated?.surname || ''}`.trim()
               } : null,
               hotel: event.hotel ? {
                 value: event.hotel?._id || event.hotel.value || '',
@@ -41,19 +40,27 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
               } : null
           });
       } else {
-          reset();
+          reset()
       }
-    }, [event, reset])
+    }, [event, reset, isEdit])
     
 
-    const onSubmit = async (data)=> {
-      const user = data?.designated?.value
-      const hotel = data?.hotel?.value
-      const start = data?.startDate.toISOString()
-      const end = data?.endDate.toISOString()
-      
-      await events(data, user, hotel, start, end)
-    }
+  const onSubmit = async (data) => {
+  // Si no hay cambios, usamos los valores anteriores
+  const user = data?.designated?.value || event.designated?._id;
+  const hotel = data?.hotel?.value || event.hotel?._id;
+  const start = data?.startDate ? data.startDate.toISOString() : (event.startDate ? new Date(event.startDate).toISOString() : null);
+  const end = data?.endDate ? data.endDate.toISOString() : (event.endDate ? new Date(event.endDate).toISOString() : null);
+
+  if (isEdit) {
+    await updateEvents(data, event._id, user, hotel, start, end);
+  } else {
+    await events(data, user, hotel, start, end);
+  }
+
+  reset();
+};
+
 //Agregar un nuevo evento
     return (
       <Container>

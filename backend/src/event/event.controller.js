@@ -85,10 +85,38 @@ export const updateEvent = async(req, res) => {
             }
         )
     } catch (e) {
+        console.error(e);
+        
         return res.status(400).send(
             {
                 success: false,
                 message: 'General error when updated event'
+            }
+        )
+    }
+}
+
+export const deleteEvent = async(req, res)=> {
+    const { id } = req.params
+    try {
+        const event = await Event.findByIdAndDelete(id)
+        if(!event) return res.status(404).send(
+            {
+                success: false,
+                message: 'Event not found, event not deleted'
+            }
+        )
+        return res.status(200).send(
+            {
+                success: true,
+                message: 'Event deleted'
+            }
+        )
+    } catch (e) {
+        return res.status(400).send(
+            {
+                success: false,
+                message: 'General error when drop event'
             }
         )
     }

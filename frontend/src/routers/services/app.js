@@ -89,6 +89,17 @@ export const updateEventRequest = async(id, event)=> {
     }
 }
 
+export const deleteEventRequest = async(id)=> {
+    try {
+        return await apiClient.delete(`/events/delete/${id}`)
+    } catch (e) {
+        return {
+            error: true,
+            e
+        }
+    }
+}
+
 export const getHotelRequest = async()=> {
     try {
         return await apiClient.get('/hotels/getHotels')
