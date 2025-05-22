@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { PlaceUploadImage } from '../Room/PlaceUploadImage';
 import { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { CardRoomImagesAdded } from '../Room/RoomView/CardRoomImagesAdded';
 
 export const NewRoomViewForm = () => {
   const roomImagesList = [
@@ -117,10 +118,24 @@ export const NewRoomViewForm = () => {
           </div>
         </div>
         <div className='editImages'>
+          <div className='containerEditImages'>
+            <div className='editimagesheader'>
+              <h3 className='editimagesheader_title'>Room Images Added</h3>
+              <p className='editimagesheader_paragraph'>Select and delete the image that you do not like</p>
+            </div>
+            <div className='containerCardsRoomImageAdded'>
+              {
+
+                arrayImages.map((element,index)=>(
+                  <CardRoomImagesAdded image={element} itemNumber={index} setArrayImages={setArrayImages} arrayImages={arrayImages}/>
+                ))
+              }
+            </div>
+          </div>
         </div>
       </div>
       <div className='roomImageForm'>
-
+        
       </div>
     </Container>
   )
@@ -128,10 +143,13 @@ export const NewRoomViewForm = () => {
 
 const Container = styled.div`
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     height: 80%;
     .roomImage{
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       width: 50%;
       .showImages{
         display: flex;
@@ -174,11 +192,40 @@ const Container = styled.div`
         }
       }
       .editImages{
-        height: 50%;
+        display: flex;
+        flex-direction: column;
+        height: 48%;
+        background-color: white;
+        border-radius: 20px;
+        .containerEditImages{
+          width: 95%;
+          height: 92%;
+          margin: auto;
+          .editimagesheader{
+            height: 20%;
+            &_title{
+              font-size: 16px;
+              margin: 0;
+            }
+            &_paragraph{
+              font-size: 14px;
+              margin: 0;
+              color: #9e9e9e;
+            }
+          }
+          .containerCardsRoomImageAdded{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: scroll;
+            height: 78%;
+          }
+        }
       }
     }
     .roomImageForm{
-      width: 50%;
-      background-color: purple;
+      width: 48%;
+      background-color: white;
+      border-radius: 20px;
     }
 `
