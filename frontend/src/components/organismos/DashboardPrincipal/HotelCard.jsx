@@ -39,7 +39,6 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
                 text: "The hotel has been deleted.",
                 icon: "success"
                 }).then(() => {
-                    // 🔁 Recarga la página después de confirmar el borrado
                     window.location.reload();
                 });
             }
@@ -56,9 +55,11 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
                                 <NavLink to={`/hotel/${id}`}>
                                     <button className="btn"><Icon icon="fluent:conference-room-24-regular" className='icon'/>View Hotel </button>
                                 </NavLink>
+                                <NavLink to={`/settings/hotel`}>
                                     <button className="btn-editar">
                                         <Icon icon="material-symbols:contract-edit-sharp" className='icon'/>Edit Hotel
                                     </button>
+                                </NavLink>
                                     <button className="btn-delete" onClick={handleDelete}>
                                         <Icon icon="mdi-light:delete" className='icon'/>Delete Hotel
                                     </button>
