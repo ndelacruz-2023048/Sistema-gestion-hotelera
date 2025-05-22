@@ -4,9 +4,51 @@ import { TextField, MenuItem, Button as MuiButton } from "@mui/material";
 import {NavLink , useNavigate} from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useRoomStore } from "../../../store/RoomsStore";
-
+import { useHotelStore } from "../../../store/HotelStore";
+import { useSaveImage } from "../../../hooks/SaveImage";
+import { toast } from 'sonner';
 
 export const CompleteNewHotelForm = () => {
+  const {newHotel,createHotel} = useHotelStore()
+  const {registerImage} = useSaveImage()
+  const navigate = useNavigate();
+
+  const handleClickSaveContinue = async()=>{
+    const data = await registerImage(newHotel?.uploadImage?.[0]) 
+    const hotel = {
+      name:newHotel.nameHotel,
+      address:newHotel.addressHotel,
+      category:newHotel.categoryHotel,
+      price:parseFloat(newHotel.priceHotel),
+      image:data?.responseImage?.secure_url,
+    }
+    const myPromise = createHotel(hotel)
+    toast.promise(myPromise,{loading:"Saving hotel",success:()=>{
+      navigate("/room/new")
+      return(
+        "Hotel Saved"
+      )
+    }})
+  }
+
+  const handleClickSaveClose =async()=>{
+    const data = await registerImage(newHotel?.uploadImage?.[0]) 
+    const hotel = {
+      name:newHotel.nameHotel,
+      address:newHotel.addressHotel,
+      category:newHotel.categoryHotel,
+      price:parseFloat(newHotel.priceHotel),
+      image:data?.responseImage?.secure_url,
+    }
+    const myPromise = createHotel(hotel)
+    toast.promise(myPromise,{loading:"Saving hotel",success:()=>{
+      navigate("/")
+      return(
+        "Hotel Saved"
+      )
+    }})
+  }
+  
   return (
     <Container>
       <div className="infoHotelCreated">
@@ -14,10 +56,8 @@ export const CompleteNewHotelForm = () => {
         <a target="_blank"  href="https://dribbble.com/shots/24799919-Dentist-Appointment-Scheduling-App-Success-Screen">  Ir al diseño</a>
       </div>  
       <div className="buttonsManagment">
-          <button> <Icon icon="fluent:save-32-light"/> Save & Close</button>
-          <NavLink to="/room/new">
-            <button> <Icon icon="dashicons:saved"/> Save & Continue</button>
-          </NavLink> 
+          <button onClick={handleClickSaveClose}> <Icon icon="fluent:save-32-light"/> Save & Close</button>
+          <button onClick={handleClickSaveContinue}> <Icon icon="dashicons:saved"/> Save & Continue</button>
       </div>
     </Container>
   );

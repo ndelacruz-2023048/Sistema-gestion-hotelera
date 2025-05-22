@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TextField, MenuItem, Button as MuiButton } from "@mui/material";
 import {NavLink,useNavigate } from "react-router-dom";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -15,7 +15,7 @@ import { useSaveImage } from "../../../hooks/SaveImage";
 import { useRoomStore } from "../../../store/RoomsStore";
 
 
-export const NewHotelForm = ({register,errors}) => {
+export const NewHotelForm = ({register,errors,setValue}) => {
 
 
   ///Codigo para subir una imagen
@@ -27,125 +27,71 @@ export const NewHotelForm = ({register,errors}) => {
   const [isInteractionDisabled, setIsInteractionDisabled] = useState(false)/*State para deshabilitar botones e inputs cuando algo se este subiendo o guardando */
 
   const onDrop = useCallback(acceptedFiles => {
-    setDataFileImageHotel()
+    setDataFileImageHotel(acceptedFiles[0])
     const imageUrl = URL.createObjectURL(acceptedFiles[0]);
     setUrlImage(imageUrl)
-    // setValue("uploadImage",acceptedFiles)
+    setValue("uploadImage",acceptedFiles)
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop,disabled:isInteractionDisabled})
 
+  useEffect(() => {
+    register("uploadImage",{required:"Imagen requerida"})
+  }, [])
+  
+
   return (
     <MainContainer>
-      <form>
-        <LineHeader />
-
-        <Body>
-          <Container>
-            <FormContainer>
-              <SectionTitle>Basic Information</SectionTitle>
-              <FormGroup>
-                <CustomTextField
-                  label="School Title"
-                  placeholder="React Native Mobile Developer"
-                  fullWidth
-                  {...register("jobTitle", { required: "Job Title is required." })}
-                  error={!!errors.jobTitle}
-                  helperText={errors.jobTitle?.message}
-                />
-              </FormGroup>
-
-              <Container2>
-                <FormGroup>
-                  <TextOption
-                    select
-                    label="Role"
-                    fullWidth
-                    {...register("role", { required: "Role is required." })}
-                    error={!!errors.role}
-                    helperText={errors.role?.message}
-                  >
-                    <MenuItem value="Mobile Developer">Mobile Developer</MenuItem>
-                    <MenuItem value="Web Developer">Web Developer</MenuItem>
-                  </TextOption>
-                </FormGroup>
-
-                <FormGroup>
-                  <TextOption
-                    select
-                    label="Category"
-                    fullWidth
-                    {...register("category", { required: "Category is required." })}
-                    error={!!errors.category}
-                    helperText={errors.category?.message}
-                  >
-                    <MenuItem value="Developer">Developer</MenuItem>
-                    <MenuItem value="Designer">Designer</MenuItem>
-                  </TextOption>
-                </FormGroup>
-              </Container2>
-
-              <Line />
-
-              <SectionTitle>Additional Information</SectionTitle>
-              <FormGroup>
-                <CustomTextField
-                  select
-                  label="Employment Type"
-                  fullWidth
-                  {...register("employmentType", { required: "Employment Type is required." })}
-                  error={!!errors.employmentType}
-                  helperText={errors.employmentType?.message}
-                >
-                  <MenuItem value="Fulltime">Fulltime</MenuItem>
-                  <MenuItem value="Freelance">Freelance</MenuItem>
-                </CustomTextField>
-              </FormGroup>
-
-              <Container2>
-                <FormGroup>
-                  <CustomTextField
-                    select
-                    label="Job Placement"
-                    fullWidth
-                    {...register("jobPlacement", { required: "Job Placement is required." })}
-                    error={!!errors.jobPlacement}
-                    helperText={errors.jobPlacement?.message}
-                  >
-                    <MenuItem value="Onsite">Onsite</MenuItem>
-                    <MenuItem value="Remote">Remote</MenuItem>
-                  </CustomTextField>
-                </FormGroup>
-                <FormGroup>
-                  <CustomTextField
-                    select
-                    label="Experience"
-                    fullWidth
-                    {...register("experience", { required: "Experience is required." })}
-                    error={!!errors.experience}
-                    helperText={errors.experience?.message}
-                  >
-                    <MenuItem value="4-6 years">4-6 years</MenuItem>
-                    <MenuItem value="2-4 years">2-4 years</MenuItem>
-                  </CustomTextField>
-                </FormGroup>
-              </Container2>
-
-              <ContainUploadImage {...getRootProps({className: 'dropzone'})}>
-            <input {...getInputProps()}/>
-            {
-              urlImage===null ? (
-                <>
-                  <UploadImage errors={errors}/>
-                </>
-              ):(
-                <UploadImageSucces dataFile={dataFileImageHotel} imageURL={urlImage}  isLoadingImage={isLoadingImage} isInteractionDisabled={isInteractionDisabled}/>
-              )
-                
-            }
-          </ContainUploadImage>   
-            </FormContainer>
-          </Container>
-        </Body>
+      <form className="form">
+          <div className="formImageHotel">
+            <div className="formImageHotel_containertitle">
+              <h3 className="formImageHotel_title">Image Hotel</h3>
+            </div>
+            <ContainUploadImage {...getRootProps({className: 'dropzone'})}>
+              <input {...getInputProps()}/>
+              {
+                urlImage===null ? (
+                  <>
+                    <UploadImage errors={errors}/>
+                  </>
+                ):(
+                  <UploadImageSucces dataFile={dataFileImageHotel} imageURL={urlImage}  isLoadingImage={isLoadingImage} isInteractionDisabled={isInteractionDisabled}/>
+                )
+                  
+              }
+            </ContainUploadImage>   
+          </div>
+          <div className="formDataHotel">
+              <div className="containerDataHotel">
+                <div className="containerfield">
+                  <div className="fieldsText">
+                    <p className="containerfield_title">Name</p>
+                    <span className="containerfield_error">{errors?.nameHotel?.message}</span>
+                  </div>
+                  <input className="containerfield_input" type="text" {...register("nameHotel",{required:"Name Hotel is required"})}/>
+                </div>
+                <div className="containerfield">
+                  <div className="fieldsText">
+                    <p className="containerfield_title">Address</p>
+                    <span className="containerfield_error">{errors?.addressHotel?.message}</span>
+                  </div>
+                  <input className="containerfield_input" type="text" {...register("addressHotel",{required:"Address Hotel is required"})}/>
+                </div>
+                <div className="containerfield">
+                  <div className="fieldsText">
+                    <p className="containerfield_title">Category</p>
+                    <span className="containerfield_error">{errors?.categoryHotel?.message}</span>
+                  </div>
+                  <input className="containerfield_input" type="text" {...register("categoryHotel",{required:"Category Hotel is required"})}/>
+                </div>
+                <div className="containerfield">
+                  <div className="fieldsText">
+                    <p className="containerfield_title">Price</p>
+                    <span className="containerfield_error">{errors?.priceHotel?.message}</span>
+                  </div>
+                  <input className="containerfield_input" type="number" {...register("priceHotel",{required:"Price Hotel is required"})}/>
+                </div>
+              </div>
+          </div>
       </form>
     </MainContainer>
   );
@@ -156,120 +102,79 @@ const MainContainer = styled.div`
   flex-direction: column; 
   width: 100%;
   height: 100%;
-`;
-
-const Body = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex: 1; 
-`;
-
-const Container = styled.div`
+  .form{
     display: flex;
-    flex-direction: column;
-`;
+    flex-direction: column; 
+    justify-content: space-between;
+    height: 100%;
+    .formImageHotel{
+      &_title{
+        margin: 0;
+      }
+      &_containertitle{
+        width: 90%;
+        margin: auto;
+      }
+      display: flex;
+      flex-direction: column;
+      height: 45%;
+      background-color: white;
+      border-radius: 20px;
+    }
+    .formDataHotel{
+      background-color: white;
+      height: 50%;
+      display: flex;
+      align-items: center;
+      .containerDataHotel{
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: auto;
+        width: 90%;
 
-const FormContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 1px 2px  ${({theme})=>theme.color};
-`;
-
-const CustomTextField = styled(TextField)`
-  && {
-    color: ${({ theme }) => theme.color}; 
-    .MuiOutlinedInput-root {
-      border-radius: 28px; 
-      color: ${({ theme }) => theme.color};
-      fieldset {
-      border-color: ${({ theme }) => theme.color}; 
+        .containerfield{
+          display: flex;
+          flex-direction: column;
+          width: 48%;
+          gap: 5px;
+          &_title{
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #a88f68;
+          }
+          .fieldsText{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+          &_input{
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            padding: 5px;
+            &:focus{
+              border-color: #a88f68;
+            }
+            outline: none;
+          }
+          &_error{
+            color: #d38c19;;
+            font-size: 12px;
+            margin: 0;
+            font-weight: 600;
+          }
+        }
       }
-      &:hover fieldset {
-      border-color: ${({ theme }) => theme.colorHover};
-      }
-      &.Mui-focused fieldset {
-      border-color: ${({ theme }) => theme.colorHover};
-      }
-    }
-    .MuiInputLabel-root {
-      color: ${({ theme }) => theme.color}; 
-    }
-    .MuiSelect-icon {
-      color: ${({ theme }) => theme.color}; 
-    }
-    .MuiSelect-select {
-      color: ${({ theme }) => theme.color};
-      border-radius: 28px;
     }
   }
 `;
 
-const TextOption = styled(TextField)`
-    display: flex;
-    
-    && {
-      .MuiOutlinedInput-root {
-        border-radius: 28px;
-        background-color: ${({ theme }) => theme.backgroundColor}; 
-        fieldset {
-          border-color: ${({ theme }) => theme.color}; 
-        }
-        &:hover fieldset {
-          border-color: ${({ theme }) => theme.colorHover};
-        }
-        &.Mui-focused fieldset {
-          border-color: ${({ theme }) => theme.colorHover};
-        }
-      }
-      .MuiInputLabel-root {
-        color: ${({ theme }) => theme.colorLabel}; 
-      }
-      .MuiSelect-icon {
-        color: ${({ theme }) => theme.color}; 
-      }
-    }
-`
-
-const Container2 = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-`
-
-const SectionTitle = styled.h3`
-    font-size: 18px;
-    font-weight: bold;
-    color: ${({theme})=>theme.color};
-    margin-bottom: 10px;
-`;
-
-const FormGroup = styled.div`
-    display: flex;
-    flex-direction: column;
-    color: ${({theme})=>theme.color};
-    flex: 1;
-    gap: 10px;
-    
-`;
-
-
-const Line = styled.div`
-    width: 100%;
-    border-top: 2px solid ${({theme})=>theme.color};
-    margin: 20px 0;
-`;
-const LineHeader = styled.div`
-    width: 100%;
-    border-top: 2px solid ${({theme})=>theme.color};
-    
-`;
-
-
 const ContainUploadImage = styled.div`
-  height: 30%;
-  width: 100%;
-  border: 1px dashed #65dbff;
+  width: 90%;
+  border: 1px dashed #fff;
+  background-color: #a88f68;
+  margin: auto;
+  height: 65%;
 `

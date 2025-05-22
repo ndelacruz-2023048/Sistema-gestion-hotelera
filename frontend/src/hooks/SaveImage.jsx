@@ -17,6 +17,9 @@ export const useSaveImage =()=>{
             const responseImage = await response.json()
             setIsLoadingImage(false)
             setDataImage(responseImage)
+            return {
+                responseImage
+            }
         } catch (error) {
             console.error(error);
         }
