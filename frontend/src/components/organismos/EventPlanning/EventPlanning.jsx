@@ -43,15 +43,7 @@ export const EventPlanning = () => {
         setIsEdit(true)
         setIsOpen(true)
     }   
-
-
-    if (isLoading) {
-        return <p>Cargando eventos...</p>;
-    }
     
-    if (error) {
-        return <p>Error al cargar los eventos: {error}</p>;
-    }
     return (
         <EventWrapper>
             <HeaderEvent>
@@ -64,38 +56,45 @@ export const EventPlanning = () => {
                     }
                 >+ Agregar Evento</Button>
             </HeaderEvent>
-            {events.length > 0 ? (
+            {isLoading ? (
+                <p>Cargando eventos...</p>
+            ) : events.length === 0 ? (
+                <p>No hay eventos disponibles o creados</p>
+            ) : error ? (
+                <p>Error al cargar eventos</p>
+            ) : (
                 events.map(event => (
-                <EventCard>
+                    <EventCard key={event._id}>
                     <EventPlanningLeft
-                        icon={"tdesign:task"}
+                        icon="tdesign:task"
                         textLines={[event.name, event.description]}
                         children={event.hotel?.name}
                     />
-                    <EventPlanningCenter 
+                    <EventPlanningCenter
                         price={event.price}
                         designated={event.designated}
                         startDate={event.startDate}
                         endDate={event.endDate}
-                        onDeliveryClick={() => handleOpen({ startDate: event.startDate, endDate: event.endDate })}
+                        onDeliveryClick={() => handleOpen(event)}
                     />
-                    <EventPlanningRight onOptionsClick={()=> handleOptionsClick(event)}/>
-
-
-                    {isOpenD && currentEvent && ( 
-                <DeliveryDetails startDate={currentEvent.startDate} endDate={currentEvent.endDate} />
-            )}
-
-            {isOptionsOpen && <Methods 
-                                setIsEdit={setIsEdit} 
-                                togglePopup={togglePopup} 
-                                onEdit={handleEdit} 
-                                onDelete={deleteEvents} 
-                                eventId={currentEvent?._id}/>}
-                </EventCard>
+                    <EventPlanningRight onOptionsClick={() => handleOptionsClick(event)} />
+                    {isOpenD && currentEvent?._id === event._id && (
+                        <DeliveryDetails
+                        startDate={currentEvent.startDate}
+                        endDate={currentEvent.endDate}
+                        />
+                    )}
+                    {isOptionsOpen && currentEvent?._id === event._id && (
+                        <Methods
+                        setIsEdit={setIsEdit}
+                        togglePopup={togglePopup}
+                        onEdit={handleEdit}
+                        onDelete={deleteEvents}
+                        eventId={event._id}
+                        />
+                    )}
+                    </EventCard>
                 ))
-            ) : (
-                <p>No hay Nada</p>
             )}
 
             {isOpen && (

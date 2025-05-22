@@ -19,13 +19,17 @@ export const useEvents = () => {
                 for(const error of arrayErrors){
                     return toast.error(error.msg)
                 }
+            } else if(!response?.data?.events || response.data.events.length < 1){
+                return toast.error('No hay eventos disponibles o creados');
             }
+
             return toast.error(
                 response?.e?.response?.data?.msg ||
                 response?.e?.data?.msg ||
                 'Error al intentar obtener los datos'
             )
         }
+
         setError(false)
         setEvents(response?.data?.events || []);
         // return toast.success('Datos traidos con exito')
