@@ -11,8 +11,7 @@ const detailOptions = [
 ]
 
 export const NewDetailRoomForm = () => {
-  const methods = useForm()
-  const { register, handleSubmit, control, formState: { errors } } = methods
+  const { register, handleSubmit, control, formState: { errors } } = useFormContext()
   const { fields, append, remove } = useFieldArray({
     control,
     name: "details"
@@ -26,7 +25,7 @@ export const NewDetailRoomForm = () => {
   }
 
   return (
-    <FormProvider {...methods}>
+    
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <h2>Registrar detalles de la habitación</h2>
 
@@ -97,7 +96,6 @@ export const NewDetailRoomForm = () => {
           Guardar
         </Button>
       </FormContainer>
-    </FormProvider>
   )
 }
 

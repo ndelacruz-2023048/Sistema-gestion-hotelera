@@ -35,10 +35,17 @@ export const NewRoomTemplate = () => {
         console.log(data);
         methods.next()
       }
+
+      const validateRoomDetail = (data)=>{
+        console.log(data);
+        
+      }
       
       const onSubmit = async (data) => {
         if(currentStepIndex===0){
           validateRooom(data)
+        }else if(currentStepIndex===1){
+          validateRoomDetail(data)
         }
       };
         
