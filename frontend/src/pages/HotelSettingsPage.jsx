@@ -1,50 +1,105 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ArrivalCard } from '../components/organismos/ArrivalCard'
+import { useHotelStore } from '../store/HotelStore'
+import { useRoomStore } from "../store/RoomsStore"
+import * as Select from '@radix-ui/react-select'
+import { useEffect, useState } from 'react'
 
 export const HotelSettingsPage = () => {
+
+  const [selectedHotelId, setSelectedHotelId] = useState(null)
+  const [selectedRoomId, setSelectedRoomId] = useState(null)
+
+  const { hotels, fetchHotels } = useHotelStore()
+  const { roomsByHotel, fetchRoomsByHotel } = useRoomStore()
+
+  useEffect(() => {
+    fetchHotels()
+  }, [])
+
+  useEffect(() => {
+    if (selectedHotelId) {
+      fetchRoomsByHotel(selectedHotelId)
+    }
+  }, [selectedHotelId])
+
+  const handleHotelChange = (value) => {
+    setSelectedHotelId(value)
+    setSelectedRoomId(null)
+  }
+
+  const handleRoomChange = (value) => {
+    setSelectedRoomId(value)
+  }
+
+  const selectedHotel = hotels?.hotels?.find(h => h._id === selectedHotelId)
+
+  const selectedRoom = roomsByHotel?.room?.find(r => r._id === selectedRoomId)
+
+  useEffect(() => {
+    if(selectedHotel) {
+      console.log("Hotel Seleccionado: ", selectedHotel)
+    }
+
+    if (selectedRoom) {
+      console.log("Room seleccionado:", selectedRoom)
+    }
+  }, [selectedRoom])
+
   return (
     <Container>
       <LeftColumn>
-        <SectionTitle>Arrivals</SectionTitle>
-         <ArrivalCard
-          name="Hotel"
-          time="14:30"
-          nights="7"
-          room="217"
-          roomType="Single"
-          board="Breakfast"
-          status="Booking paid"
-          action="Check in"
-        />
-        <ArrivalCard
-          name="Room"
-          time="16:30"
-          nights="2"
-          room="101"
-          roomType="Family Suite"
-          board="Lunch"
-          status="Booking paid"
-          action="Proceed"
-        />
-        <ArrivalCard
-          name="Oleksiy Reznikov"
-          time="16:45"
-          nights="4"
-          room="224"
-          roomType="Family Suite"
-          board="Expedia"
-          status="Payment in installments"
-          action="Calculate"
-        /> 
+        <div>
+          <Select.Root onValueChange={handleHotelChange}>
+            <StyledTrigger>
+              <Select.Value placeholder="Selecciona un hotel..." />
+            </StyledTrigger>
+            <Select.Portal>
+              <StyledContent>
+                <Select.Viewport>
+                  {hotels?.hotels?.map(hotel => (
+                    <StyledItem key={hotel._id} value={hotel._id}>
+                      <Select.ItemText>{hotel.name}</Select.ItemText>
+                    </StyledItem>
+                  ))}
+                </Select.Viewport>
+              </StyledContent>
+            </Select.Portal>
+          </Select.Root>
+          {selectedHotelId && (
+            <Select.Root onValueChange={handleRoomChange}>
+              <StyledTrigger>
+                <Select.Value placeholder="Selecciona una habitación..." />
+              </StyledTrigger>
+              <Select.Portal>
+                <StyledContent>
+                  <Select.Viewport>
+                    {roomsByHotel?.room?.map(room => (
+                      <StyledItem key={room._id} value={room._id}>
+                        <Select.ItemText>{room.nameOfTheRoom}</Select.ItemText>
+                      </StyledItem>
+                    ))}
+                  </Select.Viewport>
+                </StyledContent>
+              </Select.Portal>
+            </Select.Root>
+          )}
+        </div>
+        
+        {selectedHotel && (
+          <ArrivalCard title="Hotel" data={selectedHotel} />
+        )}
+        
       </LeftColumn>
 
       <RightColumn>
-        <SectionTitle>Today</SectionTitle>
         <TimelineBox>
-
+          {selectedRoom && (
+            <ArrivalCard title="Room" data={selectedRoom} />
+          )}
         </TimelineBox>
-        <RightBottom>
+        {/* <RightBottom>
           <FreeRooms>
             <h3>Free rooms</h3>
             <RoomList>
@@ -58,9 +113,7 @@ export const HotelSettingsPage = () => {
             <ActionButton>Lock POS</ActionButton>
             <ActionButton>Support</ActionButton>
           </Sidebar>
-        </RightBottom>
-        
-        
+        </RightBottom> */}
       </RightColumn>
     </Container>
   )
@@ -71,7 +124,6 @@ const Container = styled.div`
   gap: 1rem;
   padding: 1rem;
   max-height: 70vh;
-  overflow-y: auto;
 `
 
 const LeftColumn = styled.div`
@@ -111,11 +163,11 @@ const ActionButton = styled.button`
 `
 
 const TimelineBox = styled.div`
+  display: flex;  
   background-color: none;
   border-radius: 12px;
   padding: 1rem;
-  height: 80%;
-  display: flex;
+  height: 20%;
   flex-direction: column;
   gap: 0.5rem;
 `
@@ -131,7 +183,7 @@ const Sidebar = styled.div`
 const RightBottom = styled.div`
   display: flex;
   flex-direction: row;
-  height: 60%;
+  height: 40%;
 `
 
 const FreeRooms = styled.div`
@@ -161,4 +213,54 @@ const RoomBox = styled.div`
   border-radius: 8px;
   justify-content: center;
   align-items: center;
+`
+
+
+const StyledTrigger = styled(Select.Trigger)`
+  all: unset;
+  background-color:${({ theme }) => theme.colorBackground};
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  color: ${({ theme }) => theme.color};
+  width: 250px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+
+  &:hover {
+    background-color:${({ theme }) => theme.square};
+  }
+`
+
+const StyledContent = styled(Select.Content)`
+  background-color: ${({ theme }) => theme.square};
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0px 10px 38px -10px rgba(22,23,24,0.35), 0px 10px 20px -15px rgba(22,23,24,0.2);
+  z-index: 999;
+`
+
+const StyledItem = styled(Select.Item)`
+  font-size: 14px;
+  line-height: 1;
+  color: ${({ theme }) => theme.color};
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colorBackground};
+  }
+
+  &[data-highlighted] {
+    background-color: ${({ theme }) => theme.colorBackground};
+  }
 `
