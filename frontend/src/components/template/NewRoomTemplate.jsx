@@ -4,6 +4,7 @@ import { defineStepper } from '@stepperize/react'
 import styled from 'styled-components'
 import { FormProvider, useForm } from 'react-hook-form'
 import { MyStepperRoom } from '../organismos/Room/MyStepperRoom'
+
 export const NewRoomTemplate = () => {
     const [resetKey, setResetKey] = useState(Date.now());
     const {useStepper,utils} = defineStepper(
@@ -31,12 +32,30 @@ export const NewRoomTemplate = () => {
       const {register,handleSubmit,formState:{errors}} = useForm()
       const currentStepIndex = utils.getIndex(methods.current.id)
       
-      const onSubmit= (data)=>{
-        console.log("Primer paso correcto");
-        console.log(data);
-        methods.next()
-      }
-    
+      const onSubmit = async (data) => {
+        try {
+          console.log("Datos recibidos del primer form:", data);
+
+          // Aquí envías a backend solo desde el primer form:
+          const res = await fetch("http://localhost:3000/v1/hotelhavenis/rooms/addNewRoom", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          if (!res.ok) throw new Error("Error al crear habitación");
+
+          const result = await res.json();
+          console.log("Habitación creada:", result);
+
+          // Opcionalmente avanzar al siguiente paso si quieres:
+          // methods.next();
+
+        } catch (error) {
+          console.error(error);
+        }
+      };
+        
       const handleClickNextStep = async()=>{
         handleSubmit(onSubmit)()
       }
@@ -63,9 +82,16 @@ export const NewRoomTemplate = () => {
                     ))
                     }
                 </div>
-                <MyStepperRoom onRestart={() => {
-                methodsForm.reset() // limpiar datos
-                }} stepper={methods}/>
+
+
+              <MyStepperRoom
+                onRestart={() => {
+                  methodsForm.reset();
+                  methods.goTo("step-1");
+                }}
+                stepper={methods}
+                onSubmit={onSubmit}
+              />
                 <div className='buttonManagment'>
                   <button className='buttonManagment_prev' onClick={()=>methods.prev()}>Prev</button>
                   <button className='buttonManagment_next' onClick={handleClickNextStep}>Next</button> 
