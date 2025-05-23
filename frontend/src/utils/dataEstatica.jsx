@@ -7,13 +7,8 @@ export const LinksArraySidebar = [
         to: "/",
     },
     {
-        label: "Favorites",
-        icon: "icon-park-outline:like",
-        to: "/favorites",
-    },
-    {
         label: "Messages",
-        icon: "si:mail-line",
+        icon: "material-symbols-light:event-note",
         to: "/events",
     },
     {
