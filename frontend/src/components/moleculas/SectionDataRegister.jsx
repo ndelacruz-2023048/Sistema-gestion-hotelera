@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Input2 } from '../atomos/Input2'
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import { Controller } from 'react-hook-form'
 
 export const SectionDataRegister = ({register, validateMobilePhone, watch, control, handleCountryCodeChange, errors }) => {
-    
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const changeLogin = ()=> {
@@ -149,7 +149,7 @@ export const SectionDataRegister = ({register, validateMobilePhone, watch, contr
             </DataBox>
             <DataBox>
                 <Input2
-                    type={"password"}
+                    type={showPassword ? "text" : "password"}
                     holder={"Contraseña"}
                     {...register('password', 
                         {
@@ -175,6 +175,18 @@ export const SectionDataRegister = ({register, validateMobilePhone, watch, contr
                     )}
                     error={errors.password}
                 />
+                    <span
+          onClick={() => setShowPassword(!showPassword)}
+          style={{
+            position: 'absolute',
+            right: 10,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            cursor: 'pointer'
+          }}
+        >
+          {showPassword ? '🙈' : '👁️'}
+        </span>
                 <Icon icon="mdi:password" className="IconLabel2"/>
             </DataBox>
             <DataBoxButton>
