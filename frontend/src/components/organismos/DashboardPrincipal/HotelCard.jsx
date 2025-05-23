@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Room from '../../../assets/Room.jpg'
 import { useState } from "react";
 import { SliderRooms } from "./SliderRooms";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRoomStore } from "../../../store/RoomsStore";
 import { NavLink } from "react-router";
 import { deleteHotel } from "../../../routers/services/app";
@@ -13,6 +13,8 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
     const [getData, setGetData] = useState(false)
     const {roomsByHotel,fetchRoomsByHotel} = useRoomStore()
     const {data} = useQuery({queryKey:['roomsByHotel',id],queryFn:()=>fetchRoomsByHotel(id), enabled: getData &&!!id,retry:false})    
+
+    const queryClient = useQueryClient()
     const handleClickFetchRoomByHotel = ()=>{
         setGetData(true)
     }
@@ -40,7 +42,7 @@ export const HotelCard = ({id,imageHotel,nameHotel,addressHotel,priceHotel, onEv
                         text: "The hotel has been deleted.",
                         icon: "success"
                     }).then(() => {
-                        window.location.reload()
+                        queryClient.invalidateQueries({ queryKey: ['listHotels'] });
                     });
                 }
             }
