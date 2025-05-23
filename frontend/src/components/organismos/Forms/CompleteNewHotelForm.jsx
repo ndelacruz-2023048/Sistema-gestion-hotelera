@@ -14,13 +14,19 @@ export const CompleteNewHotelForm = () => {
   const navigate = useNavigate();
 
   const handleClickSaveContinue = async()=>{
-    const data = await registerImage(newHotel?.uploadImage?.[0]) 
+    const promiseSavingImage = registerImage(newHotel?.uploadImage?.[0]) 
+    toast.promise(promiseSavingImage,{loading:"Uploading image hotel",success:()=>{
+      return(
+        "Image Upload Success"
+      )
+    }})
+    const dataImageUpload = await promiseSavingImage
     const hotel = {
       name:newHotel.nameHotel,
       address:newHotel.addressHotel,
       category:newHotel.categoryHotel,
       price:parseFloat(newHotel.priceHotel),
-      image:data?.responseImage?.secure_url,
+      image:dataImageUpload?.responseImage?.secure_url,
     }
     const myPromise = createHotel(hotel)
     toast.promise(myPromise,{loading:"Saving hotel",success:()=>{
@@ -32,13 +38,19 @@ export const CompleteNewHotelForm = () => {
   }
 
   const handleClickSaveClose =async()=>{
-    const data = await registerImage(newHotel?.uploadImage?.[0]) 
+    const promiseSavingImage = registerImage(newHotel?.uploadImage?.[0]) 
+    toast.promise(promiseSavingImage,{loading:"Uploading image hotel",success:()=>{
+      return(
+        "Image Upload Success"
+      )
+    }})
+    const dataImageUpload = await promiseSavingImage
     const hotel = {
       name:newHotel.nameHotel,
       address:newHotel.addressHotel,
       category:newHotel.categoryHotel,
       price:parseFloat(newHotel.priceHotel),
-      image:data?.responseImage?.secure_url,
+      image:dataImageUpload?.responseImage?.secure_url,
     }
     const myPromise = createHotel(hotel)
     toast.promise(myPromise,{loading:"Saving hotel",success:()=>{
