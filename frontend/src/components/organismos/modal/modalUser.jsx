@@ -1,11 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import photoProfile from '../../../assets/photoProfile.avif'
+// import photoProfile from '../../../assets/photoProfile.avif'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useNavigate } from 'react-router'
 import { useLogout } from '../../../hooks/useLogout'
+import {jwtDecode} from 'jwt-decode'
+import { UserAuth } from '../../../context/AuthContext'
+import { generateInitialsAvatar } from '../../../utils/GenerateInitialAvatar'
 
 export const ModalUser = ({ togglePopup }) => {
+  const { user } = UserAuth()
   const navigate = useNavigate()
   const { logout, isLoadingLogout} = useLogout()
 
@@ -14,6 +18,22 @@ export const ModalUser = ({ togglePopup }) => {
     togglePopup()
   }
 
+  let name, surname, email, username, profile = ''
+  if(user) {
+    try {
+      const decoded = jwtDecode(user)
+      name = decoded?.name
+      surname = decoded?.surname
+      email = decoded?.email
+      username = decoded?.username
+      profile = decoded?.profile
+    } catch (e) {
+      console.error('error', e);
+      
+    }
+  }
+
+
   const handleLogoutClick  = ()=> {
     logout()
     togglePopup()
@@ -21,10 +41,14 @@ export const ModalUser = ({ togglePopup }) => {
   return (
     <Container>
       <Section>
-        <Data>
-          <Image src={photoProfile}/>
-          <p>Armando Casas</p>
-          <h5>Administrador</h5>
+        <Data> 
+          { (profile ?? "").toString().length > 0 
+            ? <Image src={profile} alt="Profile" /> 
+            : generateInitialsAvatar(name, surname) 
+          }
+          <p>{name} {surname}</p>
+          <h5>{username}</h5>
+          <h5>{email}</h5>
         </Data>
         <Line></Line>
         <Cuenta>

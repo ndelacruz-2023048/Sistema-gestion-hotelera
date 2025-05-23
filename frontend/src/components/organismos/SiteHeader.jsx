@@ -1,11 +1,28 @@
 import styled from "styled-components"
 import { Icon } from "@iconify/react/dist/iconify.js";
-import photoProfile from "../../assets/photoProfile.avif"
+import { generateInitialsAvatar } from "../../utils/GenerateInitialAvatar";
 import { Toggle } from "../moleculas/Toggle";
 import Logotipo_Havenis from '../../assets/Logotipo_Havenis.png'
 import { useState } from "react";
 import { ModalUser } from "./modal/modalUser";
+import { UserAuth } from "../../context/AuthContext";
+import {jwtDecode} from 'jwt-decode'
+
 export const DashboardHeader = () => {
+    
+    const { user } = UserAuth()
+    let name, surname, profile = ''
+    if(user) {
+        try {
+        const decoded = jwtDecode(user)
+        name = decoded?.name
+        surname = decoded?.surname
+        profile = decoded?.profile
+        } catch (e) {
+        console.error('error', e);
+        
+        }
+    }
     const [isOpen, setIsOpen] = useState(false);
     
     const togglePopup = () => {
@@ -41,7 +58,10 @@ export const DashboardHeader = () => {
                 </DividerContainer>
                 
                 <ImageContainer >
-                    <Image src={photoProfile} onClick={togglePopup}/>
+                { (profile ?? "").toString().length > 0 
+                    ? <Image src={profile} alt="Profile" onClick={togglePopup}/> 
+                    : generateInitialsAvatar(name, surname) 
+                }
                 </ImageContainer>
 
                 {isOpen && (
