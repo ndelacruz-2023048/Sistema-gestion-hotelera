@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import * as Select from '@radix-ui/react-select';
 import { useHotelStore } from '../../../store/HotelStore';
 import { useRoomStore } from '../../../store/RoomsStore';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { NavLink } from 'react-router';
 export const ModalSelectHotel = () => {
     const {hotels} = useHotelStore()
     const {setHotelId} = useRoomStore()
@@ -15,6 +17,11 @@ export const ModalSelectHotel = () => {
   return (
     <Container>
         <div className='mainmodal'>
+            <div>
+                <NavLink to="/">
+                  <Icon icon="material-symbols:home-rounded" className='mainmodal_icon'/>
+                </NavLink>
+            </div>
             <div>
                 <h1 className='mainmodal_title'>Select Hotel</h1>
             </div>
@@ -60,6 +67,7 @@ const Container = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 5px;
         background-color: aliceblue;
         width: 45%;
         height: 30%;
@@ -70,6 +78,10 @@ const Container = styled.div`
         }
         &_description{
             margin: 0;
+        }
+        &_icon{
+            font-size: 30px;
+            color: #000;
         }
     }
 `

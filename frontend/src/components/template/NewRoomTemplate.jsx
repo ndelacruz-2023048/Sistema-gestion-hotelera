@@ -97,6 +97,7 @@ export const NewRoomTemplate = () => {
       const handleClickSubmitRoom = async()=>{
         const {nameOfTheRoom,typeRoom,capacity,description,details,roomNumber,galleryRoomImages,sizeRoom,bedType,floorRoom,priceRoom} = getValues()
         
+        console.log(details);
         
         //Room
         const adultsNumber = parseInt(capacity.adults)
