@@ -27,17 +27,17 @@ export const NewRoomTemplate = () => {
     
       const methods = useStepper()
       const methodsForm = useForm();
-      const {handleSubmit} = methodsForm
+      const {handleSubmit,getValues} = methodsForm
       const currentStepIndex = utils.getIndex(methods.current.id)
-
-
+      
       const validateRooom =(data)=>{
         console.log(data);
         methods.next()
       }
 
       const validateRoomDetail = (data)=>{
-        console.log(data);
+        
+        console.log(getValues(["roomNumber","room"]));
         
       }
       
