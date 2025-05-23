@@ -6,6 +6,7 @@ import { useRef, useState } from 'react'
 import { ScrollHorizontal } from "../../moleculas/ScrollHorizontal"
 
 export const RoomsDetail = ({data}) => {
+    console.log(data);
     
     const renderStars = (rating) => {
         const stars = [];
@@ -39,14 +40,14 @@ export const RoomsDetail = ({data}) => {
                             <Icon icon="basil:sand-watch-solid" />
                             <p>Available</p>
                         </span>
-                        <span>{data?.room?.views[0]?.available ===true ? "Disponible":"No Disponible"}</span>
+                        <span>{data?.room?.views[0]?.available ===true ? "Available":"Not Available"}</span>
                     </InfoRow>
                     <InfoRow>
                         <span>
                             <Icon icon="gravity-ui:persons" />
-                            <p>Quote</p>
+                            <p>Persons</p>
                         </span>
-                        <span>{data?.room?.maxPeople ?? '---'} Participants</span>
+                        <span>Adults: {data?.room?.capacity?.adults} Children: {data?.room?.capacity?.childrens}</span>
                     </InfoRow>
                     <InfoRow>
                         <span>
@@ -59,9 +60,9 @@ export const RoomsDetail = ({data}) => {
                 <ScrollHorizontal data={data?.room?.details[0]?.details}/>
                 <Section>
                     <DescriptionContainer>
-                        <DescriptionTitle>Descripción del Cuarto</DescriptionTitle>
+                        <DescriptionTitle>Description room</DescriptionTitle>
                         <DescriptionText>
-                        Esta habitación está diseñada para brindar la mejor comodidad durante tu estadía. Cuenta con áreas amplias, mobiliario moderno, y todas las comodidades que podrías necesitar para una experiencia inolvidable.
+                        {data?.room?.description}
                         </DescriptionText>
                     </DescriptionContainer>
                 </Section>

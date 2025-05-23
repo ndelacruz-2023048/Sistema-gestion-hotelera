@@ -17,7 +17,7 @@ export const Room = ({isSelected,onClick,isDetailRoomActive,name,image,SquateMet
                 </div>
                 <div className='flag'>
                     <Icon icon="mdi:social-distance-2-meters" className='icon'/>
-                    <p className='text'>{SquateMeters}</p>
+                    <p className='text'>{SquateMeters} m²</p>
                 </div>
             </div>
             <div className='sectionscosts'>
@@ -103,7 +103,7 @@ const Container = styled.div`
     .cost{
         font-size: 14px;
         margin: 0;
-        color:${({theme})=>theme.divider2};
+        color:${({theme})=>theme.divider};
         font-size: 15px;
         font-weight: 500;
         &_number{
