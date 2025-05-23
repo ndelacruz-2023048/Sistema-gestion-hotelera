@@ -8,10 +8,11 @@ import { useRoomStore } from '../../store/RoomsStore'
 import { toast } from 'sonner'
 import { useSaveImage } from '../../hooks/SaveImage'
 import { useNavigate } from 'react-router'
+import { ModalSelectHotel } from '../organismos/modal/modalSelectHotel'
 
 export const NewRoomTemplate = () => {
     const [resetKey, setResetKey] = useState(Date.now());
-    const {hotelId,createRoom,createRoomDetail,createRoomView,setHotelId} = useRoomStore()
+    const {hotelId,createRoom,createRoomDetail,createRoomView,setHotelId,isModalHotelSelectActive,setIsModalHotelSelectActive} = useRoomStore()
     const {registerImage} = useSaveImage()
     const navigate = useNavigate();
     const {useStepper,utils} = defineStepper(
@@ -159,6 +160,9 @@ export const NewRoomTemplate = () => {
       }
   return (
     <LayoutNewRoom>
+      {
+        hotelId===0 && <ModalSelectHotel/>
+      }
         <Container>
         
             <FormProvider {...methodsForm}>
@@ -191,7 +195,7 @@ export const NewRoomTemplate = () => {
                     <button className='buttonManagment_prev' onClick={handleClickSaveRoom}>Save</button>
                   ):(
                     <>
-                      <button className='buttonManagment_prev' onClick={()=>methods.prev()}>Prev</button>
+                      {/* <button className='buttonManagment_prev' onClick={()=>methods.prev()}>Prev</button> */}
                       <button className='buttonManagment_next' onClick={()=>handleClickNextStep()}>Next</button> 
                     </>
                   )}

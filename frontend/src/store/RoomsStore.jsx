@@ -81,5 +81,10 @@ export const useRoomStore = create((set,get) => ({
         return {
             data:responseJSON
         }
+    },
+    isModalHotelSelectActive:true,
+    setIsModalHotelSelectActive:()=>{
+        const {isModalHotelSelectActive} = get()
+        set({isModalHotelSelectActive:isModalHotelSelectActive ? false :true})
     }
 }))

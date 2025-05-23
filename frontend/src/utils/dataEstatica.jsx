@@ -16,6 +16,11 @@ export const LinksArraySidebar = [
         icon: "mingcute:hotel-line",
         to: "/hotel/new",
     },
+    {
+        label: "DetailFormHotel",
+        icon: "mdi:family-room-outline",
+        to: "/room/new",
+    }
     
 ]
 export const LinksArraySidebar2 = [

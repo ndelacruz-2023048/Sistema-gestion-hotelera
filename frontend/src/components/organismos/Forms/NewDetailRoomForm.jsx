@@ -82,9 +82,6 @@ export const NewDetailRoomForm = () => {
           Agregar detalle
         </Button>
 
-        <Button variant="contained" type="submit" sx={{ marginTop: 3 }}>
-          Guardar
-        </Button>
       </FormContainer>
   )
 }
