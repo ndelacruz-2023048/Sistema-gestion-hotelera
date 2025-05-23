@@ -13,70 +13,90 @@ import styled from 'styled-components';
 
 export const EventPlanning = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpenD, setIsOpenD] = useState(false)
     const [isOptionsOpen, setIsOptionsOpen] = useState(false)
     const [currentEvent, setCurrentEvent] = useState(null)
-    const {events, isLoading, error} = useEvents()
     const [isEdit, setIsEdit] = useState(false)
+    const {events, isLoading, error, deleteEvents} = useEvents()
 
     const togglePopup = () => {
         setIsOpen(!isOpen)
+        setIsOpenD(false)
+        setIsOptionsOpen(false)
     }
 
     const handleOpen = (eventDetails)=> {
-        setIsOpen(!isOpen)
+        setIsOpenD(!isOpenD)
+        setIsOpen(false)
         setIsOptionsOpen(false)
         setCurrentEvent(eventDetails)
     }
 
-    const handleOptionsClick = () => {
+    const handleOptionsClick = (event) => {
         setIsOptionsOpen(!isOptionsOpen)
         setIsOpen(false)
-        setCurrentEvent(null)
+        setIsOpenD(false)
+        setCurrentEvent(event)
     }
 
-    const handleEdit = (eventDetail) => {
-        setCurrentEvent(eventDetail)
+    const handleEdit =()=> {
         setIsEdit(true)
         setIsOpen(true)
-    }
-
-    if (isLoading) {
-        return <p>Cargando eventos...</p>;
-    }
+    }   
     
-    if (error) {
-        return <p>Error al cargar los eventos: {error}</p>;
-    }
     return (
         <EventWrapper>
-            {events.length > 0 ? (
+            <HeaderEvent>
+                <Title>Eventos</Title>
+                <Button onClick={()=> {
+                            setCurrentEvent(null)
+                            togglePopup()
+                            setIsEdit(false)
+                        }
+                    }
+                >+ Agregar Evento</Button>
+            </HeaderEvent>
+            {isLoading ? (
+                <p>Cargando eventos...</p>
+            ) : events.length === 0 ? (
+                <p>No hay eventos disponibles o creados</p>
+            ) : error ? (
+                <p>Error al cargar eventos</p>
+            ) : (
                 events.map(event => (
-                <EventCard>
+                    <EventCard key={event._id}>
                     <EventPlanningLeft
-                        icon={"tdesign:task"}
+                        icon="tdesign:task"
                         textLines={[event.name, event.description]}
-                        children={event.organizer}
+                        children={event.hotel?.name}
                     />
-                    <EventPlanningCenter 
+                    <EventPlanningCenter
                         price={event.price}
                         designated={event.designated}
                         startDate={event.startDate}
                         endDate={event.endDate}
-                        onDeliveryClick={() => handleOpen({ startDate: event.startDate, endDate: event.endDate })}
+                        onDeliveryClick={() => handleOpen(event)}
                     />
-                    <EventPlanningRight onOptionsClick={handleOptionsClick}/>
-                </EventCard>
+                    <EventPlanningRight onOptionsClick={() => handleOptionsClick(event)} />
+                    {isOpenD && currentEvent?._id === event._id && (
+                        <DeliveryDetails
+                        startDate={currentEvent.startDate}
+                        endDate={currentEvent.endDate}
+                        />
+                    )}
+                    {isOptionsOpen && currentEvent?._id === event._id && (
+                        <Methods
+                        setIsEdit={setIsEdit}
+                        togglePopup={togglePopup}
+                        onEdit={handleEdit}
+                        onDelete={deleteEvents}
+                        eventId={event._id}
+                        />
+                    )}
+                    </EventCard>
                 ))
-            ) : (
-                <p>No hay Nada</p>
             )}
 
-            {isOpen && currentEvent && ( // Renderiza DeliveryDetails solo si isOpen es true y currentEvent tiene un valor
-                <DeliveryDetails startDate={currentEvent.startDate} endDate={currentEvent.endDate} />
-            )}
-            {isOptionsOpen && <Methods togglePopup={togglePopup} setCurrentEvent={setCurrentEvent} setIsEdit={setIsEdit} event={currentEvent}/>}
-            
-            <Button onClick={togglePopup}>+ Agregar Evento</Button>
             {isOpen && (
                     <>
                         <ModalEvents togglePopup={togglePopup} isEdit={isEdit} setIsEdit={setIsEdit} event={currentEvent}/>
@@ -89,6 +109,21 @@ export const EventPlanning = () => {
 const EventWrapper = styled.div`
     margin-left: 200px;
 `
+
+const HeaderEvent = styled.div`
+    display: flex;
+    width: 81em;
+    align-items: center;
+    justify-content: space-between;
+`
+
+const Title = styled.h1`
+    font-size: 50px;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Great Vibes", cursive;
+    margin-bottom: 0.5px;
+`
 const EventCard = styled.div`
     background-color: ${({theme})=>theme.colorBackground};
     border-radius: 5px 5px 5px 5px;
@@ -97,11 +132,12 @@ const EventCard = styled.div`
     display: flex;
     gap: 150px;
     padding: 25px 10px;
+    margin-bottom: 20px;
 `
 
 const Button = styled.button`
     background-color: #B29464;
-    border-radius: 0px 50px 50px 50px;
+    border-radius: 50px 50px 50px 0px;
     height: 4em;
     width: 30em;
     font-weight: 400;

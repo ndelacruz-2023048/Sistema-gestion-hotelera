@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const DeliveryDetailsWrapper = styled.div`
     position: absolute;
     bottom: calc(100% + 10px); /* Se coloca encima del disparador */
-    left: 43%;
-    top: 97px;
+    left: 42%;
+    top: 207px;
     transform: translateX(-50%);
     background-color: #283542;
     color: white;

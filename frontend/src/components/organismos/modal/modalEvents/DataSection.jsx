@@ -9,6 +9,7 @@ import { Input2 } from "../../../atomos/Input2"
 import { InputExtendible } from "../../../atomos/InputExtendible";
 import { SelectUser } from "../../../atomos/SelectUser";
 import { Controller } from 'react-hook-form'
+import { SelectHotel } from "../../../atomos/SelectHotel";
 
 
 export const DataSection = ({register, control, errors })=> {
@@ -33,13 +34,15 @@ export const DataSection = ({register, control, errors })=> {
                 <Input2
                     holder={'Titulo'}
                     type={'text'}
+                    id={'name'}
                     {...register('name', { 
                         required: {
                             value: true,
                             message: 'El titulo es requerido'
                         }
                     })}
-                    error={errors.title}
+                    error={errors.name}
+                    
                 />
             </Up>
             <Text>
@@ -99,32 +102,44 @@ export const DataSection = ({register, control, errors })=> {
                             error={errors.designated}
                         />
                     </div>
+                    <div className="SelectContent">    
+                        <SelectHotel
+                            control={control}
+                            name={'hotel'}
+                            rules={{required: true}}
+                            error={errors.hotel}
+                        />
+                    </div>
                     <div className="InputE">
                         <InputExtendible
                             multiline
                             placeholder={'Descripción breve'}
                             rows={3}
+                            id={'description'}
                             {...register('description', {required: {
                                 value: true,
                                 message: 'La descripcion es obligatoria'
                             }})}
-                            error={errors.text}
+                            error={errors.description}
                         />
                     </div>
                     <Input2
                         holder={'Lugar'}
+                        id={'location'}
                         {...register('location', { required: true})}
                         error={errors.title}
                     />
                     <Input2
                         holder={'Capacidad'}
                         type={'number'}
+                        id={'capacity'}
                         {...register('capacity', { required: true})}
                         error={errors.title}
                     />
                     <Input2
                         holder={'Precio'}
                         type={'text'}
+                        id={'price'}
                         {...register('price', { required: true})}
                         error={errors.title}
                     />

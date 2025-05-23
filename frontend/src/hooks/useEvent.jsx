@@ -1,14 +1,18 @@
 import { useState } from "react"
 import { newEventRequest } from "../routers/services/app"
 import { toast } from 'react-hot-toast'
+import { io } from 'socket.io-client'
+
+const socket = io('http://localhost:3000')
 
 export const useEvent = ()=> {
     const [error, setError] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
-    const events = async(data, user, start, end)=> {
+    const events = async(data, user, hotel, start, end)=> {
         setIsLoading(true)
         const event = {
+            hotel: hotel,
             name: data?.name,
             description: data?.description,
             startDate: start,
@@ -37,8 +41,8 @@ export const useEvent = ()=> {
             )
         }
         setError(false)
+        socket.emit('newEvent', {...event})
         return toast.success('Evento creado con exito')
-        
     }
 
     return {

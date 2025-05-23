@@ -2,21 +2,25 @@
 import styled from 'styled-components';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-export const Methods = ({ togglePopup, setIsEdit, setCurrentEvent }) => {
-
-    const handleEdit = (eventDetail) => {
-        setCurrentEvent(eventDetail)
+export const Methods = ({ togglePopup, setIsEdit, onEdit, onDelete, eventId }) => {
+    const handleEdit = () => {
         setIsEdit(true)
+        onEdit()
         togglePopup()
     }
 
+    const handleDelete =() => {
+        if( window.confirm('Seguro de querer eliminarlo?')) {
+            onDelete(eventId)
+        }
+    }
     return (
         <Wrapper>
             <Option onClick={handleEdit}>
                 <Icon icon="line-md:edit-filled" width="24" height="24" />
                 Edit
             </Option>
-            <Option>
+            <Option onClick={handleDelete}>
                 <Icon icon="typcn:delete" width="24" height="24" />
                 Delete
             </Option>
@@ -27,8 +31,8 @@ export const Methods = ({ togglePopup, setIsEdit, setCurrentEvent }) => {
 const Wrapper = styled.div`
     position: absolute;
     bottom: calc(100% + 10px); /* Se coloca encima del disparador */
-    left: 90%;
-    top: 180px;
+    left: 93%;
+    top: 282px;
     transform: translateX(-50%);
     background-color: #283542;
     color: white;

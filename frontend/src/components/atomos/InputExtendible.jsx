@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, useState } from 'react';
+import React, { ChangeEvent, forwardRef } from 'react';
 import styled from 'styled-components';
 
 export const InputExtendible = forwardRef(({
@@ -9,27 +9,20 @@ export const InputExtendible = forwardRef(({
     rows = 3,
     disabled = false,
     fullWidth = true,
+    id,
     error,
     ...rest
 }, ref) => {
-    const [localValue, setLocalValue] = useState(value || '');
-
-    const handleChange = (e) => {
-        setLocalValue(e.target.value);
-        if (onChange) {
-        onChange(e);
-        }
-    };
-
     return (
         <InputContainer $fullWidth={fullWidth}>
         {multiline ? (
             <StyledTextarea
             ref={ref}
             placeholder={placeholder}
-            value={value ?? localValue}
-            onChange={handleChange}
+            value={value}
+            onChange={onChange}
             rows={rows}
+            id={id}
             disabled={disabled}
             {...rest}
             error={error}
@@ -39,8 +32,9 @@ export const InputExtendible = forwardRef(({
             ref={ref}
             type="text"
             placeholder={placeholder}
-            value={value ?? localValue}
-            onChange={handleChange}
+            value={value}
+            id={id}
+            onChange={onChange}
             disabled={disabled}
             {...rest}
             error={error}
@@ -50,6 +44,7 @@ export const InputExtendible = forwardRef(({
         </InputContainer>
     );
 });
+
 
 InputExtendible.displayName = 'InputExtendible';
 
