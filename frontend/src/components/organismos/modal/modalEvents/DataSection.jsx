@@ -98,7 +98,10 @@ export const DataSection = ({register, control, errors })=> {
                         <SelectUser
                             control={control}
                             name={'designated'}
-                            rules={{required: true}}
+                            rules={{required: {
+                                value: true,
+                                message: 'El encargado del evento es requerido'
+                            }}}
                             error={errors.designated}
                         />
                     </div>
@@ -106,7 +109,10 @@ export const DataSection = ({register, control, errors })=> {
                         <SelectHotel
                             control={control}
                             name={'hotel'}
-                            rules={{required: true}}
+                            rules={{required: {
+                                value: true,
+                                message: 'El hotel es requerido'
+                            }}}
                             error={errors.hotel}
                         />
                     </div>
@@ -126,22 +132,37 @@ export const DataSection = ({register, control, errors })=> {
                     <Input2
                         holder={'Lugar'}
                         id={'location'}
-                        {...register('location', { required: true})}
-                        error={errors.title}
+                        {...register('location', {  
+                            required: {
+                                value: true,
+                                message: 'El lugar es requerido'
+                            }
+                        })}
+                        error={errors.location}
                     />
                     <Input2
                         holder={'Capacidad'}
                         type={'number'}
                         id={'capacity'}
-                        {...register('capacity', { required: true})}
-                        error={errors.title}
+                        {...register('capacity', {  
+                            required: {
+                                value: true,
+                                message: 'La capacidad de personas es requerido'
+                            }
+                        })}
+                        error={errors.capacity}
                     />
                     <Input2
                         holder={'Precio'}
                         type={'text'}
                         id={'price'}
-                        {...register('price', { required: true})}
-                        error={errors.title}
+                        {...register('price', {  
+                            required: {
+                                value: true,
+                                message: 'El precio de entrada es requerido'
+                            }
+                        })}
+                        error={errors.price}
                     />
                 </SelectContainer>
             </Text>

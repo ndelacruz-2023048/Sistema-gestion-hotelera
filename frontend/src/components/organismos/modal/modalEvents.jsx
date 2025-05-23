@@ -11,7 +11,7 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
   const { events } = useEvent()
   const { updateEvents } = useEvents()
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
-    const { register, handleSubmit, control, formState: { errors }, reset } = useForm(
+    const { register, handleSubmit, control, formState: { errors, isValid }, reset } = useForm(
       {
         mode: 'onChange',
         defaultValues: event
@@ -59,8 +59,10 @@ function ModalEvents({ togglePopup, isEdit, setIsEdit, event }) {
   }
 
   const handleTogglePopup = async () => {
+    if(isValid) {
       await delay(1500)
       togglePopup()
+    }
   }
 
 //Agregar un nuevo evento

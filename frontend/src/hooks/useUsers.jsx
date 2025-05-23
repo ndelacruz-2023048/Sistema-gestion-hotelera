@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getUserRequest } from '../routers/services/app'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 
 export const useUsers = () => {
     const [users, setUsers] = useState([])

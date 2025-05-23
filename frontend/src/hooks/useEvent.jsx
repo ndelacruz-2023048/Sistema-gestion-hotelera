@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { newEventRequest } from "../routers/services/app"
-import { toast } from 'react-hot-toast'
+import { toast } from 'sonner'
 import { io } from 'socket.io-client'
 
 const socket = io('http://localhost:3000')
@@ -24,25 +24,37 @@ export const useEvent = ()=> {
             price: data?.price,
         }
 
-        const response = await newEventRequest(event)
-        setIsLoading(false)
-        if(response.error){
-            setError(true)
-            if(response?.e?.response?.data?.errors){
-                let arrayErros = response?.e?.response?.data?.errors
-                for(const error of arrayErros) {
-                    return toast.error(error.msg)
+        await toast.promise(
+            async () => {
+                const response = await newEventRequest(event);
+                if(response.error) {
+                    setError(true);
+                    if(response?.e?.response?.data?.errors) {
+                        let arrayErros = response?.e?.response?.data?.errors;
+                        throw new Error(arrayErros[0].msg);
+                    }
+                    throw new Error(
+                        response?.e?.response?.data?.msg ||
+                        response?.e?.data?.msg ||
+                        'Error al intentar crear un evento'
+                    );
                 }
+                setError(false);
+                socket.emit('newEvent', {...event});
+                return response;
+            },
+            {
+                loading: 'Creando nuevo evento...',
+                success: () => ({
+                    message: 'Evento creado con éxito',
+                    description: 'El nuevo evento ha sido registrado correctamente'
+                }),
+                error: (error) => ({
+                    message: 'Error al crear evento',
+                    description: error.message
+                })
             }
-            return toast.error(
-                response?.e?.response?.data?.msg ||
-                response?.e?.data?.msg ||
-                'Error al intentar crear un evento'
-            )
-        }
-        setError(false)
-        socket.emit('newEvent', {...event})
-        return toast.success('Evento creado con exito')
+        );
     }
 
     return {
