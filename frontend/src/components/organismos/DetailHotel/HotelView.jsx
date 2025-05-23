@@ -17,15 +17,15 @@ export const HotelView = ({dataHotelView}) => {
             <RoomBadges>
                 <ContainBadgeIcon>
                     <Icon icon="gis:measure-area-alt" className='icon'/>
-                    <Badges>{dataHotelView?.[0].squareMeters} m²</Badges>
+                    <Badges>{dataHotelView?.[0]?.squareMeters} m²</Badges>
                 </ContainBadgeIcon>
                 <ContainBadgeIcon>
                     <Icon icon="lucide:bed-single" className='icon'/>
-                    <Badges>{dataHotelView?.[0].bedTypes}</Badges>
+                    <Badges>{dataHotelView?.[0]?.bedTypes}</Badges>
                 </ContainBadgeIcon>
                 <ContainBadgeIcon>
                 <Icon icon="ri:stack-fill" className='icon'/>
-                    <Badges>{dataHotelView?.[0].floor}th level</Badges>
+                    <Badges>{dataHotelView?.[0]?.floor}th level</Badges>
                 </ContainBadgeIcon>
             </RoomBadges>
         <Main>

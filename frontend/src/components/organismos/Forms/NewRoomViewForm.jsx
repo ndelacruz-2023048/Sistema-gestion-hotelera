@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { PlaceUploadImage } from '../Room/PlaceUploadImage';
 import { useEffect } from 'react';
@@ -17,7 +17,7 @@ export const NewRoomViewForm = () => {
   const [arrayImages,setArrayImages] = useState(roomImagesList)
   const [disponibilidad, setDisponibilidad] = useState();
   
-  const { register, formState: { errors } } = useFormContext();
+  const { register,control, formState: { errors } ,setValue} = useFormContext();
   useEffect(()=>{
     const extraValue = 1; // Valor adicional que siempre se sumará
     if(arrayImages.length === 0){
@@ -54,13 +54,34 @@ export const NewRoomViewForm = () => {
     }
   },[arrayImages])
 
+  useEffect(()=>{
+    register("galleryRoomImages",{required:"One image is required"})
+  },[register])
+
+  useEffect(() => {
+    setValue("galleryRoomImages", arrayImages);
+  }, [arrayImages, setValue])
+  
+
   //Codigo de Dropzone 
   const [urlImage,setUrlImage] = useState(null)
   const onDrop = useCallback(acceptedFiles => {
     const imageUrl = URL.createObjectURL(acceptedFiles[0]);
     setUrlImage(imageUrl)
-    setArrayImages(prevImages => [...prevImages, imageUrl])
-  }, [])
+    setArrayImages(prevImages =>{
+      const objectImage = {
+        variant1:acceptedFiles[0],
+        variant2:imageUrl
+      }
+      const newImages = [...prevImages, objectImage];
+      setValue("galleryRoomImages", newImages, { 
+          shouldValidate: true,
+          shouldDirty: true 
+      });
+      return newImages;
+  });
+    
+  }, [setValue])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   
@@ -82,7 +103,7 @@ export const NewRoomViewForm = () => {
                       <img 
                         key={`principal-${index}`}
                         className='imageRoomPrincipal' 
-                        src={element} 
+                        src={element?.variant2} 
                         alt={`Imagen principal ${index + 1}`} 
                       />
                     ))
@@ -101,7 +122,7 @@ export const NewRoomViewForm = () => {
                           <img 
                             key={`small-${index}`}
                             className='imageRoomSmall' 
-                            src={element} 
+                            src={element?.variant2} 
                             alt={`Imagen pequeña ${index + 1}`} 
                           />
                         ))
@@ -128,7 +149,7 @@ export const NewRoomViewForm = () => {
               {
 
                 arrayImages.map((element,index)=>(
-                  <CardRoomImagesAdded image={element} itemNumber={index} setArrayImages={setArrayImages} arrayImages={arrayImages}/>
+                  <CardRoomImagesAdded image={element?.variant2} itemNumber={index} setArrayImages={setArrayImages} arrayImages={arrayImages}/>
                 ))
               }
             </div>
@@ -142,39 +163,66 @@ export const NewRoomViewForm = () => {
                 <h2 className="formTitle">Details room</h2>
 
                 <div className="formSection">
-                  <label>Square Meters</label>
-                  <input type="number" className="inputText" placeholder="Ej. 30" required />
+                  <div className='textInputsContainer'>
+                    <label className='formSection_label'>Square Meters</label>
+                    <span className='spanError'>{errors?.sizeRoom?.message}</span>
+                  </div>
+                  <input type="number" className="inputText" placeholder="Ej. 30" required {...register("sizeRoom",{required:"Price Room is required"})}/>
                 </div>
 
                 <div className="formSection">
-                <label>Bed Types</label>
+                  <div className='textInputsContainer'>
+                    <label className='formSection_label'>Bed Types</label>
+                    <span className='spanError'>{errors?.bedType?.message}</span>
+                  </div>
                   <div className='formSelection'>
-                    <Select.Root value={disponibilidad} onValueChange={setDisponibilidad} position="popper">
+                    <Controller
+                      name="bedType"
+                      control={control}
+                      rules={{ required: "Bed Type is required" }}
+                      render={({ field }) => (
+                    <Select.Root value={field.value}
+                    onValueChange={field.onChange}
+                    onBlur={field.onBlur} position="popper" >
                       <StyledTrigger className="selectRoomView_selectTrigger">
                         <Select.Value placeholder="Selecciona disponibilidad" />
                       </StyledTrigger>
                       <StyledContent className="selectRoomView_selectContent">
                         <Select.Group className='groupSelect'>
-                          <StyledItem value="disponible" className="selectRoomView_selectItem">
+                          <StyledItem value="individual" className="selectRoomView_selectItem">
+                            <Select.ItemText>Individual</Select.ItemText>
+                          </StyledItem>
+                          <StyledItem value="double" className="selectRoomView_selectItem">
+                            <Select.ItemText>Double</Select.ItemText>
+                          </StyledItem>
+                          <StyledItem value="queen" className="selectRoomView_selectItem">
                             <Select.ItemText>Queen</Select.ItemText>
                           </StyledItem>
-                          <StyledItem value="no_disponible" className="selectRoomView_selectItem">
+                          <StyledItem value="king" className="selectRoomView_selectItem">
                             <Select.ItemText>King</Select.ItemText>
                           </StyledItem>
                         </Select.Group> 
                       </StyledContent>
                     </Select.Root>
+                      )}
+                    />
                   </div>
                 </div>
 
                 <div className="formSection">
-                  <label>Floor</label>
-                  <input type="number" className="inputText" placeholder="Ej. 3" required />
+                  <div className='textInputsContainer'>
+                    <label className='formSection_label'>Floor</label>
+                    <span className='spanError'>{errors?.floorRoom?.message}</span>
+                  </div>
+                  <input type="number" className="inputText" placeholder="Ej. 3" {...register("floorRoom",{required:"Floor Room is required"})}/>
                 </div>
 
                 <div className="formSection">
-                  <label>Price Per Night</label>
-                  <input type="number" className="inputText" placeholder="Ej. 500" required />
+                  <div className='textInputsContainer'>
+                    <label className='formSection_label'>Price Per Night</label>
+                    <span className='spanError'>{errors?.priceRoom?.message}</span>
+                  </div>
+                  <input type="number" className="inputText" placeholder="Ej. 500" {...register("priceRoom",{required:"Price Room is required"})}/>
                 </div>
               </form>
           </div>
@@ -294,16 +342,26 @@ const Container = styled.div`
             flex-direction: column;
             margin-bottom: 1.5rem;
 
+            .textInputsContainer{
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              margin-bottom: 5px;
+            }
+            .spanError{
+              color: #a78b0e;
+              font-weight: 600;
+              font-size: 12px;
+            }
           .formSelection {
             display: flex;
             justify-content: center;
 
           }
 
-            label {
+            &_label {
               font-weight: bold;
               font-size: 14px;
-              margin-bottom: 0.5rem;
               color: #333;
             }
 

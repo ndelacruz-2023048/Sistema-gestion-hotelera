@@ -28,16 +28,6 @@ const Room = new Schema({
   description: {
     type: String,
     required: true
-  },
-  disponibility: {
-    fechas_ocupadas: [{
-      type: String,
-      required: true
-    }],
-    fechas_disponibles: {
-      type: String,
-      required: true
-    }
   }
 })
 

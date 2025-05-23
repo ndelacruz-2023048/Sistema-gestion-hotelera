@@ -43,4 +43,43 @@ export const useRoomStore = create((set,get) => ({
             console.log('Error fetching post by id',error);
         }
     },
+    createRoom:async(p)=>{
+        const response = await fetch("http://localhost:3000/v1/hotelhavenis/rooms/addNewRoom",{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json" // Le dice al servidor que el cuerpo es JSON
+            },
+            body:JSON.stringify(p)
+        })
+        const responseJSON = await response.json()
+        return {
+            data:responseJSON
+        }
+    },
+    createRoomDetail:async(p)=>{
+        const response = await fetch("http://localhost:3000/v1/hotelhavenis/room-details/addRooms",{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json" // Le dice al servidor que el cuerpo es JSON
+            },
+            body:JSON.stringify(p)
+        })
+        const responseJSON = await response.json()
+        return {
+            data:responseJSON
+        }
+    },
+    createRoomView:async(p)=>{
+        const response = await fetch("http://localhost:3000/v1/hotelhavenis/room-view/addNewRoomV",{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json" // Le dice al servidor que el cuerpo es JSON
+            },
+            body:JSON.stringify(p)
+        })
+        const responseJSON = await response.json()
+        return {
+            data:responseJSON
+        }
+    }
 }))

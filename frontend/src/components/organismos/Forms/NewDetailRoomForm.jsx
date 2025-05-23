@@ -28,16 +28,6 @@ export const NewDetailRoomForm = () => {
     
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <h2>Registrar detalles de la habitación</h2>
-
-        <TextField
-          label="Habitación (ID)"
-          fullWidth
-          margin="normal"
-          {...register("room", { required: "Ingrese el ID de la habitación" })}
-          error={!!errors.room}
-          helperText={errors.room?.message}
-        />
-
         <TextField
           label="Número de habitación"
           type="number"

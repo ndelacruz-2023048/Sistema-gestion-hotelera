@@ -34,7 +34,7 @@ export const DetailHotelTemplate = () => {
                     {
                       roomsByHotel.room?.map((e,index)=>(
                         <Room name={e.nameOfTheRoom} image={e.views} isDetailRoomActive={isDetailRoomActive} isSelected={selectedRoomId===index}
-                        aviable={e.views[0].available? "Aviable" : "Not Aviable" } SquateMeters={e.views[0].squareMeters} price={e.views[0].pricePerNight.$numberDecimal}
+                        aviable={e?.views[0]?.available? "Aviable" : "Not Aviable" } SquateMeters={e?.views[0]?.squareMeters} price={e?.views[0]?.pricePerNight?.$numberDecimal}
                         onClick={()=>handleClickRoomDetail(index,e._id)}/>
                       ))
                     }

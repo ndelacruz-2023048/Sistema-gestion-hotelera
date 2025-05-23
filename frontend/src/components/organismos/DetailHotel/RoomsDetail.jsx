@@ -39,7 +39,7 @@ export const RoomsDetail = ({data}) => {
                             <Icon icon="basil:sand-watch-solid" />
                             <p>Available</p>
                         </span>
-                        <span>{data?.room?.views[0].available ===true ? "Disponible":"No Disponible"}</span>
+                        <span>{data?.room?.views[0]?.available ===true ? "Disponible":"No Disponible"}</span>
                     </InfoRow>
                     <InfoRow>
                         <span>
@@ -53,7 +53,7 @@ export const RoomsDetail = ({data}) => {
                             <Icon icon="ri:money-dollar-box-line" />
                             <p>Price</p>
                         </span>
-                        <span>${data?.room?.views[0].pricePerNight?.$numberDecimal}</span>
+                        <span>${data?.room?.views[0]?.pricePerNight?.$numberDecimal}</span>
                     </InfoRow>
                 </InfoList>
                 <ScrollHorizontal data={data?.room?.details[0]?.details}/>

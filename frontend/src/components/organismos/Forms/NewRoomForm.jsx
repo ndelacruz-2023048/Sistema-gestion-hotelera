@@ -21,16 +21,6 @@ export const NewRoomForm = ({ onSubmit }) => {
           <Container2>
           <FormGroup>
             <CustomTextField
-              label="Hotel perteneciente"
-              fullWidth
-              {...register("hotel", { required: "Campo requerido" })}
-              error={!!errors.hotel}
-              helperText={errors.hotel?.message}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <CustomTextField
               label="Nombre de la habitación"
               fullWidth
               {...register("nameOfTheRoom", { required: "Campo requerido" })}
@@ -89,30 +79,7 @@ export const NewRoomForm = ({ onSubmit }) => {
               helperText={errors.description?.message}
             />
           </FormGroup>
-
-          <FormGroup>
-            <CustomTextField
-              label="Fechas ocupadas (separadas por comas)"
-              fullWidth
-              {...register("disponibility.fechas_ocupadas", { required: "Campo requerido" })}
-              error={!!errors?.disponibility?.fechas_ocupadas}
-              helperText={errors?.disponibility?.fechas_ocupadas?.message}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <CustomTextField
-              label="Fechas disponibles"
-              fullWidth
-              {...register("disponibility.fechas_disponibles", { required: "Campo requerido" })}
-              error={!!errors?.disponibility?.fechas_disponibles}
-              helperText={errors?.disponibility?.fechas_disponibles?.message}
-            />
-          </FormGroup>
         </FormContainer>
-        <Button type="submit" variant="contained" color="primary">
-          Enviar habitación
-        </Button>
       </form>
     </MainContainer>
   )

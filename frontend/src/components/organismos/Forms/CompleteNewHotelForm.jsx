@@ -12,7 +12,7 @@ export const CompleteNewHotelForm = () => {
   const {newHotel,createHotel} = useHotelStore()
   const {registerImage} = useSaveImage()
   const navigate = useNavigate();
-
+  const {setHotelId} = useRoomStore()
   const handleClickSaveContinue = async()=>{
     const promiseSavingImage = registerImage(newHotel?.uploadImage?.[0]) 
     toast.promise(promiseSavingImage,{loading:"Uploading image hotel",success:()=>{
@@ -35,6 +35,8 @@ export const CompleteNewHotelForm = () => {
         "Hotel Saved"
       )
     }})
+    const dataHotelCreated = await myPromise
+    setHotelId(dataHotelCreated?.data?.hotel?._id)
   }
 
   const handleClickSaveClose =async()=>{

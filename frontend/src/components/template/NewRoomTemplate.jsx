@@ -4,9 +4,16 @@ import { defineStepper } from '@stepperize/react'
 import styled from 'styled-components'
 import { FormProvider, useForm } from 'react-hook-form'
 import { MyStepperRoom } from '../organismos/Room/MyStepperRoom'
+import { useRoomStore } from '../../store/RoomsStore'
+import { toast } from 'sonner'
+import { useSaveImage } from '../../hooks/SaveImage'
+import { useNavigate } from 'react-router'
 
 export const NewRoomTemplate = () => {
     const [resetKey, setResetKey] = useState(Date.now());
+    const {hotelId,createRoom,createRoomDetail,createRoomView,setHotelId} = useRoomStore()
+    const {registerImage} = useSaveImage()
+    const navigate = useNavigate();
     const {useStepper,utils} = defineStepper(
         {
           id: 'step-1',
@@ -32,12 +39,17 @@ export const NewRoomTemplate = () => {
       
       const validateRooom =(data)=>{
         console.log(data);
+        
         methods.next()
       }
 
       const validateRoomDetail = (data)=>{
-        
-        console.log(getValues(["roomNumber","room"]));
+        methods.next()
+        console.log(data);
+      }
+
+      const validateRoomView = (data)=>{
+        console.log(data);
         
       }
       
@@ -46,6 +58,8 @@ export const NewRoomTemplate = () => {
           validateRooom(data)
         }else if(currentStepIndex===1){
           validateRoomDetail(data)
+        }else if(currentStepIndex===2){
+          validateRoomView(data)
         }
       };
         
@@ -53,8 +67,95 @@ export const NewRoomTemplate = () => {
         handleSubmit(onSubmit)()
       }
       
-      const handleClickGoToSpecificStep = (id)=>{
+      const validateGoToStep = (data,id)=>{
         methods.goTo(id)
+      }
+
+      const handleClickGoToSpecificStep = (id)=>{
+        handleSubmit((data)=>validateGoToStep(data,id))()
+      }
+      const uploadGalleryImage = async(imagesRoom)=>{
+        console.log(imagesRoom);
+        const galleryImagesList = []
+        for (let [index,image]  of imagesRoom.entries()){
+          console.log(image.variant1);
+          
+          const responseImageRoom = registerImage(image.variant1)
+          toast.promise(responseImageRoom,{loading:`Uploading Room Preview ${index}`,success:()=>{
+            return(
+              `Saved Room Preview ${index}`
+            )
+          }})
+          const dataImageRoom = await responseImageRoom
+          galleryImagesList.push(dataImageRoom?.responseImage?.secure_url)
+        }
+
+        return galleryImagesList
+      }
+
+      const handleClickSubmitRoom = async()=>{
+        const {nameOfTheRoom,typeRoom,capacity,description,details,roomNumber,galleryRoomImages,sizeRoom,bedType,floorRoom,priceRoom} = getValues()
+        
+        
+        //Room
+        const adultsNumber = parseInt(capacity.adults)
+        const childrenNumber = parseInt(capacity.childrens)
+        const room = {
+          hotel:hotelId,
+          nameOfTheRoom,
+          typeRoom,
+          capacity:{adults:adultsNumber,childrens:childrenNumber},
+          description
+        }
+        const responseRoom = createRoom(room)
+        toast.promise(responseRoom,{loading:"Saving Room",success:()=>{
+          return(
+            "Room Saved"
+          )
+        }})
+        const dataResponseRoom = await responseRoom
+        //Room Detail
+        const idRoomCreated = dataResponseRoom?.data?.room?._id
+        
+        const roomDetail = {
+          room:idRoomCreated,
+          roomNumber,
+          details
+        }
+        const responseRoomDetail = createRoomDetail(roomDetail)
+        toast.promise(responseRoomDetail,{loading:"Saving Room Detail",success:()=>{
+        return(
+            "Room Detail Saved"
+          )
+        }})
+        const dataResponseRoomDetail = await responseRoomDetail
+
+        //Room View
+        const listImages = await uploadGalleryImage(galleryRoomImages)
+        const roomView = {
+          room:idRoomCreated,
+          squareMeters:parseInt(sizeRoom),
+          bedTypes:bedType,
+          floor:parseInt(floorRoom),
+          images:listImages,
+          available:true,
+          pricePerNight:parseFloat(priceRoom)
+        }
+
+        const responseRoomView = createRoomView(roomView)
+        toast.promise(responseRoomView,{loading:"Saving Room Detail",success:()=>{
+        navigate("/")
+        setHotelId(0)
+        return(
+            "Room View Saved"
+          )
+        }})
+
+
+      }
+
+      const handleClickSaveRoom = ()=>{
+        handleSubmit(handleClickSubmitRoom)()
       }
   return (
     <LayoutNewRoom>
@@ -86,8 +187,14 @@ export const NewRoomTemplate = () => {
                 onSubmit={onSubmit}
               />
                 <div className='buttonManagment'>
-                  <button className='buttonManagment_prev' onClick={()=>methods.prev()}>Prev</button>
-                  <button className='buttonManagment_next' onClick={()=>handleClickNextStep()}>Next</button> 
+                  {currentStepIndex===2?(
+                    <button className='buttonManagment_prev' onClick={handleClickSaveRoom}>Save</button>
+                  ):(
+                    <>
+                      <button className='buttonManagment_prev' onClick={()=>methods.prev()}>Prev</button>
+                      <button className='buttonManagment_next' onClick={()=>handleClickNextStep()}>Next</button> 
+                    </>
+                  )}
                 </div>
             </FormProvider>
           </Container>
