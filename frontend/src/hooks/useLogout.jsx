@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { logoutRequest } from '../routers/services/app'
 import { UserAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import {jwtDecode} from 'jwt-decode'
 
 export const useLogout = () => {

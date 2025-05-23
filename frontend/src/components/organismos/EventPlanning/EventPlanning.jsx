@@ -56,46 +56,48 @@ export const EventPlanning = () => {
                     }
                 >+ Agregar Evento</Button>
             </HeaderEvent>
-            {isLoading ? (
-                <p>Cargando eventos...</p>
-            ) : events.length === 0 ? (
-                <p>No hay eventos disponibles o creados</p>
-            ) : error ? (
-                <p>Error al cargar eventos</p>
-            ) : (
-                events.map(event => (
-                    <EventCard key={event._id}>
-                    <EventPlanningLeft
-                        icon="tdesign:task"
-                        textLines={[event.name, event.description]}
-                        children={event.hotel?.name}
-                    />
-                    <EventPlanningCenter
-                        price={event.price}
-                        designated={event.designated}
-                        startDate={event.startDate}
-                        endDate={event.endDate}
-                        onDeliveryClick={() => handleOpen(event)}
-                    />
-                    <EventPlanningRight onOptionsClick={() => handleOptionsClick(event)} />
-                    {isOpenD && currentEvent?._id === event._id && (
-                        <DeliveryDetails
-                        startDate={currentEvent.startDate}
-                        endDate={currentEvent.endDate}
+            <div className="cardSection">
+                {isLoading ? (
+                    <p>Cargando eventos...</p>
+                ) : events.length === 0 ? (
+                    <p>No hay eventos disponibles o creados</p>
+                ) : error ? (
+                    <p>Error al cargar eventos</p>
+                ) : (
+                    events.map(event => (
+                        <EventCard key={event._id}>
+                        <EventPlanningLeft
+                            icon="tdesign:task"
+                            textLines={[event.name, event.description]}
+                            children={event.hotel?.name}
                         />
-                    )}
-                    {isOptionsOpen && currentEvent?._id === event._id && (
-                        <Methods
-                        setIsEdit={setIsEdit}
-                        togglePopup={togglePopup}
-                        onEdit={handleEdit}
-                        onDelete={deleteEvents}
-                        eventId={event._id}
+                        <EventPlanningCenter
+                            price={event.price}
+                            designated={event.designated}
+                            startDate={event.startDate}
+                            endDate={event.endDate}
+                            onDeliveryClick={() => handleOpen(event)}
                         />
-                    )}
-                    </EventCard>
-                ))
-            )}
+                        <EventPlanningRight onOptionsClick={() => handleOptionsClick(event)} />
+                        {isOpenD && currentEvent?._id === event._id && (
+                            <DeliveryDetails
+                            startDate={currentEvent.startDate}
+                            endDate={currentEvent.endDate}
+                            />
+                        )}
+                        {isOptionsOpen && currentEvent?._id === event._id && (
+                            <Methods
+                            setIsEdit={setIsEdit}
+                            togglePopup={togglePopup}
+                            onEdit={handleEdit}
+                            onDelete={deleteEvents}
+                            eventId={event._id}
+                            />
+                        )}
+                        </EventCard>
+                    ))
+                )}
+            </div>
 
             {isOpen && (
                     <>
@@ -108,6 +110,11 @@ export const EventPlanning = () => {
 
 const EventWrapper = styled.div`
     margin-left: 200px;
+    .cardSection {
+        overflow-y: scroll;
+        scrollbar-width: none;
+        max-height: 630px;
+    }
 `
 
 const HeaderEvent = styled.div`

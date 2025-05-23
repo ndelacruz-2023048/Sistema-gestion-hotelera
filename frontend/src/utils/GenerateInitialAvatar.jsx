@@ -22,8 +22,8 @@ export const generateInitialsAvatar = (name, surname) => {
   };
   
 const AvatarContainer = styled.div`
-    width: 50px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     justify-content: center;

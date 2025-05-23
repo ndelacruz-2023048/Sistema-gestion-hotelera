@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { registerRequest } from '../routers/services/app'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 
 export const useRegister = ()=> {
     const [isLoading, setIsLoading] = useState(false)

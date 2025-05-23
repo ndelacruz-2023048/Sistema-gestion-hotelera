@@ -1,6 +1,6 @@
 import {useState, useEffect, useCallback} from 'react'
 import { deleteEventRequest, eventGetRequest, updateEventRequest } from '../routers/services/app'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { io } from 'socket.io-client'
 
 const socket = io('http://localhost:3000')
@@ -52,12 +52,18 @@ export const useEvents = () => {
             price: data?.price,
         }
         
-        const response = await updateEventRequest(id, SendData)
-        if(response.error) {
-            toast.error('Error al actualizar el evento')
-        } else {
-            toast.success('Evento actualizado con exito')
-        }
+        toast.promise(
+            updateEventRequest(id, SendData),
+            {
+                loading: 'Actualizando evento...',
+                success: () => ({
+                    message: 'Evento actualizado con éxito',
+                    description: 'Los cambios han sido guardados correctamente'
+                }),
+                error: 'Error al actualizar el evento'
+            }
+        );
+        
         await getEvents()
     }
 
@@ -76,7 +82,7 @@ export const useEvents = () => {
 
         // Escuchar eventos en tiempo real
         socket.on('newEvent', (newEvent) => {
-            setEvents((prevEvents) => [...newEvent, ...prevEvents]);
+            setEvents((prevEvents) => [newEvent, ...prevEvents]);
         })
 
         return () => {

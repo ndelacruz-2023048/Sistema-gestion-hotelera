@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import { getHotelRequest } from '../routers/services/app'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 
 export const useHotels = () => {
     const [hotels, setHotels] = useState([])
